@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-07" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Spatial Point Patterns of Crime Events</title>
+
+  <introduction>
+    <p>
+      This chapter explores spatial point pattern analysis applied to crime data.
+    </p>
+  </introduction>
+
+</chapter>

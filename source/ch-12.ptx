@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-12" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Spatial Heterogeneity and Regression</title>
+
+  <introduction>
+    <p>
+      This chapter explores spatial heterogeneity and geographically weighted regression.
+    </p>
+  </introduction>
+
+</chapter>

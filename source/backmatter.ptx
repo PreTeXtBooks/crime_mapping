@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<backmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="backmatter">
+  <title>Backmatter</title>
+
+  <appendix xml:id="app-a">
+    <title>A Quick Intro to R and RStudio</title>
+    <introduction>
+      <p>
+        This appendix provides a quick introduction to R and RStudio for readers who are new to these tools.
+      </p>
+    </introduction>
+  </appendix>
+
+  <appendix xml:id="app-b">
+    <title>Regression Analysis: A Refresher</title>
+    <introduction>
+      <p>
+        This appendix provides a refresher on regression analysis for readers who need a review of the basics.
+      </p>
+    </introduction>
+  </appendix>
+
+  <appendix xml:id="app-c">
+    <title>Sourcing Geographical Data for Crime Analysis</title>
+    <introduction>
+      <p>
+        This appendix covers sources of geographical data for crime analysis, including open data portals,
+        APIs, and R packages that provide access to spatial data.
+      </p>
+    </introduction>
+  </appendix>
+
+  <colophon>
+    <p> This book was authored in <pretext />. </p>
+  </colophon>
+</backmatter>
