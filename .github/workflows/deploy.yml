@@ -1,9 +1,9 @@
 name: Build and Deploy PreTeXt Book
 
 on:
-  # Runs on pushes to main (after a PR is merged) to build and deploy
+  # Runs on pushes to master (after a PR is merged) to build and deploy
   push:
-    branches: ["main"]
+    branches: ["master"]
 
   # Runs on demand
   workflow_dispatch:
