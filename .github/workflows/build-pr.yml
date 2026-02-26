@@ -2,8 +2,7 @@ name: Build PreTeXt Book (PR Check)
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["*"]
 
 # Minimal permissions for PR builds
 permissions:
