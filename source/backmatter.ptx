@@ -58,6 +58,40 @@
       <url href="https://doi.org/10.21105/joss.00305">https://doi.org/10.21105/joss.00305</url>.
     </biblio>
 
+    <biblio type="raw" xml:id="Lovelace_2019">
+      Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
+      <title>Geocomputation with R</title>.
+      Chapman &amp; Hall/CRC Press, Boca Raton, FL, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Pebesma_2020">
+      Edzer Pebesma and Roger Bivand.
+      R spatial follows GDAL and PROJ development, 2020.
+      <url href="https://r-spatial.org/r/2020/03/17/wkt.html">https://r-spatial.org/r/2020/03/17/wkt.html</url>.
+      Accessed: 02-08-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2019">
+      Roger Bivand.
+      ECS530: (III) Coordinate reference systems, 2019.
+      <url href="https://rsbivand.github.io/ECS530_h19/ECS530_III.html">https://rsbivand.github.io/ECS530_h19/ECS530_III.html</url>.
+      Accessed: 02-08-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2020">
+      Roger Bivand.
+      Migration to PROJ6/GDAL3, 2020.
+      <url href="http://rgdal.r-forge.r-project.org/articles/PROJ6_GDAL3.html">http://rgdal.r-forge.r-project.org/articles/PROJ6_GDAL3.html</url>.
+      Accessed: 02-08-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tompson_2015">
+      Lisa Tompson, Shane Johnson, Matthew Ashby, Chloe Perkins, and Philip Edwards.
+      UK Open Source Crime Data: Accuracy and Possibilities for Research.
+      <journal>Cartography and Geographic Information Science</journal>,
+      42(2):97&#x2013;111, 2015.
+    </biblio>
+
   </references>
 
   <colophon>
