@@ -135,6 +135,138 @@
       Accessed: 17-05-2021.
     </biblio>
 
+    <biblio type="raw" xml:id="Tukey_1979">
+      John Tukey.
+      Statistical Mapping: What Should not be Plotted.
+      In DHEW, ed.,
+      <title>Proceedings of the 1976 Workshop on Automated Cartography and Epidemiology</title>,
+      chapter 3, pages 18&#x2013;21. US Department of Health, Education, and Welfare,
+      Washington, DC, 1979.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2018">
+      Kenneth Field.
+      <title>Cartography</title>.
+      ESRI Press, Redlands, CA, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brewer_2006">
+      Cynthia Brewer.
+      Basic Mapping Principles for Visualizing Cancer Data Using Geographic Information
+      Systems (GIS).
+      <journal>American Journal of Preventive Medicine</journal>,
+      30(2S):S25&#x2013;S36, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ratcliffe_2010">
+      Jerry Ratcliffe.
+      Crime Mapping: Spatial and Temporal Challenges.
+      In Alex Piquero and David Weisburd, eds.,
+      <title>Handbook of Quantitative Criminology</title>,
+      chapter 2, pages 5&#x2013;24. Springer, New York, NY, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Andresen_2011">
+      Martin Andresen.
+      The Ambient Population and Crime Analysis.
+      <journal>The Professional Geographer</journal>,
+      63(2):193&#x2013;212, 2011.
+    </biblio>
+
+    <biblio type="raw" xml:id="Goudriaan_2006">
+      Heike Goudriaan, Karin Witterbrood, and Paul Nieuwbeerta.
+      Neighbourhood characteristics and reporting crime.
+      <journal>British Journal of Criminology</journal>,
+      46:719&#x2013;742, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="HMIC_2014">
+      Her Majesty Inspectorate of Constabulary.
+      <title>Crime recording: making the victim count</title>.
+      Final Report, HMIC, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Buil-Gil_2021">
+      David Buil-Gil, Juanjo Medina, and Natalie Shlomo.
+      Measuring the Dark Figure of Crime in Geographic Areas: Small Area Estimation from
+      the Crime Survey for England and Wales.
+      <journal>British Journal of Criminology</journal>,
+      61(2):364&#x2013;388, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Hart_2012">
+      Timothy Hart and Paul Zandbergen.
+      <title>Effects of Data Quality on Predictive Hotspot Mapping</title>.
+      Final Report, National Institute of Justice, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ratcliffe_2004">
+      Jerry Ratcliffe.
+      Geocoding Crime and a First Estimate of a Minimum Acceptable Hit Rate.
+      <journal>International Journal of Geographical Information Science</journal>,
+      18(1):61&#x2013;72, 2004.
+    </biblio>
+
+    <biblio type="raw" xml:id="Andresen_2020">
+      Martin Andresen, Nick Malleson, Wouter Steenbek, Michael Townsley, and Christophe
+      Vandeviver.
+      Minimum Geocoding Match Rates: an International Study of the Impact of Data and
+      Areal Unit Sizes.
+      <journal>International Journal of Geographical Information Science</journal>,
+      34(7):1306&#x2013;1322, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="BrizRedon_2020">
+      &#xC1;lvaro Briz-Red&#xF3;n, Francisco Mart&#xED;nez-Ruiz, and Francisco Montes.
+      Reestimating a Minimum Acceptable Geocoding Hit Rate for Conducting a Spatial
+      Analysis.
+      <journal>International Journal of Geographical Information Science</journal>,
+      34(7):1283&#x2013;1305, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Buil_2019">
+      David Buil-Gil, Angelo Moretti, Natalie Shlomo, and Juanjo Medina.
+      Worry about crime in Europe: A model-based small area estimation from the European
+      Social Survey.
+      <journal>European Journal of Criminology</journal>, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Solymosi_2015">
+      Reka Solymosi, Kate Bowers, and Taku Fujiyama.
+      Mapping fear of crime as a context-dependent everyday experience that varies in
+      space and time.
+      <journal>Legal and Criminological Psychology</journal>,
+      20(2):193&#x2013;211, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Solymosi_2020">
+      Reka Solymosi, David Buil-Gil, Laura Vozmediano, and In&#xEA;s Sousa Guedes.
+      Towards a place-based measure of fear of crime: A systematic review of app-based
+      and crowdsourcing approaches.
+      <journal>Environment and Behavior</journal>, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Blumstein_1986">
+      Al Blumstein, J. Cohen, J. Roth, and C. Visher.
+      <title>Criminal Careers and Career Criminals</title>.
+      Research Report, National Science Foundation, 1986.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tanimura_2006">
+      Susumu Tanimura, Chusi Kuroiwa, and Tsutomu Mizota.
+      Proportional Symbol Mapping in R.
+      <journal>Journal of Statistical Software</journal>,
+      15(5):1&#x2013;7, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tennekes_2018">
+      Martijn Tennekes.
+      tmap: Thematic Maps in R.
+      <journal>Journal of Statistical Software</journal>,
+      84(6):1&#x2013;39, 2018.
+      <url href="https://doi.org/10.18637/jss.v084.i06">https://doi.org/10.18637/jss.v084.i06</url>.
+    </biblio>
+
   </references>
 
   <colophon>
