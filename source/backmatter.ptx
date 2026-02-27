@@ -155,6 +155,67 @@
       Cheshire, CT.
     </biblio>
 
+    <biblio xml:id="bib-Baller_2001" type="raw">
+      Baller, R., Anselin, L., Messner, S., Deane, G., and Hawkins, D. (2001). Structural
+      covariates of US county homicide rates: Incorporating spatial effects.
+      <em>Criminology</em>, 39(3), 561&#x2013;588.
+    </biblio>
+
+    <biblio xml:id="bib-Clayton_1987" type="raw">
+      Clayton, D. and Kaldor, J. (1987). Empirical Bayes estimates of age-standardized relative
+      risks for use in disease mapping. <em>Biometrics</em>, 671&#x2013;681.
+    </biblio>
+
+    <biblio xml:id="bib-Carr_2010" type="raw">
+      Carr, D. and Pickle, L. (2010). <em>Visualizing Data Patterns with Micromaps</em>. CRC
+      Press. Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Gelman_1999" type="raw">
+      Gelman, A. and Price, P. (1999). All Maps of Parameters Estimates are Misleading.
+      <em>Statistics in Medicine</em>, 18, 3221&#x2013;3234.
+    </biblio>
+
+    <biblio xml:id="bib-Lawson_2006" type="raw">
+      Lawson, A. (2006). <em>Statistical Methods in Spatial Epidemiology</em> (2nd ed.).
+      John Wiley &amp; Sons. Chichester, UK.
+    </biblio>
+
+    <biblio xml:id="bib-Lawson_2021a" type="raw">
+      Lawson, A. (2021a). <em>Bayesian Disease Mapping</em> (3rd ed.). CRC Press. Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Lawson_2021b" type="raw">
+      Lawson, A. (2021b). <em>Using R for Bayesian Spatial and Spatio-Temporal Health
+      Modeling</em>. CRC Press. Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Marshall_1991" type="raw">
+      Marshall, R. (1991). Mapping Disease and Mortality Rates using Empirical Bayes Estimators.
+      <em>Applied Statistics</em>, 40(2), 283&#x2013;294.
+    </biblio>
+
+    <biblio xml:id="bib-McElreath_2018" type="raw">
+      McElreath, R. (2018). <em>Statistical Rethinking: A Bayesian Course with Examples in R and
+      Stan</em>. Chapman &amp; Hall/CRC.
+    </biblio>
+
+    <biblio xml:id="bib-Monmonier_1996" type="raw">
+      Monmonier, M. (1996). <em>How to Lie with Maps</em> (2nd ed.). The University of Chicago
+      Press. Chicago.
+    </biblio>
+
+    <biblio xml:id="bib-Oliveira_2021" type="raw">
+      Oliveira, M. (2021). More crime in cities? On the scaling laws of crime and the inadequacy
+      of per capita rankings&#x2014;a cross-country study. <em>Crime Science</em>, 10.
+      <url href="https://doi.org/10.1186/s40163-021-00155-8">https://doi.org/10.1186/s40163-021-00155-8</url>
+    </biblio>
+
+    <biblio xml:id="bib-Waller_2004" type="raw">
+      Waller, L. and Gotway, C. (2004). <em>Applied Spatial Statistics for Public Health
+      Data</em>. John Wiley &amp; Sons. Chichester, UK.
+    </biblio>
+
   </references>
 
   <colophon>
