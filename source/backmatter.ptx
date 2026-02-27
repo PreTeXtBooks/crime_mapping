@@ -31,6 +31,35 @@
     </introduction>
   </appendix>
 
+  <references xml:id="bibliography">
+    <title>Bibliography</title>
+
+    <biblio type="raw" xml:id="Brantingham_1995">
+      Patricia Brantingham and Paul Brantingham.
+      <title>Criminality of place: crime generators and crime attractors</title>.
+      <journal>European Journal on Criminal Policy and Research</journal>,
+      3:5&#x2013;26, 1995.
+    </biblio>
+
+    <biblio type="raw" xml:id="Langton_2020">
+      Samuel Langton and Reka Solymosi.
+      <title>Open Data for Crime and Place Research: A Practical Guide in R</title>.
+      In <pubtitle>The Study of Crime and Place: A Methods Handbook</pubtitle>,
+      eds. Elisabeth Groff and Corey Haberman. Temple University Press, 2018.
+      Available as pre-print at
+      <url href="https://osf.io/preprints/a96y7/">https://osf.io/preprints/a96y7/</url>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Padgham_2017">
+      Mark Padgham, Bob Rudis, Robin Lovelace, and Ma&#xEB;lle Salmon.
+      <title>osmdata</title>.
+      <journal>The Journal of Open Source Software</journal>,
+      2(14), June 2017.
+      <url href="https://doi.org/10.21105/joss.00305">https://doi.org/10.21105/joss.00305</url>.
+    </biblio>
+
+  </references>
+
   <colophon>
     <p> This book was authored in <pretext />. </p>
   </colophon>

@@ -9,4 +9,454 @@
     </p>
   </introduction>
 
+  <section xml:id="sec-ch02-introduction">
+    <title>Introduction</title>
+
+    <p>
+      In this chapter we get our hands dirty with <term>spatial manipulation of data</term>.
+      Thus far, our data manipulation exercises (using <c>dplyr</c>) were such that you might
+      be familiar with, from any earlier exposures to data analysis. For example, linking
+      datasets using a common column is a task which you can perform on spatial or non-spatial
+      data. These are referred to as <term>attribute operations</term>. However, in this chapter
+      we will explore some exercises in data manipulation which are specific to <em>spatial</em>
+      data analysis. We will be learning some key spatial operations: a set of functions that
+      allow you to create new and manipulate spatial data.
+    </p>
+
+    <p>
+      The main objectives for this chapter are that by the end you will have:
+    </p>
+
+    <ul>
+      <li>
+        <p>met a new format for accessing boundary data, called <term>geoJSON</term>.</p>
+      </li>
+      <li>
+        <p>carried out <term>spatial operations</term> such as:
+          <ul>
+            <li><p><term>subset</term> points that are within a certain area,</p></li>
+            <li><p>created new polygons by generating <term>buffers</term> around points,</p></li>
+            <li>
+              <p>counted the number of points that fall within a polygon
+              (known as <term>points in polygon</term>),</p>
+            </li>
+            <li>
+              <p>finding the <term>nearest feature</term> in one data set to observations in
+              another data set, and</p>
+            </li>
+            <li><p><term>measured distance</term> between points in a map.</p></li>
+          </ul>
+        </p>
+      </li>
+      <li><p>made interactive point map with leaflet.</p></li>
+      <li>
+        <p>used <term>geocoding</term> methods to translate text fields such as addresses into
+        geographic coordinates.</p>
+      </li>
+    </ul>
+
+    <p>
+      These are all very useful tools for the spatial crime analyst, and we will hope to
+      demonstrate this by working through an example project. The packages we will use in
+      this chapter are:
+    </p>
+
+    <program language="r" label="libraries-ch02">
+      <input>
+# Packages for reading data and data carpentry
+library(readr)
+library(dplyr)
+library(janitor)
+library(units)
+library(purrr)
+
+# Packages for handling spatial data and for geospatial carpentry
+library(sf)
+library(tidygeocoder)
+library(crsuggest)
+
+# Packages for mapping and visualisation
+library(leaflet)
+library(RColorBrewer)
+
+# Packages providing accesss to spatial data
+library(osmdata)
+      </input>
+    </program>
+
+  </section>
+
+  <section xml:id="sec-ch02-alcohol-crime">
+    <title>Exploring the relationship between alcohol outlets and crime</title>
+
+    <p>
+      The main example we will work through most of the chapter considers the assumption
+      that licenced premises which serve alcohol are associated with increased crimes. We
+      might have some hypotheses about why this may be.
+    </p>
+
+    <p>
+      One theory might be that some of these serve as <em>crime attractors</em>.
+    </p>
+
+    <blockquote>
+      <p>
+        Crime attractors are particular places, areas, neighbourhoods, districts which create
+        well-known criminal opportunities to which strongly motivated, intending criminal
+        offenders are attracted because of the known opportunities for particular types of
+        crime. Examples might include bar districts; prostitution areas; drug markets; large
+        shopping malls, particularly those near major public transit exchanges; large, insecure
+        parking lots in business or commercial areas. The intending offender goes to rough bars
+        looking for fights or other kinds of 'action' <xref ref="Brantingham_1995"/>, p.7.
+      </p>
+    </blockquote>
+
+    <p>
+      On the other hand, it is possible that these areas are <em>crime generators</em>.
+    </p>
+
+    <blockquote>
+      <p>
+        Crime generators are particular areas to which large numbers of people are attracted
+        for reasons unrelated to any particular level of criminal motivation they might have or
+        to any particular crime they might end up committing. Typical examples might include
+        shopping precincts; entertainment districts; office concentrations; or sports stadiums
+        <xref ref="Brantingham_1995"/>, p.8.
+      </p>
+    </blockquote>
+
+    <p>
+      It is possible that some licensed premises attract crimes, due to their reputation.
+      However, it is also possible that some of them are simply located in areas that are busy,
+      attract lots of people for lots of reasons, and crimes occur as a result of an abundance
+      of opportunities instead.
+    </p>
+
+    <p>
+      Whatever the mechanism, the first step to identifying crime places is to examine whether
+      certain outlets have more crimes near them than others. We can do this using open data,
+      some R code, and the spatial operations discussed above. We will return to data from
+      Manchester, UK for this example; however, as we will be using Open Street Map, you can
+      easily replicate this for any other location where you have point-level crime data.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch02-acquiring-data">
+    <title>Acquiring relevant data</title>
+
+    <p>
+      We will be using three different sources of data in this chapter. First, we will acquire
+      our crime data, which is what we used in the previous chapter, so this should be familiar.
+      Then we will meet the new format for boundary data, geoJSON. And finally, we will look at
+      Open Street Map for data on our points of interest.
+    </p>
+
+    <subsection xml:id="subsec-reading-crime-data">
+      <title>Reading in crime data</title>
+
+      <p>
+        The point-level crime data for Greater Manchester can be found in the file
+        <c>2019-06-greater-manchester-street.csv</c> we used in Chapter 1. We can import it
+        with the <c>read_csv()</c> function from the <c>readr</c> package.
+      </p>
+
+      <program language="r" label="read-data-ch02a">
+        <input>
+crimes &lt;- read_csv("data/2019-06-greater-manchester-street.csv")
+        </input>
+      </program>
+
+      <p>
+        If you replicate the exercises for getting to know the dataset from the previous chapter,
+        you might notice that in this case the column names are slightly different. For example,
+        Latitude and Longitude are spelled with uppercase "L". You should always familiarise
+        yourself with your dataset to make sure you are using the relevant column names. You can
+        see just the column names using the <c>names()</c> function like so:
+      </p>
+
+      <program language="r" label="names-ch02a">
+        <input>
+names(crimes)
+        </input>
+      </program>
+
+      <p>
+        This is because last time, we cleaned these names using the <c>clean_names()</c>
+        function from the <c>janitor</c> package. Let's do this again, as these variable names
+        are not ideal, with their capital letters and spacing...so messy!
+      </p>
+
+      <program language="r" label="clean-names-ch02a">
+        <input>
+# clean up the variable names
+crimes &lt;- crimes %&gt;% clean_names()
+
+#print them again to see
+names(crimes)
+        </input>
+      </program>
+
+      <p>
+        Much better! Now let's get some boundary data for Manchester.
+      </p>
+
+    </subsection>
+
+    <subsection xml:id="subsec-geojson">
+      <title>Meet a new format: geoJSON</title>
+
+      <p>
+        <term>GeoJSON</term> is an open standard format designed for representing simple
+        geographical features, along with their non-spatial attributes. It is based on JSON,
+        the JavaScript Object Notation. It is a format for encoding a variety of geographic
+        data structures and is the most common format for geographical representation in the
+        web. Unlike ESRI shapefiles, with GeoJSON data everything is stored in a single file.
+      </p>
+
+      <p>
+        Geometries are shapes. All simple geometries in GeoJSON consist of a type and a
+        collection of coordinates. The features include points (therefore addresses and
+        locations), line strings (therefore streets, highways and boundaries), polygons
+        (countries, provinces, tracts of land), and multi-part collections of these types.
+        GeoJSON features need not represent entities of the physical world only; mobile routing
+        and navigation apps, for example, might describe their service coverage using GeoJSON.
+        To tinker with GeoJSON and see how it relates to geographical features, try
+        <url href="https://geojson.io">geojson.io</url>, a tool that shows code and visual
+        representation in two panes.
+      </p>
+
+      <p>
+        Let's read in a geoJSON spatial file, again from the web. This particular geoJSON
+        represents the wards of Greater Manchester.
+      </p>
+
+      <program language="r" label="read-data-ch02b">
+        <input>
+manchester_ward &lt;- st_read("data/wards.geojson")
+        </input>
+      </program>
+
+      <p>
+        Let's now select only the city centre ward, using the <c>filter()</c> function from
+        the <c>dplyr</c> package. Notice how we're using the values in the data (or attribute)
+        table; therefore, this is an <em>attribute operation</em>.
+      </p>
+
+      <program language="r" label="select-centre-ch02b">
+        <input>
+city_centre &lt;- manchester_ward %&gt;%
+  filter(wd16nm == "City Centre")
+        </input>
+      </program>
+
+      <p>
+        Let's see how this looks. In Chapter 1 we learned about plotting maps using the
+        <c>ggplot()</c> function from the <c>ggplot2</c> package. Here, let's look at a
+        different way, which can be useful for quick mapping &#x2014; usually used when just
+        checking in with our data to make sure it looks like what we were expecting.
+      </p>
+
+      <p>
+        With the <c>st_geometry()</c> function in the <c>sf</c> package, we can extract only
+        the geometry of our object, stripping away the attributes. If we include this inside
+        the <c>plot()</c> function, we get a quick, minimalist plot of the geometry of our
+        object.
+      </p>
+
+      <program language="r" label="plot-city-centre-geometry">
+        <input>
+#extract geometry only
+city_centre_geometry &lt;- st_geometry(city_centre)
+
+#plot geometry object
+plot(city_centre_geometry)
+        </input>
+      </program>
+
+      <figure xml:id="fig-city-centre-ward">
+        <caption>Plot City Centre ward geometry</caption>
+        <image source="figure-ch02/city-centre-ward-geometry.png">
+          <description>A thin black line tracing the outline of the Manchester City Centre ward.</description>
+        </image>
+      </figure>
+
+      <p>
+        Now we could use this geometry to make sure that our points are in fact only licensed
+        premises in the city centre. This will be your first spatial operation. Excited? Let's
+        do this!
+      </p>
+
+    </subsection>
+
+    <subsection xml:id="subsec-osm-poi">
+      <title>Open Street Map and points of interest</title>
+
+      <p>
+        To map licenced premises, we will be accessing data from Open Street Map, a database
+        of geospatial information built by a community of mappers, enthusiasts and members of
+        the public, who contribute and maintain data about all sorts of environmental features,
+        such as roads, green spaces, restaurants and railway stations. You can see all about
+        open street map on their
+        <url href="https://www.openstreetmap.org/">online mapping platform</url>. One feature
+        of Open Street Map, unlike Google Map, is that the underlying data is openly available
+        for download <em>for free</em>. In R, we can take advantage of a package written
+        specifically for querying Open Street Map's API, called <c>osmdata</c>. For more detail
+        on how to use this, see <xref ref="Langton_2020"/>, and <em>Appendix C: sourcing
+        geographical data for crime analysis</em> of this book.
+      </p>
+
+      <p>
+        If we load the package <c>osmdata</c> we can use its functions to query the Open Street
+        Map API. To find out more about the capabilities of this package, see
+        <xref ref="Padgham_2017"/>. While this is outside the scope of our chapter here, you
+        may want to explore <c>osmdata</c> more, as it is an international database, and has
+        lots of data that may come in handy for research and analysis.
+      </p>
+
+      <p>
+        Here we focus specifically on Manchester. To retrieve data for a specific area, we must
+        create a <term>bounding box</term>. You can think of the bounding box as a box drawn
+        around the area that we are interested in (in this case, Manchester, UK) which tells
+        the Open Street Map API that we want everything <em>inside</em> the box, but nothing
+        <em>outside</em> the box.
+      </p>
+
+      <p>
+        So, how can we name a bounding box specification to define the study region? One way to
+        do this is through a search term. Here, we want to select Greater Manchester, so we can
+        use the search term "greater manchester united kingdom" within the <c>getbb()</c>
+        function (stands for <em>get bounding box</em>). Using this function, we can also
+        specify what format we want the data to be in. In this case, we want a spatial object,
+        specifically an <c>sf</c> polygon object (from the <c>sf</c> package), which we name
+        <c>bb_sf</c>.
+      </p>
+
+      <program language="r" label="bb-ch02">
+        <input>
+bb_sf &lt;- getbb(place_name = "greater manchester united kingdom",
+               format_out = "sf_polygon")
+        </input>
+      </program>
+
+      <p>
+        We can see what this bounding box looks like by plotting it (notice this time we
+        combine the <c>plot()</c> and <c>st_geometry()</c> functions to save needing to create
+        a new object):
+      </p>
+
+      <program language="r" label="plotbb-ch02">
+        <input>
+plot(st_geometry(bb_sf))
+        </input>
+      </program>
+
+      <figure xml:id="fig-gm-boundary">
+        <caption>Outline of Greater Manchester boundary</caption>
+        <image source="figure-ch02/gm-boundary.png">
+          <description>A thin black line tracing the outline of Greater Manchester.</description>
+        </image>
+      </figure>
+
+      <p>
+        We can see the bounding box takes the form of Greater Manchester. We can now use this
+        to query data from the Open Street Map API using the <c>opq()</c> function. The
+        function name is short for 'Overpass query', which is how users can query the Open
+        Street Map API using search criteria.
+      </p>
+
+      <p>
+        Besides specifying what area we want to query with our bounding box object(s) in the
+        <c>opq()</c> function, we must also define the feature which we want returned. Features
+        in Open Street Map are defined through 'keys' and 'values'. Keys are used to describe a
+        broad category of features (e.g., highway, amenity), and values are more specific
+        descriptions (e.g., cycleway, bar). These are tags which contributors to Open Street
+        Map have defined. A useful way to explore these is by using the comprehensive
+        <url href="https://wiki.openstreetmap.org/wiki/Map_Features">Open Street Map Wiki page
+        on map features</url> (see also <em>Appendix C: sourcing geographical data for crime
+        analysis</em> of this book).
+      </p>
+
+      <p>
+        We can select what features we want using the <c>add_osm_feature()</c> function,
+        specifying our key as 'amenity' and our value as 'bar'. We also want to specify what
+        sort of object (what class) to get our data into, and as we are still working with
+        spatial data, we stick to the <c>sf</c> format, for which the function is
+        <c>osmdata_sf()</c>. Here, we specify our bounding box as the <c>bb_sf</c> object we
+        created above. If you use the bounding box obtained through <c>getbb()</c> one can
+        subsequently trim down the outputs from <c>add_osm_feature()</c> using
+        <c>trim_osmdata()</c>. For instance, we could add
+        <c>trim_osmdata(bb_poly = bb_sf)</c> to our initial query.
+      </p>
+
+      <program language="r" label="opq-ch02">
+        <input>
+bb_gm &lt;- getbb(place_name = "greater manchester united kingdom",
+               format_out = "data.frame")
+
+osm_bar_sf &lt;- opq(bbox = bb_gm) %&gt;%    # select bounding box
+  add_osm_feature(key = 'amenity', value = 'bar') %&gt;% # select features
+  osmdata_sf()          # specify class
+        </input>
+      </program>
+
+      <p>
+        The resulting object <c>osm_bar_sf</c> contains lots of information. We can view the
+        contents of the object by simply executing the object name into the <term>Console</term>.
+      </p>
+
+      <program language="r" label="printbars-ch02">
+        <input>
+osm_bar_sf
+        </input>
+      </program>
+
+      <p>
+        This confirms details like the bounding box coordinates. It also provides information
+        on the features collected from the query. As one might expect, most information relating
+        to bar locations has been recorded using points (i.e. two-dimensional vertices,
+        coordinates). We also have around fifty polygons. For now, let's extract the point
+        information.
+      </p>
+
+      <program language="r" label="barpoints-ch02">
+        <input>
+osm_bar_sf &lt;- osm_bar_sf$osm_points
+        </input>
+      </program>
+
+      <p>
+        We now have an <c>sf</c> object with all the bars in our study region mapped by Open
+        Street Map volunteers, along with ~90 variables of auxiliary data, such as
+        characteristics of the bar (e.g., <c>brewery</c>, or <c>cocktail</c>) as well as
+        address and contact information, amongst many others. Of course, it is up to the
+        volunteers whether they collect all these data, and in many cases, they have not added
+        information (you may see lots of missing values if you look at the data). Given the
+        work relies on volunteers, there are unavoidably some accuracy issues (including how
+        up-to-date the information may be). Nevertheless, when the details are recorded, they
+        provide rich insight and local knowledge that we may otherwise be unable to obtain.
+      </p>
+
+      <p>
+        One column we should consider is the <c>name</c> which tells us the name of the bar.
+        There are missing values here as well, and for this example, we will choose to exclude
+        those lines where there is no name included, as we would like at least a little bit of
+        context around our bars. To do this, perform another <em>attribute operation</em> using
+        the <c>filter()</c> function:
+      </p>
+
+      <program language="r" label="filter-names-ch02">
+        <input>
+osm_bar_sf &lt;- osm_bar_sf %&gt;% filter(!is.na(name))
+        </input>
+      </program>
+
+      <p>
+        We are still left with many bars in our data set.
+      </p>
+
+    </subsection>
+
+  </section>
+
 </chapter>
