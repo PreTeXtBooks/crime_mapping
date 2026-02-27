@@ -92,6 +92,49 @@
       42(2):97&#x2013;111, 2015.
     </biblio>
 
+    <biblio type="raw" xml:id="Briggs_2017">
+      Daniel Briggs and Rub&#xE9;n Monge-Gamero.
+      <title>Dead-End Lives: Drugs and Violence in the City Shadows</title>.
+      Policy Press, Bristol, UK, 2017.
+    </biblio>
+
+    <biblio type="raw" xml:id="Walker_2021">
+      Kyle Walker.
+      <title>crsuggest: Obtain Suggested Coordinate Reference System Information for
+      Spatial Data</title>.
+      R package version 0.3.1, 2021.
+      <url href="https://CRAN.R-project.org/package=crsuggest">https://CRAN.R-project.org/package=crsuggest</url>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Newton_2018">
+      Andrew Newton.
+      Macro-level generators of crime, including parks, stadiums, and transit stations.
+      In Gerben Bruinsma and Shane Johnson, eds.,
+      <title>The Oxford Handbook of Environmental Criminology</title>,
+      pages 497&#x2013;517. Oxford University Press, Oxford, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bowers_2021">
+      Kate Bowers.
+      Risky Places: Crime Absorbers, Crime Radiators as Risky Places, 2021.
+      <url href="https://play.kth.se/media/Risky+PlacesA+Crime+absorbers,+crime+radiators+as+risky+places,+Prof+Kate+Bowers,+UCL/0_zya4j354">https://play.kth.se/media/...</url>.
+      Accessed: 11-05-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bolstad_2019">
+      Paul Bolstad.
+      <title>GIS Fundamentals: A First Text on Geographic Information Systems</title>,
+      6th edition.
+      Eider Press, White Bear Lake, MN, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Pebesma_2021">
+      Edzer Pebesma and Roger Bivand.
+      <title>Spatial Data Science with applications in R</title>, 2021.
+      <url href="https://keen-swartz-3146c4.netlify.app/">https://keen-swartz-3146c4.netlify.app/</url>.
+      Accessed: 17-05-2021.
+    </biblio>
+
   </references>
 
   <colophon>

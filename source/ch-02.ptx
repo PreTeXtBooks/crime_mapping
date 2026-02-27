@@ -1650,4 +1650,421 @@ leaflet(data = lic_prem) %&gt;%
 
   </section>
 
+  <section xml:id="sec-ch02-measuring-distance">
+    <title>Measuring distance more thoroughly</title>
+
+    <p>
+      Before we end the chapter, we want to return to the spatial operation of measuring the
+      distance between points. This may be important, for example to those researchers focusing
+      on studying the journey to crime by offenders. In this area, a common parameter studied
+      is the average distance to crime from their home locations. In order to estimate these
+      parametres, we first need to have a way to generate the distances. In this section, we
+      will use another data set (this time from Madrid, Spain) to show a simpler example to
+      look at the issue of geographical distance.
+    </p>
+
+    <subsection xml:id="subsec-police-stations-madrid">
+      <title>How far are police stations in Madrid?</title>
+
+      <p>
+        To illustrate how to measure distance, we will download data from the city of Madrid in
+        Spain. Specifically we will obtain a csv file with the latitude and longitude of the
+        police stations and a geoJSON file with the administrative boundary for the city of
+        Madrid. Both are available from the data provided with this book (see <em>Preamble</em>
+        section). We will also turn the .csv into a <c>sf</c> object with the appropriate
+        coordinate reference system for this data, following the steps we've outlined in
+        Chapter 1 and earlier in this chapter.
+      </p>
+
+      <program language="r" label="read-madrid-data">
+        <input>
+#read csv data
+comisarias &lt;- read_csv("data/nationalpolice.csv")
+#set crs, read into sf object, and assign crs
+polCRS &lt;- st_crs(4326)
+comisarias_sf &lt;- st_as_sf(comisarias, coords = c("X", "Y"), crs = polCRS)
+
+#create unique id for each row
+comisarias_sf$id &lt;- as.numeric(rownames(comisarias_sf))
+
+#Read as sf boundary data for Madrid city
+madrid &lt;- st_read("data/madrid.geojson")
+        </input>
+      </program>
+
+      <p>
+        We went through a lot of steps there, so it's worth to check in and plot our data to
+        make sure that everything looks the way we expect. To practice with leaflet map some
+        more, let's plot using <c>leaflet()</c> function:
+      </p>
+
+      <program language="r" label="leaflet-madrid">
+        <input>
+leaflet(comisarias_sf) %&gt;% addTiles() %&gt;%
+  addMarkers(data = comisarias_sf) %&gt;%
+  addPolygons(data = madrid)
+        </input>
+      </program>
+
+      <p>
+        We can clearly see here that there are areas of the municipality that are far away from
+        any national police station, the North West part of the city which you can see is a
+        green area but noticeably also the South East, which is mostly urban and in fact is the
+        location of a known shanty town and open drug market ("Ca&#xF1;ada Real", you can read
+        about it in the award-winning book by <xref ref="Briggs_2017"/>).
+      </p>
+
+    </subsection>
+
+    <subsection xml:id="subsec-distance-geographical-space">
+      <title>Distance in geographical space</title>
+
+      <p>
+        There are many definitions of distance in data science and spatial data science. A
+        common definition of distance is the <term>Euclidean distance</term>, which simply is
+        the length of a segment connecting two points in a two-dimensional place. Because of
+        the distortions caused by projections on a flat surface, a straight line on a map is
+        not necessarily the shortest distance. Thus, another common definition used in
+        geography is the <term>great circle distance</term>, which corresponds to an arc
+        linking two points on a sphere and takes into account the spherical shape of the world.
+        The great circle distance is useful, for example, to evaluate the shortest path when
+        intercontinental distances are concerned. For applications which require a network
+        distance measure, Euclidean distance is generally inadequate. Instead,
+        <term>Manhattan distance</term> (also called Taxicab, Rectilinear, or City block
+        metric) is a commonly used metric. We return to dealing with spatial data on networks
+        in Chapter 8.
+      </p>
+
+      <p>
+        We can compute both with the <c>st_distance</c> function of the <c>sf</c> package.
+        This function can be used to measure the distance between two points, between one point
+        and others or between all points. In the latter case we obtain a symmetric matrix of
+        distances (<m>N \times N</m>), taken pairwise between the points in our dataset. In
+        the diagonal we find the combinations between the same points giving all null values.
+      </p>
+
+      <p>
+        Say, we want to measure the distance between the main police headquarters ("Jefatura
+        Superior de Policia", row 34) and three other stations (say row 1, row 10, and row 25
+        in our dataset). We could use the following code for that:
+      </p>
+
+      <program language="r" label="dist-headquarters">
+        <input>
+# calculate distance
+dist_headquarters &lt;- st_distance(slice(comisarias_sf, 34),
+                              slice(comisarias_sf, c(1, 10, 25)))
+
+dist_headquarters # distance in metres
+        </input>
+      </program>
+
+      <p>
+        The result is a matrix with a single row or column (depending on the order of the
+        spatial objects) with a class of <em>units</em>. Often we may want to re-express these
+        distances in a different unit. For this purpose the <c>units</c> package offers useful
+        functionality, through the <c>set_units()</c> function.
+      </p>
+
+      <program language="r" label="dist-in-km">
+        <input>
+set_units(dist_headquarters, "km")
+        </input>
+      </program>
+
+      <p>
+        We can compute the distance between all police stations as well.
+      </p>
+
+      <program language="r" label="all-station-distances">
+        <input>
+# calculate distance
+m_distance &lt;- st_distance(comisarias_sf)
+
+# matrix dimensions
+dim(m_distance)
+        </input>
+      </program>
+
+      <p>
+        If you want to preview the top of the matrix, you can use:
+      </p>
+
+      <program language="r" label="preview-distance-matrix">
+        <input>
+head(m_distance)
+        </input>
+      </program>
+
+    </subsection>
+
+    <subsection xml:id="subsec-practical-distance-madrid">
+      <title>A practical example to evaluate distance</title>
+
+      <p>
+        For this practical example, we will look at the Madrid data. Earlier, we read in the
+        relevant geoJSON file and stored in the object <c>madrid</c>. The CRS is EPSG 4326 and
+        therefore it is geographic projection, with distance expressed in degrees.
+      </p>
+
+      <program language="r" label="check-madrid-crs">
+        <input>
+st_crs(madrid)
+        </input>
+      </program>
+
+      <p>
+        For this we will transform and reproject to EPSG 2062, which is one of the
+        <url href="https://epsg.io/?q=Spain%20kind%3APROJCRS">appropriate projected coordinate
+        systems for Madrid</url>. How do you figure out this if you don't want to check the
+        EPSG site? There is a convenient package <c>crsuggest</c> developed by Kyle
+        <xref ref="Walker_2021"/> that does this job for you. The function
+        <c>suggest_crs()</c> from this package will attempt to list of candidate projections
+        for your <c>sf</c> object. And we will see that top of that list is the 2062 EPSG.
+      </p>
+
+      <program language="r" label="suggest-crs">
+        <input>
+suggested_crs &lt;- suggest_crs(madrid)
+head(suggested_crs, n = 1)
+        </input>
+      </program>
+
+      <p>
+        Now we can transform our <c>madrid</c> object appropriately:
+      </p>
+
+      <program language="r" label="transform-madrid">
+        <input>
+madrid_metres &lt;- st_transform(madrid, crs = 2062)
+        </input>
+      </program>
+
+      <p>
+        Before we saw that, some areas of Madrid are nowhere near a police station. Let's say
+        we want to get precise about this and we want to know how far different parts of the
+        city of Madrid are from a police station, and we want to be able to show this in a
+        map. Solving this means we have to define "parts of the city". What we will do is to
+        divide the city of Madrid into different cells of 250 metres within a grid using the
+        <c>st_make_grid</c> function of the <c>sf</c> package.
+      </p>
+
+      <program language="r" label="madrid-grid">
+        <input>
+madrid_grid &lt;- st_make_grid(madrid_metres,  cellsize = 250)
+
+#only extract the points in the limits of Madrid
+madrid_grid &lt;- st_intersection(madrid_grid, madrid_metres)
+        </input>
+      </program>
+
+      <p>
+        We can plot the results, to see that everything has gone according to plan:
+      </p>
+
+      <program language="r" label="plot-madrid-grid">
+        <input>
+plot(madrid_grid)
+        </input>
+      </program>
+
+      <figure xml:id="fig-madrid-grid">
+        <caption>Madrid divided into 250 metres grid cells</caption>
+        <image source="figure-ch02/madrid-grid.png">
+          <description>A black, filled shape of Madrid.</description>
+        </image>
+      </figure>
+
+      <p>
+        With so many "small" cells, the paper printed version of this map may just look
+        completely black. But it is simply composed of many small cells. So how do we look at
+        distance from police stations here? We can measure the distance between each grid cell
+        to all 39 police stations. To estimate the distance to the nearest police station, we
+        will find the minimum distance value for each grid, i.e., the distance to the nearest
+        station.
+      </p>
+
+      <program language="r" label="compute-distances">
+        <input>
+comisarias_sf_metres &lt;- st_transform(comisarias_sf, crs = 2062)
+
+distances &lt;- st_distance(comisarias_sf_metres,
+                         st_centroid(madrid_grid)) %&gt;%
+  as_tibble()
+        </input>
+      </program>
+
+      <p>
+        If you view the new object "distances", you will see there is a row for each police
+        station and a column representing each of the 10082 cells in our grid. For using these
+        distances in a leaflet map, we will project back into 4326. And then we will compute
+        the shortest distance for each cell.
+      </p>
+
+      <program language="r" label="police-distances">
+        <input>
+# Compute distances
+police_distances &lt;- data.frame(
+  # We want grids in a WGS 84 CRS:
+  us = st_transform(madrid_grid, crs = 4326),
+  # Extract minimum distance for each grid
+  distance_km = map_dbl(distances, min)/1000,
+  # Extract the value's index for joining with the location info
+  location_id = map_dbl(distances, function(x) match(min(x), x))) %&gt;%
+  # Join with the police station table
+  left_join(comisarias_sf, by = c("location_id" = "id"))
+        </input>
+      </program>
+
+      <p>
+        We now have a dataframe of distances, for each grid, to the nearest police station. We
+        can have a look at the distribution of these distances through plotting them on a
+        histogram
+      </p>
+
+      <program language="r" label="distance-histogram">
+        <input>
+# Plot and examine distances
+hist(police_distances$distance_km, main = 'Distance to nearest police station')
+        </input>
+      </program>
+
+      <figure xml:id="fig-distance-histogram">
+        <caption>Histogram of distance to nearest police station</caption>
+        <image source="figure-ch02/distance-histogram.png">
+          <description>A bar chart, titled 'Distance to nearest police station'. The vertical
+          axis is labeled Frequency, and ranges from zero to fifteen hundred, with notches at
+          steps of five hundred. The horizontal axis represents distance in kilometres, with
+          one bar for each kilometre range, and labels every five steps from zero to fifteen.
+          The plot peaks at the second bar, one to two kilometres, at around seventeen hundred.
+          The first and third bars are next, at around thirteen hundred. From there, the bars
+          taper down as distance increases, with possible plateaus from five to nine
+          kilometres, and again at nine to fourteen. The last bar, corresponding to eighteen to
+          nineteen kilometres is very short.</description>
+        </image>
+      </figure>
+
+      <p>
+        Now we are ready to use this data to plot a map. We can get creative, and use the
+        <c>makeIcon()</c> function from leaflet to assign an image as our icon, rather than
+        these regular pointer icons we've been seeing. To do this, first we will adjust some
+        aesthetics.
+      </p>
+
+      <p>
+        We get the URL for the icon (we break into part 1 (<c>_pt1</c>) and part 2
+        (<c>_pt2</c>) so it can be seen in the textbook), and pass this to the
+        <c>makeIcon()</c> function.
+      </p>
+
+      <program language="r" label="police-icon">
+        <input>
+# Create more appropriate icon, taking it from Wikipedia commons
+icon_url_pt1 &lt;- "https://upload.wikimedia.org/wikipedia/commons/"
+icon_url_pt2 &lt;- "a/ad/189-woman-police-officer-1.svg"
+
+# create icon, adjusting size
+police_icon &lt;- makeIcon(paste0(icon_url_pt1, icon_url_pt2),
+                        iconWidth = 12, iconHeight = 20)
+        </input>
+      </program>
+
+      <p>
+        Now we also want to create a colour scale. We can, for example, group our grids into
+        quantiles. To do so, we can use the <c>quantile()</c> function:
+      </p>
+
+      <program language="r" label="distance-palette">
+        <input>
+# Bin ranges for a nicer colour scale
+bins &lt;- quantile(police_distances$distance_km)
+# Create a binned colour palette
+pal &lt;- colorBin(c("#0868AC", "#43A2CA", "#7BCCC4", "#BAE4BC", "#F0F9E8"),
+                domain = police_distances$distance_km,
+                bins = bins, reverse = TRUE)
+        </input>
+      </program>
+
+      <p>
+        Now let's create the map.
+      </p>
+
+      <program language="r" label="madrid-distance-map">
+        <input>
+full_map &lt;- leaflet() %&gt;%
+  addTiles() %&gt;%
+  addMarkers(data = comisarias_sf, icon = ~police_icon,
+             group = "Police stations") %&gt;%
+  addPolygons(data = police_distances[[1]],
+              fillColor = pal(police_distances$distance_km),
+              fillOpacity = 0.8, weight =0, opacity = 1, color = "transparent",
+              group = "Distances",
+              highlight = highlightOptions(weight = 2.5, color = "#666",
+                                           bringToFront = TRUE, opacity= 1),
+              popupOptions = popupOptions(autoPan = FALSE, closeOnClick = TRUE,
+                                          textOnly = T)) %&gt;%
+   addLegend(pal = pal, values = (police_distances$distance_km),
+             opacity = 0.8, title = "Distance (Km)", position= "bottomright")
+
+# print the map
+full_map
+        </input>
+      </program>
+
+      <p>
+        And there you go. Just remember something. It is easy to misinterpret data and maps.
+        You always need to care a great deal about measurement, quality of your data, and other
+        potential issues affecting interpretation. When it comes to distance, and the movements
+        of people and law enforcement personnel, for example, physical distance is not trivial,
+        but time to arrival is also important and this is determined by factors other than
+        Euclidean distance (e.g., availability and speed of transport, physical barriers,
+        etc.). Our representation is always as good as the data we have. In Spain there are two
+        other police forces (Guardia Civil, that patrols rural areas, and municipal civil, with
+        jurisdiction for local administrative enforcement) that we are not representing here
+        (that is, our data is incomplete). And we are not plotting the police stations in the
+        nearby municipalities that are part of Madrid metropolitan area, around the edges.
+      </p>
+
+    </subsection>
+
+  </section>
+
+  <section xml:id="sec-ch02-summary">
+    <title>Summary and further reading</title>
+
+    <p>
+      In this chapter we explored the differences between attribute and spatial operations, and
+      we made great use of the latter in practicing <term>spatial manipulation of data</term>.
+      These spatial operations allow us to manipulate our data in a way that lets us study what
+      is going on with crime at micro-places. At the start of the chapter, we introduced the
+      idea of different crime places. To read further about crime attractors vs. crime
+      generators, turn to the recommended readings by <xref ref="Brantingham_1995"/> and
+      <xref ref="Newton_2018"/>. There have since been more developments, for example about
+      crime radiators and absorbers as well (see <xref ref="Bowers_2021"/> to learn more).
+    </p>
+
+    <p>
+      We covered how to subset points within an area, build buffers around geometries, count
+      the number of points in a point layer that fall within each polygon in a polygon layer,
+      find the nearest feature to a set of features, and turn non-spatial information such as
+      an address into something we can map using geocoding. These spatial operations are just
+      some of many, but we chose to cover as they have the most frequent application in crime
+      analysis.
+    </p>
+
+    <p>
+      For those interested to learn more, spatial operations are typically discussed in
+      standard GIS textbooks, such as those we have recommended in previous chapters. You could
+      see, for example, chapter 9 of <xref ref="Bolstad_2019"/>. But probably the best
+      follow-up to what we discuss here is chapter 4 and 5 of <xref ref="Lovelace_2019"/>, for
+      it provides a systematic introduction to how to perform these spatial operations with R.
+      There is an online book in development by two giants of the R spatial community, Edzer
+      Pebesma and Roger Bivand, which at the time of writing is best cited as
+      <xref ref="Pebesma_2021"/>. The first chapters of the book provide a strong backbone to
+      understand <c>sf</c> objects in greater detail, coordinate systems, and key concepts for
+      spatial data science.
+    </p>
+
+  </section>
+
 </chapter>
