@@ -370,6 +370,190 @@
       Accessed: 17-05-2021.
     </biblio>
 
+    <biblio xml:id="bib-Andresen_2011b" type="raw">
+      Andresen, M. and Malleson, N. (2011). Testing the Stability of Crime Patterns: Implications
+      for Theory and Policy. <em>Journal of Research in Crime and Delinquency</em>, 48(1), 58–82.
+    </biblio>
+
+    <biblio xml:id="bib-Andresen_2017" type="raw">
+      Andresen, M., Curman, A. and Linning, S. (2017). The Trajectories of Crime at Places:
+      Understanding the Patterns of Disaggregated Crime Types. <em>Journal of Quantitative
+      Criminology</em>, 33, 427–449.
+    </biblio>
+
+    <biblio xml:id="bib-Andresen_2017b" type="raw">
+      Andresen, M., Linning, S. and Malleson, N. (2017). Crime at Places and Spatial
+      Concentrations: Exploring the Spatial Stability of Property Crime in Vancouver BC, 2003–2013.
+      <em>Journal of Quantitative Criminology</em>, 33, 255–275.
+    </biblio>
+
+    <biblio xml:id="bib-Anselin_1995" type="raw">
+      Anselin, L. (1995). Local Indicators of Spatial Association: LISA.
+      <em>Geographical Analysis</em>, 27(2), 93–115.
+    </biblio>
+
+    <biblio xml:id="bib-Anselin_1996" type="raw">
+      Anselin, L. (1996). The Moran Scatterplot as an ESDA Tool to Assess Local Instability in
+      Spatial Association. In Fischer, M., Scholten, H. and Unwin, D. (eds), <em>Spatial Analytical
+      Perspectives on GIS</em>. Routledge, London, pp. 111–125.
+    </biblio>
+
+    <biblio xml:id="bib-Anselin_2020a" type="raw">
+      Anselin, L. (2020). Local Spatial Autocorrelation (2): Other Local Spatial Autocorrelation
+      Statistics.
+      <url href="https://geodacenter.github.io/workbook/6b_local_adv/lab6b.html">https://geodacenter.github.io/workbook/6b_local_adv/lab6b.html</url>
+      Accessed: 12-05-2021.
+    </biblio>
+
+    <biblio xml:id="bib-Appelhans_2021" type="raw">
+      Appelhans, T., Detsch, F., Reudenbach, C. and Woellauer, S. (2021). mapview: Interactive
+      Viewing of Spatial Data in R. R package version 2.10.0.
+      <url href="https://CRAN.R-project.org/package=mapview">https://CRAN.R-project.org/package=mapview</url>
+    </biblio>
+
+    <biblio xml:id="bib-Bivand_2018" type="raw">
+      Bivand, R. and Wong, D. (2018). Comparing Implementations of Global and Local Indicators of
+      Spatial Association. <em>TEST</em>, 27, 716–748.
+    </biblio>
+
+    <biblio xml:id="bib-Bowers_2004" type="raw">
+      Bowers, K. and Johnson, S. (2004). Who Commits Near Repeats? A Test of the Boost Explanation.
+      <em>Western Criminology Review</em>, 5(3).
+    </biblio>
+
+    <biblio xml:id="bib-Braga_2010" type="raw">
+      Braga, A. and Weisburd, D. (2010). <em>Policing Problem Places: Crime Hot Spots and Effective
+      Prevention</em>. Oxford University Press, New York.
+    </biblio>
+
+    <biblio xml:id="bib-Braga_2019" type="raw">
+      Braga, A., Turchan, B., Papachristos, A. and Hureau, D. (2019). Hot Spots Policing and Crime
+      Reduction: an Update of an Ongoing Systematic Review and Meta-analysis.
+      <em>Journal of Experimental Criminology</em>, 15, 289–311.
+    </biblio>
+
+    <biblio xml:id="bib-Braga_2020" type="raw">
+      Braga, A. and Weisburd, D. (2020). Does Hot Spots Policing Have Meaningful Impacts on Crime?
+      Findings from An Alternative Approach to Estimating Effect Sizes from Place-Based Program
+      Evaluations. <em>Journal of Quantitative Criminology</em>.
+      doi.org/10.1007/s10940-020-09481-7.
+    </biblio>
+
+    <biblio xml:id="bib-Chainey_2014" type="raw">
+      Chainey, S. (2014). <em>Examining the extent to which hotspot analysis can support spatial
+      predictions of crime</em>. PhD Thesis, UCL (University College London).
+    </biblio>
+
+    <biblio xml:id="bib-Chainey_2021" type="raw">
+      Chainey, S. (2021). <em>Understanding Crime: Analyzing the Geography of Crime</em>. ESRI
+      Press, Redlands, CA.
+    </biblio>
+
+    <biblio xml:id="bib-Collazos_2020" type="raw">
+      Collazos, D., García, E., Mejía, D., Ortega, D. and Tobón, S. (2020). Hot Spots Policing in
+      a High-Crime Environment: an Experimental Evaluation in Medellín.
+      <em>Journal of Experimental Criminology</em>. doi.org/10.1007/s11292-019-09390-1.
+    </biblio>
+
+    <biblio xml:id="bib-Farrell_2017" type="raw">
+      Farrell, G. and Pease, K. (2017). Preventing Repeat and Near Repeat Crime Concentrations.
+      In Tilley, N. and Sidebottom, A. (eds), <em>Handbook of Crime Prevention and Community
+      Safety</em>. Routledge, London, pp. 143–156.
+    </biblio>
+
+    <biblio xml:id="bib-Getis_1992" type="raw">
+      Getis, A. and Ord, J.K. (1992). The Analysis of Spatial Association by Use of Distance
+      Statistics. <em>Geographical Analysis</em>, 24(3), 189–206.
+    </biblio>
+
+    <biblio xml:id="bib-Goldstein_1990" type="raw">
+      Goldstein, H. (1990). <em>Problem-Oriented Policing</em>. McGraw Hill.
+    </biblio>
+
+    <biblio xml:id="bib-Gomez_2005" type="raw">
+      Gomez-Rubio, V., Ferrandiz, J. and Lopez, A. (2005). Detecting Clusters of Disease with R.
+      <em>Journal of Geographical Systems</em>, 7, 189–206.
+    </biblio>
+
+    <biblio xml:id="bib-Grove_2014" type="raw">
+      Grove, L., Farrell, G., Farrington, D. and Johnson, S. (2014). <em>Preventing repeat
+      victimisation: a systematic review</em>. Swedish National Council for Crime Prevention.
+    </biblio>
+
+    <biblio xml:id="bib-Kulldorff_1997" type="raw">
+      Kulldorff, M. (1997). A Spatial Scan Statistic. <em>Communications in Statistics, Theory,
+      and Methods</em>, 26(6), 1481–1496.
+    </biblio>
+
+    <biblio xml:id="bib-Marshall_1991_b" type="raw">
+      Marshall, R. (1991). A Review of Methods for the Statistical Analysis of Spatial Patterns of
+      Disease. <em>Journal of the Royal Statistical Society</em>, 154(3), 421–441.
+    </biblio>
+
+    <biblio xml:id="bib-Ord_1995" type="raw">
+      Ord, J.K. and Getis, A. (1995). Local Spatial Autocorrelation Statistics: Distributional
+      Issues and Applications. <em>Geographical Analysis</em>, 27(4), 286–306.
+    </biblio>
+
+    <biblio xml:id="bib-Pease_1998" type="raw">
+      Pease, K. (1998). <em>Repeat Victimisation: Taking Stock</em>. Home Office.
+    </biblio>
+
+    <biblio xml:id="bib-Pease_2017" type="raw">
+      Pease, K. and Farrell, G. (2017). Repeat Victimisation. In Wortley, R. and Townsley, M.
+      (eds), <em>Environmental Criminology and Crime Analysis</em>. Routledge, London.
+    </biblio>
+
+    <biblio xml:id="bib-Pease_2018" type="raw">
+      Pease, K., Ignatans, D. and Batty, L. (2018). Whatever Happened to Repeat Victimisation?
+      <em>Crime Prevention and Community Safety</em>, 20, 256–267.
+    </biblio>
+
+    <biblio xml:id="bib-Pebesma_2021" type="raw">
+      Pebesma, E. and Bivand, R. (2021). <em>Spatial Data Science with applications in R</em>.
+      <url href="https://keen-swartz-3146c4.netlify.app/">https://keen-swartz-3146c4.netlify.app/</url>
+      Accessed: 17-05-2021.
+    </biblio>
+
+    <biblio xml:id="bib-Ramos_2021" type="raw">
+      Ramos, R., Silva, B., Clarke, K. and Prates, M. (2021). Too Fine to be Good? Issues of
+      Granularity, Uniformity and Error in Spatial Crime Analysis. <em>Journal of Quantitative
+      Criminology</em>, 37, 419–443.
+    </biblio>
+
+    <biblio xml:id="bib-Ratcliffe_2020" type="raw">
+      Ratcliffe, J. (2020). Near repeat analysis.
+      <url href="https://www.jratcliffe.net/near-repeat-analysis">https://www.jratcliffe.net/near-repeat-analysis</url>
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio xml:id="bib-Sherman_1989" type="raw">
+      Sherman, L., Gartin, P. and Buerger, M. (1989). Hot spots of predatory crime: routine
+      activities and the criminology of place. <em>Criminology</em>, 27(1), 27–56.
+    </biblio>
+
+    <biblio xml:id="bib-Steenbeek_2016" type="raw">
+      Steenbeek, W. and Weisburd, D. (2016). Where the Action is in Crime? An Examination of
+      Variability of Crime Across Different Spatial Units in The Hague, 2001–2009.
+      <em>Journal of Quantitative Criminology</em>, 32, 442–469.
+    </biblio>
+
+    <biblio xml:id="bib-Steenbeek_2021" type="raw">
+      Steenbeek, W. (2021). NearRepeat: Near Repeat Calculation using the Knox Test (Monte Carlo
+      permutation). R package version 0.1.1.
+      <url href="https://github.com/wsteenbeek/NearRepeat">https://github.com/wsteenbeek/NearRepeat</url>
+    </biblio>
+
+    <biblio xml:id="bib-Townsley_2003" type="raw">
+      Townsley, M., Homel, R. and Chaseling, J. (2003). Infectious burglaries: a test of the near
+      repeat hypothesis. <em>British Journal of Criminology</em>, 43, 615–633.
+    </biblio>
+
+    <biblio xml:id="bib-Weisburd_2015" type="raw">
+      Weisburd, D. (2015). The Law of Crime Concentration and the Criminology of Place.
+      <em>Criminology</em>, 53(2), 133–157.
+    </biblio>
+
   </references>
 
   <colophon>
