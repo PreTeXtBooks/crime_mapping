@@ -554,6 +554,107 @@
       <em>Criminology</em>, 53(2), 133–157.
     </biblio>
 
+    <biblio xml:id="bib-Adepeju_2020" type="raw">
+      Adepeju, M., Langton, S. and Bannister, J. (2020). Akmedoids R package for generating
+      directionally-homogeneous clusters of longitudinal data sets. <em>The Journal of Open
+      Software</em>, 5(56). doi.org/10.21105/joss.02379.
+    </biblio>
+
+    <biblio xml:id="bib-Adepeju_2021" type="raw">
+      Adepeju, M., Langton, S. and Bannister, J. (2021). Anchored K-medoids: a Novel Adaptation of
+      K-medoids Further Refined to Measure Long-term Instability in the Exposure to Crime.
+      <em>Journal of Computational Social Science</em>. doi.org/10.1007/s42001-021-00103-1.
+    </biblio>
+
+    <biblio xml:id="bib-Andresen_2021" type="raw">
+      Andresen, M., Haberman, C., Johnson, S. and Steenbeek, W. (2021). Advances in Place-Based
+      Methods: Editors' Introduction. <em>Journal of Quantitative Criminology</em>.
+      doi.org/10.1007/s10940-021-09517-6.
+    </biblio>
+
+    <biblio xml:id="bib-Bivand_2013" type="raw">
+      Bivand, R., Pebesma, E. and Gómez-Rubio, V. (2013). <em>Applied Spatial Data Analysis with
+      R</em>, 2nd ed. Springer, New York.
+    </biblio>
+
+    <biblio xml:id="bib-BrizRedon_2019a" type="raw">
+      Briz-Redón, Á., Martínez-Ruiz, F. and Montes, F. (2019). DRHotNet: An R package for
+      detecting differential risk hotspots on a linear network. arXiv:1911.07827.
+    </biblio>
+
+    <biblio xml:id="bib-BrizRedon_2019b" type="raw">
+      Briz-Redón, Á., Martínez-Ruiz, F. and Montes, F. (2019). Identification of Differential Risk
+      Hotspots for Collision and Vehicle Type in a Directed Linear Network.
+      <em>Accident Analysis and Prevention</em>. doi.org/10.1016/j.aap.2019.105278.
+    </biblio>
+
+    <biblio xml:id="bib-BrizRedon_2020b" type="raw">
+      Briz-Redón, Á., Martínez-Ruiz, F. and Montes, F. (2020). Adjusting the Knox Test by
+      Accounting for Spatio-temporal Crime Risk Heterogeneity to Analyse Near-repeats.
+      <em>European Journal of Criminology</em>. doi.org/10.1177/1477370820905106.
+    </biblio>
+
+    <biblio xml:id="bib-Cheng_2014" type="raw">
+      Cheng, T. and Adepeju, M. (2014). Modifiable Temporal Unit Problem (MTUP) and Its Effect on
+      Space-Time Cluster Detection. <em>PLOS One</em>. doi:10.1371/journal.pone.0100465.
+    </biblio>
+
+    <biblio xml:id="bib-Gorr_2015" type="raw">
+      Gorr, W. and Lee, Y. (2015). Early Warning System for Temporary Crime Hot Spots.
+      <em>Journal of Quantitative Criminology</em>, 31, 25–47.
+    </biblio>
+
+    <biblio xml:id="bib-Kulldorff_1995" type="raw">
+      Kulldorff, M. and Nagarwalla, N. (1995). Spatial Disease Clusters: Detection and Inference.
+      <em>Statistics in Medicine</em>, 14, 799–810.
+    </biblio>
+
+    <biblio xml:id="bib-Kulldorff_1999" type="raw">
+      Kulldorff, M. and Hjalmars, U. (1999). The Knox Method and other Tests for Space-Time
+      Interaction. <em>Biometrics</em>, 55, 544–552.
+    </biblio>
+
+    <biblio xml:id="bib-Kulldorff_2005" type="raw">
+      Kulldorff, M., Heffernan, R., Hartman, J., Assunção, R. and Mostashari, F. (2005). A
+      Space–Time Permutation Scan Statistic for Disease Outbreak Detection. <em>PLOS Medicine</em>.
+      doi:10.1371/journal.pmed.0020059.
+    </biblio>
+
+    <biblio xml:id="bib-Levine_2013" type="raw">
+      Levine, N. (2013). <em>Crime Stat IV: A Spatial Statistics Program for the Analysis of Crime
+      Incident Locations</em>. National Institute of Justice, Washington, DC.
+    </biblio>
+
+    <biblio xml:id="bib-Mohler_2011" type="raw">
+      Mohler, G.O., Short, M.B., Brantingham, P.J., Schoenberg, F.P. and Tita, G.E. (2011).
+      Self-Exciting Point Process Modeling of Crime. <em>Journal of the American Statistical
+      Association</em>, 106(493), 100–108.
+    </biblio>
+
+    <biblio xml:id="bib-Openshaw_1987" type="raw">
+      Openshaw, S., Charlton, M., Wymer, C. and Craft, A. (1987). A Mark 1 Geographical Analysis
+      Machine for the Automated Analysis of Point data Sets. <em>International Journal of
+      Geographical Information Systems</em>, 1(4), 335–358.
+    </biblio>
+
+    <biblio xml:id="bib-Shiode_2015" type="raw">
+      Shiode, S., Shiode, N., Block, R. and Block, C. (2015). Space-time characteristics of
+      micro-scale crime occurrences: an application of a network-based space-time search window
+      technique for crime incidents in Chicago. <em>International Journal of Geographical
+      Information Science</em>, 29(5), 697–719.
+    </biblio>
+
+    <biblio xml:id="bib-Shiode_2020" type="raw">
+      Shiode, S. and Shiode, N. (2020). Crime Geosurveillance in Microscale Urban Environments:
+      NetSurveillance. <em>Annals of the American Association of Geographers</em>, 110(5),
+      1386–1406.
+    </biblio>
+
+    <biblio xml:id="bib-Uittenbogaard_2012" type="raw">
+      Uittenbogaard, A. and Ceccato, V. (2012). Space-time Clusters of Crime in Stockholm, Sweden.
+      <em>Review of European Studies</em>, 4(5), 148–156.
+    </biblio>
+
   </references>
 
   <colophon>

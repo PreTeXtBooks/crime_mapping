@@ -1076,4 +1076,589 @@ tm_shape(grid_cc_sf) +
     </subsection>
   </section>
 
+  <section xml:id="sec-ch10-scan-stats">
+    <title>Scan statistics</title>
+
+    <subsection xml:id="subsec-ch10-dcluster">
+      <title>The <c>DCluster</c> package</title>
+
+      <p>
+        As we mentioned at the outset of the chapter, a number of alternative approaches using a
+        different philosophy to those that are based on the idea of LISA have been developed within
+        spatial epidemiology. Rather than focusing on local dependence, these tests focus on
+        assessing homogeneity
+        (<xref ref="bib-Marshall_1991" text="custom">Marshall, 1991</xref>):
+      </p>
+
+      <blockquote>
+        <p>
+          The null hypothesis when clustering is thought to be due to elevated local risk is usually
+          that cases of disease follow a non-homogeneous Poisson process with intensity proportional
+          to population density. Tests of the null Poisson model can be carried out by comparing
+          observed and expected count (p. 423).
+        </p>
+      </blockquote>
+
+      <p>
+        Here we will look at two well-known approaches with a focus on their implementation in the
+        <c>DCluster</c> package: Openshaw's GAM and Kulldorff's scan statistic. The package
+        <c>DCluster</c> (<xref ref="bib-Gomez_2005" text="custom">Gomez-Rubio et al., 2005</xref>)
+        was one of the first to introduce tools to assess spatial disease clusters to R. This
+        package precedes <c>sf</c> and it likes the data to be stored in a data frame with at least
+        four columns: observed number of cases, expected number of cases, and longitude and
+        latitude. It is a bit opinionated in the way it is structured. <c>DCluster</c>, like many
+        packages that are influenced by the epidemiological literature, takes as key inputs the
+        <em>observed cases</em> (in criminology this will be criminal occurrences) and <em>expected
+        cases</em>. In epidemiology, expected cases are often standardised to account for
+        population heterogeneity. In crime analysis, this is not as common (although in some
+        circumstances it should be!).
+      </p>
+
+      <p>
+        Straight away we see the problem we encounter here. The criminology of place emphasises
+        small places, but for this level of aggregation (street segments or micro-grid cells) we
+        won't have census variables indexing the population that we could easily use for purposes of
+        standardisation. This means we need to (1) compromise and look for clusters at a level of
+        aggregation for which we have some population measure that we could use for standardising or
+        (2) get creative and try to find other ways of solving this problem. Increasingly,
+        environmental criminologists are trying to find ways of taking this second route (see
+        <xref ref="bib-Andresen_2021" text="custom">Andresen et al., 2021</xref>). For this
+        illustration and for convenience reasons, we will take the first one. Although it is
+        important to warn we should try to stick whenever possible to the level of the spatial
+        process we are interested in exploring.
+      </p>
+
+      <p>
+        For this example, the expected counts will be computed using the overall incidence ratio
+        (i.e., total number of cases divided by the total population; in this case the number of
+        residential dwellings in the area). We will use the unit of analysis of neighbourhoods
+        operationalised as a commonly used census unit of geography in the UK, the Lower Super
+        Output Area (LSOA).
+      </p>
+
+      <p>
+        Let's compute the expected count by dividing the total number of burglaries by the total
+        number of dwellings (if burglaries were evenly distributed across all dwellings in our
+        study area) and then multiplying this with the number of dwellings in each LSOA.
+      </p>
+
+      <program language="r">
+        <input>
+# calculate rate per dwelling in whole study area
+even_rate_per_dwelling &lt;- sum(burglary_lsoa$burglary) / sum(burglary_lsoa$dwellings)
+
+# expected count for each LSOA times rate per number of dwellings
+burglary_lsoa &lt;- burglary_lsoa %&gt;%
+  mutate(b_expected = dwellings * even_rate_per_dwelling)
+        </input>
+      </program>
+
+      <p>
+        This package requires as well the centroids for the polygons we are using. To extract this,
+        we can use <c>st_centroid()</c> function from the <c>sf</c> package. If we want to extract
+        the coordinates individually, we also need to use the <c>st_coordinates()</c> function. All
+        the GEOS functions underlying <c>sf</c> need projected coordinates to work properly, so we
+        need to ensure an adequate projection (which we did when we loaded the data at the outset of
+        the chapter):
+      </p>
+
+      <program language="r">
+        <input>
+# Get coordinates for centroids
+lsoa_centroid &lt;- st_centroid(burglary_lsoa) %&gt;%
+  st_coordinates(lsoa_centroid)
+# Place the coordinates as vectors in our sf data frame
+burglary_lsoa$x &lt;- lsoa_centroid[,1]
+burglary_lsoa$y &lt;- lsoa_centroid[,2]
+        </input>
+      </program>
+
+      <p>
+        For convenience, we will just place these four columns in a new object. Although this is not
+        clear from the documentation, in our experience some of the code will only work if you
+        initialise the data using these column names:
+      </p>
+
+      <program language="r">
+        <input>
+lsoas &lt;- data.frame(Observed = burglary_lsoa$burglary,
+                   Expected = burglary_lsoa$b_expected,
+                    Population = burglary_lsoa$dwellings,
+                    x = burglary_lsoa$x,
+                    y = burglary_lsoa$y)
+        </input>
+      </program>
+
+      <p>
+        <c>DCluster</c> includes several tests for assessing the general heterogeneity of the
+        relative risks. A chi-squared test can be run to assess global differences between observed
+        and expected cases.
+      </p>
+
+      <program language="r">
+        <input>
+chtest &lt;- achisq.test(Observed~offset(log(Expected)),
+                      as(lsoas, "data.frame"),
+                      "multinom",
+                      999)
+chtest
+        </input>
+      </program>
+
+      <p>
+        It also includes the Pottoff and Withinghill test of homogeneity. The alternative hypothesis
+        of this test is that the observed cases are distributed following a negative binomial
+        distribution (<xref ref="bib-Bivand_2013" text="custom">Bivand et al., 2013</xref>).
+      </p>
+
+      <program language="r">
+        <input>
+pwtest &lt;- pottwhitt.test(Observed~offset(log(Expected)),
+                         as(lsoas, "data.frame"),
+                         "multinom", 999)
+oplus &lt;- sum(lsoas$Observed)
+1 - pnorm(pwtest$t0, oplus * (oplus - 1), sqrt(2 * 100 * oplus * (oplus - 1)))
+        </input>
+      </program>
+
+      <p>
+        Detail in those two tests and the used code is available from
+        <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref>. In what follows we
+        introduce two of the approaches implemented here for the detection of clusters.
+      </p>
+
+    </subsection>
+
+    <subsection xml:id="subsec-ch10-gam">
+      <title>Openshaw's GAM</title>
+
+      <p>
+        Stan Openshaw is a retired British geography professor with an interest in geocomputation.
+        We already encountered him earlier, for he wrote one of the seminal papers on the modifiable
+        areal unit problem. In 1987, together with several colleagues, he published his second most
+        highly cited paper introducing <alert>geographical analysis machine</alert> (GAM). This was
+        a technique developed to work with point pattern data with the aim of finding clusters
+        (<xref ref="bib-Openshaw_1987" text="custom">Openshaw et al., 1987</xref>). The machine is
+        essentially an automated algorithm that tries to assess whether "there is an excess of
+        observed points within <m>x</m> km of a specific location" (p. 338). A test statistic is
+        computed for this circular search area, and some form of inference can then be made.
+      </p>
+
+      <p>
+        The technique requires a grid and will draw circles centred in the intersection of the cells
+        of this grid. From each point of the grid backdrop, a radial distance is calculated assuming
+        a Poisson distribution. The ratio of events to candidates is counted up and then the test is
+        done. What we are doing is to observe case counts in overlapping circles and trying to
+        identify potential clusters among these, by virtue of running separate significance test for
+        each of the circles individually. The statistically trained reader may already note a
+        problem with this. In a way, this is similar to tests for quadrat counting, only here we
+        have overlapping "quadrats" and we have many more of them
+        (<xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>).
+      </p>
+
+      <p>
+        The <c>opgam()</c> function from <c>DCluster</c> does this for you. You can either specify
+        the grid passing the name of the object containing this grid using the <c>thegrid</c>
+        argument or specify the step size for computing this grid. For this you simply introduce a
+        value for the <c>step</c> argument. You also need to specify the search <c>radius</c> and
+        can specify an explicit significance level of the test performed with the <c>alpha</c>
+        argument. The radius is typically 5 to 10 times the lattice spacing. It is worth mentioning
+        that although one could derive this test using asymptotic theory, <c>DCluster</c> uses a
+        bootstrap approach.
+      </p>
+
+      <program language="r">
+        <input>
+gam_burglary &lt;- opgam(data = as(lsoas, "data.frame"),
+                      radius = 50, step = 10, alpha = 0.002)
+        </input>
+      </program>
+
+      <p>
+        Once <c>opgam</c> has found a solution, we could plot either the circles or the centre of
+        these circles. We can use the following code to do the map, which will be shown in the next
+        section.
+      </p>
+
+      <program language="r">
+        <input>
+gam_burglary_sf &lt;- st_as_sf(gam_burglary, coords = c("x", "y"), crs = 27700)
+gam_burglary_sf &lt;- st_transform(gam_burglary_sf, crs = 4326)
+tmap_mode("plot")
+map_gam &lt;- tm_shape(burglary_lsoa) + tm_borders(alpha = 0.3) +
+  tm_shape(gam_burglary_sf) + tm_dots(size=0.1, col = "red") +
+  tm_layout(main.title = "Openshaw's GAM", main.title.size=1.2)
+        </input>
+      </program>
+
+      <p>
+        One of the problems with this method is that the tests are not independent; very similar
+        clusters (i.e., most of their regions are the same) are tested
+        (<xref ref="bib-Bivand_2013" text="custom">Bivand et al., 2013</xref>). Inference then is a
+        bit compromised and the approach has received criticism over the years for this failure to
+        solve the multiple testing problem: "any Bonferroni type of procedure to adjust for multiple
+        testing is futile due to the extremely large number of dependent tests performed"
+        (<xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>). For
+        these reasons and others (see
+        <xref ref="bib-Marshall_1991_b" text="custom">Marshall, 1991</xref>), it is considered hard
+        to ask meaningful statistical questions from a GAM. Notwithstanding this, this technique, as
+        noted by <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref>, can still
+        be helpful as part of the exploration of your data, as long as you are aware of its
+        limitations.
+      </p>
+
+    </subsection>
+
+    <subsection xml:id="subsec-ch10-kulldorff">
+      <title>Kulldorff's Scan Statistic</title>
+
+      <p>
+        More popular has been the approach developed by
+        <xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla (1995)</xref>. This
+        test could be used for aggregated or point pattern data. It aims to overcome the limitations
+        from previous attempts to assess clusters of disease. Unlike previous methods, the scan
+        statistic constructs circles of varying radii
+        (<xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>):
+      </p>
+
+      <blockquote>
+        <p>
+          Each of the infinite number of circles thus constructed defines a zone. The zone defined
+          by a circle consists of all individuals in those cells whose centroids lie inside the
+          circle and each zone is uniquely identified by these individuals (p. 802).
+        </p>
+      </blockquote>
+
+      <p>
+        The test statistic then compares the relative risk within the circle to the relative risk
+        outside the circles (for more details, see
+        <xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref> and
+        <xref ref="bib-Kulldorff_1997" text="custom">Kulldorff, 1997</xref>).
+      </p>
+
+      <p>
+        The scan statistic was implemented by Kulldorff in the SatScan™ software, freely available
+        from www.satscan.org. This software extends the basic idea to various problems, including
+        spatio-temporal clustering. A number of R packages use this scan statistic (<c>smerc</c>,
+        <c>spatstat</c>, <c>SpatialEpi</c> are some of the best known), although the implementation
+        is different across these packages. There is also a package (<c>rsatscan</c>) that can allow
+        us to interface with SatScan™ via R. Here we will continue focusing on <c>DCluster</c> for
+        parsimonious reasons. The vignettes for the other packages provide a useful platform for
+        exploring those other solutions.
+      </p>
+
+      <p>
+        For this we return to the <c>opgam()</c> function. There are some key differences in the
+        arguments. The <c>icluster</c> argument, which we didn't specify previously, needs to make
+        clear now we are using the clustering function for Kulldorff and Nagarwalla scan statistic.
+        <c>R</c> is the number of bootstrap permutations to compute. The <c>model</c> argument
+        allows us to specify the model to generate the random observations.
+        <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref> suggest the use of a
+        negative binomial model (<c>"negbin"</c>) to account for over-dispersion which may result
+        from unaccounted spatial autocorrelation. And <c>mle</c> specifies parameters that are
+        needed for the bootstrap calculation. These can be computed with the
+        <c>DCluster::calculate.mle()</c> function, which simply takes as arguments the data and the
+        type of model. When illustrating <c>opgam</c> earlier, we used the <c>step</c> method to
+        draw the grid; in this case we will explicitly provide a grid based on our data points.
+      </p>
+
+      <program language="r">
+        <input>
+mle &lt;- calculate.mle(as(lsoas, "data.frame"), model = "negbin")
+thegrid &lt;- as(lsoas, "data.frame")[, c("x", "y")]
+kns_results &lt;- opgam(data = as(lsoas, "data.frame"),
+                   thegrid = thegrid, alpha = 0.02, iscluster = kn.iscluster,
+                   fractpop = 0.05, R = 99, model = "negbin",
+                   mle = mle)
+        </input>
+      </program>
+
+      <p>
+        Once the computation is complete, we are ready to plot the data and to compare the result to
+        those obtained with the GAM.
+      </p>
+
+      <program language="r">
+        <input>
+kulldorff_scan &lt;- st_as_sf(kns_results,
+                      coords = c("x", "y"),
+                      crs = 27700)
+kulldorff_scan &lt;- st_transform(kulldorff_scan, crs = 4326)
+map_scan &lt;- tm_shape(burglary_lsoa) + tm_borders(alpha = 0.3) +
+  tm_shape(kulldorff_scan) + tm_dots(size=0.1, col = "red") +
+  tm_layout(main.title = "Kulldorff Scan", main.title.size=1.2)
+tmap_arrange(map_gam, map_scan)
+        </input>
+      </program>
+
+      <figure xml:id="fig-ch10-gam-kulldorff">
+        <caption>Difference in results between Openshaw's GAM and Kulldorff scan statistics</caption>
+        <image source="external/fig-ch10-gam-kulldorff.png">
+          <description>
+            Two side-by-side featureless maps of Manchester broken into LSOAs, one titled
+            'Openshaw's GAM', and the other 'Kulldorff Scan'. Both have red dots in some of the
+            LSOAs. The map on the right, 'Kulldorff Scan', shows three clear clusters of red, one
+            around the city centre, one slightly southeast, and one more further south. The left
+            map, 'Openshaw's GAM', also has similar clusters to these, but also includes red dots
+            further south, and some smaller clusters further east.
+          </description>
+        </image>
+      </figure>
+
+      <p>
+        Whereas the GAM picks up a series of locations in East and North Manchester known by their
+        high level of concentrated disadvantage, the Kulldorff scan only identifies the clusters
+        around the city centred on areas of student accommodation south of the University of
+        Manchester.
+      </p>
+
+    </subsection>
+  </section>
+
+  <section xml:id="sec-ch10-near-repeat">
+    <title>Exploring near repeat victimisation</title>
+
+    <p>
+      Although a good deal of the near repeat victimisation literature focuses on burglary, our
+      Manchester data is not good for illustrating the analysis of near repeat victimisation. For
+      this we need data with more granular time information than the month in which it took place
+      (the only one available from UK open data police portals). So we will return to the burglary
+      data we explored in Chapter 7 when introducing spatial point pattern analysis. Remember,
+      though, that there is a good deal of artificial "revictimisation" in those files for the way
+      that geomasking is introduced. So although we can use that data for illustration purposes,
+      beware the results we will report cannot be trusted as genuine.
+    </p>
+
+    <program language="r">
+      <input>
+# Large dataset, so it will take a while
+nyc_burg &lt;- get_crime_data(
+  cities = "New York", #specifies the city for which you want the data
+  years = 2010,        #reads the appropriate year of data
+  type = "extended",   #select extended (a fuller set of fields)
+  output = "sf") %&gt;%        #Specify you want a sf object with WGS84
+  dplyr::filter(offense_type == "residential burglary/breaking &amp; entering" &amp;
+           nyc_boro_nm == "MANHATTAN")
+manhattan &lt;- st_read("data/manhattan.geojson", quiet=TRUE) %&gt;%
+  filter(BoroName == "Manhattan")
+manhattan &lt;- st_transform(manhattan, 32118)
+nyc_burg &lt;- st_transform(nyc_burg, 32118)
+      </input>
+    </program>
+
+    <p>
+      The <c>NearRepeat</c> package uses the Knox test for space time clustering, which has been
+      around since 1964. This test whether there is a significant cluster within a defined distance
+      and time period. The Knox algorithm counts the pair of points within a specified space and
+      time interval and compares this to the expected number of points. "If many of the cases that
+      are 'close' in time are also 'close' in space or vice versa, then there is space-time
+      interaction" (<xref ref="bib-Kulldorff_1999" text="custom">Kulldorff and Hjalmars,
+      1999</xref>). The idea underpinning the test, as highlighted by
+      <xref ref="bib-Mantel_1967" text="custom">Mantel (1967)</xref>, is that "if there is
+      time-space clustering, cases in a cluster will be close both in time and space, while
+      unrelated cases will tend to have a larger average separation in time and space." (p. 209).
+    </p>
+
+    <p>
+      The <c>NearRepeat</c> package is quite straightforward with just a couple of functions, as we
+      will see. The key function is <c>NearRepeat()</c> that takes as inputs the data (a vector
+      with the <m>x</m> coordinates, a vector with the <m>y</m> coordinates, and a vector with the
+      time information, which can be an integer, numeric or date). You then need to specify the time
+      and the spatial intervals. Ratcliffe (2020) indicates that:
+    </p>
+
+    <blockquote>
+      <p>
+        The number of spatial bands is dependent on how far you expect a pattern of near repeats to
+        extend. For example, most environmental criminology research suggests that near repeat
+        patterns occur for only a few blocks or a few hundred metres at most. Any effects appear to
+        peter out beyond this distance. Adding additional bands beyond any identified effects rarely
+        adds much value; however the program is often most effective when you experiment with
+        various settings. For fairly large data sets, ten spatial bands is often a good starting
+        point, though experimentation is encouraged... Be advised that selecting too many bands or
+        too narrow a bandwidth can reduce the number of observations in each category and
+        potentially limit the findings by creating too many categories with low (or zero) values in
+        the observed or expected matrices.
+      </p>
+    </blockquote>
+
+    <p>
+      And likewise for the temporal bands:
+    </p>
+
+    <blockquote>
+      <p>
+        The number of temporal bands is dependent on how long you expect a pattern of near repeats
+        to extend. For example, the research on repeat victimization suggests that a risk of repeat
+        burglary increases rapidly after an initial burglary, but that this risk dissipates in the
+        months after the incident and the risk returns to the background (normal level for the area)
+        after a few months. Settings of a 30 day temporal bandwidth with 12 temporal bands, or 14
+        days with 13 temporal bands (to cover a six month period) are common, but experimentation
+        is encouraged.
+      </p>
+    </blockquote>
+
+    <p>
+      The Knox test basically uses these temporal and spatial bands to compute the expected number
+      of pairs of events that are close in time and space and compares this with the observed count.
+      Let's first prepare the data. We will extract the key vectors to a data frame.
+    </p>
+
+    <program language="r">
+      <input>
+nyc_burg_df &lt;- matrix(unlist(nyc_burg$geometry), ncol = 2, byrow = T)
+nyc_burg_df &lt;- as.data.frame(nyc_burg_df)
+nyc_burg_df$time &lt;- as.Date(nyc_burg$date_single)
+nyc_burg_df &lt;- rename(nyc_burg_df, x = V1, y = V2)
+      </input>
+    </program>
+
+    <p>
+      We can then try the test. We look at three temporal intervals of seven days each (defined by
+      <c>tds</c>) and four spatial bands (defined by <c>sds</c>), expressed in metres here. By
+      default, this function relies on the Manhattan distances, but we can also set them to
+      Euclidean if we prefer (<c>method = "euclidean"</c>). The p values are computed using a Monte
+      Carlo simulation approach, so <c>nrep</c> sets the number of simulations we desire. The
+      generic <c>plot()</c> function to the generated object will then generate a heat map with the
+      results of the Knox test.
+    </p>
+
+    <program language="r">
+      <input>
+set.seed(123)
+results_knox &lt;- NearRepeat(x = nyc_burg_df$x,
+                     y = nyc_burg_df$y,
+                     time = nyc_burg_df$time,
+                     sds = c(0, 0.1, 100, 200, 400),
+                     tds = c(0, 7, 14, 21),
+                     nrep = 99)
+plot(results_knox)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch10-knox">
+      <caption>Results of the Knox test</caption>
+      <image source="external/fig-ch10-knox.png">
+        <description>
+          A grid of boxes three wide and four tall, containing decimal numbers. The vertical axis is
+          labeled 'Spatial distance', and includes ranges from zero to point one, then to one
+          hundred, then one to two hundred, and finally two to four hundred. The horizontal axis is
+          labeled 'Temporal distance', and contains three ranges, zero to seven, seven to fourteen,
+          and fourteen to twenty one. A legend to the right is labeled 'p-value', and matches a
+          gradient from orange to yellow, of p-values from zero to point zero five. The three boxes
+          representing spatial distance nearest to zero are coloured orange, as well as one between
+          one and two hundred, with temporal distance between zero and seven. The rest are white.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      By default, this will plot the cells with significant p values and the Knox ratios based on
+      the mean across simulations that are higher than 1.2 (that is, the observed number of pairs
+      is 20% greater than expected). This default can be changed to various options (as discussed in
+      the vignette for the package).
+    </p>
+
+    <p>
+      This test was commonly used in epidemiology for preliminary analysis where an infectious
+      origin is suspected before criminologists started to use it. It is worthwhile noticing that
+      within the epidemiological literature there are known concerns with this test (see
+      <xref ref="bib-Kulldorff_1999" text="custom">Kulldorff and Hjalmars, 1999</xref> and
+      <xref ref="bib-Townsley_2003" text="custom">Townsley et al., 2003</xref>). One is bias
+      introduced by shifts in the population that, considering the temporal scale typically
+      considered in criminological issues, is not the greatest concern. We also need to worry about
+      arbitrary cut offs and the related problem of multiple comparisons. The near repeat calculator
+      manual suggestion for experimentation around these cut-offs likely exacerbates this problem in
+      the practice of crime analysis.
+      <xref ref="bib-Townsley_2003" text="custom">Townsley et al. (2003)</xref> suggest using past
+      findings reported in the literature to establish the time and space intervals. If there are
+      seasonal effects, this test is not well suited to account for them. Finally, the literature
+      also discusses edge effects. Within the epidemiological literature, several modifications to
+      the Knox test have been proposed, and presumably we will see more of this used by
+      criminologists in the future.
+    </p>
+
+    <p>
+      A recent article by
+      <xref ref="bib-BrizRedon_2020b" text="custom">Briz-Redón et al. (2020)</xref> proposes a
+      modification of the traditional Knox test. The classic test assumes that crime risk is
+      homogeneous in time and space, despite the fact that this assumption rarely holds. Their
+      procedures relax this assumption, but have yet to be implemented in an R package.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch10-further-reading">
+    <title>Further reading</title>
+
+    <p>
+      Hot spots of crime are simply a convenient perceptual construct. As Ned
+      <xref ref="bib-Levine_2013" text="custom">Levine (2013)</xref> (chapter 7, p. 1) highlights,
+      <em>"Hot spots do not exist in reality, but are areas where there is sufficient clustering of
+      certain activities (in this case, crime) such that they get labeled such. There is not a
+      border around these incidents, but a gradient where people draw an imaginary line to indicate
+      the location at which the hot spot starts."</em> Equally, there is not a unique solution to
+      the identification of hot spots. Different techniques and algorithms will give you different
+      answers. He further emphasises: <em>"It would be very naive to expect that a single technique
+      can reveal the existence of hot spots in a jurisdiction that are unequivocally clear. In most
+      cases, analysts are not sure why there are hot spots in the first place. Until that is solved,
+      it would be unreasonable to expect a mathematical or statistical routine to solve that
+      problem"</em> (chapter 7, p. 7).
+    </p>
+
+    <p>
+      So, as with most data analysis exercises, one has to try different approaches and use
+      professional judgment to select a particular representation that may work best for a
+      particular use. Equally, we should not reify what we produce and, instead, take the maps as a
+      starting point for trying to understand the underlying patterns that are being revealed.
+      Critically, you want to try several different methods. You will be more persuaded a location
+      is a hot spot if several methods for hot spot analysis point to the same location. Keep in
+      mind as well the points we raised about the problems with police data in earlier chapters.
+      This data presents limitations. There is reporting bias, recording bias, and issues with
+      geocoding quality.
+      <xref ref="bib-BrizRedon_2020" text="custom">Briz-Redón et al. (2020)</xref>, specifically,
+      highlight that the common standard of a 85% match in geocoding is not good enough if the
+      purpose is detecting clusters. What we see in our data may not be what it is, because of the
+      quality of this data.
+    </p>
+
+    <p>
+      A more advanced approach at considering space time interactions and exploration of highly
+      clustered even sequences than the one assumed by the Knox test relies on the idea of
+      self-exciting points that are common in seismology. For details on this approach, see
+      <xref ref="bib-Mohler_2011" text="custom">Mohler et al. (2011)</xref>.
+      <xref ref="bib-Kulldorff_2005" text="custom">Kulldorff et al. (2005)</xref> also developed a
+      space time permutation scan statistic for detecting disease outbreaks that may be useful
+      within the context of crime analysis (see, for example,
+      <xref ref="bib-Uittenbogaard_2012" text="custom">Uittenbogaard and Ceccato (2012)</xref> use
+      to study spatio-temporal clusters of crime in Stockholm or
+      <xref ref="bib-Cheng_2014" text="custom">Cheng and Adepeju (2014)</xref> use of the
+      prospective scan statistic in London).
+      <xref ref="bib-Gorr_2015" text="custom">Gorr and Lee (2015)</xref> discuss an alternative
+      approach to study and respond to chronic and temporary hot spots. Of interest as well is the
+      work by <xref ref="bib-Adepeju_2021" text="custom">Adepeju et al. (2021)</xref>, and the
+      associated R package <c>Akmedoids</c>
+      (<xref ref="bib-Adepeju_2020" text="custom">Adepeju et al., 2020</xref>), for classifying
+      longitudinal trajectories of crime at micro-places.
+    </p>
+
+    <p>
+      Also, as noted in previous chapters, we need to acknowledge the underlying network structure
+      constraining the spatial distribution of our crime data.
+      <xref ref="bib-Shiode_2015" text="custom">Shiode et al. (2015)</xref> developed a hot spot
+      detection method that uses a network-based space-time search window technique (see also
+      <xref ref="bib-Shiode_2020" text="custom">Shiode and Shiode (2020)</xref> for more recent
+      work). However, the software implementation of this approach has not yet seen the light as of
+      this writing despite the authors mentioning a "GIS plug-in tool" to be in development in
+      their 2015 paper. Also relevant is the work by
+      <xref ref="bib-BrizRedon_2019b" text="custom">Briz-Redón et al. (2019)</xref> that developed
+      an R package (<c>DRHotNet</c>) for differential risk hot spots on a linear network. This is a
+      procedure to detect whether specific type of event is over-represented in relation to the
+      other types of events observed (say, for example, burglaries in relation to other crimes).
+      There is a detailed tutorial for this package in
+      <xref ref="bib-BrizRedon_2019a" text="custom">Briz-Redón et al. (2019)</xref>.
+    </p>
+
+  </section>
+
 </chapter>
