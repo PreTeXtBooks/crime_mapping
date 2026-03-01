@@ -450,6 +450,91 @@
       <journal>Philosophical Transactions of the Royal Society</journal>, 372, 2014.
     </biblio>
 
+    <biblio type="raw" xml:id="Lu_2007">
+      Yongmei Lu and Xuwei Chen.
+      On the false alarm of planar K-function when analyzing urban crime distributed along streets.
+      <journal>Social Science Research</journal>, 36(2):611–632, 2007.
+    </biblio>
+
+    <biblio type="raw" xml:id="Baddeley_2005">
+      Adrian Baddeley and Rolf Turner.
+      spatstat: An R Package for Analyzing Spatial Point Patterns.
+      <journal>Journal of Statistical Software</journal>, 12(6):1–42, 2005.
+    </biblio>
+
+    <biblio type="raw" xml:id="Okabe_2001">
+      Atsuyuki Okabe and Ikuho Yamada.
+      The K-Function Method on a Network and Its Computational Implementation.
+      <journal>Geographical Analysis</journal>, 33(3):271–290, 2001.
+    </biblio>
+
+    <biblio type="raw" xml:id="Okabe_2012">
+      Atsuyuki Okabe and Kokichi Sugihara.
+      <title>Spatial Analysis along Networks</title>.
+      John Wiley &amp; Sons, Chichester, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ang_2012">
+      Qi Ang, Adrian Baddeley, and Gopalan Nair.
+      Geometrically Corrected Second Order Analysis of Events on a Linear Network, with Applications to Ecology and Criminology.
+      <journal>Scandinavian Journal of Statistics</journal>, 39(4):591–617, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Khalid_2018">
+      Shoaib Khalid, Fariha Shoaib, et al.
+      Network Constrained Spatio-Temporal Hotspot Mapping of Crimes in Faisalabad.
+      <journal>Applied Spatial Analysis and Policy</journal>, 11(3):599–622, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Haining_2020">
+      Robert Haining and Guangquan Li.
+      <title>Modelling Spatial and Spatial-Temporal Data: A Bayesian Approach</title>.
+      CRC Press, Boca Raton, FL, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Darmofal_2015">
+      David Darmofal.
+      <title>Spatial Analysis for the Social Sciences</title>.
+      Cambridge University Press, New York, NY, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chi_2020">
+      Guangqing Chi and Jun Zhu.
+      <title>Spatial Regression Models for the Social Sciences</title>.
+      Sage, Thousand Oaks, CA, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Aldstadt_2006">
+      Jared Aldstadt and Arthur Getis.
+      Using AMOEBA to create a spatial weights matrix and identify spatial clusters.
+      <journal>Geographical Analysis</journal>, 38(4):327–343, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2021">
+      Luc Anselin, Grant Morrison, Angela Li, and Karina Acosta.
+      Tutorials for the Center for Spatial Data Science, The University of Chicago.
+      2021. Available at: https://spatialanalysis.github.io/tutorials/.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_1996">
+      Luc Anselin.
+      The Moran Scatterplot as an ESDA Tool to Assess Local Instability in Spatial Association.
+      In Manfred Fischer, Henk Scholten, and David Unwin (eds.), <title>Spatial Analytical Perspectives on GIS</title>.
+      Taylor and Francis, London, 1996.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2021a">
+      Luc Anselin.
+      GeoDa Center Playlists.
+      2021. Available at: https://www.youtube.com/user/GeoDaCenter/playlists.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brunsdon_2015">
+      Chris Brunsdon and Lex Comber.
+      <title>R for Spatial Analysis and Mapping</title>.
+      SAGE, Thousand Oaks, CA, 2015.
+    </biblio>
+
   </references>
 
   <colophon>
