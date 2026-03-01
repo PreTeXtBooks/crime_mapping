@@ -269,6 +269,23 @@
       &amp; Management</em>, 18(3), 159&#x2013;172.
     </biblio>
 
+    <biblio xml:id="bib-Ellis_2018" type="raw">
+      Ellis, P. (2018). <em>ggseas: 'stats' for Seasonal Adjustment on the Fly with 'ggplot2'</em>.
+      R package version 0.5.4.
+      <url href="https://CRAN.R-project.org/package=ggseas">https://CRAN.R-project.org/package=ggseas</url>
+    </biblio>
+
+    <biblio xml:id="bib-Nussbaumer_2013" type="raw">
+      Nussbaumer, C. (2013). Strategies for avoiding the spaghetti graph.
+      <url href="https://www.storytellingwithdata.com/blog/2013/03/avoiding-spaghetti-graph">https://www.storytellingwithdata.com/blog/2013/03/avoiding-spaghetti-graph</url>
+      Accessed: 17-05-2020.
+    </biblio>
+
+    <biblio xml:id="bib-Pebesma_2012" type="raw">
+      Pebesma, E. (2012). spacetime: Spatio-Temporal Data in R.
+      <em>Journal of Statistical Software</em>, 51(7), 1&#x2013;30.
+    </biblio>
+
   </references>
 
   <colophon>
