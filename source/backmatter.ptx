@@ -267,6 +267,64 @@
       <url href="https://doi.org/10.18637/jss.v084.i06">https://doi.org/10.18637/jss.v084.i06</url>.
     </biblio>
 
+    <biblio type="raw" xml:id="Policehu_2021">
+      Police.hu.
+      <title>K&#xF6;zrendv&#233;delem</title>, 2020.
+      <url href="http://www.police.hu/hu/a-rendorsegrol/statisztikak/kozrendvedelem">http://www.police.hu/hu/a-rendorsegrol/statisztikak/kozrendvedelem</url>.
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2012">
+      Kenneth Field and Damien Demaj.
+      Reasserting design relevance in cartography: some concepts.
+      <journal>The Cartographic Journal</journal>, 49(1):70&#x2013;76, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Dent_2008">
+      Borden Dent, J. Torguson, and T. Hodler.
+      <title>Thematic map design</title>.
+      McGraw-Hill, New York, NY, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2007">
+      Kenneth Field.
+      <title>Map Evaluation Guidelines</title>, 2007.
+      <url href="http://downloads.esri.com/MappingCenter2007/arcGISResources/more/MapEvaluationGuidelines.pdf">http://downloads.esri.com/MappingCenter2007/arcGISResources/more/MapEvaluationGuidelines.pdf</url>.
+      Accessed: 17-05-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Kirk_2016">
+      Andy Kirk.
+      <title>Data visualisation: A handbook for data driven design</title>.
+      Sage, London, UK, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Cairo_2016">
+      Alberto Cairo.
+      <title>The Truthful Art: Data, Charts, and Maps for Communication</title>.
+      New Riders, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Li_2014">
+      Huiyang Li and Nadine Moacdieh.
+      Is "chart junk" useful? An extended examination of visual embellishment.
+      In <title>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</title>,
+      volume 58, pages 1516&#x2013;1520. SAGE Publications, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brewer_1994">
+      Cynthia Brewer.
+      Color use guidelines for mapping.
+      <journal>Visualization in modern cartography</journal>, pages 123&#x2013;148, 1994.
+    </biblio>
+
+    <biblio type="raw" xml:id="Yutani_2018">
+      Hiroaki Yutani.
+      <title>geom_sf_text() and geom_sf_label() Are Coming</title>, 2018.
+      <url href="https://yutani.rbind.io/post/geom-sf-text-and-geom-sf-label-are-coming/">https://yutani.rbind.io/post/geom-sf-text-and-geom-sf-label-are-coming/</url>.
+      Accessed: 16-05-2021.
+    </biblio>
+
   </references>
 
   <colophon>
