@@ -1156,4 +1156,351 @@ map
 
   </section>
 
+  <section xml:id="sec-ch05-composition">
+    <title>Composition</title>
+
+    <p>
+      Composition of the map is the process of bringing all its elements together in order
+      that they portray a complete image of what you are representing. Composition includes
+      considerations of size, proportions, generalisation, simplification, and similar
+      topics. We do not address these here, as they rely so much on the specific purpose of
+      the map being created. Is it for the web? Is it for print? Are detailed outlines of
+      coasts and waterways important, or is a generalised representation of the underlying
+      geography enough? These are questions the map-maker should answer early on, and then
+      pick geometry data, and specify output sizes and resolutions accordingly. In this
+      section instead, we will focus on the element of composition which is concerned with
+      the inclusion of basic map elements &#x2014; information required by the map readers
+      to make sense of our data, specifically orientation and scale indicators.
+    </p>
+
+    <subsection xml:id="subsec-ch05-orientation">
+      <title>Orientation indicators</title>
+
+      <p>
+        It used to be that no map was complete without the inclusion of an orientation
+        indicator (known colloquially as the "North Arrow"). Readers who are geography fans
+        may know that the issue of where North is maybe not so straightforward. True north
+        (the direction to the North Pole) differs from magnetic north, and the latter
+        actually moves around as the Earth's geophysical conditions change. There are
+        reference maps which include both; however, for most crime-mapping applications we
+        can conclude that this is overkill. Most maps are oriented to true north, anyway, so
+        we are not being very deviant with choosing this approach.
+      </p>
+
+      <p>
+        So how to include this in our mapping in R? Well, we can turn to the
+        <c>ggspatial</c> library, and employ the function
+        <c>annotation_north_arrow()</c>. In this function we can specify some aesthetic
+        properties of our arrow, such as the height and width. Here we do so using
+        millimetres as units.
+      </p>
+
+      <program language="r" label="add-north-arrow">
+        <input>
+library(ggspatial)
+
+map + annotation_north_arrow(height = unit(7, "mm"), # specify arrow height
+                         width = unit(5, "mm")) # specify arrow width
+        </input>
+      </program>
+
+      <figure xml:id="fig-hungary-north-arrow">
+        <caption>Add north arrow</caption>
+        <image source="figure-ch05/hungary-north-arrow.png">
+          <description>Once more the same green map of Hungary's counties has had an
+          addition, a small half white half black arrow pointing upwards in the bottom left
+          corner, with the letter 'N' for north underneath.</description>
+        </image>
+      </figure>
+
+      <p>
+        You can also change the style with the <c>style =</c> parameter, and then choose
+        from styles such as <c>north_arrow_fancy_orienteering()</c> or
+        <c>north_arrow_minimal()</c>:
+      </p>
+
+      <program language="r" label="add-north-arrow-minimal">
+        <input>
+map &lt;- map + annotation_north_arrow(height = unit(7, "mm"), # specify arrow height
+                         width = unit(5, "mm"),
+                        style = north_arrow_minimal()) # specify arrow style
+
+map
+        </input>
+      </program>
+
+      <figure xml:id="fig-hungary-north-arrow-minimal">
+        <caption>Change type of north arrow</caption>
+        <image source="figure-ch05/hungary-north-arrow-minimal.png">
+          <description>The arrow above the letter 'N' is now longer, and bisects the
+          letter.</description>
+        </image>
+      </figure>
+
+    </subsection>
+
+    <subsection xml:id="subsec-ch05-scale">
+      <title>Scale indicators</title>
+
+      <p>
+        Besides the North Arrow another, key feature of maps is the scale indicator, which
+        helps to understand distances we are presenting in our maps. Generally, scale should
+        always be indicated or implied, unless the audience is so familiar with the map area.
+        You could use text to indicate scale. For example you could write: "One centimeter
+        is equal to one kilometer", or you could write 1:10000. But a common, graphical
+        representation is to use a scale bar. Also in the <c>ggspatial</c> library, there is
+        the function <c>annotation_scale()</c>, which helps us achieve this. To plot both
+        the north arrow and the scale indicator, you want to think about where you place
+        these. You can move them along the x axis using the <c>pad_x</c> parameter, and
+        along the y axis with the <c>pad_y</c> parameter.
+      </p>
+
+      <program language="r" label="add-scale-bar">
+        <input>
+map &lt;- map +  annotation_scale(line_width = 0.5,      # add scale and specify width
+                   height = unit(1, "mm"), # specify height
+                   pad_x = unit(6, "cm"))  # adjust on x axis
+
+map
+        </input>
+      </program>
+
+      <figure xml:id="fig-hungary-scale-bar">
+        <caption>Include scale indicator on map</caption>
+        <image source="figure-ch05/hungary-scale-bar.png">
+          <description>The addition this time is a longer horizontal bar, segmented into
+          five sections alternating black and white. The text 'one hundred kilometers'
+          appears next to it. It appears beneath the map of Hungary but above the
+          attributions.</description>
+        </image>
+      </figure>
+
+      <p>
+        You can move these elements about to achieve your desired composition.
+      </p>
+
+    </subsection>
+
+  </section>
+
+  <section xml:id="sec-ch05-context">
+    <title>Context</title>
+
+    <p>
+      Besides the orientation and scale indicators, there are other ways to give context to
+      your map, that is situate it within the wider environment, and put things into
+      perspective for your map readers. In this section we will touch on basemaps, although
+      this is something we have already encountered in great detail in earlier chapters, here
+      we illustrate how to add basemaps in ggplot. We also introduce inset maps, as a way of
+      highlighting where your map sits in the wider context.
+    </p>
+
+    <subsection xml:id="subsec-ch05-basemap">
+      <title>Basemap</title>
+
+      <p>
+        As mentioned above, we have encountered and included basemaps in exercises in
+        previous chapters. For the sake of illustration, we can add a basemap now using the
+        <c>annotation_map_tile()</c> function also from the <c>ggspatial</c> package (like
+        the orientation and scale indicators). Make sure that the basemap is the first layer
+        added to the map, so that all subsequent layers are drawn on top of it. If we were
+        to add <c>annotation_map_tile()</c> last, it would cover all the other layers.
+      </p>
+
+      <program language="r" label="add-basemap">
+        <input>
+ggplot(data = hu_dd) +
+  annotation_map_tile() +  # add basemap layer first
+  geom_sf(aes(fill = total_quantiles), lwd = 0.5, col = "white") +
+  scale_fill_brewer(type = "seq", palette = "Greens", name = "Total tests")
+        </input>
+      </program>
+
+      <figure xml:id="fig-hungary-basemap">
+        <caption>Add a basemap to our map</caption>
+        <image source="figure-ch05/hungary-basemap.png">
+          <description>The title, subtitle, 'Budapest' label and its arrow, attributions,
+          north indicator, and scale indicator have fled the map, however the axes with
+          latitudes and longitudes have returned. In addition, a street map appears behind
+          the green shaded white bordered map of the counties of Hungary. A little of the
+          neighbouring countries can be seen, along with larger cities and major
+          roads.</description>
+        </image>
+      </figure>
+
+      <p>
+        This provides one way to add context. In previous iterations, we have adjusted the
+        opacity of our other layers, in order to aid visibility of the basemap underneath
+        them, so this might be something to consider.
+      </p>
+
+    </subsection>
+
+    <subsection xml:id="subsec-ch05-inset-maps">
+      <title>Inset maps</title>
+
+      <p>
+        Inset maps provide another approach to situating your map in context. You might use
+        this to show where your main map fits into the context of a larger area; for example,
+        here we might illustrate how Hungary is situated within Europe. You might also use an
+        inset map in another situation, where you have additional areas which you want to
+        show which may be geographically far but politically related to your region. For
+        example, we might want to portray a map of the United States of America and make sure
+        to include Hawaii and Alaska on the map. The basic principles behind these maps are
+        the same. Essentially we must create two map objects, and then bring these together.
+        Let's illustrate how.
+      </p>
+
+      <p>
+        First, we need to create the map we will be displaying in the inset map. In this
+        case, let's highlight the location of Hungary on a map of Europe. We can do this by
+        creating a map of Europe (let's use the <c>rnaturalearth</c> package for this). We
+        create a list of the countries from the world map <c>countries110</c>, and filter
+        only Europe (we also exclude Russia, because it is so big it makes the rest of
+        Europe hard to see on a smaller map, and Iceland as it's far, also making the map
+        bigger than we need).
+      </p>
+
+      <program language="r" label="get-europe-countries">
+        <input>
+library(rnaturalearth)
+
+europe_countries &lt;- st_as_sf(countries110) %&gt;%  # get geom for all countries
+  janitor::clean_names() %&gt;%
+  filter(region_un=="Europe" &amp; # select Europe
+           name != "Russia" &amp; name != "Iceland") %&gt;%  # remove Russia and Iceland
+  pull(name) # get only the names in a list
+
+europe &lt;- ne_countries(geounit = europe_countries, # get geoms for countries in list
+                       type = 'map_units',  # country type as map_units
+                       returnclass = "sf") # return sf object (not sp)
+        </input>
+      </program>
+
+      <p>
+        Now we can use the returned sf object <c>europe</c> to create a map of Europe. But
+        this isn't necessarily enough context. We also want the inset map to highlight
+        Hungary within this map. We can do this by creating another layer, with only
+        Hungary, and making its border red and use a thicker line width. By layering this on
+        top of the Europe map, we are essentially highlighting our study region.
+      </p>
+
+      <program language="r" label="create-inset-map">
+        <input>
+inset_map &lt;- ggplot() +  # create new ggplot
+  geom_sf(data = europe,  # add europe map as first layer
+          fill = "white") + # white fill
+  geom_sf(data = europe %&gt;% filter(name == "Hungary"), # new layer only Hungary
+          fill = "white" ,  # white fill
+          col = "red",   # make the border red
+          lwd = 2) +   # make border line thick
+  theme_void() +  # strip grid elements
+  theme(panel.border = element_rect(colour = "black", # draw border around map
+                                    fill=NA))
+        </input>
+      </program>
+
+      <p>
+        We now have this separate map, which highlights where Hungary can be found, right
+        there in Central Europe. To display this jointly with our map of the breathalyser
+        test, we must join the two maps. For this, we will need both as separate objects.
+        We've already assigned our inset map to the object <c>inset_map</c>, and we also
+        have our main map object we've been working with, called <c>map</c>.
+      </p>
+
+      <p>
+        So now we have our inset map and main map stored as two map objects. To display them
+        together, we can use the <c>ggdraw()</c> and <c>draw_plot()</c> functions from the
+        <c>cowplot</c> package. Let's load this package.
+      </p>
+
+      <program language="r" label="load-cowplot">
+        <input>
+library(cowplot)
+        </input>
+      </program>
+
+      <p>
+        First, we set up an empty drawing layer for our ggplot using the <c>ggdraw()</c>
+        function. Then we layer on the two maps both using the <c>draw_plot()</c> function.
+        This allows us to draw plots and subplots. This function places a plot (which we
+        specify as the first parameter of this function) somewhere onto the drawing canvas.
+        By default, coordinates run from 0 to 1, and the point (0, 0) is in the lower left
+        corner of the canvas. We want to therefore specify where the plots go on our canvas
+        explicitly. Alongside position, we can also specify size. This is important, as we
+        usually make the inset map smaller.
+      </p>
+
+      <program language="r" label="combine-inset-main">
+        <input>
+hu_dd_with_inset &lt;- ggdraw() +  # set layer
+  draw_plot(map) +  # draw the main map
+  draw_plot(inset_map,   # draw inset map
+            x = 0.75,    # specify location on x axis
+            y = 0,    # specify location on y axis
+            width = 0.35,    # specify width
+            height = 0.35)   # specify height
+        </input>
+      </program>
+
+      <p>
+        We now have our final map, which we can check out now:
+      </p>
+
+      <program language="r" label="display-inset-final">
+        <input>
+hu_dd_with_inset
+        </input>
+      </program>
+
+      <figure xml:id="fig-hungary-inset-map">
+        <caption>Adding an inset map to our map</caption>
+        <image source="figure-ch05/hungary-inset-map.png">
+          <description>We return to the map from two figures ago, with all of its features
+          present including the title, subtitle, 'Budapest' label and its arrow,
+          attributions, north indicator, and scale indicator. The counties are still shaded
+          green, and the legend still appears to the right. The addition this time is a box
+          beneath the legend and to the right of the scale indicator and attributions. This
+          box contains a small featureless map of Europe, with black borders, where Hungary
+          has been outlined with a thicker red border.</description>
+        </image>
+      </figure>
+
+      <p>
+        You can play around with where you position your inset map by adjusting the x and y
+        coordinates. You can also play around with the size of it by adjusting the
+        parameters for height and width. And as mentioned above, you can use inset maps not
+        only for context, but also to include geographically far away regions which belong
+        to the same political unity, for example to include Alaska and Hawaii in maps of the
+        United States.
+      </p>
+
+    </subsection>
+
+  </section>
+
+  <section xml:id="sec-ch05-summary">
+    <title>Summary and further reading</title>
+
+    <p>
+      In this chapter we covered some principles of data visualisation and good map design,
+      specifically how to implement some of these using <c>ggplot2</c> library in R. We
+      talked about symbols, colour, text, and adding context. <c>ggplot2</c> provides an
+      incredibly flexible framework, and through the use of layers you can achieve a very
+      beautiful and meaningful map output. We could for example consider adding topography,
+      such as rivers, lakes, and mountains to our maps, and it would be only a case of
+      adding another layer. To get more familiar with this, we recommend
+      <xref ref="Wickham_2010"/> and <xref ref="Healy_2019"/>.
+    </p>
+
+    <p>
+      For general readings on cartography, the work of Kenneth Field provides thorough and
+      engaging guidance (e.g., <xref ref="Field_2012"/> or <xref ref="Field_2018"/>). For
+      data visualisation, while <xref ref="Tufte_1983"/> is a classic text, those looking
+      for practical instruction may wish to turn to <xref ref="Kirk_2016"/> or
+      <xref ref="Cairo_2016"/> for more guidance.
+    </p>
+
+  </section>
+
 </chapter>
