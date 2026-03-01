@@ -1103,4 +1103,74 @@ anim +
 
   </section>
 
+  <section xml:id="sec-ch6-summary">
+    <title>Summary and further reading</title>
+
+    <p>
+      In this chapter we had a very brief introduction to temporal data, and we considered how we
+      can manipulate and wrangle this new type of data using packages such as <c>lubridate</c>. We
+      then introduced some approaches to visualising temporal data, and finally, ways to visualise
+      spatio-temporal variation as well. To read up on the importance of time, and specifically
+      spatio-temporal crime analysis, we recommend
+      <xref ref="bib-Ratcliffe_2010" text="custom">Ratcliffe (2010)</xref>,
+      <xref ref="bib-Wheeler_2016" text="custom">Wheeler (2016)</xref>, and
+      <xref ref="bib-Roth_2013" text="custom">Roth et al. (2013)</xref>.
+    </p>
+
+    <p>
+      While we did not get to go into any spatio-temporal analysis at this stage, visualisation is
+      a good starting point to begin to engage with this important element of crime data. For
+      additional details about how to visualise space-time data with R, we suggest
+      <xref ref="bib-Perpinan_2014" text="custom">Perpi&#x00F1;an Lamigueiro (2014)</xref> and
+      chapter 2 of <xref ref="bib-Wikle_2019" text="custom">Wikle et al. (2019)</xref>.
+    </p>
+
+    <p>
+      To move into spatio-temporal analysis would require a more thorough training in temporal data
+      analysis first, and so we do not cover it here. But we provide some resources for those
+      interested. Notably, <xref ref="bib-Hyndman_2021" text="custom">Hyndman and
+      Athanasopoulos (2021)</xref> is an excellent resource for this, and we can also recommend
+      <xref ref="bib-Chatfield_2019" text="custom">Chatfield and Xing (2019)</xref>. For those
+      already comfortable with this, <xref ref="bib-Pebesma_2012" text="custom">Pebesma (2012)</xref>
+      also offers a very thoughtful introduction to how spatio-temporal data layouts appear and
+      useful graphs for spatio-temporal data.
+      <xref ref="bib-Pebesma_2012" text="custom">Pebesma (2012)</xref> also introduces the R
+      package <c>spacetime</c>, for handling such analyses. At the time of writing, functions in
+      <c>spacetime</c> take as inputs older <c>sp</c> objects, but the work on the emerging
+      package <c>sftime</c>, to work with <c>sf</c> objects is ongoing.
+    </p>
+
+    <p>
+      Specific to crime mapping, we see frequent use of the Mantel test
+      (<xref ref="bib-Mantel_1967" text="custom">Mantel, 1967</xref>), which provides a single
+      index that indicates whether space-time clustering is apparent, and the Knox test
+      (<xref ref="bib-knox_1964" text="custom">Knox, 1964</xref>), which examines this pattern in
+      more detail by determining whether there are more instances of events within a defined
+      spatio-temporal area than would be expected on the basis of chance alone
+      (<xref ref="bib-Johnson_2007" text="custom">Johnson et al., 2007</xref>;
+      <xref ref="bib-Marchione_2013" text="custom">Marchione and Johnson, 2013</xref>;
+      <xref ref="bib-Adepeju_2017" text="custom">Adepeju and Evans, 2017</xref>). To implement
+      these in R, we recommend exploring the <c>surveillance</c> package, which offers statistical
+      methods for the modelling and monitoring of time series of counts, proportions and
+      categorical data, including the <c>knox()</c> function to implement Knox test
+      (<xref ref="bib-salmon_2016" text="custom">Salmon et al., 2016</xref>;
+      <xref ref="bib-meyer_2017" text="custom">Meyer et al., 2017</xref>), and
+      <xref ref="bib-Thioulouse_2018" text="custom">Thioulouse et al. (2018)</xref>
+      'Multivariate Analysis of Ecological Data with <c>ade4</c>' &#x2014; a package for
+      analysis of ecological data, which includes the functions which implement Mantel's (1967)
+      space-time interaction test. We will encounter these tests again in Chapter 11 of this book,
+      implemented in the package <c>NearRepeat</c> when exploring near repeat victimisation.
+    </p>
+
+    <p>
+      As noted, there are packages that provide functionality for better handling of dates and
+      time. It is worth to go over the details of <c>lubridate</c> in the official pages and the
+      relevant chapter in <xref ref="bib-Wickham_2017" text="custom">Wickham and
+      Grolemund (2017)</xref> is also very helpful. There is a brand new package <c>clock</c>
+      that aims to improve on <c>lubridate</c>, and that is also worth exploring (for details see
+      <xref ref="bib-Vaughan_2021" text="custom">Vaughan, 2021</xref>).
+    </p>
+
+  </section>
+
 </chapter>

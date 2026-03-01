@@ -286,6 +286,90 @@
       <em>Journal of Statistical Software</em>, 51(7), 1&#x2013;30.
     </biblio>
 
+    <biblio xml:id="bib-Roth_2013" type="raw">
+      Roth, R., Ross, K., Finch, B., Luo, W., and MacEachren, A. (2013). Spatiotemporal crime
+      analysis in US law enforcement agencies: Current practices and unmet needs.
+      <em>Government Information Quarterly</em>, 30(3), 226&#x2013;240.
+    </biblio>
+
+    <biblio xml:id="bib-Perpinan_2014" type="raw">
+      Perpi&#x00F1;an Lamigueiro, O. (2014). <em>Displaying Time Series, Spatial, and
+      Space-Time Data with R</em>. CRC Press, Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Wikle_2019" type="raw">
+      Wikle, C., Zammit-Mangion, A., and Cressie, N. (2019). <em>Spatio-Temporal Statistics
+      with R</em>. CRC Press, Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Hyndman_2021" type="raw">
+      Hyndman, R. and Athanasopoulos, G. (2021). <em>Forecasting: Principles and Practice</em>
+      (3rd ed.). OTexts, Melbourne, Australia.
+    </biblio>
+
+    <biblio xml:id="bib-Chatfield_2019" type="raw">
+      Chatfield, C. and Xing, H. (2019). <em>The Analysis of Time Series: An Introduction with
+      R</em> (7th ed.). CRC Press, Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Mantel_1967" type="raw">
+      Mantel, N. (1967). The detection of disease clustering and a generalized regression
+      approach. <em>Cancer Research</em>, 27(2), 209&#x2013;220.
+    </biblio>
+
+    <biblio xml:id="bib-knox_1964" type="raw">
+      Knox, E. G. and Bartlett, M. S. (1964). The detection of space-time interactions.
+      <em>Journal of the Royal Statistical Society. Series C (Applied Statistics)</em>,
+      13(1), 25&#x2013;30.
+    </biblio>
+
+    <biblio xml:id="bib-Johnson_2007" type="raw">
+      Johnson, S. D., Bernasco, W., Bowers, K. J., Elffers, H., Ratcliffe, J., Rengert, G., and
+      Townsley, M. (2007). Space-time patterns of risk: a cross national assessment of
+      residential burglary victimization. <em>Journal of Quantitative Criminology</em>,
+      23(3), 201&#x2013;219.
+    </biblio>
+
+    <biblio xml:id="bib-Marchione_2013" type="raw">
+      Marchione, E. and Johnson, S. D. (2013). Spatial, temporal and spatio-temporal patterns of
+      maritime piracy. <em>Journal of Research in Crime and Delinquency</em>, 50(4),
+      504&#x2013;524.
+    </biblio>
+
+    <biblio xml:id="bib-Adepeju_2017" type="raw">
+      Adepeju, M. and Evans, A. (2017). Comparative analysis of two variants of the Knox test:
+      Inferences from space-time crime pattern analysis. In <em>International Conference on
+      Computational Science and Its Applications</em> (pp. 770&#x2013;778). Springer.
+    </biblio>
+
+    <biblio xml:id="bib-salmon_2016" type="raw">
+      Salmon, M., Schumacher, D., and H&#x00F6;hle, M. (2016). Monitoring count time series in
+      R: aberration detection in public health surveillance. <em>Journal of Statistical
+      Software</em>, 70(10), 1&#x2013;35.
+    </biblio>
+
+    <biblio xml:id="bib-meyer_2017" type="raw">
+      Meyer, S., Held, L., and H&#x00F6;hle, M. (2017). Spatio-temporal analysis of epidemic
+      phenomena using the R package surveillance. <em>Journal of Statistical Software</em>,
+      77(11), 1&#x2013;55.
+    </biblio>
+
+    <biblio xml:id="bib-Thioulouse_2018" type="raw">
+      Thioulouse, J., Dray, S., Dufour, A.-B., Siberchicot, A., Jombart, T., and Pavoine, S.
+      (2018). <em>Multivariate Analysis of Ecological Data with ade4</em>. Springer.
+    </biblio>
+
+    <biblio xml:id="bib-Wickham_2017" type="raw">
+      Wickham, H. and Grolemund, G. (2017). <em>R for Data Science: Import, Tidy, Transform,
+      Visualize, and Model Data</em>. O'Reilly, Boston, MA.
+    </biblio>
+
+    <biblio xml:id="bib-Vaughan_2021" type="raw">
+      Vaughan, D. (2021). Comprehensive Date-Time Handling for R.
+      <url href="https://www.tidyverse.org/blog/2021/03/clock-0-1-0/">https://www.tidyverse.org/blog/2021/03/clock-0-1-0/</url>
+      Accessed: 17-05-2021.
+    </biblio>
+
   </references>
 
   <colophon>
