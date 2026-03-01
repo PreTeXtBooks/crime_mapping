@@ -3,10 +3,724 @@
 <chapter xml:id="ch-07" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Spatial Point Patterns of Crime Events</title>
 
-  <introduction>
+  <section xml:id="sec-ch07-isarithmic">
+    <title>Mapping crime intensity with isarithmic maps</title>
+
     <p>
-      This chapter explores spatial point pattern analysis applied to crime data.
+      A key piece of information we explore in environmental criminology is the "exact"
+      location of crimes, typically in the form of street address in which a crime is
+      recorded as having occurred. A key goal of the analysis of this type of mapped point
+      data is to detect patterns, in particular to detect areas where crime locations appear
+      as clustered and reflecting an increased likelihood of occurrence.
     </p>
-  </introduction>
+
+    <p>
+      In Chapter 1, we generated some maps with point locations representing crimes in
+      Greater Manchester (UK), and we saw how the large volume of events made it difficult
+      to discern any spatial pattern. In previous chapters we saw how we could deal with
+      this via aggregation of the point data to enumeration areas such as census tracts or
+      by virtue of binning. In this chapter we will introduce techniques that are used as an
+      alternative visualisation for point patterns and that are based on the mathematics of
+      density estimation. They are used to produce <term>isarithmic maps</term>; these are
+      the kind of maps you often see in the weather reports displaying temperature. What we
+      are doing is creating an interpolated surface from discrete data points. Or in simpler
+      terms we are "effectively inventing data values for the areas on the map for which you
+      don't have data or sample points" <xref ref="Field_2015"/>.
+    </p>
+
+    <p>
+      Before we get to the detail of how we produce these maps, we will briefly and very
+      generally introduce the field of spatial point pattern analysis. The analysis of
+      discrete locations are a sub-field of spatial statistics. In this chapter we will
+      introduce an R package, called <c>spatstat</c>, that was developed for spatial point
+      pattern analysis and modelling. It was written by Adrian Baddeley and Rolf Turner.
+      There is a <url href="http://spatstat.org">webpage</url> and a book
+      <xref ref="Baddeley_2016"/> dedicated to this package. In our book we are only going
+      to provide you with an introductory practical entry into this field of techniques. If
+      this package is not installed in your machine, make sure you install it before we
+      carry on. In this chapter we will also be using the package <c>crimedata</c>
+      developed by our colleague Matt Ashby, which we introduced in chapter 6
+      <xref ref="Ashby_2018"/>.
+    </p>
+
+    <program language="r" label="load-libraries-ch07">
+      <input>
+# Packages for reading data and data carpentry
+library(readr)
+library(dplyr)
+
+# Packages for handling spatial data and for geospatial carpentry
+library(sf)
+library(maptools)
+library(raster) # used for data represented in a raster model
+
+# Specific packages for spatial point pattern analysis
+library(spatstat)
+
+# Libraries for spatial visualisation
+library(tmap)
+library(ggplot2)
+library(leaflet)
+
+# Libraries with relevant data for the chapter
+library(crimedata)
+      </input>
+    </program>
+
+  </section>
+
+  <section xml:id="sec-ch07-nyc-burglaries">
+    <title>Burglaries in NYC</title>
+
+    <p>
+      Like in Chapter 6, our data come from the <term>Crime Open Database (CODE)</term>, a
+      service that makes it convenient to use crime data from multiple US cities in research
+      on crime. All the data in CODE are available to use for free as long as you
+      acknowledge the source of the data. The package <c>crimedata</c> was developed by Dr.
+      Ashby to make it easier to read into R the data from this service. In the last chapter
+      we provided the data in a csv format, but here we will actually make use of the
+      package to show you how you might acquire such data yourself.
+    </p>
+
+    <p>
+      The key function in <c>crimedata</c> is <c>get_crime_data()</c>. We will be using the
+      crime data from New York City police and for 2010, and we want the data to be in
+      <c>sf</c> format. We will also filter the data to only include residential burglaries
+      in Brooklyn.
+    </p>
+
+    <program language="r" label="load-nyc-data-ch07">
+      <input>
+# Large dataset, so it will take a while
+nyc_burg &lt;- get_crime_data(
+  cities = "New York", #specifies the city for which you want the data
+  years = 2010,        #reads the appropriate year of data
+  type = "extended",   #select extended (a fuller set of fields)
+  output = "sf") %&gt;%        #return a sf object (vs tibble)
+filter(offense_type == "residential burglary/breaking &amp; entering" &amp;
+           nyc_boro_nm == "MANHATTAN")
+      </input>
+    </program>
+
+    <p>
+      Additionally, we will need a geometry of borough boundaries. We have downloaded this
+      from the NYC open data portal, and it is supplied with the data included with this
+      book. The file is <c>manhattan.geojson</c>.
+    </p>
+
+    <program language="r" label="read-manhattan-ch07">
+      <input>
+manhattan &lt;- st_read("data/manhattan.geojson") %&gt;%
+  filter(BoroName == "Manhattan") # select only Manhattan
+      </input>
+    </program>
+
+    <p>
+      Now that we have all our data, let's plot to see how they look.
+    </p>
+
+    <program language="r" label="plot-manhattan-ch07">
+      <input>
+ggplot() +
+  geom_sf(data = manhattan) + # boundary data
+  geom_sf(data = nyc_burg, size = 0.5) +  # crime locations as points
+  theme_void()
+      </input>
+    </program>
+
+    <figure xml:id="fig-manhattan-crime-points">
+      <caption>Plot Manhattan borough and crime locations as points</caption>
+      <image source="figure-ch07/manhattan-crime-points.png">
+        <description>The landmasses of Manhattan, outlined in black and shaded grey. Black
+        points are scattered throughout the island, with a gap in the centre of the island
+        where Central Park would be.</description>
+      </image>
+    </figure>
+
+    <p>
+      In the point pattern analysis literature each point is often referred to as an
+      <term>event</term> and these events can have <term>marks</term>, attributes or
+      characteristics that are also encoded in the data. In our spatial object, one of these
+      <em>marks</em> is the type of crime (although in this case it is of little interest
+      since we have filtered on it). Others in this object include the date and time,
+      location category, victim sex and race, etc.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch07-spatstat">
+    <title>Using the <c>spatstat</c> package</title>
+
+    <p>
+      The R package <c>spatstat</c> was created for spatial statistics with a strong focus
+      on analysing spatial point patterns. It is the result of 15 years of development by
+      leading researchers in spatial statistics. We highly recommend the book "Spatial Point
+      Patterns: Methodology and Applications with R" to give a comprehensive overview of
+      this package <xref ref="Baddeley_2016"/>.
+    </p>
+
+    <p>
+      When working within the <c>spatstat</c> environment, we will be working with planar
+      point pattern objects. This means that the first thing we need to do is to transform
+      our <c>sf</c> object into a <c>ppp</c> (planar point pattern) object. This is how
+      <c>spatstat</c> likes to store its point patterns. The components of a <c>ppp</c>
+      object include the coordinates of the points and the observation window (defining the
+      study area).
+    </p>
+
+    <p>
+      It is important to realise that a point pattern is defined as a series of events in a
+      given area, or window, of observation. Therefore, we need to precisely define this
+      window. In <c>spatstat</c> the function <c>owin()</c> is used to set the observation
+      window. However, the standard function takes the coordinates of a rectangle or of a
+      polygon from a matrix, and therefore it may be a bit tricky to use with a <c>sf</c>
+      object. Luckily, the package <c>maptools</c> provides a way to transform a
+      <c>SpatialPolygons</c> into an object of class <c>owin</c>, using the function
+      <c>as.owin()</c>. Here are the steps.
+    </p>
+
+    <p>
+      First, we transform the CRS of our Manhattan polygon into projected coordinates as
+      opposed to the original geographic coordinates (WGS84), since only projected
+      coordinates may be converted to <c>spatstat</c> class objects. As we saw in Chapter
+      2, measuring distance in metres is a bit easier, so since with points a good deal of
+      the analysis we subject them to involves measuring their distance from each other,
+      moving to a projected system makes sense. For NYC, the recommended projection is the
+      New York State Plane Long Island Zone (EPSG 2263), which provides a high degree of
+      accuracy and balances size and shape well. This projection, however, uses US feet
+      (which was deprecated in 2022), so instead we are going to use EPSG 32118, as an
+      alternative that uses metres as unit of measurement. So first, transform our object
+      using <c>st_transform()</c>:
+    </p>
+
+    <program language="r" label="project-manhattan-ch07">
+      <input>
+manhattan &lt;- st_transform(manhattan, 32118)
+      </input>
+    </program>
+
+    <p>
+      Then we use the <c>as.owin()</c> function to define the window based on our
+      <c>manhattan</c> object.
+    </p>
+
+    <program language="r" label="create-window-ch07">
+      <input>
+window &lt;- as.owin(st_geometry(manhattan))
+      </input>
+    </program>
+
+    <p>
+      We can plot this window to see if it looks similar in shape to our polygon of
+      Manhattan.
+    </p>
+
+    <program language="r" label="plot-window-ch07">
+      <input>
+plot(window) # owin similar to polygon
+      </input>
+    </program>
+
+    <figure xml:id="fig-manhattan-window">
+      <caption>Plot window based on Manhattan polygon</caption>
+      <image source="figure-ch07/manhattan-window.png">
+        <description>A black outline of the landmasses of Manhattan, with the title
+        'window' above.</description>
+      </image>
+    </figure>
+
+    <p>
+      We can see this worked and created an <c>owin</c> object.
+    </p>
+
+    <program language="r" label="class-window-ch07">
+      <input>
+class(window)
+window
+      </input>
+    </program>
+
+    <p>
+      You can see it prints the units of measurement. But it does not identify them:
+    </p>
+
+    <program language="r" label="unitname-ch07">
+      <input>
+unitname(window)
+      </input>
+    </program>
+
+    <p>
+      As noted above, EPSG:32118 uses metres. So we can pass this information to our
+      <c>owin</c> object:
+    </p>
+
+    <program language="r" label="set-unitname-ch07">
+      <input>
+unitname(window) &lt;- "Meter"
+      </input>
+    </program>
+
+    <p>
+      Now that we have created the window as an <c>owin</c> object, let's get the points.
+      In the first place, we need to reproject to the same projected coordinate systems we
+      have for our boundary data using the familiar <c>st_transform()</c> function from
+      <c>sf</c>. Then we will extract the coordinates from our <c>sf</c> point data into a
+      matrix using <c>unlist()</c> from base R, so that the functions from <c>statspat</c>
+      can read the coordinates. If you remember <c>sf</c> objects have a column called
+      <c>geometry</c> that stores these coordinates as a list. By unlisting we are
+      flattening this list, taking the elements out of the list.
+    </p>
+
+    <program language="r" label="project-points-ch07">
+      <input>
+# first transform to projected CRS too to match our window
+nyc_burg &lt;- st_transform(nyc_burg, 32118)
+
+# create matrix of coordinates
+sf_nyc_burg_coords &lt;- matrix(unlist(nyc_burg$geometry), ncol = 2, byrow = T)
+      </input>
+    </program>
+
+    <p>
+      Then we use the <c>ppp()</c> function from the <c>spatstat</c> package to create the
+      object using the information from our matrix and the window that we created. The
+      <c>check</c> argument is a logical that specifies whether we want to check that all
+      points fall within the window of observation. It is recommended to set it to
+      <c>TRUE</c>, unless you are absolutely sure that this is unnecessary.
+    </p>
+
+    <program language="r" label="create-ppp-ch07">
+      <input>
+bur_ppp &lt;- ppp(x = sf_nyc_burg_coords[,1], y = sf_nyc_burg_coords[,2],
+                   window = window, check = T)
+      </input>
+    </program>
+
+    <p>
+      Notice the warning message about duplicated points? In spatial point pattern analysis
+      an issue of significance is the presence of duplicates. The statistical methodology
+      used for spatial point pattern processes is based largely on the assumption that
+      processes are <em>simple</em>, that is, that the points cannot be coincident. That
+      assumption may be unreasonable in many contexts (for example, the literature on repeat
+      victimisation indeed suggests that we should expect the same addresses to be at a
+      higher risk of being hit again). Even so, the point (no pun intended) is that
+      <em>"when the data has coincidence points, some statistical procedures will be
+      severely affected. So it is always strongly advisable to check for duplicate points
+      and to decide on a strategy for dealing with them if they are present"</em>
+      <xref ref="Baddeley_2016"/>.
+    </p>
+
+    <p>
+      So how to perform this check? When creating the object above, we have already been
+      warned this is an issue. But more generally we can check the duplication in a
+      <c>ppp</c> object with the following syntax: it will return a logical indicating
+      whether we have any duplication:
+    </p>
+
+    <program language="r" label="check-duplicates-ch07">
+      <input>
+any(duplicated.ppp(bur_ppp))
+      </input>
+    </program>
+
+    <p>
+      To count the number of coincidence points, we use the <c>multiplicity()</c> function
+      from the <c>spatstat</c> package. This will return a vector of integers, with one
+      entry for each observation in our dataset, giving the number of points that are
+      identical to the point in question (including itself).
+    </p>
+
+    <program language="r" label="multiplicity-ch07">
+      <input>
+multiplicity(bur_ppp)
+      </input>
+    </program>
+
+    <p>
+      If you suspect many duplicates, it may be better to start asking how many there are.
+      For this you can use:
+    </p>
+
+    <program language="r" label="sum-multiplicity-ch07">
+      <input>
+sum(multiplicity(bur_ppp) > 1)
+      </input>
+    </program>
+
+    <p>
+      That's quite something! 915 points out of 1727 burglaries share the same coordinates.
+      And we can plot this vector if we want to see the distribution of duplicates:
+    </p>
+
+    <program language="r" label="hist-multiplicity-ch07">
+      <input>
+hist(multiplicity(bur_ppp))
+      </input>
+    </program>
+
+    <figure xml:id="fig-multiplicity-histogram">
+      <caption>Histogram of incidents in overlapping coordinates (multiplicity)</caption>
+      <image source="figure-ch07/multiplicity-histogram.png">
+        <description>A bar chart titled 'Histogram of multiplicity, bur_ppp', with bars
+        shaded grey. The vertical axis is labeled 'Frequency', and ranges from zero to eight
+        hundred, with notches every two hundred values. The horizontal axis is labeled
+        'multiplicity, bur_ppp', ranging from zero to ten, with markings at two, four, six,
+        and eight. The first bar is a little over eight hundred tall, with each subsequent
+        bar being close to half of the previous one.</description>
+      </image>
+    </figure>
+
+    <p>
+      In the case of crime, as we have hinted some, of this may be linked to the nature of
+      crime itself. Hint: repeat victimisation. It is estimated that between 7 and 33% of
+      all burglaries in several western and developed countries are repeat offenses
+      <xref ref="Chainey_2016"/>. Our 52% is quite high by those standards. In this
+      particular situation, it likely is the result of geomasking (the introduction of small
+      inaccuracies into their geocoded location) due to privacy reasons. Most police data
+      stored in open data portals do not include the exact address of crime events. In the
+      case of US police data, as noted by the documentation of CODE, it relies on addresses
+      geocoded to the nearest hundred block. So say "370 Gorse Avenue" could be rounded
+      down and geocoded to "300 Gorse Avenue". The same would happen to "307 Gorse Avenue",
+      in the public release version of the data it would feature as "300 Gorse Avenue". In
+      the UK there exist a pre-determined list of points so that each crime event gets
+      "snapped" to its nearest one. So, the coordinates provided in the open data are not
+      the exact locations of crimes. This process is likely inflating the amount of
+      duplication we may observe, because each snap point or hundred block address might
+      have many crimes near it, resulting in those crimes being geo-coded to the same exact
+      location. So keep it in mind when analysing and working with this kind of data set
+      that it may not be the same as working with the real locations. (If you are interested
+      in the effects of this, read the paper by <xref ref="Tompson_2015"/>).
+    </p>
+
+    <p>
+      What to do about duplicates in spatial point pattern analysis is not always clear. You
+      could simply delete the duplicates, but of course that may ignore issues such as
+      repeat victimisation. You could also use <term>jittering</term>, which will add a
+      small perturbation to the duplicate points so that they do not occupy the exact same
+      space. This, again, may ignore things like repeat victimisation. Another alternative
+      is to make each point "unique" and then attach the multiplicities of the points to the
+      patterns as <em>marks</em>, as attributes of the points. Then you would need analytic
+      techniques that take into account these marks.
+    </p>
+
+    <p>
+      If you were to be doing this for real, you would want access to the original source
+      data, not this public version of the data, as well as access to the data producers to
+      check that duplicates are not artificial, and then go for the latter solution suggested
+      above (using multiplicities as marks once we adjust for any artificial inflation). We
+      don't have access to the source data, so for the sake of simplicity and convenience at
+      this point and so that we can illustrate how <c>spatstat</c> works, we will first add
+      some jittering to the data. For this we use <c>rjitter()</c>.
+    </p>
+
+    <p>
+      The first argument for the function is the object, <c>retry</c> asks whether we want
+      the algorithm to have another go if the jittering places a point outside the window
+      (we want this so that we don't have to lose points), and the <c>drop</c> argument is
+      used to ensure we get a <c>ppp</c> object as a result of running this function (which
+      we do). The argument <c>nsim</c> sets the number of simulated realisations to be
+      generated. If we just want one <c>ppp</c> object, we need to set this to 1. You can
+      also specify the scale of the perturbation; the points will be randomly relocated in a
+      uniform way in a circle within this radius. The help file notes that there is a
+      "sensible default", but it does not say much more about it, so you may want to set the
+      argument yourself if you want to have more control over the results. Here we are
+      specifying 1.5 metres to minimise the effects of this random displacement.
+    </p>
+
+    <program language="r" label="jitter-ch07">
+      <input>
+set.seed(200)
+jitter_bur &lt;- rjitter(bur_ppp, retry=TRUE, nsim=1, radius = 1.5, drop=TRUE)
+      </input>
+    </program>
+
+    <p>
+      And you can check duplicates with the resulting object:
+    </p>
+
+    <program language="r" label="check-jitter-duplicates-ch07">
+      <input>
+sum(multiplicity(jitter_bur) > 1)
+      </input>
+    </program>
+
+    <p>
+      Later we will demonstrate how to use the number of incidents in the same address as a
+      <em>mark</em> or <em>weight</em>, so let's create a new <c>ppp</c> object that
+      includes this mark. We need to proceed in steps. First, we create a new <c>ppp</c>,
+      just a duplicate of the one we have been using as a placeholder.
+    </p>
+
+    <program language="r" label="placeholder-ppp-ch07">
+      <input>
+bur_ppp_m &lt;- bur_ppp
+      </input>
+    </program>
+
+    <p>
+      Now we can assign to this <c>ppp</c> object the numerical vector created by the
+      <c>multiplicity</c> function as the <em>mark</em> using the <c>marks</c> function.
+    </p>
+
+    <program language="r" label="assign-marks-ch07">
+      <input>
+marks(bur_ppp_m) &lt;- multiplicity(bur_ppp)
+      </input>
+    </program>
+
+    <p>
+      If you examine your environment, you will be able to see the new object and that it
+      has a 6th element, which is the mark we just assigned.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch07-intensity">
+    <title>Homogeneous or spatially varying intensity?</title>
+
+    <p>
+      Central to our exploratory point pattern analysis is the notion of
+      <term>intensity</term>, that is the average number of points per area. A key question
+      that concerns us is whether this intensity is homogeneous or uniform, or rather is
+      spatially varying due, for example, to spatially varying risk factors. With
+      <c>spatstats</c> you can produce a quick estimate of intensity for the whole study
+      area if you assume a homogeneous distribution with <c>intensity.ppp()</c>.
+    </p>
+
+    <program language="r" label="intensity-ch07">
+      <input>
+intensity.ppp(jitter_bur)
+      </input>
+    </program>
+
+    <p>
+      Metres are a small unit. So the value we get is very close to zero and hard to
+      interpret. We can use the <c>rescale()</c> function (in <c>spatstat</c> package) to
+      obtain the intensity per kilometres instead. The second argument is the number we
+      multiply our original units by:
+    </p>
+
+    <program language="r" label="rescale-intensity-ch07">
+      <input>
+intensity.ppp(rescale(jitter_bur, 1000, "km"))
+      </input>
+    </program>
+
+    <p>
+      We see this result that overall the intensity across our study space is about 29
+      burglaries per square kilometre. Does this sound right? Well, Manhattan has roughly
+      59.1 km<m>^2</m>. If we divide 1727 incidents by this area, we get around 29
+      burglaries per km<m>^2</m>. This estimate, let's remember, assumes that the intensity
+      is homogeneous across the study window.
+    </p>
+
+    <p>
+      If we suspect the point pattern is spatially varying, we can start exploring this.
+      One approach is to use <term>quadrat counting</term>. A <term>quadrat</term> refers to
+      a small area &#x2014; a term taken from ecology where quadrats are used to sample
+      local distribution of plants or animals. One could divide the window of observation
+      into quadrats and count the number of points into each of these quadrats. If the
+      quadrats have an equal area and the process is spatially homogeneous, then one would
+      expect roughly the same number of incidents in each quadrat.
+    </p>
+
+    <p>
+      For producing this counting, we use the <c>quadratcount()</c> function (in
+      <c>spatstat</c>). The <c>nx</c> and <c>ny</c> argument in this function control how
+      many breaks you want alongside the X and Y coordinates to create the quadrats. So to
+      create 6 quadrats from top to bottom of Manhattan, we will set them to 1 and 6,
+      respectively. The configuration along the X and Y and the number of quadrats is
+      something you will have to choose according to what is convenient to you. Then we just
+      use standard plotting functions from R base.
+    </p>
+
+    <program language="r" label="quadrat-count-ch07">
+      <input>
+q &lt;- quadratcount(jitter_bur, nx = 1, ny = 6)
+plot(q, main = "Quadrat Count")
+      </input>
+    </program>
+
+    <figure xml:id="fig-quadrat-count">
+      <caption>Count of burglaries in quadrats</caption>
+      <image source="figure-ch07/quadrat-count.png">
+        <description>The outline of Manhattan is divided, using five horizontal lines, into
+        sections. Starting from the tip, the spacing of the lines is even. Numbers appear
+        in each section, roughly corresponding to their area, except for the fourth from the
+        top being smaller. The title 'Quadrat Count' appears above.</description>
+      </image>
+    </figure>
+
+    <p>
+      As you can see, with its irregular shape it is difficult to divide Manhattan in
+      equally shaped and sized quadrats, and thus it is hard to assess if regions of equal
+      area contain a similar number of points. Notice, however, how the third quadrat from
+      the bottom seems to have less incidents than the ones that surround it. A good portion
+      of this quadrat is taken by Central Park, where you would not expect a burglary.
+    </p>
+
+    <p>
+      Instead, we can use other forms of tessellation, like hexagons by using the
+      <c>hextess()</c> function (in <c>spatstat</c>). This is similar to the binning we
+      introduced in Chapter 4, only using different functions. The numeric argument sets the
+      size of the hexagons, you will need to play along to find an adequate value for your
+      own applications. Rather than printing the numbers inside these hexagons (if you have
+      many, this will make it difficult to read in a plot), we can map a colour to the
+      intensity (the number of points per hexagon):
+    </p>
+
+    <program language="r" label="hexagon-intensity-ch07">
+      <input>
+hex &lt;- hextess(jitter_bur, 200)
+q_hex &lt;- quadratcount(jitter_bur, tess = hex)
+plot(intensity(q_hex, image = TRUE), main = "Intensity map")
+      </input>
+    </program>
+
+    <figure xml:id="fig-hexagon-intensity">
+      <caption>Intensity map of burglaries per hexagon</caption>
+      <image source="figure-ch07/hexagon-intensity.png">
+        <description>A shaded map of Manhattan, labeled 'Intensity map'. A legend to the
+        right matches a gradient from dark blue to yellow with numbers, from zero to small
+        fractions represented in scientific notation. Most of Manhattan is blue, with red
+        patches present all over, excluding Central Park. A few spots in the south and north
+        reach orange and yellow intensities.</description>
+      </image>
+    </figure>
+
+    <p>
+      We can see more clearly now that areas of Manhattan, like Central Park, have
+      understandably a very low intensity of burglaries, whereas others, like the Lower East
+      Side and north of Washington Heights, have a higher intensity. So this map suggests to
+      us that the process may not be homogeneous &#x2014; hardly surprising when it comes to
+      crime.
+    </p>
+
+    <p>
+      A key concept in spatial point pattern analysis is the idea of <term>complete spatial
+      randomness</term> (CSR). When we look at a point pattern process, the first step in
+      the process is to ask whether it has been generated in a random manner. Under CSR,
+      points are (1) independent of each other (<em>independence</em>) and (2) have the
+      same propensity to be found at any location (<em>homogeneity</em>).
+    </p>
+
+    <p>
+      We can generate data that conform to complete spatial randomness using the
+      <c>rpoispp()</c> function (in <c>spatstat</c>). The <c>r</c> at the beginning is used
+      to denote we are simulating data (you will see this is common in R), and we are using
+      a Poisson point process, a good probability distribution for these purposes. Let's
+      generate 300 points in a random manner and save this in the object
+      <c>poisson_ppp</c>:
+    </p>
+
+    <program language="r" label="generate-csr-ch07">
+      <input>
+set.seed(1) # Use this seed to ensure you get the same results as us
+poisson_ppp &lt;- rpoispp(300)
+      </input>
+    </program>
+
+    <p>
+      We can plot this, to see how it looks:
+    </p>
+
+    <program language="r" label="plot-csr-ch07">
+      <input>
+plot(poisson_ppp, main = "Complete Spatial Randomness")
+      </input>
+    </program>
+
+    <figure xml:id="fig-csr-simulation">
+      <caption>Simulated complete spatial randomness</caption>
+      <image source="figure-ch07/csr-simulation.png">
+        <description>A black square, with many small black circles spread out inside of it,
+        titled 'Complete Spatial Randomness'. The circles form clusters and line-like shapes
+        here and there, with many open spaces present.</description>
+      </image>
+    </figure>
+
+    <p>
+      You will notice that the points in a homogeneous Poisson process are not 'uniformly
+      spread': there are empty gaps and clusters of points. This is very important. Random
+      may look like what you may think non-random should look. There seem to be places with
+      apparent "clustering" of points. Keep this in mind when observing maps of crime
+      distributions. Run the previous command a few times. You will see the map generated is
+      different each time.
+    </p>
+
+    <p>
+      In classical literature, the <em>homogeneous Poisson process</em> (CSR) is usually
+      taken as the appropriate 'null' model for a point pattern. Our basic task in analysing
+      a point pattern is to find evidence against CSR. We can run a Chi Square test to check
+      this in our data. So, for example, like we did above with Manhattan, we can split our
+      area into quadrats.
+    </p>
+
+    <program language="r" label="random-quadrat-ch07">
+      <input>
+q2 &lt;- quadratcount(poisson_ppp, nx = 6, ny = 6)
+plot(q2, main = "Quadrat Count")
+      </input>
+    </program>
+
+    <figure xml:id="fig-random-quadrat-count">
+      <caption>Count of our random points in quadrats</caption>
+      <image source="figure-ch07/random-quadrat-count.png">
+        <description>A six by six grid with numbers in each cell, titled 'Quadrat Count'.
+        The numbers range from two to fifteen, with no particular pattern.</description>
+      </image>
+    </figure>
+
+    <p>
+      These numbers are looking more even than they did with our burglaries, but to really
+      put this to the test, we run the Chi Square test using the <c>quadrat.test()</c>
+      function.
+    </p>
+
+    <program language="r" label="quadrat-test-random-ch07">
+      <input>
+quadrat.test(poisson_ppp, nx = 6, ny = 6)
+      </input>
+    </program>
+
+    <p>
+      We can see this p-value is greater than the conventional alpha level of 0.05, and
+      therefore we cannot reject the null hypothesis that our point patterns come from
+      complete spatial randomness &#x2014; which is great news, as they indeed do!
+    </p>
+
+    <p>
+      How about our burglaries? Let's run the <c>quadrat.test()</c> function to tell us
+      whether burglaries in Manhattan follow spatial randomness.
+    </p>
+
+    <program language="r" label="quadrat-test-burglaries-ch07">
+      <input>
+quadrat.test(jitter_bur, nx = 1, ny = 6)
+      </input>
+    </program>
+
+    <p>
+      Observing the results, we see that the p value is well below conventional standards
+      for rejection of the null hypothesis. Observing our data of burglary in Manhattan
+      would be extremely rare if the null hypothesis of a homogeneous distribution was true.
+      We can then conclude that the burglary data is not randomly distributed in the
+      observed space. But no cop nor criminologist would really question this. They would
+      rarely be surprised by your findings! We do know, through research, that crime is not
+      randomly distributed in space.
+    </p>
+
+    <p>
+      Beware as well that this test would come out as significant <em>if the point pattern
+      violates the property of independence between the points</em>. It is important to keep
+      in mind that the null may be rejected either because the process is not homogeneous
+      <em>or</em> because the points are not independent, but the test doesn't tell us the
+      reason for the rejection. Equally, the power depends on the size of the quadrats (and
+      they are not too large or too small). And the areas are not of equal size here in any
+      case. So the test in many applications will be of limited use.
+    </p>
+
+  </section>
 
 </chapter>

@@ -338,6 +338,54 @@
       Princeton University Press, Princeton, NJ, 2019.
     </biblio>
 
+    <biblio type="raw" xml:id="Field_2015">
+      Kenneth Field.
+      When is a heat map not a heat map.
+      <url href="http://cartonerd.blogspot.com/2015/02/when-is-heat-map-not-heat-map.html">cartonerd.blogspot.com</url>, 2015.
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Baddeley_2016">
+      Adrian Baddeley, Ege Rubak, and Rolf Turner.
+      <title>Spatial Point Patterns: Methodology and Applications with R</title>.
+      CRC Press, Boca Raton, FL, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ashby_2018">
+      Matthew Ashby.
+      Studying crime and place with the Crime Open Database.
+      SocArXiv pre-print, 2018.
+      doi:10.31235/osf.io/9y7qz.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2016">
+      Spencer Chainey and Braulio-Figueiredo Alves-da-Silva.
+      Examining the extent of repeat and near repeat victimisation of domestic burglaries in
+      Belo Horizonte, Brazil.
+      <journal>Crime Science</journal>, 5(1):1&#x2013;10, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2013a">
+      Spencer Chainey.
+      Examining the influence of cell size and bandwidth size on kernel density estimation
+      crime hotspot maps for predicting spatial patterns of crime.
+      <journal>Bulletin of the Geographical Society of Liege</journal>, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2008">
+      Spencer Chainey, Lisa Tompson, and Sebastian Uhlig.
+      The utility of hotspot mapping for predicting spatial patterns of crime.
+      <journal>Security Journal</journal>, 21:4&#x2013;28, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2013b">
+      Spencer Chainey.
+      Methods and techniques for understanding crime hot spots.
+      In John Eck, Spencer Chainey, James Cameron, Michael Leitner, and Ronald Wilson (Eds.),
+      <title>Mapping Crime: Understanding Hot Spots</title>.
+      NIJ Special Report, Washington DC, 2013.
+    </biblio>
+
   </references>
 
   <colophon>
