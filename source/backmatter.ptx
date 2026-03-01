@@ -386,6 +386,70 @@
       NIJ Special Report, Washington DC, 2013.
     </biblio>
 
+    <biblio type="raw" xml:id="Davies_2017">
+      T Davies, Jonathan Marshall, and Martin Hazelton.
+      Tutorial on kernel estimation of continuous spatial and spatiotemporal relative risk
+      with accompanying instruction in R.
+      2017.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2021">
+      Spencer Chainey.
+      <title>Understanding Crime: Analyzing the Geography of Crime</title>.
+      ESRI Press, Redlands, CA, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Neville_2013">
+      Ned Neville.
+      CrimeStat IV. A Spatial Statistical Program for the Analysis of Incident Locations.
+      Technical Report, National Institute of Justice, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Levine_2013">
+      Ned Levine.
+      <title>Crime Stat IV: A Spatial Statistics Program for the Analysis of Crime Incident
+      Locations</title>.
+      National Institute of Justice, Washington, DC, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Silverman_1986">
+      B W Silverman.
+      The kernel method for univariate data.
+      In B W Silverman (Ed.), <title>Density Estimation for Statistics and Data
+      Analysis</title>.
+      Chapman &amp; Hall/CRC, 1986.
+    </biblio>
+
+    <biblio type="raw" xml:id="Smith_2008">
+      Susan Smith and Christopher Bruce.
+      <title>CrimeStat III. User Workbook</title>.
+      National Institute of Justice, Washington, DC, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2005">
+      Spencer Chainey and Jerry Ratcliffe.
+      <title>GIS and Crime Mapping</title>.
+      John Wiley &amp; Sons, Chichester, England, 2005.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gorr_2012">
+      Wilpen Gorr and Kristen Kurland.
+      <title>GIT Tutorial for Crime Analysis</title>.
+      ESRI Press, Redland, CA, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2013">
+      Roger Bivand, Edzer Pebesma, and Virgilio G&#xF3;mez-Rubio.
+      <title>Applied Spatial Data Analysis with R</title>.
+      Springer, New York, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Woodworth_2014">
+      J T Woodworth, G O Moehler, A L Bertozzi, and P J Brantingham.
+      Non-local crime density estimation incorporating housing information.
+      <journal>Philosophical Transactions of the Royal Society</journal>, 372, 2014.
+    </biblio>
+
   </references>
 
   <colophon>
