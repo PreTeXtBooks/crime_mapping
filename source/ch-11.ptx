@@ -3,10 +3,696 @@
 <chapter xml:id="ch-11" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Spatial Regression Models</title>
 
-  <introduction>
+  <section xml:id="sec-ch11-intro">
+    <title>Introduction</title>
+
     <p>
-      This chapter introduces spatial regression models for analysing crime data.
+      In science one of our main concerns is to develop models of the world, models that
+      help us to understand the world a bit better or to predict how things will develop
+      better. Crime analysis also is interested in understanding the processes that may
+      drive crime. This is a key element in the SARA process (<em>analysis</em>) that
+      forms part of the problem oriented policing approach <xref ref="Eck_1997"/>. Statistics
+      provides a set of tools that help researchers build and test scientific models, and to
+      develop predictions. Our models can be simple. We can think that unemployment is a
+      factor that may help us to understand why cities differ in their level of violent
+      crime. We could express such a model like this:
     </p>
-  </introduction>
+
+    <figure xml:id="fig-ch11-simple-model">
+      <caption>A simple model</caption>
+      <image source="figure-ch11/simple-model.png">
+        <shortdescription>A rounded box with label 'Unemployment', with an arrow pointing
+        to the right to a second rounded box with label 'Violent Crime'.</shortdescription>
+      </image>
+    </figure>
+
+    <p>
+      Surely we know the world is complex and likely there are other things that may help
+      us to understand why some cities have more crime than others. So, we may want to have
+      tools that allow us to examine such models. Like, for example, the one below:
+    </p>
+
+    <figure xml:id="fig-ch11-complex-model">
+      <caption>A slightly less simple model</caption>
+      <image source="figure-ch11/complex-model.png">
+        <shortdescription>Three vertically tiled rounded boxes, with labels 'Education',
+        'Unemployment', and 'Police levels', each with an arrow pointing to a fourth box,
+        labeled 'Violent Crime'.</shortdescription>
+      </image>
+    </figure>
+
+    <p>
+      In this chapter we cover regression analysis for spatial data, a key tool for
+      testing models. Regression is a flexible technique that allows you to "explain" or
+      "predict" a given outcome, variously called your outcome, response or dependent
+      variable, as a function of a number of what is variously called inputs, features or
+      independent, explanatory, or predictive variables. We assume that you have covered
+      regression analysis in previous training. If that is not the case or you want a
+      quick refresher, we suggest you consult <em>Appendix B: Regression Analysis (A
+      Refresher)</em> in the website for this book. Our focus in this chapter will be on a
+      series of regression models that are appropriate when your data has a spatial
+      structure.
+    </p>
+
+    <p>
+      There is a large and developing field, spatial econometrics, dedicated to developing
+      this kind of models. Traditionally, these models were fit using maximum likelihood,
+      whereas in the last few years we have seen the development of new approaches. There
+      has also been some parallel developments in different disciplines, some of which have
+      emphasised <term>simultaneous autoregressive models</term> and others (such as
+      disease mapping) that have emphasised <term>conditional autoregressive models</term>.
+      If these terms are not clear, do not worry; we will come back to them later on. This
+      is a practical R focused introductory text and, therefore, we cannot cover all the
+      nuisance associated with some of these differences and the richness of spatial
+      econometrics. Here we will just simply introduce some of the key concepts and more
+      basic models for cross-sectional spatial data, illustrate them through a practical
+      example, and later on provide guidance to more in-depth literature.
+    </p>
+
+    <p>
+      We need to load the libraries we will use in this chapter. Although there are various
+      packages that can be used to fit spatial regression models, particularly if you are
+      willing to embrace a Bayesian approach, our focus in this chapter will be on
+      <c>spatialreg</c>. This package contains the estimation functions for spatial
+      cross-sectional models that before were shipped as part of <c>spdep</c>,
+      <c>sphet</c>, and <c>spse</c>. There are various ways of thinking about spatial
+      regression, here we will focus on those that rely on frequentist methods and a
+      spatial weight matrix (to articulate the spatial nature of the data).
+    </p>
+
+    <program language="r" label="libraries-ch11">
+      <input>
+# Packages for handling spatial data and for geospatial carpentry
+library(sf)
+library(sp)
+library(spdep)
+# Packages for regression and spatial regression
+library(arm)
+library(effects)
+library(spatialreg)
+# Packages for mapping and visualisation
+library(tmap)
+library(ggplot2)
+# Packages with spatial datasets
+library(geodaData)
+      </input>
+    </program>
+
+    <p>
+      Here we will return to the "ncovr" data we have used in previous chapters. This
+      dataset was produced as part of the National Consortium on Violence Research (NCOVR)
+      agenda, a National Science Foundation initiative that was led by Al Blumstein. A
+      piece of work that resulted from this initiative was the paper led by Robert Baller
+      in <em>Criminology</em>, for which this data was compiled <xref ref="Baller_2001"/>.
+      This paper, co-authored by Luc Anselin who is one of the key figures in the field of
+      spatial econometrics, runs and describes spatial regression models of the kind we
+      cover in this chapter with this dataset. It would be helpful, thus, to read that
+      piece in parallel to this chapter.
+    </p>
+
+    <program language="r" label="load-ncovr-ch11">
+      <input>
+data("ncovr")
+      </input>
+    </program>
+
+  </section>
+
+  <section xml:id="sec-ch11-challenges">
+    <title>Challenges for regression with spatial data</title>
+
+    <p>
+      There are a number of issues when it comes to fitting regression with spatial data.
+      We will highlight three: validity, spatial dependence, and spatial heterogeneity.
+      One, validity, is common to regression in general, although with spatial data it
+      acquires particular relevance. The other two (spatial dependence and spatial
+      heterogeneity) are typical of spatial data.
+    </p>
+
+    <p>
+      The most important assumption of regression is that of <term>validity</term>. The
+      data should be appropriate for the question that you are trying to answer. As noted
+      by <xref ref="Gelman_2007"/>:
+    </p>
+
+    <blockquote>
+      <p>
+        Optimally, this means that the outcome measure should accurately reflect the
+        phenomenon of interest, the model should include all relevant predictors, and the
+        model should generalize to all cases to which it will be applied... Data used in
+        empirical research rarely meet all (if any) of these criteria precisely. However,
+        keeping these goals in mind can help you be precise about the types of questions
+        you can and cannot answer reliably.
+      </p>
+    </blockquote>
+
+    <p>
+      Although validity is a key assumption for regression, whether spatial or not, it is
+      the case that the features of spatial data make it particularly challenging (as
+      discussed in detail by <xref ref="Haining_2003"/>).
+    </p>
+
+    <p>
+      The second challenge is <term>spatial dependence</term>. A key assumption of
+      regression analysis is the independence between the observations. That is, a
+      regression model is formally assuming that what happens in area <m>X_i</m> is not in
+      any way related (it is independent of) what happens in area <m>X_{ii}</m>. But if
+      those two areas are adjacent or proximal in geographical space, we know that there is
+      a good chance that this assumption may be violated. Values that are close together in
+      space are unlikely to be independent. Crime levels, for example, tend to be similar
+      in areas that are close to each other. The problem for regression is not so much
+      autocorrelation in the response or dependent variable, but the remaining
+      autocorrelation in the residuals. If the spatial autocorrelation of our outcome
+      <m>y</m> is fully accounted by the spatial structure of the observed predictor
+      variables in our model, we don't really have a problem. On the other hand, when the
+      residuals of your model display spatial autocorrelation, you are violating an
+      assumption of the standard regression model, and you need to find a solution for
+      this.
+    </p>
+
+    <p>
+      When positive spatial autocorrelation is observed, using a regression model that
+      assumes independent errors will lead to an underestimation of the uncertainty around
+      your parameters (or overestimation if the autocorrelation is negative). With positive
+      spatial autocorrelation, you will be more likely to engage in a Type I error
+      (concluding the coefficient for a given predictor is not zero when this decision is
+      not justified). Essentially, we have less degrees of freedom, as
+      <xref ref="Haining_2020"/> note for positive spatial autocorrelation (the most common
+      case in crime analysis and social science):
+    </p>
+
+    <blockquote>
+      <p>
+        Underlying the results... is the fact that 'less information' about the parameter
+        of interest... is contained in a dataset where observations are positively
+        autocorrelated... The term 'effective' sample size has been coined and used to
+        measure the information content in a set of autocorrelated data. Compared with the
+        case of N independent observations, if we have N autocorrelated data values then
+        the effective sample size is less than N (how much less depends on how strongly
+        autocorrelated values are). The effective sample size can be thought of as the
+        <em>equivalent number of independent observations available for estimating the
+        parameter</em>... It is this reduction in the information content of the data that
+        increases the uncertainty of the parameter estimate... This arises because each
+        observation contains what might call 'overlapping' or 'duplicate' information
+        about other observations (p. 7).
+      </p>
+    </blockquote>
+
+    <p>
+      In previous weeks we covered formal tests for spatial autocorrelation, which allow us
+      to test whether this is a feature of our dependent (or predictor) variable. So
+      before we fit a regression model with spatial data, we need to explore the issue of
+      autocorrelation in the attributes of interest, but critically what we need to
+      establish is whether there is spatial autocorrelation in the residuals. In this
+      session, we will see that there are two basic ways of adjusting for spatial
+      autocorrelation: through a spatial lag model or through a spatial error model.
+      Although there are multiple types of spatial regression models (see
+      <xref ref="Anselin_2014"/>; <xref ref="Bivand_2021"/>; <xref ref="Chi_2020"/>; and
+      <xref ref="Beale_2010"/>, specifically for a review of their relative performance),
+      these are the two basic forms that you probably (particularly if your previous
+      statistical training sits in the frequentist tradition) need to understand before you
+      get into other types.
+    </p>
+
+    <p>
+      A third challenge for regression models with spatial data is <term>spatial
+      heterogeneity</term> (also referred to as <term>non-stationarity</term>). We already
+      discussed the concept of spatial homogeneity when introducing the study of point
+      patterns. In that context we defined spatial homogeneity as the homogeneous intensity
+      of the point pattern across the study surface. But spatial homogeneity is a more
+      general concept that applies to other statistical properties. In the context of
+      lattice or area level data, it may refer to the mean value of an attribute (such as
+      crime rate) across areas, but it could also refer to how other variables are related
+      to our outcome of interest across the study region. It could be the case, for
+      example, that some predictors display spatial structure in how they affect the
+      outcome. It could be, for example, that presence of licensed premises to sell alcohol
+      have a different impact on the level of violent crime in different types of
+      communities in our study region. If there is spatial heterogeneity in these
+      relationships, we need to account for it. We could deal with this challenge through
+      some form of data partition, spatial regime, or local regression model (where we
+      allow the regression coefficient to be area specific) such as geographically weighted
+      regression. We will discuss this third challenge to regression in greater detail in
+      the next chapter.
+    </p>
+
+    <p>
+      Not so much a challenge but an important limitation is the presence of missing data.
+      Unlike in standard data analysis where you have a sample of <m>n</m> observations
+      and there are a number of approaches to impute missing data, in the context of
+      spatial econometrics, you only have <term>one</term> realisation of the data
+      generating mechanism. As such, if there is missing data for some of the areas, the
+      models cannot be estimated; although some solutions have been proposed when the
+      percentage of missing cases is very small (see <xref ref="Floch_2018"/>).
+    </p>
+
+    <p>
+      In general, the development of a spatial regression model requires taking into
+      account these challenges. There are various aspects that building the model will
+      require <xref ref="Kopczewska_2021"/>: selecting the right model for the data at
+      hand, the estimation method, and the model specification (variables to include).
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch11-nonspatial-regression">
+    <title>Fitting a non-spatial regression model with R</title>
+
+    <p>
+      The standard approach traditionally was to start with a non-spatial linear regression
+      model and then to test whether or not this baseline model needs to be extended with
+      spatial effects <xref ref="Elhorst_2014"/>. Given that we need to check
+      autocorrelation in residuals, part of the workflow for modelling through regression
+      spatial data will involve fitting a non-spatial regression model. In order to fit the
+      model we use the <c>stats::lm()</c> function using the formula specification
+      <c>(Y ~ X)</c>. Typically you want to store your regression model in a "variable",
+      let's call it "fit1_90". Here we model homicide rate in the 1990s (<c>HR90</c>)
+      using, to start with, just two variables of interest: <c>RD90</c> — Resource
+      Deprivation/Affluence, and <c>SOUTH</c> — Counties in the southern region scored 1.
+    </p>
+
+    <program language="r" label="fit1-ch11">
+      <input>
+ncovr$SOUTH_f &lt;- as.factor(ncovr$SOUTH) # specify this is a categorical variable
+fit1_90 &lt;- lm(HR90 ~ RD90 + SOUTH_f, data=ncovr)
+      </input>
+    </program>
+
+    <p>
+      You will see in your R Studio global environment space that there is a new object
+      called <c>fit1_90</c> with 13 elements on it. We can get a sense for what this object
+      is and includes using the functions we introduced in previous weeks:
+    </p>
+
+    <program language="r" label="class-fit1-ch11">
+      <input>
+class(fit1_90)
+attributes(fit1_90)
+      </input>
+    </program>
+
+    <p>
+      R is telling us that this is an object of class <c>lm</c> and that it includes a
+      number of attributes. One of the beauties of R is that you are producing all the
+      results from running the model, putting them in an object, and then giving you the
+      opportunity for using them later on. If you want to simply see the basic results from
+      running the model, you can use the standard <c>summary()</c> function.
+    </p>
+
+    <program language="r" label="summary-fit1-ch11">
+      <input>
+summary(fit1_90)
+      </input>
+    </program>
+
+    <p>
+      The coefficients suggest that, according to our fitted model, when comparing two
+      counties with the same level of resource deprivation, the homicide rate on average
+      will be about 3 points higher in the Southern counties than in the Northern counties.
+      And when comparing counties "adjusting" for their location, the homicide rate will be
+      also around 3 points higher for every one unit increase in the measure of resource
+      deprivation. Although it is tempting to talk of the "effect" of these variables in
+      the outcome (homicide rate), this can mislead you and your reader about the capacity
+      of your analysis to establish causality, so it is safer to interpret regression
+      coefficients as comparisons <xref ref="Gelman_2020"/>.
+    </p>
+
+    <p>
+      With more than one input, you need to ask yourself whether all of the regression
+      coefficients are zero. This hypothesis is tested with an F test. Again we are
+      assuming the residuals are normally distributed, though with large samples the F
+      statistics approximates the F distribution. You see the F test printed at the bottom
+      of the summary output and the associated p value, which in this case is way below the
+      conventional .05 that we use to declare statistical significance and reject the null
+      hypothesis. At least one of our inputs must be related to our response variable.
+      Notice that the table printed also reports a t test for each of the predictors. These
+      are testing whether each of these predictors is associated with the response variable
+      when adjusting for the other variables in the model. They report the "partial effect
+      of adding that variable to the model" <xref ref="James_2013"/>. In this case we can
+      see that all inputs seem to be significantly associated with the output.
+    </p>
+
+    <p>
+      The interpretation of regression coefficients is sensitive to the scale of
+      measurement of the predictors. This means one cannot compare the magnitude of the
+      coefficients to compare the relevance of variables to predict the response variable.
+      One way of dealing with this is by rescaling the input variables. A common method
+      involves subtracting the mean and dividing by the standard deviation of each
+      numerical input. The coefficient in these models is the expected difference in the
+      response variable, comparing units that differ by one standard deviation in the
+      predictor while adjusting for other predictors in the model. Instead,
+      <xref ref="Gelman_2008"/> has proposed dividing each numeric variables <em>by two
+      times its standard deviation</em>, so that the generic comparison is with inputs
+      equal to plus/minus one standard deviation. As Gelman explains, the resulting
+      coefficients are then comparable to untransformed binary predictors. The
+      implementation of this approach in the <c>arm</c> package subtracts the mean of each
+      binary input, while it subtracts the mean and divides by two standard deviations for
+      every numeric input. The way we would obtain these rescaled inputs uses the
+      <c>standardize()</c> function of the <c>arm</c> package, which takes as an argument
+      the name of the stored fit model.
+    </p>
+
+    <program language="r" label="standardize-ch11">
+      <input>
+standardize(fit1_90)
+      </input>
+    </program>
+
+    <p>
+      Notice the main change affects the numerical predictors. The unstandardised
+      coefficients are influenced by the degree of variability in your predictors, which
+      means that typically they will be larger for your binary inputs. With unstandardised
+      coefficients, you are comparing complete change in one variable (whether one is a
+      Southern county or not) with one-unit changes in your numerical variable, which may
+      not amount to much change. So, by putting in a comparable scale, you avoid this
+      problem. Standardising in the way described here will help you to make fairer
+      comparisons. These standardised coefficients are comparable in a way that the
+      unstandardised coefficients are not. We can now see what inputs have a comparatively
+      stronger effect. It is very important to realise, though, that one <term>should
+      not</term> compare standardised coefficients <em>across different models</em>.
+    </p>
+
+    <p>
+      In the social sciences there is a great interest in what are called conditional
+      hypotheses or interactions. Many of our theories do not assume simply <term>additive
+      effects</term> but <term>multiplicative effects</term>. For example, you may think
+      that a particular crime prevention programme may work in some environments but not in
+      others. The interest in this kind of conditional hypothesis is growing. One of the
+      assumptions of the regression model is that the relationship between the response
+      variable and your predictors is additive. That is, if you have two predictors
+      <m>x_1</m> and <m>x_2</m>, regression assumes that the effect of <m>x_1</m> on
+      <m>y</m> is the same at all levels of <m>x_2</m>. If that is not the case, you are
+      then violating one of the assumptions of regression. This is in fact one of the most
+      important assumptions of regression, even if researchers often overlook it.
+    </p>
+
+    <p>
+      One way of extending our model to accommodate for interaction effects is to add more
+      terms to our model, a third predictor <m>x_3</m>, where <m>x_3</m> is simply the
+      product of multiplying <m>x_1</m> by <m>x_2</m>. Notice we keep a term for each of
+      the <term>main effects</term> (the original predictors) as well as a new term for the
+      interaction effect. "Analysts should include all constitutive terms when specifying
+      multiplicative interaction models except in very rare circumstances"
+      <xref ref="Brambor_2006"/>.
+    </p>
+
+    <p>
+      How do we do this in R? One way is to use the following notation in the formula
+      argument. Notice how we have added a third term <c>RD90:SOUTH_f</c>, which is asking
+      R to test the conditional hypothesis that resource deprivation may have a different
+      impact on homicide for southern and northern counties.
+    </p>
+
+    <program language="r" label="fit2-interaction-ch11">
+      <input>
+fit2_90 &lt;- lm(HR90 ~ RD90 + SOUTH_f + RD90:SOUTH_f , data=ncovr)
+# which is equivalent to:
+# fit_2 &lt;- lm(HR90 ~ RD90 * SOUTH_f , data=ncovr)
+summary(fit2_90)
+      </input>
+    </program>
+
+    <p>
+      You see here that essentially you have only two inputs (resource deprivation and
+      south) but several regression coefficients. <xref ref="Gelman_2007"/> suggest
+      reserving the term input for the variables encoding the information and to use the
+      term predictor to refer to each of the terms in the model. So here we have two inputs
+      and three predictors (one for SOUTH, another for resource deprivation, and a final
+      one for the interaction effect). In this case the test for the interaction effect is
+      significant, which suggests there may be such an interaction. Let's visualise the
+      results with the <c>effects</c> package:
+    </p>
+
+    <program language="r" label="plot-effects-ch11">
+      <input>
+plot(allEffects(fit2_90), ask=FALSE)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch11-effect-plots">
+      <caption>Effect plots showing different relationship between homicide rate and
+      resource deprivation for counties in the South (South = 1) and the North (South
+      = 0)</caption>
+      <image source="figure-ch11/effect-plots.png">
+        <shortdescription>Two plots side by side, with the same axes, but one with the
+        title 'South f equals zero', and one with 'South f equals one'. The vertical axis,
+        labeled 'HR90', ranges from zero to thirty, while the horizontal axis, labeled
+        'RD90', ranges from negative two to six. A blue line appears in each of the two
+        plots, with a light blue shaded area growing around them as you move away from the
+        zero value on the horizontal axis. The second plot, with 'South f equals one', has
+        a blue line with a steeper slope, and the light blue covers a smaller
+        area.</shortdescription>
+      </image>
+    </figure>
+
+    <p>
+      Notice that essentially what we are doing is running two regression lines and testing
+      whether the slope is different for the two groups. The intercept is different; we
+      know that Southern counties are more violent, but what we are testing here is whether
+      the level of homicide goes up in a steeper fashion (and in the same direction) for
+      one or the other group as the level of resource deprivation goes up. We see that's
+      the case here. The estimated lines are almost parallel, but the slope is a bit
+      steeper in the Southern counties. In Southern counties, resource deprivation seems to
+      have more of an impact on homicide than in Northern counties. This is related to one
+      of the issues we raised earlier regarding spatial regression, that of heterogeneity.
+      Here what we see is that there is some evidence of non-stationarity in the
+      relationship between our predictors and our outcome.
+    </p>
+
+    <p>
+      A word of warning about interactions: the moment you introduce an interaction effect,
+      the meaning of the coefficients for the other predictors changes (what is often
+      referred to as the "main effects" as opposed to the interaction effect). You cannot
+      retain the interpretation we introduced earlier. Now, for example, the coefficient
+      for the <c>SOUTH</c> variable relates to the marginal effect of this variable when
+      <c>RD90</c> equals zero. The typical table of results helps you to understand whether
+      the effects are significant but offers little of interest that will help you to
+      meaningfully interpret what the effects are. For this, is better to use some of the
+      graphical displays we have covered.
+    </p>
+
+    <p>
+      Essentially what happens is that the regression coefficients that get printed are
+      interpretable only for certain groups. So now:
+    </p>
+
+    <p><ul>
+      <li>The intercept still represents the predicted score of homicide for Southern
+      counties and have a score of 0 in resource deprivation (as before).</li>
+      <li>The coefficient of <em>SOUTH_f1</em> now can be thought of as the difference
+      between the predicted score of homicide rate for Northern counties <em>that have a
+      score of 0 in resource deprivation</em> and Southern counties <em>that have a score
+      of 0 in resource deprivation</em>.</li>
+      <li>The coefficient of <em>RD90</em> now becomes the comparison of mean homicide rate
+      <em>for Southern</em> counties that differ by one point in resource deprivation.</li>
+      <li>The coefficient for the interaction term represents the difference in the slope
+      for <em>RD90</em> comparing Southern and Northern counties, the difference in the
+      slope of the two lines that we visualised above.</li>
+    </ul></p>
+
+    <p>
+      Models with interaction terms are too often misinterpreted. We strongly recommend you
+      read <xref ref="Brambor_2006"/> to understand some of the issues involved.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch11-residuals">
+    <title>Looking at the residuals and testing for spatial autocorrelation in regression</title>
+
+    <p>
+      Residuals measure the distance between our observed <m>Y</m> values, <m>Y</m>, and
+      the predicted <m>Y</m> values, <m>\hat{Y}</m>. So in essence they are deviations of
+      observed reality from your model. Your regression line (or hyperplane in the case of
+      multiple regression) is optimised to be the one that best represents your data if the
+      assumptions of the model are met. Residuals are very helpful to diagnose, then,
+      whether your model is a good representation of reality or not. Most diagnostics of
+      the assumptions for regression rely on exploring the residuals.
+    </p>
+
+    <p>
+      Now that we have fitted the model, we can extract the residuals. If you look at the
+      "fit_1" object in your RStudio environment or if you run the <c>str()</c> function to
+      look inside this object, you will see that this object is a list with different
+      elements, one of which is the residuals. An element of this object then includes the
+      residual for each of your observations (the difference between the observed value and
+      the value predicted by your model). We can extract the residuals using the
+      <c>residuals()</c> function and add them to our spatial data set. Let's fit a model
+      with all the key predictors available in the dataset and inspect the residuals.
+    </p>
+
+    <program language="r" label="fit3-ch11">
+      <input>
+# write model into object to save typing later
+eq1_90 &lt;- HR90 ~ RD90 + PS90 + MA90 + DV90 + UE90 + SOUTH_f
+fit3_90 &lt;- lm(eq1_90, data=ncovr)
+summary(fit3_90)
+ncovr$res_fit3 &lt;- residuals(fit3_90)
+      </input>
+    </program>
+
+    <p>
+      If you now look at the dataset, you will see that there is a new variable with the
+      residuals. In those cases where the residual is negative, this is telling us that the
+      observed value is lower than the predicted (that is, our model is
+      <em>overpredicting</em> the level of homicide for that observation); when the
+      residual is positive, the observed value is higher than the predicted (that is, our
+      model is <em>underpredicting</em> the level of homicide for that observation).
+    </p>
+
+    <p>
+      We could also extract the predicted values if we wanted. We would use the
+      <c>fitted()</c> function.
+    </p>
+
+    <program language="r" label="fitted-ch11">
+      <input>
+ncovr$fitted_fit3 &lt;- fitted(fit3_90)
+      </input>
+    </program>
+
+    <p>
+      Now look, for example, at the second county in the dataset: the county of Ferry in
+      Washington. It had a homicide rate in 1990 of 15.89. This is the observed value. If
+      we look at the new column we have created ("fitted_fit1"), our model predicts a
+      homicide rate of 2.42. That is, knowing the level of resource deprivation and all the
+      other explanatory variables (and assuming they are related in an additive manner to
+      the outcome), we are predicting a homicide rate of 2.42. Now, this is lower than the
+      observed value; so our model is underpredicting the level of homicide in this case.
+      If you observed the residual, you will see that it has a value of 11.56, which is
+      simply the difference between the observed (15.89) and the predicted value (2.42).
+      This is normal. The world is too complex to be encapsulated by our models, and their
+      predictions will depart from the observed world.
+    </p>
+
+    <p>
+      With spatial data one useful thing to do is to look at any spatial patterning in the
+      distribution of the residuals. Notice that the residuals are the difference between
+      the observed values for homicide and the predicted values for homicide, so you want
+      your residual to not display any spatial patterning. If, on the other hand, your
+      model displays a patterning in the areas of the study region where it predicts badly,
+      then you may have a problem. This is telling you that your model is not a good
+      representation of the social phenomena you are studying across the full study area:
+      there is systematically more distortion in some areas than in others.
+    </p>
+
+    <p>
+      We are going to produce a choropleth map for the residuals, but we will use a common
+      classification method we haven't covered yet: standard deviations. Standard deviation
+      is a statistical technique type of map based on how much the data differs from the
+      mean. You measure the mean and standard deviation for your data. Then, each standard
+      deviation becomes a class in your choropleth maps. In order to do that, we will
+      compute the mean and the standard deviation for the variable we want to plot and
+      break the variable according to these values. The following code creates a new
+      variable in which we will express the residuals in terms of standard deviations away
+      from the mean. So, for each observation, we subtract the mean and divide by the
+      standard deviation. Remember, this is exactly what the <c>scale</c> function does:
+    </p>
+
+    <program language="r" label="sd-breaks-ch11">
+      <input>
+# because scale is made for matrices, we just need to get the first column using [,1]
+ncovr$sd_breaks &lt;- scale(ncovr$res_fit3)[,1]
+# this is equal to (ncovr$res_fit1 - mean(ncovr$res_fit1)) / sd(ncovr$res_fit1)
+summary(ncovr$sd_breaks)
+      </input>
+    </program>
+
+    <p>
+      Next we use a new style, <c>fixed</c>, within the <c>tm_fill</c> function. When we
+      break the variable into classes using the <c>fixed</c> argument we need to specify
+      the boundaries of the classes. We do this using the <c>breaks</c> argument. In this
+      case we are going to ask R to create 7 classes based on standard deviations away from
+      the mean. Remember that a value of 1 would be 1 standard deviation higher than the
+      mean, and -1 respectively lower. If we assume normal distribution, then 68% of all
+      counties should lie within the middle band from -1 to +1.
+    </p>
+
+    <program language="r" label="residuals-map-ch11">
+      <input>
+my_breaks &lt;- c(-14,-3,-2,-1,1,2,3,14)
+tm_shape(ncovr) +
+  tm_fill("sd_breaks", title = "Residuals", style = "fixed",
+          breaks = my_breaks, palette = "-RdBu") +
+  tm_borders(alpha = 0.1) +
+  tm_layout(main.title = "Residuals", main.title.size = 0.7 ,
+            legend.position = c("right", "bottom"), legend.title.size = 0.8)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch11-residuals-map">
+      <caption>Map of regression model residuals</caption>
+      <image source="figure-ch11/residuals-map.png">
+        <shortdescription>A map outlining the counties in the United States, titled
+        'Residuals'. A legend near the bottom right, also labeled 'residuals', matches
+        negative values to shades of blue, zero to white, and positive values to reds, and
+        ranges from negative to positive fourteen. Most of the counties are white, though
+        reds and blues are spread all over. Blues seem to appear more in the central south,
+        spreading eastwards. Reds are more prominent in the west half of the country, as
+        well as along the east coast, but also frequently appear among the
+        blues.</shortdescription>
+      </image>
+    </figure>
+
+    <p>
+      Notice the spatial patterning of areas of over-prediction (negative residuals, or
+      blue tones) and under-prediction (positive residuals, or reddish tones). This visual
+      inspection of the residuals is suggesting that spatial autocorrelation in the
+      residuals may be present here. This, however, would require a more formal test.
+    </p>
+
+    <p>
+      Remember from Chapter 9 that in order to do this first we need to turn our
+      <c>sf</c> object into a <c>sp</c> class object and then create the spatial weight
+      matrix. We cannot examine spatial dependence without making assumptions about the
+      structure of the spatial relations among the units in our study. For this
+      illustration we are going to follow <xref ref="Baller_2001"/> and use 10 nearest
+      neighbours to define the matrix to codify these spatial relations. If the code below
+      and what it does is not clear to you, revise the notes from Chapter 9, when we first
+      introduced it.
+    </p>
+
+    <program language="r" label="weight-matrix-ch11">
+      <input>
+# We coerce the sf object into a new sp object
+ncovr_sp &lt;- as(ncovr, "Spatial")
+# Then we create a list of neighbours using 10 nearest neighbours criteria
+xy &lt;- coordinates(ncovr_sp)
+nb_k10 &lt;- knn2nb(knearneigh(xy, k = 10))
+rwm &lt;- nb2mat(nb_k10, style='W')
+rwm &lt;- mat2listw(rwm, style='W')
+      </input>
+    </program>
+
+    <p>
+      We obtain Moran's test for regression residuals using the function
+      <c>lm.morantest()</c> as below. It is important to realize that Moran's I test
+      statistic for residual spatial autocorrelation takes into account the fact that the
+      variable under consideration is a residual, computed from a regression. The usual
+      Moran's I test statistic does not. It is therefore incorrect to simply apply a
+      Moran's I test to the residuals from the regression without correcting for the fact
+      that these are residuals.
+    </p>
+
+    <program language="r" label="morantest-ch11">
+      <input>
+lm.morantest(fit3_90, rwm, alternative="two.sided")
+      </input>
+    </program>
+
+    <p>
+      You will notice that we obtain a statistically significant value for Moran's I. If we
+      diagnose that spatial autocorrelation is an issue, that is, that the errors
+      (residuals) are related systematically among themselves, then we likely have a
+      problem, and we may need to use a more appropriate approach: a spatial regression
+      model. Before going down that road, it is important to check this autocorrelation is
+      not the result of an incorrectly specified model. It may appear when estimating a
+      non-linear relationship with a linear model. In this scenario,
+      <xref ref="Kopczewska_2021"/> suggests checking the remainders from the OLS estimated
+      model on variable logarithms. It is also worth considering it may be the result of
+      other forms of model mis-specification, such as omission of covariates or wrongful
+      inclusion of predictors.
+    </p>
+
+  </section>
 
 </chapter>

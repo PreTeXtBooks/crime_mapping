@@ -535,6 +535,187 @@
       SAGE, Thousand Oaks, CA, 2015.
     </biblio>
 
+    <biblio type="raw" xml:id="Eck_1997">
+      John E. Eck and William Spelman.
+      Problem-Solving: Problem-Oriented Policing in Newport News.
+      Police Executive Research Forum, Washington DC, 1997.
+    </biblio>
+
+    <biblio type="raw" xml:id="Baller_2001">
+      Robert D. Baller, Luc Anselin, Steven F. Messner, Glenn Deane, and Darnell F. Hawkins.
+      Structural covariates of U.S. county homicide rates: Incorporating spatial effects.
+      <title>Criminology</title>, 39(3):561–590, 2001.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gelman_2007">
+      Andrew Gelman and Jennifer Hill.
+      <title>Data Analysis Using Regression and Multilevel/Hierarchical Models</title>.
+      Cambridge University Press, Cambridge, 2007.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gelman_2008">
+      Andrew Gelman.
+      Scaling regression inputs by dividing by two standard deviations.
+      <title>Statistics in Medicine</title>, 27(15):2865–2873, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gelman_2020">
+      Andrew Gelman and Aki Vehtari.
+      What are the most important statistical ideas of the past 50 years?
+      <title>arXiv preprint</title>, 2020. arXiv:2012.00174.
+    </biblio>
+
+    <biblio type="raw" xml:id="Haining_2003">
+      Robert Haining.
+      <title>Spatial Data Analysis: Theory and Practice</title>.
+      Cambridge University Press, Cambridge, 2003.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2014">
+      Luc Anselin.
+      <title>Modern Spatial Econometrics in Practice: A Guide to GeoDa, GeoDaSpace and PySAL</title>.
+      GeoDa Press LLC, Chicago, IL, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2021">
+      Roger Bivand.
+      A review of software for spatial econometrics in R.
+      <title>Mathematics</title>, 10(1):1, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Beale_2010">
+      Colin M. Beale, Jack J. Lennon, Jon M. Yearsley, Mark J. Brewer, and David A. Elston.
+      Regression analysis of spatial data.
+      <title>Ecology Letters</title>, 13(2):246–264, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Floch_2018">
+      Jean-Marc Floch.
+      Spatial regression in the presence of missing data.
+      <title>Review of Regional Research</title>, 38:161–187, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Kopczewska_2021">
+      Katarzyna Kopczewska.
+      <title>Applied Spatial Statistics and Econometrics: Data Analysis in R</title>.
+      Routledge, Abingdon, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Elhorst_2014">
+      J. Paul Elhorst.
+      <title>Spatial Econometrics: From Cross-Sectional Data to Spatial Panels</title>.
+      Springer, Heidelberg, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="James_2013">
+      Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
+      <title>An Introduction to Statistical Learning</title>.
+      Springer, New York, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brambor_2006">
+      Thomas Brambor, William Roberts Clark, and Matt Golder.
+      Understanding interaction models: Improving empirical analyses.
+      <title>Political Analysis</title>, 14(1):63–82, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_1998">
+      Luc Anselin, Anil K. Bera, Raymond Florax, and Mann J. Yoon.
+      Simple diagnostic tests for spatial dependence.
+      <title>Regional Science and Urban Economics</title>, 26(1):77–104, 1998.
+    </biblio>
+
+    <biblio type="raw" xml:id="Smith_2009">
+      Tony E. Smith.
+      Estimation bias in spatial models with strongly connected weight matrices.
+      <title>Geographical Analysis</title>, 41(3):307–332, 2009.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ward_2008">
+      Michael D. Ward and Kristian S. Gleditsch.
+      <title>Spatial Regression Models</title>.
+      SAGE, Thousand Oaks, CA, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Elhorst_2010">
+      J. Paul Elhorst.
+      Applied spatial econometrics: Raising the bar.
+      <title>Spatial Economic Analysis</title>, 5(1):9–28, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="LeSage_2009">
+      James LeSage and R. Kelley Pace.
+      <title>Introduction to Spatial Econometrics</title>.
+      CRC Press, Boca Raton, FL, 2009.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tita_2010">
+      George E. Tita and Jacob Radil.
+      Spatial regression models in criminology: Modeling social processes in the spatial weights matrix.
+      In Alex R. Piquero and David Weisburd (eds.), <title>Handbook of Quantitative Criminology</title>, pp. 101–121.
+      Springer, New York, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bernasco_2010">
+      Wim Bernasco.
+      A sentimental journey to crime: Effects of residential history on crime location choice.
+      <title>Criminology</title>, 48(2):389–416, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Kelejian_2017">
+      Harry Kelejian and Gianfranco Piras.
+      <title>Spatial Econometrics</title>.
+      Academic Press, London, 2017.
+    </biblio>
+
+    <biblio type="raw" xml:id="Lawson_2021a">
+      Andrew B. Lawson.
+      <title>Bayesian Disease Mapping: Hierarchical Modeling in Spatial Epidemiology</title>, 3rd ed.
+      CRC Press, Boca Raton, FL, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Lawson_2021b">
+      Andrew B. Lawson.
+      <title>Using R in Introductory and Advanced Statistical Classes</title>.
+      CRC Press, Boca Raton, FL, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gomez_2005">
+      Fabio Gomez-Rubio.
+      Bayesian inference for spatial data analysis.
+      In Proceedings of the 17th International Workshop on Statistical Modelling, 2005.
+    </biblio>
+
+    <biblio type="raw" xml:id="Blangiardo_2015">
+      Marta Blangiardo and Michela Cameletti.
+      <title>Spatial and Spatio-temporal Bayesian Models with R-INLA</title>.
+      Wiley, Chichester, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wall_2004">
+      Melanie M. Wall.
+      A close look at the spatial structure implied by the CAR and SAR models.
+      <title>Journal of Statistical Planning and Inference</title>, 121(2):311–324, 2004.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2007">
+      Luc Anselin.
+      <title>Spatial Regression Analysis in R: A Workbook</title>.
+      University of Illinois, Urbana-Champaign, 2007. Available at: https://geodacenter.github.io/docs/spr.pdf.
+    </biblio>
+
+    <biblio type="raw" xml:id="Caplan_2016">
+      Joel M. Caplan and Leslie W. Kennedy.
+      <title>Risk Terrain Modeling: Crime Prediction and Risk Reduction</title>.
+      University of California Press, Oakland, CA, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wheeler_2021">
+      Andrew P. Wheeler and Wouter Steenbeek.
+      Mapping the risk terrain for crime using machine learning.
+      <title>Journal of Quantitative Criminology</title>, 37(2):445–480, 2021.
+    </biblio>
+
   </references>
 
   <colophon>
