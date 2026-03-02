@@ -1009,7 +1009,7 @@ summary(fit3_90_sem)
       fairly crude approach, instead of adding multiple interaction terms, is to partition
       the data. We could, in this example, partition the data into Southern and Northern
       counties and run separate models for this using two subsets of the data. For the next
-      illustration, we are going to focus on the Southern countries and in a different
+      illustration, we are going to focus on the Southern counties and in a different
       decade, in which the lag model (as we will see) is more appropriate.
     </p>
 
@@ -1033,7 +1033,7 @@ summary(lm.LMtests(fit4_70, rwm_s, test = c("LMerr","LMlag","RLMerr","RLMlag")))
 
     <p>
       Maximum Likelihood (ML) estimation of the spatial lag model is carried out with the
-      <c>spatreg::lagsarlm()</c> function. The required arguments are again a regression
+      <c>spatialreg::lagsarlm()</c> function. The required arguments are again a regression
       "formula", a data set and a <c>listw</c> spatial weights object. The default method
       uses Ord's eigenvalue decomposition of the spatial weights matrix.
     </p>
