@@ -655,6 +655,78 @@
       <em>Review of European Studies</em>, 4(5), 148–156.
     </biblio>
 
+    <biblio xml:id="bib-Abad_2019" type="raw">
+      Abad, L., Lovelace, R. and van der Meer, L. (2019). Spatial networks in R with sf and
+      tidygraph. Accessed: 30-07-2021. Available at:
+      https://r-spatial.org/r/2019/09/26/spatial-networks.html
+    </biblio>
+
+    <biblio xml:id="bib-Ceccato_2013" type="raw">
+      Ceccato, V. (2013). <em>Moving Safely: Crime and Perceived Safety in Stockholm's Subway
+      Stations</em>. Lexington Books, Lanham.
+    </biblio>
+
+    <biblio xml:id="bib-Gelb_2021" type="raw">
+      Gelb, J. (2021). <em>spNetwork: Spatial Analysis on Network</em>. R package version 0.1.1.
+      Available at: https://CRAN.R-project.org/package=spNetwork
+    </biblio>
+
+    <biblio xml:id="bib-McSwiggan_2016" type="raw">
+      McSwiggan, G., Baddeley, A. and Nair, G. (2016). Kernel Density Estimation on a Linear
+      Network. <em>Scandinavian Journal of Statistics</em>, 44(2), 324–345.
+    </biblio>
+
+    <biblio xml:id="bib-Newton_2008" type="raw">
+      Newton, A. (2008). A Study of Bus Route Crime Risk in Urban Areas: The Changing Environs of
+      a Bus Journey. <em>Built Environment</em>, 34(1), 88–103.
+    </biblio>
+
+    <biblio xml:id="bib-Okabe_2012" type="raw">
+      Okabe, A. and Sugihara, K. (2012). <em>Spatial Analysis along Networks</em>. John Wiley
+      &amp; Sons, Chichester.
+    </biblio>
+
+    <biblio xml:id="bib-Rakshit_2019" type="raw">
+      Rakshit, S., Davies, T., Mehdi-Moradi, M., McSwiggan, G., Nair, G., Mateu, J. and Baddeley,
+      A. (2019). Fast Kernel Smoothing of Point Patterns on a Large Network using Two-dimensional
+      Convolution. <em>International Statistical Review</em>, 87(3), 531–556.
+    </biblio>
+
+    <biblio xml:id="bib-Rosser_2017" type="raw">
+      Rosser, G., Davies, T., Bowers, K., Johnson, S. and Cheng, T. (2017). Predictive Crime
+      Mapping: Arbitrary Grids or Street Networks? <em>Journal of Quantitative Criminology</em>,
+      33, 569–594.
+    </biblio>
+
+    <biblio xml:id="bib-Singleton_2014" type="raw">
+      Singleton, A. and Brunsdon, C. (2014). Escaping the Pushpin Paradigm in Geographic
+      Information Science: (Re)presenting National Crime Data. <em>Area</em>, 46(3), 294–304.
+    </biblio>
+
+    <biblio xml:id="bib-Spicer_2016" type="raw">
+      Spicer, V., Song, J., Brantingham, P., Park, A. and Andresen, M. (2016). Street profile
+      analysis: A new method for mapping crime on major roadways. <em>Applied Geography</em>, 69,
+      65–74.
+    </biblio>
+
+    <biblio xml:id="bib-Tompson_2009" type="raw">
+      Tompson, L., Partridge, H. and Shepherd, N. (2009). Hot Routes: Developing a New Technique
+      for the Spatial Analysis of Crime. <em>Crime Mapping: A Journal of Research and
+      Practice</em>, 1(1), 77–96.
+    </biblio>
+
+    <biblio xml:id="bib-Tompson_2015" type="raw">
+      Tompson, L., Johnson, S., Ashby, M., Perkins, C. and Edwards, P. (2015). UK Open Source
+      Crime Data: Accuracy and Possibilities for Research. <em>Cartography and Geographic
+      Information Science</em>, 42(2), 97–111.
+    </biblio>
+
+    <biblio xml:id="bib-Vandemeer_2021" type="raw">
+      van der Meer, L., Abad, L., Gilardi, A. and Lovelace, R. (2021). <em>sfnetworks: Tidy
+      Geospatial Networks</em>. R package version 0.5.2. Available at:
+      https://CRAN.R-project.org/package=sfnetworks
+    </biblio>
+
   </references>
 
   <colophon>
