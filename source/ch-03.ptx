@@ -790,4 +790,940 @@ tm_shape(manchester) +
 
   </section>
 
+
+  <section xml:id="sec-ch3-classification">
+    <title>Classification systems for thematic maps</title>
+
+    <p>
+      In thematic mapping, you have to make some key decisions, the most important one being how to
+      display your data. When mapping a quantitative variable, we often have to "bin" this variable
+      into groups. For example in the map we made below, the default binning applied was to display
+      LSOAs grouped into those with a number of 0 to 10,000 crimes per 100,000 residents, then from
+      10,000 to 20,000, and so on. But why these? How were these groupings decided upon?
+    </p>
+
+    <p>
+      The quantitative information is usually classified before its symbolization in a thematic map.
+      Theoretically, accurate classes that best reflect the distributional character of the data set
+      can be calculated. There are different ways of breaking down your data into classes. We will
+      discuss each in turn here.
+    </p>
+
+    <p>
+      <alert>The equal interval</alert> (or equal step) classification method divides the range of
+      attribute values into equally sized classes. What this means is that the values are divided
+      into equal groups. Equal interval data classification subtracts the maximum value from minimum
+      value in your plotted variable and then divides this by the number of classes to get the size
+      of the intervals. This approach is best for continuous data. The range of the classes is
+      structured so that it covers the same number of values in the plotted variable. With highly
+      skewed variables, this plotting method will focus our attention in areas with extreme values.
+      When mapping crime, it will create the impression that everywhere is safe, save a few
+      locations. The graphic below shows five classes and the function shows the locations
+      (represented by points) that fall within each class.
+    </p>
+
+    <program language="r">
+      <input>
+library(classInt) # Package that introduces the classification methods
+pal1 &lt;- c("wheat1", "red3")
+plot(classIntervals(manchester$crimr1,
+                    n=5,
+                    style="equal"),
+     pal = pal1,
+     main="Equal Intervals")
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-class-equal">
+      <caption>Results for equal intervals classification</caption>
+      <image source="external/fig-ch3-class-equal.png">
+        <description>
+          A line graph titled 'Equal Intervals'. The vertical axis is labeled 'fn of x', and ranges
+          from zero point zero to one point zero. The horizontal axis is labeled 'x', and ranges
+          from zero to sixty thousand. The five colours from our previous figures shade parts of the
+          axis they correspond to, from yellow to red. The points of the line graph start at the
+          zeros, and steeply climb to around zero point nine in the first few thousand values of x,
+          then slightly slow their climb and reach almost one point zero before x is ten thousand.
+          All of this is contained within the first colour class shading the horizontal axis. Only a
+          few further points lie outside this colour.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      <alert>The quantile map</alert> bins the same count of features (areas) into each of its
+      classes. This classification method places equal numbers of observations into each class. So,
+      if you have five classes you will have twenty percent of the areas within each class. This
+      method is best for data that is evenly distributed across its range. Here, given that our
+      variable is highly skewed, notice how the top class includes areas with fairly different
+      levels of crime, even if it does a better job at separating areas at the lower end of the
+      crime rate continuum. Several authors consider that quantile maps are inappropriate to
+      represent the skewed distributions of crime
+      (<xref ref="Harries_1999" text="custom">Harries, 1999</xref>).
+    </p>
+
+    <program language="r">
+      <input>
+pal1 &lt;- c("wheat1", "red3")
+plot(classIntervals(manchester$crimr1, n=5, style="quantile"), pal = pal1,
+     main="Quantiles")
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-class-quantile">
+      <caption>Results for quantiles classification</caption>
+      <image source="external/fig-ch3-class-quantile.png">
+        <description>
+          The previous line graph is now titled 'Quantiles', and has had the colours along the
+          horizontal axis squished, except for the last deep red. The colour changes all happen in
+          the steep climb of the graph, within the first few thousand values of x.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      <alert>The natural breaks (or Jenks)</alert> classification method utilizes an algorithm to
+      group values in classes that are separated by distinct break points. It is an optimisation
+      method which takes an iterative approach to its groupings to achieve least variation within
+      each class. Cartographers recommend to use this method with data that is unevenly distributed
+      but not skewed toward either end of the distribution.
+    </p>
+
+    <program language="r">
+      <input>
+pal1 &lt;- c("wheat1", "red3")
+plot(classIntervals(manchester$crimr1, n=5, style="jenks"), pal = pal1,
+     main="Jenks")
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-class-jenks">
+      <caption>Results for Jenks classification</caption>
+      <image source="external/fig-ch3-class-jenks.png">
+        <description>
+          This time the previous line graph is titled 'Jenks', and seems to be a compromise between
+          the previous two figures. The steep climb is divided into two colours, and the following
+          gradual climb gets one colour as well. The plateau with just a few points gets two
+          colours.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      <alert>The standard deviation</alert> map uses the standard deviation (standardised measure
+      of observations' deviation from the mean) to bin the observations into classes. This
+      classification method forms each class by adding and subtracting the standard deviation from
+      the mean of the dataset. It is best suited to be used with data that conforms to a normal
+      distribution.
+    </p>
+
+    <program language="r">
+      <input>
+pal1 &lt;- c("wheat1", "red3")
+plot(classIntervals(manchester$crimr1, style="sd"), pal = pal1,
+     main="Standard Deviation")
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-class-sd">
+      <caption>Results for standard deviation classification</caption>
+      <image source="external/fig-ch3-class-sd.png">
+        <description>
+          The same line graph is now titled 'Standard Deviation', and has gained more colours,
+          fourteen total, for its gradient. Each one is the same size, and includes about four
+          thousand values of x.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      <alert>The headtails method</alert> This uses a method proposed by
+      <xref ref="Jiang_2013" text="custom">Jiang (2013)</xref> as a solution for variables
+      with a heavy tail distribution, like we often have with crime. "This new classification
+      scheme partitions all of the data values around the mean into two parts and continues the
+      process iteratively for the values (above the mean) in the head until the head part values
+      are no longer heavy-tailed distributed. Thus, the number of classes and the class intervals
+      are both naturally determined"
+      (<xref ref="Jiang_2013" text="custom">Jiang, 2013</xref>, p. 482).
+    </p>
+
+    <program language="r">
+      <input>
+pal1 &lt;- c("wheat1", "red3")
+plot(classIntervals(manchester$crimr1, style="headtails"), pal = pal1,
+     main="Headtails")
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-class-headtails">
+      <caption>Results for headtails classification</caption>
+      <image source="external/fig-ch3-class-headtails.png">
+        <description>
+          The same line graph yet again, with the title 'Headtails'. The five colours are
+          distributed in a similar way to the Jenks classification, with the colour changes all
+          slightly shifted by various amounts to the right.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      Not only do you need to choose the classification method, you also need to decide on the
+      number of classes. This is critical. The convention in cartography is to choose between 5 to
+      7 classes, although some authors would say 5 to 6
+      (<xref ref="Field_2018" text="custom">Field, 2018</xref>). Less than five and you lose
+      detail, more than 6 or 7 and the audience looking at your map starts to have problems to
+      perceive the differences in the symbology and to understand the spatial pattern displayed.
+    </p>
+
+    <p>
+      If you want to lie with a map, it would be very easy by using a data classification scheme
+      that conveys the message that you want to get across. It is, thus, important that your
+      decisions are based on good practice and are impartial.
+    </p>
+
+    <p>
+      For comparing the effects of using different methods, we can use <alert>small multiples</alert>.
+      Small multiples is simply a way of reproducing side by sides similar maps for comparative
+      purposes. To be more precise, small multiples are <em>sets of charts of the same type, with
+      the same scale, presented together at a small size and with minimal detail, usually in a grid
+      of some kind</em>. The term was popularized by Edward Tufte, appearing first in his
+      <em>Visual Display of Quantitative Information</em> in 1983
+      (<xref ref="Tufte_1983" text="custom">Tufte, 1983</xref>).
+    </p>
+
+    <p>
+      There are different ways of creating small multiples with <c>tmap</c> as you could see in the
+      vignettes for the package, some of which are quicker but a bit more restricted. Here we are
+      going to use <c>tmap_arrange()</c>. With <c>tmap_arrange()</c> first we need to create the
+      maps we want and then we arrange them together.
+    </p>
+
+    <p>
+      Let's make five maps, each one using a different classification method: Equal Interval,
+      Quantile, Natural Breaks (Jenks), Standard Deviation, and Headtails. For each map, instead
+      of visualising them one-by-one, just assign them to a new object. Let's call them
+      <c>map1</c>, <c>map2</c>, <c>map3</c>, <c>map4</c>, <c>map5</c>. So let's make <c>map1</c>.
+      This will create a thematic map using equal intervals.
+    </p>
+
+    <program language="r">
+      <input>
+map1 &lt;- tm_shape(manchester) +
+  #Use tm_fill to specify variable, classification method,
+  # and give the map a title
+  tm_fill("crimr1", style="equal", title = "Equal") +
+  tm_layout(legend.position = c("left", "top"),
+            legend.title.size = 0.7, legend.text.size = 0.5)
+      </input>
+    </program>
+
+    <p>
+      Now create <c>map2</c>, with the jenks method often preferred by geographers.
+    </p>
+
+    <program language="r">
+      <input>
+map2 &lt;- tm_shape(manchester) +
+  tm_fill("crimr1", style="jenks", title = "Jenks") +
+  tm_layout(legend.position = c("left", "top"),
+            legend.title.size = 0.7, legend.text.size = 0.5)
+      </input>
+    </program>
+
+    <p>
+      Now create <c>map3</c>, with the quantile method often preferred by epidemiologists.
+    </p>
+
+    <program language="r">
+      <input>
+map3 &lt;- tm_shape(manchester) +
+  tm_fill("crimr1", style="quantile", title = "Quantile") +
+  tm_layout(legend.position = c("left", "top"),
+            legend.title.size = 0.7, legend.text.size = 0.5)
+      </input>
+    </program>
+
+    <p>
+      Let's make <c>map4</c>, standard deviation map, which maps the values of our variable to
+      distance to the mean value.
+    </p>
+
+    <program language="r">
+      <input>
+map4 &lt;- tm_shape(manchester) +
+  tm_fill("crimr1", style="sd", title = "Standard Deviation") +
+  tm_layout(legend.position = c("left", "top"),
+            legend.title.size = 0.7, legend.text.size = 0.5)
+      </input>
+    </program>
+
+    <p>
+      And finally let's make <c>map5</c>, which is handy with skewed distributions.
+    </p>
+
+    <program language="r">
+      <input>
+map5 &lt;- tm_shape(manchester) +
+  tm_fill("crimr1", style="headtails", title = "Headtails") +
+  tm_layout(legend.position = c("left", "top"),
+            legend.title.size = 0.7, legend.text.size = 0.5)
+      </input>
+    </program>
+
+    <p>
+      Notice that we are not plotting the maps, we are storing them into R objects (map1 to map5).
+      This way they are saved, and you can call them later, which is what we need in order to plot
+      them together using the <c>tmap_arrange()</c> function. So if you wanted to map just
+      <c>map3</c> for example, all you need to do, is call the <c>map3</c> object. Like so:
+    </p>
+
+    <program language="r">
+      <input>
+map3
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-map3-quantile">
+      <caption>Quantile classification of crime in Manchester</caption>
+      <image source="external/fig-ch3-map3-quantile.png">
+        <description>
+          A shaded map of the LSOAs in Manchester, similar to the ones before, using the
+          colourblind friendly blue gradient. The legend in the top left, titled 'Quantile', lists
+          which values correspond to the five colours, according to the Quantile classification; the
+          first four colours correspond to a few values, and the last one to most. Much of the north
+          half of Manchester is shaded in the darker colours. The south half has some dark LSOAs as
+          well, but is generally lighter.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      But now we will plot all maps together, arranged using the <c>tmap_arrange()</c> function.
+      Like so:
+    </p>
+
+    <program language="r">
+      <input>
+# deploy tmap_arrange to plot these maps together
+tmap_arrange(map1, map2, map3, map4, map5)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-tmap-arrange">
+      <caption>Compare maps using the different classifications of crime in Manchester</caption>
+      <image source="external/fig-ch3-tmap-arrange.png">
+        <description>
+          Five different shaded maps of the LSOAs in Manchester are aligned in a grid. The first
+          one, labeled 'Equal', was the first map we constructed, and the third one, 'Quantile', is
+          the previous figure. The one labeled 'Standard Deviation' looks very similar to the
+          initial 'Equal' map, with a hotspot in the centre, but now with two colours in the rest of
+          Manchester. 'Jenks' and 'Headtails' are very similar, and both convey the same general
+          concentrations of darker colours. In particular, colours lighten gradually moving away
+          from the centre, with darker hotspots in the northeast and far south.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      As we can see, using data-driven, natural breaks (as the Jenks or Headtails method do, in
+      different ways) to classify data is useful when mapping data values that are not evenly
+      distributed, since it places value clusters in the same class. The disadvantage of using this
+      approach is that it is often difficult to make comparisons between maps (for example, of
+      different crimes or for different time periods) since the classification scheme used is unique
+      to each data set.
+    </p>
+
+    <p>
+      There are some other classification methods built into <c>tmap</c> which you can experiment
+      with if you'd like. Your discrete gradient options are "cat", "fixed", "sd", "equal",
+      "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih", "headtails",
+      and "log10_pretty". A numeric variable is processed as a categorical variable when using
+      "cat", i.e., each unique value will correspond to a distinct category.
+    </p>
+
+    <p>
+      Taken from the help file, we can find more information about these, for example the "kmeans"
+      style uses kmeans clustering technique (a form of unsupervised statistical learning) to
+      generate the breaks. The "hclust" style uses hclust to generate the breaks using hierarchical
+      clustering and the "bclust" style uses bclust to generate the breaks using bagged clustering.
+      These approaches are outside the scope of what we cover, but just keep in mind that there are
+      many different ways to classify your data, and you must think carefully about the choice you
+      make, as it may affect your readers' conclusions from your map.
+    </p>
+
+    <p>
+      Imagine you were a consultant working for one of the political parties in the city of
+      Manchester. Which map would you choose to represent to the electorate the situation of crime
+      in the city if you were the party in control of the local government? and which map would you
+      choose if you were working for the opposition? As noted above, it is very easy to mislead
+      with maps and, thus, this means the professional map maker has to abide by strict
+      deontological criteria and take well-justified impartial decisions when visualising data.
+    </p>
+
+    <p>
+      <xref ref="Cameron_2005" text="custom">Cameron (2005)</xref> suggests the following:
+    </p>
+
+    <blockquote>
+      <p>
+        To know which classification scheme to use, an analyst needs to know how the data are
+        distributed and the mapping objective. If the data are unevenly distributed, with large
+        jumps in values or extreme outliers, and the analyst wants to emphasize clusters of
+        observations that house similar values, use the natural breaks classification approach. If
+        the data are evenly distributed and the analyst wants to emphasize the percentage of
+        observations in a given classification category or group of categories, use the quantile
+        classification approach. If the data are normally distributed and the analyst wants to
+        represent the density of observations around the mean, use the equal interval approach. If
+        the data are skewed and the analyst wants to identify extreme outliers or clusters of very
+        high or low values, use the standard deviation classification approach.
+      </p>
+    </blockquote>
+
+    <p>
+      No matter the choice you make, be sure to be explicit about why you made it, and the possible
+      implications it has for your maps.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch3-interactive">
+    <title>Interactive mapping with tmap</title>
+
+    <p>
+      So far we have been producing static maps with <c>tmap</c>. But this package also allows for
+      interactive mapping by linking with leaflet. To change whether the plotted maps are static or
+      interactive, we need to use the <c>tmap_mode()</c> function. The default is
+      <c>tmap_mode("plot")</c>, which corresponds to static maps. If we want to change to
+      interactive display, we need to change the argument we pass to <c>tmap_mode("view")</c>.
+    </p>
+
+    <program language="r">
+      <input>
+tmap_mode("view")
+      </input>
+    </program>
+
+    <p>
+      When you use <c>tmap</c>, R will remember the mode you want to use. So once you specify
+      <c>tmap_mode("view")</c>, all the subsequent maps will be interactive. It is only when you
+      want to change this behaviour that you would need another <c>tmap_mode()</c> call. When using
+      the interactive view, we can also add a basemap with the <c>tm_basemap()</c> function and
+      passing as an argument a particular source for the basemap. Here we specify OpenStreetMap,
+      <url href="http://leaflet-extras.github.io/leaflet-providers/preview">but there are many
+      other choices</url>.
+    </p>
+
+    <p>
+      Let's explore the distribution of the two alternative definitions of crime rates in an
+      interactive way.
+    </p>
+
+    <program language="r">
+      <input>
+tm_shape(manchester) +
+  tm_fill("crimr1", style="jenks", palette= "Reds",
+          title = "Crime per residential pop", alpha = 0.6) +
+  tm_basemap(leaflet::providers$OpenStreetMap)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-interactive-crimr1">
+      <caption>Interactive Jenks map of crime by residential population in Manchester</caption>
+      <image source="external/fig-ch3-interactive-crimr1.png">
+        <description>
+          A leaflet street map of Manchester and area, with overlaid semi-transparent shading. The
+          top right contains a legend labeled 'Crime per residential pop', and separates five
+          colours according to the Jenks classification seen before. The same darker shaded areas
+          can be seen as before, now on the map.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      If you are following along, you can now scroll down to see that the crime rate is highest in
+      the city centre of Manchester, but there are also pockets of high level of the crime rate in
+      the North East of the city, Harpurhey and Moston (areas of high levels of deprivation) and
+      in the LSOA farthest to the South (where the international airport is located).
+    </p>
+
+    <p>
+      How does this change if we use the crime rate that uses the workday population?
+    </p>
+
+    <program language="r">
+      <input>
+tm_shape(manchester) +
+  tm_fill("crimr2", style="jenks", palette= "Oranges",
+          title = "Crime per workday pop", alpha = 0.8) +
+  tm_basemap(leaflet::providers$OpenStreetMap)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-interactive-crimr2">
+      <caption>Interactive Jenks map of crime rate by workday population in Manchester</caption>
+      <image source="external/fig-ch3-interactive-crimr2.png">
+        <description>
+          A leaflet street map of Manchester and area, with a different overlaid semi-transparent
+          shading. The top right contains a legend labeled 'Crime per workday pop', and separates
+          numbers up to nine thousand four hundred into five colours. The three lightest colours
+          correspond to a range of about one thousand each, the next one to two thousand, and the
+          darkest to four thousand. The distribution of darker colours is much different, with some
+          dark areas in the northeast, southwest, and less of a cluster in central Manchester.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      Things look different, don't they? For starters look at the values in the labels for the
+      various classes. They are much less extreme. One of the reasons why we see such extreme rates
+      in the first map is linked to the very large discrepancy between the residential population
+      and the workday population in some parts of Manchester, like the international airport and the
+      city centre (that attract very large volume of visitors, but have few residents). The LSOA
+      with the highest crime rate (when using the residential population as the denominator) is
+      E01033658. We can filter to find the number of crimes (in the <c>count</c> variable) that
+      took place here.
+    </p>
+
+    <program language="r">
+      <input>
+manchester %&gt;% filter(code=="E01033658") %&gt;% select(code, count, respop, wkdpop)
+      </input>
+    </program>
+
+    <table xml:id="table-ch3-lsoa-e01033658">
+      <title>Number of crimes in LSOA E01033658</title>
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell>code</cell>
+          <cell>count</cell>
+          <cell>respop</cell>
+          <cell>wkdpop</cell>
+        </row>
+        <row>
+          <cell>E01033658</cell>
+          <cell>744</cell>
+          <cell>1303</cell>
+          <cell>42253</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>
+      We can see in this area there were 744 crime incidents for a residential population of 1303,
+      but the workday population is as high as 42253 people. So, of course, using these different
+      denominators is bound to have an impact in the resulting rate. As noted earlier, the most
+      appropriate denominator represents some measure of the population at risk.
+    </p>
+
+    <p>
+      Once again, we can rely on some advice from
+      <xref ref="Cameron_2005" text="custom">Cameron (2005)</xref>:
+    </p>
+
+    <blockquote>
+      <p>
+        In the final analysis, although choropleth maps are very useful for visualizing spatial
+        distributions, using them for hot spot analyses of crime has certain disadvantages. First,
+        attention is often focused on the relative size of an area, so large areas tend to dominate
+        the map. Second, choropleth maps involve the aggregation of data within statistical or
+        administrative areas that may not correspond to the actual underlying spatial distribution
+        of the data.
+      </p>
+    </blockquote>
+
+  </section>
+
+
+  <section xml:id="sec-ch3-smoothing">
+    <title>Smoothing rates: adjusting for small sample noise</title>
+
+    <p>
+      In previous sections we discussed how to map rates. It seems a fairly straightforward issue:
+      you calculate a rate by dividing your numerator (e.g., number of crimes) by an appropriately
+      selected denominator (e.g., daytime population). You get your variable with the relevant rate
+      and you map it using a choropleth map. However, things are not always that simple.
+    </p>
+
+    <p>
+      Rates are funny animals.
+      <xref ref="Gelman_1999" text="custom">Gelman and Price (1999)</xref> go so far as to
+      suggest that all maps of rates are misleading. The problem at hand is well known in spatial
+      epidemiology: "plotting observed rates can have serious drawbacks when sample sizes vary by
+      area, since very high (and low) observed rates are found disproportionately in poorly-sampled
+      areas" (<xref ref="Gelman_1999" text="custom">Gelman and Price, 1999</xref>, p. 3221).
+      There is associated noise for those areas where the denominators give us a small sample size.
+      And it is hard to solve this problem.
+    </p>
+
+    <p>
+      Let's illustrate with an example. We are going to use historic data on homicide across US
+      counties. The dataset was used as the basis for the study by
+      <xref ref="Baller_2001" text="custom">Baller et al. (2001)</xref>. It contains data on
+      homicide counts and rates for various decades across the US, as well as information on
+      structural factors often thought to be associated with violence. The data is freely available
+      through the webpage of Geoda, a clever point-and-click interface developed by Luc Anselin (a
+      spatial econometrician and coauthor of the above paper) and his team, to make spatial
+      analysis accessible. It is also available as one of the datasets in the
+      <c>geodaData</c> package.
+    </p>
+
+    <p>
+      To read data available in a library we have loaded, we can use the <c>data()</c> function.
+      If we check the <c>class()</c> of this object, we will see it was already stored in
+      <c>geodaData</c> as a <c>sf</c> object.
+    </p>
+
+    <program language="r">
+      <input>
+data("ncovr")
+class(ncovr)
+      </input>
+    </program>
+
+    <p>
+      Let's look at the "ncovr" data. We can start by looking at the homicide rate for 1960.
+    </p>
+
+    <program language="r">
+      <input>
+summary(ncovr$HR60)
+      </input>
+    </program>
+
+    <p>
+      We can see that the county with the highest homicide rate in the 1960s had a very high rate
+      of homicides per 100,000 individuals. Just to put it into context, in the UK the homicide
+      rate is about 0.92 per 100,000 individuals. Where is that place? I can tell you it is a
+      place called Borden. Check it out:
+    </p>
+
+    <program language="r">
+      <input>
+borden &lt;- filter(ncovr, NAME == "Borden")
+borden$HR60
+      </input>
+    </program>
+
+    <p>
+      <url href="https://en.wikipedia.org/wiki/Borden_County,_Texas">Borden county</url> is in
+      Texas. You may be thinking "Texas Chainsaw Massacre" perhaps? No, not really. Ed Gein, who
+      inspired the film, was based and operated in Wisconsin. Borden's claim to fame is rather more
+      prosaic: it was named after Gail Borden, the inventor of condensed milk. So, what's going on
+      here? Why do we have a homicide rate in Borden that makes it look like a war zone? Is it that
+      it is only one of the six counties where alcohol is banned in Texas?
+    </p>
+
+    <p>
+      To get to the bottom of this, we can look at the variable <c>HC60</c> which tells us about
+      the homicide <em>count</em> in Borden:
+    </p>
+
+    <program language="r">
+      <input>
+borden$HC60
+      </input>
+    </program>
+
+    <p>
+      What? A total homicide count of 1. How can a county with just one homicide have a rate that
+      makes it look like the most dangerous place in the US? To answer this, let's look at the
+      population of Borden county in the 1960s, contained in the <c>PO60</c> variable.
+    </p>
+
+    <program language="r">
+      <input>
+borden$PO60
+      </input>
+    </program>
+
+    <p>
+      Well, there were about 1000 people living there. It is among some of the least populous
+      counties in our data:
+    </p>
+
+    <program language="r">
+      <input>
+summary(ncovr$PO60)
+      </input>
+    </program>
+
+    <p>
+      If you contrast that population count with the population of the average county in the US,
+      that's tiny. One homicide in such a small place can end up producing a big rate. Remember
+      that the rate is simply dividing the number of relevant events by the exposure variable (in
+      this case, population) and multiplying by a constant (in this case, 100,000 since we
+      expressed crime rates in those terms). Most times Borden looks like a very peaceful place:
+    </p>
+
+    <program language="r">
+      <input>
+borden$HR70
+borden$HR80
+borden$HR90
+      </input>
+    </program>
+
+    <p>
+      It has a homicide rate of 0 in most decades. But it only takes one homicide and, bang, it
+      goes top of the league. So a standard map of rates is bound to be noisy. There is the
+      instability that is introduced by virtue of having areas that may be sparsely populated and
+      in which one single event, like in this case, will produce a very noticeable change in the
+      rate.
+    </p>
+
+    <p>
+      In fact, if you look at the counties with the highest homicide rate in the "ncovr" dataset,
+      you will notice all of them are places like Borden, areas that are sparsely populated, not
+      because they are that dangerous, but because of the instability of rates. Conversely, the
+      same happens with those places with the lowest rate. They tend to be areas with a very small
+      sample size.
+    </p>
+
+    <p>
+      This is a problem that was first noted by epidemiologists doing disease mapping. But a number
+      of other disciplines have now noted this and used some of the approaches developed by public
+      health researchers that confronted this problem when producing maps of disease (<em>aside</em>:
+      techniques and approaches used by spatial epidemiologists are very similar to those used by
+      criminologists, in case you ever think of changing careers or need inspiration for how to
+      solve a crime analysis problem).
+    </p>
+
+    <p>
+      One way of dealing with this is by <alert>smoothing</alert> or <alert>shrinking</alert> the
+      rates. This basically, as the word implies, aims for a smoother representation that avoids
+      hard spikes associated with random noise. There are different ways of doing that. Some ways
+      use a non-spatial approach to smoothing, using something called a <alert>empirical Bayesian
+      smoother</alert>. How does this work? This approach takes the raw rates and tries to "shrink"
+      them towards the overall average. What does this mean? Essentially, we compute a weighted
+      average between the raw rate for each area and the global average across all areas, with
+      weights proportional to the underlying population at risk. What this procedure does is
+      adjusting considerably (brought closer to the global average) the rates of smaller areas
+      (those with a small population at risk), whereas the rates for the larger areas will barely
+      change.
+    </p>
+
+    <p>
+      Here we are going to introduce the approach implemented in <c>DCluster</c>, a package
+      developed for epidemiological research and detection of clusters of disease. Specifically, we
+      can implement the <c>empbaysmooth()</c> function which creates a smooth relative risks from a
+      set of expected and observed number of cases using a Poisson-Gamma model as proposed by
+      <xref ref="Clayton_1987" text="custom">Clayton and Kaldor (1987)</xref>. The function
+      <c>empbaysmooth()</c> expects two parameters, the <alert>expected</alert> value and the
+      <alert>observed</alert> value. Let's define them first.
+    </p>
+
+    <program language="r">
+      <input>
+#First we define the observed number of cases
+ncovr$observed &lt;- ncovr$HC60
+#To compute the expected number of cases through indirect standardisation
+#we need the overall incidence ratio
+overall_incidence_ratio &lt;- sum(ncovr$HC60)/sum(ncovr$PO60)
+#The expected number of cases can then be obtained by multiplying the overall
+#incidence rate by the population
+ncovr$expected &lt;- ncovr$PO60 * overall_incidence_ratio
+      </input>
+    </program>
+
+    <p>
+      With this parameters we can obtain the raw relative risk:
+    </p>
+
+    <program language="r">
+      <input>
+ncovr$raw_risk &lt;- ncovr$observed / ncovr$expected
+summary(ncovr$raw_risk)
+      </input>
+    </program>
+
+    <p>
+      And then estimate the smoothed relative risk:
+    </p>
+
+    <program language="r">
+      <input>
+res &lt;- empbaysmooth(ncovr$observed, ncovr$expected)
+      </input>
+    </program>
+
+    <p>
+      In the new object we generated, which is a list, you have an element which contains the
+      computed rates. We can add those to our dataset:
+    </p>
+
+    <program language="r">
+      <input>
+ncovr$H60EBS &lt;- res$smthrr
+summary(ncovr$H60EBS)
+      </input>
+    </program>
+
+    <p>
+      We can observe that the dispersion narrows significantly and that there are fewer observations
+      with extreme values once we use this smoother.
+    </p>
+
+    <p>
+      Instead of shrinking to the global relative risk, we can shrink to a relative rate based on
+      the neighbours of each county. Shrinking to the global risk ignores the spatial dimension of
+      the phenomenon being mapped out and may mask existing heterogeneity. If instead of shrinking
+      to a global risk, we shrink to a local rate, we may be able to take unobserved heterogeneity
+      into account. <xref ref="Marshall_1991" text="custom">Marshall (1991)</xref> proposed a
+      local smoother estimator in which the crude rate is shrunk towards a local, "neighbourhood",
+      rate. To compute this, we need the list of neighbours that surround each county (we will
+      discuss this code in Chapter 11, so for now just trust we are computing the rate of the areas
+      that surround each country):
+    </p>
+
+    <program language="r">
+      <input>
+ncovr_sp &lt;- as(ncovr, "Spatial")
+w_nb &lt;- poly2nb(ncovr_sp, row.names=ncovr_sp$FIPSNO)
+eb2 &lt;- EBlocal(ncovr$HC60, ncovr$PO60, w_nb)
+ncovr$HR60EBSL &lt;- eb2$est * 100000
+      </input>
+    </program>
+
+    <p>
+      We can now plot the maps and compare them:
+    </p>
+
+    <program language="r">
+      <input>
+tmap_mode("plot")
+current_style &lt;- tmap_style("col_blind")
+
+map1 &lt;- tm_shape(ncovr) +
+  tm_fill("HR60", style="quantile",
+          title = "Raw rate",
+          palette = "Reds") +
+  tm_layout(legend.position = c("left", "bottom"),
+            legend.title.size = 0.8, legend.text.size = 0.5)
+
+map2 &lt;- tm_shape(ncovr) +
+  tm_fill("HR60EBSL", style="quantile",
+          title = "Local Smooth",
+          palette = "Reds") +
+  tm_layout(legend.position = c("left", "bottom"),
+            legend.title.size = 0.8, legend.text.size = 0.5)
+
+tmap_arrange(map1, map2)
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-smooth-maps">
+      <caption>Compare raw and smoothed rates across counties in the USA</caption>
+      <image source="external/fig-ch3-smooth-maps.png">
+        <description>
+          Two shaded maps of counties in the United States. Both maps use five shades of red,
+          getting darker to represent higher values, the first one corresponding to 'Raw rate', the
+          second to 'Local Smooth', according to their legends. The first map is more blotchy than
+          the second, with some lighter counties amidst darker red ones, and vice versa. The second
+          map has much clearer contiguous blocks sharing the same colour. In both maps, the
+          southeast has the most concentration of dark red, with some patches in the south and
+          southwest.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      Notice that the quantiles are not the same, so that will make your comparison difficult.
+      Let's look at a boxplot of these variables. In the map of raw rates, we have the most
+      variation.
+    </p>
+
+    <program language="r">
+      <input>
+#Boxplots with base R graphics
+boxplot(ncovr$HR60, ncovr$HR60EBSL,
+        main = "Homicide per 100,000 people",
+        names = c("Raw rate",
+                  "Local base smoother"),
+        ylab = "Rates")
+      </input>
+    </program>
+
+    <figure xml:id="fig-ch3-smooth-boxplot">
+      <caption>Boxplots to compare variation in rates</caption>
+      <image source="external/fig-ch3-smooth-boxplot.png">
+        <description>
+          A box plot titled 'Different rates of homicide per hundred thousand people'. The vertical
+          axis is labeled 'Rates', ranging from zero to nearly one hundred. Two datasets are
+          depicted, 'Raw rate', and 'Local base smoother'. The first, 'Raw rate', has many more
+          outliers above the maximum, which is marked around nineteen. The outliers are numerous
+          until forty, sparse until sixty, and one reaches nearly one hundred. On the other hand,
+          'Local base smoother' has much fewer outliers, and they are all close to the maximum,
+          perhaps five units above at most.
+        </description>
+      </image>
+    </figure>
+
+    <p>
+      The range for the raw rates is nearly 93. Much of the variation in observed homicide rates by
+      county is attributable to statistical noise due to the small number of (observed and expected)
+      homicides in low-population counties. Because of this noise, a disproportionate fraction of
+      low-population counties are observed to have extremely high (or low) homicide rates when
+      compared to typical counties in the United States. With smoothing, we reduce this problem, and
+      if you contrast the maps you will see how this results in a clearer and smoother spatial
+      pattern for the rate that is estimated borrowing information from their neighbours.
+    </p>
+
+    <p>
+      So to smooth or not to smooth? Clearly we can see how smoothing stabilises the rates and
+      removes noise. But as <xref ref="Gelman_1999" text="custom">Gelman and Price (1999)</xref>
+      suggests this introduces other artifacts and autocorrelation into our estimates. Some people
+      are also not too keen on maps of statistically adjusted estimates. Yet, the conclusions one
+      can derive from mapping raw rates (<em>when</em> the denominator varies significantly and we
+      have areas with small sample size) means that smoothing is often a preferable alternative
+      (<xref ref="Waller_2004" text="custom">Waller and Gotway, 2004</xref>). The problem we
+      have with maps of estimates is that we need information about the variability and it is hard
+      to map this out in a convenient way
+      (<xref ref="Gelman_1999" text="custom">Gelman and Price, 1999</xref>).
+      <xref ref="Lawson_2006" text="custom">Lawson (2006)</xref>, in relation to the similar
+      problem of disease mapping, suggests that "at the minimum any map of relative risk for a
+      disease should be accompanied with information pertaining to estimates of rates within each
+      region as well as estimates of variability within each region" (p. 38), whereas "at the other
+      extreme it could be recommended that such maps be only used as a presentational aid, and not
+      as a fundamental decision-making tool" (p. 38).
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch3-summary">
+    <title>Summary and further reading</title>
+
+    <p>
+      This chapter introduced some basic principles of thematic maps. We learned how to make them
+      using the <c>tmap</c> package, the importance of classification schemes, and how each one may
+      produce a different looking map, which may tell a different story. For further reading,
+      <xref ref="Brewer_2006" text="custom">Brewer (2006)</xref> provides a brief condensed
+      introduction to thematic mapping for epidemiologists but that can be generally extrapolated
+      for crime mapping purposes. We have talked about the potential to develop misleading maps, and
+      <xref ref="Monmonier_1996" text="custom">Monmonier (1996)</xref> "How to lie with maps"
+      provides good guidance to avoid our negligent choices when producing a map confuse the
+      readers. <xref ref="Carr_2010" text="custom">Carr and Pickle (2010)</xref> offers a more
+      detailed treatment of small multiples and micromaps.
+    </p>
+
+    <p>
+      Aside from the issues we discussed around the computation and mapping of rates, there is a
+      growing literature that is identifying the problem of ignoring that rates (as a standardising
+      mechanism) using population in the denominator assumes that the relationship between crime and
+      population is linear, when this is not generally the case.
+      <xref ref="Oliveira_2021" text="custom">Oliveira (2021)</xref> discusses the problem and
+      provides some solutions. Mapping rates, more generally, has been more thoroughly discussed
+      within spatial epidemiology than in criminology. There is ample literature on disease mapping
+      that address in more sophisticated ways some of the issues we introduce here (see
+      <xref ref="Waller_2004" text="custom">Waller and Gotway, 2004</xref>,
+      <xref ref="Lawson_2021a" text="custom">Lawson, 2021a</xref>,
+      <xref ref="Lawson_2006" text="custom">Lawson, 2006</xref>, or
+      <xref ref="Lawson_2021b" text="custom">Lawson, 2021b</xref>). Much of this work on
+      spatial epidemiology adopts a Bayesian framework. We will talk a bit more about this later
+      on, but if you want a friendly introduction to Bayesian data analysis we recommend
+      <xref ref="McElreath_2018" text="custom">McElreath (2018)</xref>.
+    </p>
+
+  </section>
+
+
 </chapter>
