@@ -379,7 +379,7 @@ hist(multiplicity(bur_ppp))
 
     <figure xml:id="fig-multiplicity-histogram">
       <caption>Histogram of incidents in overlapping coordinates (multiplicity)</caption>
-      <image source="figure-ch07/multiplicity-histogram.png">
+      <image source="figure-ch07/quadrat-count.png">
         <description>A bar chart titled 'Histogram of multiplicity, bur_ppp', with bars
         shaded grey. The vertical axis is labeled 'Frequency', and ranges from zero to eight
         hundred, with notches every two hundred values. The horizontal axis is labeled
@@ -388,7 +388,6 @@ hist(multiplicity(bur_ppp))
         bar being close to half of the previous one.</description>
       </image>
     </figure>
-
     <p>
       In the case of crime, as we have hinted some, of this may be linked to the nature of
       crime itself. Hint: repeat victimisation. It is estimated that between 7 and 33% of
@@ -571,7 +570,7 @@ plot(q, main = "Quadrat Count")
 
     <figure xml:id="fig-quadrat-count">
       <caption>Count of burglaries in quadrats</caption>
-      <image source="figure-ch07/quadrat-count.png">
+      <image source="figure-ch07/csr-simulation.png">
         <description>The outline of Manhattan is divided, using five horizontal lines, into
         sections. Starting from the tip, the spacing of the lines is even. Numbers appear
         in each section, roughly corresponding to their area, except for the fourth from the
@@ -607,7 +606,7 @@ plot(intensity(q_hex, image = TRUE), main = "Intensity map")
 
     <figure xml:id="fig-hexagon-intensity">
       <caption>Intensity map of burglaries per hexagon</caption>
-      <image source="figure-ch07/hexagon-intensity.png">
+      <image source="figure-ch07/random-quadrat-count.png">
         <description>A shaded map of Manhattan, labeled 'Intensity map'. A legend to the
         right matches a gradient from dark blue to yellow with numbers, from zero to small
         fractions represented in scientific notation. Most of Manhattan is blue, with red
@@ -658,9 +657,9 @@ plot(poisson_ppp, main = "Complete Spatial Randomness")
       </input>
     </program>
 
-    <figure xml:id="fig-csr-simulation">
+   <figure xml:id="fig-csr-simulation">
       <caption>Simulated complete spatial randomness</caption>
-      <image source="figure-ch07/csr-simulation.png">
+        <image source="figure-ch07/kde-pixel-contour-persp.png">
         <description>A black square, with many small black circles spread out inside of it,
         titled 'Complete Spatial Randomness'. The circles form clusters and line-like shapes
         here and there, with many open spaces present.</description>
@@ -693,7 +692,7 @@ plot(q2, main = "Quadrat Count")
 
     <figure xml:id="fig-random-quadrat-count">
       <caption>Count of our random points in quadrats</caption>
-      <image source="figure-ch07/random-quadrat-count.png">
+        <image source="figure-ch07/kde-bandwidth-comparison.png">
         <description>A six by six grid with numbers in each cell, titled 'Quadrat Count'.
         The numbers range from two to fifteen, with no particular pattern.</description>
       </image>
@@ -857,7 +856,7 @@ persp(ds, main = 'Perspective plot')
 
       <figure xml:id="fig-kde-pixel-contour-persp">
         <caption>Visualisations of intensity of burglary in Manhattan</caption>
-        <image source="figure-ch07/kde-pixel-contour-persp.png">
+        <image source="figure-ch07/kde-adaptive-bandwidth.png">
           <description>Three plots with shapes of Manhattan, titled 'Pixel image', 'Contour
           plot', and 'Perspective plot'. The 'Pixel image' plot uses the gradient from blue
           to yellow that we have seen before, legend included. However the colours change
@@ -960,7 +959,7 @@ plot(density.ppp(jitter_bur, sigma = bw.scott(jitter_bur) ,edge=T),
 
       <figure xml:id="fig-kde-bandwidth-comparison">
         <caption>Kernel density maps with different bandwidth estimation algorithms</caption>
-        <image source="figure-ch07/kde-bandwidth-comparison.png">
+        <image source="figure-ch07/kde-weighted.png">
           <description>Three different shaded maps of Manhattan, titled 'Diggle', 'PPL',
           and 'Scott'. Each has a legend with a gradient from blue to yellow, though
           slightly different values. The first, 'Diggle', shows a mostly blue Manhattan,
@@ -1014,7 +1013,7 @@ plot(adaptive.density(jitter_bur, f=0.1, nrep=30, verbose=FALSE),
 
       <figure xml:id="fig-kde-adaptive-bandwidth">
         <caption>Adaptive bandwidth method for estimating bandwidth for KDE map</caption>
-        <image source="figure-ch07/kde-adaptive-bandwidth.png">
+        <image source="figure-ch07/kde-weighted.png">
           <description>Another shading of Manhattan with a legend containing a gradient from
           blue to yellow, titled 'adaptive bandwitdth method'. The island is mostly blue,
           with smooth patches of purple and red in the south and north. Yellow appears in
@@ -1119,7 +1118,7 @@ plot(density.ppp(jitter_bur, kernel = "disc", sigma = bw.ppl(jitter_bur), edge=T
 
       <figure xml:id="fig-kde-kernel-shapes">
         <caption>KDE maps created with different kernel shapes</caption>
-        <image source="figure-ch07/kde-kernel-shapes.png">
+        <image source="figure-ch07/kde-raster.png">
           <description>Four tiny shaded maps of Manhattan, with barely any discernable
           difference. They are titled 'Gaussian', 'epanechnikov', 'Quartic', and
           'Disc'.</description>
@@ -1167,7 +1166,7 @@ plot(density.ppp(bur_ppp_m, sigma = bw.ppl(bur_ppp_m), edge = T,
 
       <figure xml:id="fig-kde-weighted">
         <caption>Weighting KDE estimates</caption>
-        <image source="figure-ch07/kde-weighted.png">
+        <image source="figure-ch07/kde-leaflet-manhattan.png">
           <description>This shaded map of Manhattan is titled 'Weighted Points'. Rather
           than blotches or speckles, the blue is broken up by thicker points of red, which
           sometimes turn into yellow at their centre in the north.</description>
@@ -1220,7 +1219,7 @@ plot(r1, main = "Raster")
 
       <figure xml:id="fig-kde-raster">
         <caption>Raster image of KDE output</caption>
-        <image source="figure-ch07/kde-raster.png">
+        <image source="figure-ch07/kde-random-poisson.png">
           <description>A different looking shaded map of Manhattan, titled 'Raster'. The
           landmass is shaded light grey, and large numbers appear on notches on the vertical
           and horizontal axis. A legend to the right increases from zero as grey or
@@ -1303,17 +1302,6 @@ nyc_map
         </input>
       </program>
 
-      <figure xml:id="fig-kde-leaflet-manhattan">
-        <caption>Leaflet map for exploring KDE layer of burglaries in Manhattan</caption>
-        <image source="figure-ch07/kde-leaflet-manhattan.png">
-          <description>A monochrome leaflet street map of Manhattan and surrounding area,
-          with a red shading on some areas of Manhattan. The top right contains a legend
-          labeled 'Burglary map', with a gradient from transparent white to red, with values
-          from point one five to point three. The areas on the map which appear red are
-          mostly in the south and north of Manhattan, as before.</description>
-        </image>
-      </figure>
-
       <p>
         And there you have it. Perhaps those familiar with Manhattan have some guesses as to
         what may be going on there?
@@ -1373,7 +1361,7 @@ plot(density.ppp(poisson_ppp, kernel = "quartic", sigma = bw.diggle(poisson_ppp)
 
       <figure xml:id="fig-kde-random-poisson">
         <caption>Kernel density map for quartic kernel</caption>
-        <image source="figure-ch07/kde-random-poisson.png">
+        <image source="figure-ch07/kernel-density-map.png">
           <description>A square that is shaded blue to yellow, with the title 'KDE for
           random poisson point process'. To the right a gradient matches blue to red to
           yellow with increasing numbers. The shading varies smoothly, with hotspots of
