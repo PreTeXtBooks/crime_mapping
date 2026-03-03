@@ -110,16 +110,40 @@ library(cartogram)
     <subsection xml:id="subsec-binning-techniques">
       <title>Different binning techniques</title>
 
+      <p>
+        Binning itself is a general term used to describe the grouping of a dataset's values
+        into smaller groups. The bins can be based on a variety of factors and attributes such
+        as spatial and temporal and can thus be used for many different projects.
+      </p>
+
       <subsubsection xml:id="subsubsec-choropleth-binning">
         <title>Choropleth maps</title>
 
         <p>
-          Choropleth maps are a type of map that uses binning. They group similar data points
-          together to show a range of data instead of many individual points. We have covered
-          this extensively, and it is often the best approach to consider spatial grouping of
-          your point variables, because the polygons (shapes) to which you are aggregating your
-          points are <em>meaningful</em>. But sometimes there is just not a geography present to
-          meet your needs.
+          You might be thinking, <q>grouping points into a larger spatial unit, haven't we
+          already done this when making choropleth maps?</q>. In a way you are right.
+          Choropleth maps are a type of map that uses binning. Proportional symbol and choropleth
+          maps group similar data points together to show a range of data instead of many
+          individual points. We've covered this extensively, and it is often the best approach
+          to consider spatial grouping of your point variables, because the polygons (shapes)
+          to which you are aggregating your points are <em>meaningful</em>. You can group into
+          LSOAs, as we did in previous chapters, because you want to show variation in
+          neighbourhoods. Or you can group into police force areas because you want to look at
+          differences between those units of analysis. But sometimes there is just not a
+          geography present to meet your needs.
+        </p>
+
+        <p>
+          Let's say you are conducting some days of action in Manchester city centre, focusing
+          on antisocial behaviour. You are going to put up some information booths and staff
+          them with officers to engage with the local population about antisocial behaviour.
+          For these to be most effective, as an analyst you decide that they should go into the
+          areas with the highest <em>count</em> of antisocial behaviour. You want to be very
+          specific about where you focus your operational attention and, thus, the LSOA level
+          may be too large. One approach can be to split central Manchester into some smaller
+          polygons, and just calculate the number of antisocial behaviour incidents recorded in
+          each. That way you can then decide to put your information booths somewhere inside
+          the top 5 highest count bins.
         </p>
 
       </subsubsection>
@@ -131,8 +155,14 @@ library(cartogram)
           The aggregation of incident point data to regularly shaped grids is used for many
           reasons such as normalizing geography for mapping or to mitigate the issues of using
           irregularly shaped polygons created arbitrarily (such as county boundaries or block
-          groups that have been created from a political process). Rectangular binning is the
-          simplest binning method and as such it is heavily used.
+          groups that have been created from a political process). Regularly shaped grids can
+          only be comprised of equilateral triangles, squares, or hexagons, as these three
+          polygon shapes are the only that can tessellate (repeating the same shape over and
+          over again, edge to edge, to cover an area without gaps or overlaps) to create an
+          evenly spaced grid. Rectangular binning is the simplest binning method and as such it
+          is heavily used. However, there are some reasons why rectangular bins are less
+          preferable over hexagonal bins. Before we cover this, let's have a look at hexagonal
+          bins.
         </p>
 
       </subsubsection>
@@ -144,9 +174,20 @@ library(cartogram)
           In many applications binning is done using a technique called
           <term>hexagonal binning</term>. This technique uses hexagon shapes to create a grid
           of points and develops a spatial histogram that shows different data points as a range
-          or group of pairs with common distances and directions. Hexagonal binning was first
+          or group of pairs with common distances and directions. In hexagonal binning the
+          number of points falling within a particular hexagon in a gridded surface is what
+          makes the different colors to easily visualize data. Hexagonal binning was first
           developed in 1987 and today <q>hexbinning</q> is conducted by laying a hexagonal grid
-          on top of two-dimensional data.
+          on top of two-dimensional data. Once this is done users can conduct data point counts
+          to determine the number of points for each hexagon. The bins are then symbolized
+          differently to show meaningful patterns in the data.
+        </p>
+
+        <p>
+          So how can we use hexbinning to solve our antisocial behaviour days of action task?
+          Well let's say we split Manchester city centre into hexagons, and count the number of
+          antisocial behaviour instances in these. We can then identify the top hexagons, and
+          locate our booths somewhere within these.
         </p>
 
       </subsubsection>
@@ -158,9 +199,11 @@ library(cartogram)
 
       <p>
         First, make sure you have the appropriate packages loaded. Also let's get some data.
-        This data is one year's worth of antisocial behaviour from the
-        <url href="https://data.police.uk">police.uk</url> data, from May 2016 to May 2017,
-        for the borough of Manchester.
+        You could go and get this data yourself from police.uk, but as we've been through a
+        few times now, a tidied set of data is ready for you within the data provided with the
+        book (see <em>Preamble</em>). This data is one year's worth of antisocial behaviour
+        from the <url href="https://data.police.uk">police.uk</url> data, from May 2016 to
+        May 2017, for the borough of Manchester.
       </p>
 
       <program language="r" label="read-asb-data">
@@ -306,10 +349,21 @@ ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
       </figure>
 
       <p>
+        <em>Note: you might get the following prompt when you run this code: <q>The
+        <c>hexbin</c> package is required for <c>stat_binhex()</c>. Would you like to install
+        it?</q> - if you do, just choose <q>Yes</q> or quit the action and install the
+        <c>hexbin</c> package separately, and then try running the code again. Similarly if
+        you get <q>Warning: Computation failed in <c>stat_binhex()</c></q> the solution might
+        be to install this <c>hexbin</c> package.</em>
+      </p>
+
+      <p>
         Adding this basemap provides us with a bit more context. And combined with the hexbin
-        map, it is much easier to see where antisocial-behaviour concentrates. Above we used a
-        hexagon shape for our binning; however, you might choose other shapes as well. Here are
-        some thoughts on why hexagon might be your ideal choice:
+        map, it is much easier to see where antisocial-behaviour concentrates (as opposed to
+        with the point map!). Above we used a hexagon shape for our binning; however, you
+        might choose other shapes as well. We will illustrate in a moment the approach to use
+        rectangular binning, but first, we want to highlight why hexagon might still be your
+        ideal choice. Here are some thoughts:
       </p>
 
       <ul>
@@ -319,10 +373,14 @@ ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
         <li><p>When comparing polygons with equal areas, the more similar to a circle the
           polygon is, the closer to the centroid the points near the border are.</p></li>
         <li><p>Hexagons are preferable when your analysis includes aspects of connectivity or
-          movement paths.</p></li>
+          movement paths. Due to the linear nature of rectangles, fishnet grids can draw our
+          eyes to the straight, unbroken, parallel lines which may inhibit the underlying
+          patterns in the data.</p></li>
+        <li><p>If you are working over a large area, a hexagon grid will suffer less distortion
+          due to the curvature of the earth than the shape of a fishnet grid.</p></li>
         <li><p>You will find more neighbours with hexagons than square grids, if you're using a
           distance band, since the distance between centroids is the same in all six directions
-          with hexagons.</p></li>
+          with hexagons (see image below).</p></li>
       </ul>
 
       <figure xml:id="fig-hex-vs-square">
@@ -428,7 +486,9 @@ plot_grid(rectangular_bin_map, hexagonal_bin_map, heatmap, nrow =1,
         done in GIS, binning is a popular method for mapping complex data and making it
         meaningful. Binning is a good option for map makers as well as users because it makes
         data easy to understand and it can be both static and interactive on many different map
-        scales.
+        scales. If every different point were shown on a map, it would have to be a very large
+        scale map to ensure that the data points did not overlap and were easily understood by
+        people using the maps. According to Kenneth Field, an Esri Research Cartographer:
       </p>
 
       <blockquote>
@@ -440,6 +500,13 @@ plot_grid(rectangular_bin_map, hexagonal_bin_map, heatmap, nrow =1,
           (<xref ref="Field_2012b" text="custom">Field, 2012</xref>).
         </p>
       </blockquote>
+
+      <p>
+        Binning creates maps that are easier to understand, more accurate and more visually
+        appealing. Hexbin plots can be viewed as an alternative to scatter plots. The
+        hexagon-shaped bins were introduced to plot densely packed sunflower plots. They can
+        be used to plot scatter plots with high-density data.
+      </p>
 
     </subsection>
 
@@ -454,12 +521,18 @@ plot_grid(rectangular_bin_map, hexagonal_bin_map, heatmap, nrow =1,
       into these meaningful polygons to create thematic maps. However, while thematic maps are
       an accessible and visually appealing method for displaying spatial information, they can
       also be highly misleading. Irregularly shaped polygons and large differences in the size
-      of areas being mapped can introduce misrepresentation.
+      of areas being mapped can introduce misrepresentation. The message that analysts and
+      researchers want to get across might be lost, or even worse, it may misdirect the viewers
+      to erroneous conclusions. <xref ref="Field_2016" text="custom">Field (2016)</xref>
+      provides a helpful discussion of the problem illustrating the case with UK election maps.
+      It is worth reading.
     </p>
 
     <p>
       Fortunately, there are many methods in R to enhance the legibility of geographic
-      information and the interpretability of what it is trying to communicate. Here we focus
+      information and the interpretability of what it is trying to communicate. Selecting the
+      appropriate method might depend on the research question being posed (e.g., clustering)
+      and the data itself. Here we focus
       on <term>cartograms</term>. A cartogram is a method of distortion whereby distinct
       definable spatial regions on a map (e.g., countries, provinces, etc.) are distorted in
       some way through being weighted by some quantitative value (e.g., population count,
@@ -470,7 +543,17 @@ plot_grid(rectangular_bin_map, hexagonal_bin_map, heatmap, nrow =1,
       Let's explore this using the example of the results of the 2016 EU referendum which took
       place in the United Kingdom, where citizens voted to leave the European Union (in a
       process termed <q>Brexit</q>). We can look at the data on voting results at Local
-      Authority level.
+      Authority level. It is well known that those who voted to remain in the EU predominantly
+      clustered in the Local Authorities within London. A simple thematic map does not
+      necessarily communicate this well because Local Authorities are both small and densely
+      populated in London, compared to much larger elsewhere.
+    </p>
+
+    <p>
+      You can download the full set of EU referendum result data as a csv from
+      <url href="https://www.electoralcommission.org.uk/find-information-by-subject/elections-and-referendums/past-elections-and-referendums/eu-referendum/eu-referendum-result-visualisations">the Electoral Commission website</url>.
+      We've already done this and included it in our data supplied with the book. Let's read
+      it straight into R:
     </p>
 
     <program language="r" label="read-eu-ref">
@@ -481,7 +564,12 @@ eu_ref &lt;- read_csv("data/EU-referendum-result-data.csv")
 
     <p>
       We also need a spatial object to join our attribute table to, in order to map it.
-      Specifically the shapefile for English Local Authorities.
+      In <em>Appendix C: Sourcing geographical data for crime analysis</em>, we detail how one
+      might go about finding such spatial data, if it is not already provided. For now, we can
+      use the data which comes with this book from the supplementary materials. Specifically
+      the shapefile for English Local Authorities. This file is called
+      <c>england_lad_2011_gen.shp</c> and is found in the <c>England_lad_2011_gen</c>
+      sub-folder.
     </p>
 
     <program language="r" label="read-la-shapefile">
@@ -546,7 +634,17 @@ ggplot() +
       <c>cartogram_cont()</c> function, we specify the shape file and the variable which it
       should use to distort the polygon by. In our dataset we have a variable
       <c>Electorate</c> which refers to the total number of registered electors in that Local
-      Authority.
+      Authority. We can use this variable to distort our polygons and create our cartogram.
+    </p>
+
+    <p>
+      If you run this, it might take a long time. This function, while it looks nice and
+      simple, is actually very computationally taxing for your computer. I do have a tip for
+      you if you want to make sure the process does not take too long. You can set another
+      parameter in the cartogram function which is the <c>itermax=</c> parameter. This
+      specifies the maximum number of iterations we are happy to sit through for our cartogram.
+      If you do not specify an alternative the default is set to 15. Let's set to 5 for the
+      sake of speed:
     </p>
 
     <program language="r" label="create-cartogram">
@@ -555,6 +653,12 @@ ggplot() +
 eu_cartogram &lt;- cartogram_cont(eu_sf, "Electorate", itermax = 5)
       </input>
     </program>
+
+    <p>
+      This will be faster (but may not result in the best possible cartogram output). Once
+      your cartogram has been created, you can now plot again the referendum results, but
+      using the electorate to change the size of the Local Authority:
+    </p>
 
     <figure xml:id="fig-eu-cartogram">
       <caption>Cartogram weighting each polygon (Local Authority) by the size of its
@@ -576,7 +680,10 @@ ggplot() +
 
     <p>
       We can now see London much better, and see that darker-coloured cluster where a much
-      smaller percentage of people voted leave.
+      smaller percentage of people voted leave. We can eyeball where London may be, as this
+      continuous area cartogram tries to maintain some fidelity to our original shapes, while
+      weighting them by some variable of interest, in our case the electorate in each Local
+      Authority.
     </p>
 
     <subsection xml:id="subsec-dorling-cartogram">
@@ -585,8 +692,11 @@ ggplot() +
       <p>
         While the continuous area cartogram we created above tries to maintain some fidelity
         to our original shapes, other approaches take more freedom when applying
-        transformations. In a <term>Dorling cartogram</term>, we achieve this by using the
-        <c>cartogram_dorling()</c> function.
+        transformations. Sometimes, maintaining a resemblance to the original geometry of each
+        polygon may not be important. In that case, you might be interested in creating a
+        <term>Dorling cartogram</term>. We can achieve this by using the
+        <c>cartogram_dorling()</c> function. Again we specify the sf object, and the variable
+        which we use to scale our areas.
       </p>
 
       <program language="r" label="create-dorling">
@@ -616,7 +726,13 @@ ggplot() +
       <p>
         This map has transformed each Local Authority's shape into a circle, where the radius
         is determined as a function of the variable we supplied, which is our Electorate in
-        each LA.
+        each LA. The shading here is again provided by the percentage of people who voted to
+        leave in each area, with lighter values indicating more people voting to leave, and
+        darker values indicating fewer people voting to leave the EU. However, the relations
+        of these Local Authorities is tough to maintain here, and we may be hard-pressed to
+        identify London's boroughs out of this collection. However, Dorling cartograms may
+        have their use and place. You may read up more about them in
+        <xref ref="Dorling_1996" text="custom">Dorling (1996)</xref>.
       </p>
 
     </subsection>
@@ -627,37 +743,76 @@ ggplot() +
     <title>Bivariate maps</title>
 
     <p>
-      Usually in your thematic maps you are mapping one variable. However, occasionally, you
-      might want to use your map to illustrate the relationship between <em>two</em> variables.
-      In this case, you may want to create a <term>Bivariate Choropleth Map</term>. Bivariate
-      choropleths follow the same concept as the univariate ones (which display only one
-      variable), except they show two variables at once. This is achieved through the creative
-      use of colour.
+      Usually in your thematic maps you are mapping one variable. In the distortion examples
+      above, we incorporate a second variable in order to make the map more legible. However,
+      occasionally, you might want to use your map to illustrate the relationship between
+      <em>two</em> variables. In this case, you may want to create a
+      <term>Bivariate Choropleth Map</term>. Bivariate choropleths follow the same concept as
+      the univariate ones (which display only one variable), except they show two variables at
+      once. This is achieved through the creative use of colour.
+    </p>
+
+    <p>
+      We first came across the idea of bivariate choropleth maps from the blog of
+      <xref ref="Stevens_2015" text="custom">Stevens (2015)</xref>. We recommend having a
+      read as he discusses in great detail how to develop the colour schemes necessary for
+      these maps. The idea is that there are two main colours, each one representing gradual
+      change in one of our two variables of interest. Then, these two colours are combined to
+      create an overlapping colour scheme.
     </p>
 
     <p>
       The process itself is not too complicated. We start with binning our two variables into
       classes. If we bin variable 1 into <m>n</m> classes, and then again variable 2 into
       <m>n</m> classes, then when we compare them across one another to create our bivariate
-      map, we will end up with <m>n^2</m> classes. Creating the map boils down to five key
-      steps. First, we take our two variables of interest, and create bins. Second, we create
-      a new variable, which we will use for the shading. Third we create our colour scheme.
-      Fourth, we join this to our <c>sf</c> object. And we map!
+      map, we will end up with <m>n^2</m> classes. For example, if we bin both variables into
+      three classes (low, medium, high), then when displaying them together, we will have nine
+      classes to visualise. The blog by
+      <xref ref="Stevens_2015" text="custom">Stevens (2015)</xref> illustrates with nice
+      visuals, so we recommend having a look. However, the practical example is in QGIS, and
+      here we are working in R. There have been adaptations into R (e.g., see
+      <xref ref="Grossenbacher_2019" text="custom">Grossenbacher (2019)</xref>) which we can
+      borrow from here too.
+    </p>
+
+    <p>
+      Creating the map boils down to five key steps. First, we take our two variables of
+      interest, and create bins. Second, we create a new variable, which we will use for the
+      shading. Third we create our colour scheme. Fourth, we join this to our <c>sf</c>
+      object. And, we map! Let's go through these steps now. Using the example of voting to
+      leave the EU.
     </p>
 
     <p>
       Using the EU referendum example, it may be an interesting question to look into not only
       how the voting outcome was distributed (<c>Pct_Leave</c>) but how this varies with voter
-      turnout (<c>Pct_Turnout</c>).
+      turnout (<c>Pct_Turnout</c>). We might be interested in areas with high turnout and high
+      percentage voting to leave, as these may be areas where people felt passionately. On the
+      other hand, other areas may have had low turnout, which may have influenced the result,
+      and in those places, how did people who did turn up vote? These are the kinds of
+      questions we can answer with a bivariate map.
     </p>
 
     <subsection xml:id="subsec-bivariate-step1">
       <title>Step 1: Bin our variables of interest</title>
 
       <p>
+        We are interested in two key variables: <c>Pct_Leave</c> - the percentage of people
+        who voted to leave the EU, and <c>Pct_Turnout</c> - the percentage of the electorate
+        who actually voted. These are both numeric continuous variables. In order to create our
+        bivariate choropleth map, we have to bin these values into <m>n</m> discrete
+        categories. Here let's go with <m>n = 3</m>.
+      </p>
+
+      <p>
         We can use the <c>cut()</c> and the <c>quantile()</c> functions in base R to class our
-        variable into three quantiles. So first, let's create the breaks for the
-        <c>Pct_Leave</c> variable.
+        variable into three quantiles. The <c>quantile()</c> function identifies the sample
+        quantiles in a continuous variable. We need to include the parameters <c>x=</c>: the
+        numeric vector whose sample quantiles are wanted (in this case, our variables
+        <c>Pct_Leave</c> and <c>Pct_Turnout</c>), and <c>probs=</c>: numeric vector of
+        probabilities with values in [0,1]. We can use the sequence generator function
+        <c>seq()</c> to generate these from 0 to 1, by the increment of <m>\frac{1}{3}</m>
+        for 3 groups. So first, let's create the breaks for the <c>Pct_Leave</c> variable.
       </p>
 
       <program language="r" label="leave-breaks">
@@ -736,14 +891,33 @@ eu_sf &lt;- eu_sf %&gt;%
         </input>
       </program>
 
+      <p>
+        We now have a new column, called group, which tells us for each Local Authority, which
+        quartile it falls into for each variable. For example, a value of <q>1 - 1</q> means
+        the Local Authority belongs to the first quartile in both variables. This area would
+        be considered to have low percentage voting leave, and also low turnout. On the other
+        hand, <q>3 - 1</q> means that there was high turnout, but a low percentage voted to
+        leave. We use this variable to assign the appropriate colour for our colour scheme for
+        each of the <m>3^2</m> (9) combinations.
+      </p>
+
     </subsection>
 
     <subsection xml:id="subsec-bivariate-step3">
       <title>Step 3: Create colour scheme</title>
 
       <p>
+        Picking a colour scheme which reflects both gradual change in each individual variable,
+        and the combined change in both is not an easy task! Luckily,
+        <xref ref="Stevens_2015" text="custom">Stevens (2015)</xref> has created some scale
+        recommendations for us to choose from. We copy two of them below, but you can see the
+        blog for another 2 options.
+      </p>
+
+      <p>
         In this code below, we specify for each of the nine values of the variable created in
-        the previous step an associated colour using the relevant hex code.
+        the previous step (<q>1 - 1</q>, <q>1 - 2</q>, <q>1 - 3</q>, <q>2 - 1</q>, ...
+        <q>3 - 3</q>) an associated colour using the relevant hex code.
       </p>
 
       <program language="r" label="bivariate-colors">
@@ -778,6 +952,14 @@ bivariate_color_scale_2 &lt;- tibble(
         </input>
       </program>
 
+      <p>
+        You can have a look at both of the colour scales we just created, and see which one
+        you like. Feel free to use either in your future bivariate mapping adventures. Or
+        construct your own, perhaps following the two additional ones provided by
+        <xref ref="Stevens_2015" text="custom">Stevens (2015)</xref>, or some entirely new
+        ones you may have constructed.
+      </p>
+
     </subsection>
 
     <subsection xml:id="subsec-bivariate-step4">
@@ -785,7 +967,9 @@ bivariate_color_scale_2 &lt;- tibble(
 
       <p>
         Now that we have a colour scheme, we can join to the spatial object, using
-        <c>left_join()</c>.
+        <c>left_join()</c>. The common element is the <c>group</c> variable, so with this
+        approach, we join the relevant colour to each value of group in that column. Let's
+        join <c>bivariate_color_scale_2</c>, the second of the two we created above.
       </p>
 
       <program language="r" label="join-colors">
@@ -793,6 +977,12 @@ bivariate_color_scale_2 &lt;- tibble(
 eu_sf &lt;- left_join(eu_sf, bivariate_color_scale_2, by = "group")
         </input>
       </program>
+
+      <p>
+        We now have an additional column in our <c>eu_sf</c> dataframe, called <c>fill_col</c>
+        which we can use to shade each local authority according to the composite variable
+        depicting the percentage who voted to leave and the percentage who turned up to vote.
+      </p>
 
     </subsection>
 
@@ -829,6 +1019,10 @@ legend &lt;- ggplot() +
         </input>
       </program>
 
+      <p>
+        This code returns the legend as a chart itself. Have a look at what it looks like:
+      </p>
+
       <figure xml:id="fig-bivariate-legend">
         <caption>Legend for bivariate map</caption>
         <program language="r" label="print-bivariate-legend">
@@ -854,9 +1048,11 @@ legend
       <p>
         Now finally we put it all on the map. For the choropleth map, we use our variable
         <c>fill_col</c> which contains the matched colour to the group that each observation
-        belongs to. We also have to add the <c>scale_fill_identity()</c> function, as the
-        values in the <c>fill_col</c> variable are actually the hex codes for the colour which
-        we use to shade the Local Authorities.
+        belongs to. We pass this in the familiar <c>geom_sf()</c> geometry and use the
+        <c>fill=</c> parameter to colour the Local Authorities according to their turnout /
+        voted leave combination. We also have to add the <c>scale_fill_identity()</c>
+        function, as the values in the <c>fill_col</c> variable are actually the hex codes
+        for the colour which we use to shade the Local Authorities.
       </p>
 
       <program language="r" label="create-biv-map">
@@ -867,6 +1063,11 @@ map &lt;- ggplot(eu_sf) +
   theme_void()
         </input>
       </program>
+
+      <p>
+        Finally, to display the legend and the map together, we can use the
+        <c>ggdraw()</c> and <c>draw_plot()</c> functions from the <c>cowplot</c> package.
+      </p>
 
       <figure xml:id="fig-bivariate-map">
         <caption>Bivariate choropleth map of voter turnout and percentage who voted to leave
@@ -885,6 +1086,19 @@ ggdraw() +
           in pink and purple. Blue and cyan appears more in the northeast.</description>
         </image>
       </figure>
+
+      <p>
+        This map may now be able to provide insight into spatial patterns in turnout and voting
+        to leave. For example, in the South you can see lots of pink, representing areas of
+        high turnout and low percentage voting to leave the EU. You can also spot the dark blue
+        areas; these are Local Authorities which saw high voter turnout and a high proportion
+        voting to leave.
+      </p>
+
+      <p>
+        Overall, these maps can help visualise two variables on one map, and motivate
+        discussion about relationships between variables in different places.
+      </p>
 
     </subsection>
 
@@ -924,16 +1138,93 @@ ggdraw() +
 
     <p>
       The <term>scale problem</term> involves results that change based on data that are
-      analyzed at higher or lower levels of aggregation (changing the number of units). The
-      <term>zonal problem</term> involves keeping the same scale of research but changing
-      the actual shape and size of those areas.
+      analyzed at higher or lower levels of aggregation (changing the number of units). For
+      example, evaluating data at the state level vs. census tract level.
     </p>
 
     <p>
-      Most often you will just have to remain aware of the MAUP and its possible effects. It
-      is possible to also use an alternative, zone-free approach to mapping these crime
-      patterns, perhaps by using kernel density estimation. We cover KDE in Chapter 7 of
-      this book.
+      The scale problem has moved to the forefront of geographical criminology as a result of
+      the recent interest in small-scale geographical units of analysis. It has been suggested
+      that smaller is better since small areas can be directly perceived by individuals and are
+      likely to be more homogenous than larger areas
+      (<xref ref="Gerell_2017" text="custom">Gerell, 2017</xref>).
+    </p>
+
+    <p>
+      The <term>zonal problem</term> involves keeping the same scale of research (say, at the
+      state level) but changing the actual shape and size of those areas.
+    </p>
+
+    <p>
+      The basic issue with the MAUP is that aggregate units of analysis are often arbitrarily
+      produced by whoever is in charge of creating the aggregate units. A classic example of
+      this problem is known as gerrymandering. Gerrymandering involves shaping and re-shaping
+      voting districts based on the political affiliations of the resident citizenry.
+    </p>
+
+    <p>
+      The inherent problem with the MAUP and with situations such as gerrymandering is that
+      units of analysis are not based on geographic principles and instead are based on
+      political and social biases. For researchers and analysts the MAUP has very important
+      implications for research findings because it is possible that as arbitrarily defined
+      units of analysis change shape findings based on these units will change as well.
+    </p>
+
+    <p>
+      When spatial data are derived from counting or averaging data within areal units, the
+      form of those areal units affects the data recorded, and any statistical measures derived
+      from the data. Modifying the areal units therefore changes the data. Two effects are
+      involved: a zoning effect arising from the particular choice of areas at a given scale;
+      and an aggregation effect arising from the extent to which data are aggregated over
+      smaller or larger areas. MAUP arises in part from edge effect. If you're interested,
+      in particular about politics and voting, you can read this interesting piece by
+      <xref ref="Bycoffe_2018" text="custom">Bycoffe (2018)</xref> to learn more about
+      gerrymandering.
+    </p>
+
+    <p>
+      The practical implications of MAUP are immense for almost all decision-making processes
+      involving mapping technology, since with the availability of aggregated maps, policy
+      could easily focus on issues and problems which might look different if the aggregation
+      scheme used were changed.
+    </p>
+
+    <p>
+      All studies based on geographical areas are susceptible to MAUP. The implications of
+      the MAUP affect potentially any area level data, whether direct measures or complex
+      model-based estimates. Here are a few examples of situations where the MAUP is expected
+      to make a difference:
+    </p>
+
+    <ul>
+      <li><p>The special case of the ecological fallacy is always present when census area data
+        are used to formulate and evaluate policies that address problems at individual level,
+        such as deprivation. Also, it is recognised that a potential source of error in the
+        analysis of census data is <q>the arrangement of continuous space into defined regions
+        for purposes of data reporting</q>.</p></li>
+      <li><p>The MAUP has an impact on indices derived from areal data, such as measures of
+        segregation, which can change significantly as a result of using different geographical
+        levels of analysis to derive composite measures.</p></li>
+      <li><p>The choice of boundaries for reporting ratios is not without consequences: when
+        the areas are too small, the values estimated are unstable; while when the areas are
+        too large, the values reported may be over-smoothed, i.e., meaningful variation may
+        be lost.</p></li>
+    </ul>
+
+    <p>
+      Most often you will just have to remain aware of the MAUP and its possible effects.
+      There are some techniques that can help you address these issues. It is possible to also
+      use an alternative, zone-free approach to mapping these crime patterns, perhaps by using
+      kernel density estimation. Here we model the relative density of the points as a density
+      surface — essentially a function of location (x,y) representing the relative likelihood
+      of occurrence of an event at that point. We cover KDE in Chapter 7 of this book.
+    </p>
+
+    <p>
+      For now, it's enough that you know of, and understand the MAUP and its implications.
+      Always be smart when choosing your appropriate spatial unit of analysis, and when you
+      use binning of any form, make sure you consider how and if your conclusions might change
+      compared to another possible approach.
     </p>
 
   </section>
@@ -945,10 +1236,15 @@ ggdraw() +
       In this chapter we explored the use of binning points into hexbins and rectangular
       grids, as well as transforming polygons in order to enhance the legibility of your maps.
       For some more information on binning, see <xref ref="Johnson_2011"/>. For transforming
-      polygons, read <xref ref="Tobler_2004"/> and <xref ref="Nusrat_2016"/>. To read up more
-      on the Modifiable Areal Unit Problem (MAUP) in general, we recommend the original
-      <xref ref="Openshaw_1981"/>. For some criminology/crime mapping specific reading, try
-      <xref ref="Rengert_2009"/> and <xref ref="Gerell_2017"/>.
+      polygons, read <xref ref="Tobler_2004"/> and <xref ref="Nusrat_2016"/>. We can also
+      suggest a read of <xref ref="Langton_2021"/>, and check out this video from SAGE methods
+      by <xref ref="Solymosi_2021"/>.
+    </p>
+
+    <p>
+      To read up more on the Modifiable Areal Unit Problem (MAUP) in general, we recommend
+      the original <xref ref="Openshaw_1981"/>. For some criminology/crime mapping specific
+      reading, try <xref ref="Rengert_2009"/> and <xref ref="Gerell_2017"/>.
     </p>
 
   </section>
