@@ -1134,7 +1134,7 @@ ggpubr::ggarrange(p1, p2, p3, nrow = 1, common.legend = TRUE)
           </input>
         </program>
         <image source="figure-ch01/census-hierarchy.png">
-          <description>Three panes showing more and more zoomed in maps of the UK, down to Manchester's Lower Layer Super Output Areas. The maps are featureless, except for borders of the different levels of areas, outlined in three different colours.</description>
+          <description>Hierarchy of Census Geographies in the UK.</description>
         </image>
       </figure>
       <p>
