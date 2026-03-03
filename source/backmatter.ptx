@@ -716,6 +716,45 @@
       <title>Journal of Quantitative Criminology</title>, 37(2):445–480, 2021.
     </biblio>
 
+    <biblio type="raw" xml:id="Wickham_2017">
+      Hadley Wickham and Garrett Grolemund.
+      <title>R for Data Science</title>.
+      O'Reilly Media, Sebastopol, CA, 2017.
+      <url href="https://r4ds.had.co.nz/" visual="r4ds.had.co.nz"/>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wickham_2019">
+      Hadley Wickham.
+      <title>Welcome to the Tidyverse</title>.
+      Journal of Open Source Software, 4(43):1686, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wickham_2019b">
+      Hadley Wickham.
+      <title>Advanced R</title>, 2nd ed.
+      CRC Press, Boca Raton, FL, 2019.
+      <url href="https://adv-r.hadley.nz/" visual="adv-r.hadley.nz"/>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chan_2020">
+      Jenny Bryan and Jim Hester.
+      <title>What They Forgot to Teach You About R</title>.
+      2020.
+      <url href="https://rstats.wtf/" visual="rstats.wtf"/>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Leyser_2015">
+      Ottoline Leyser.
+      <title>Open science must be a research priority</title>.
+      The Guardian, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ritchie_2020">
+      Stuart Ritchie.
+      <title>Science Fictions: How Fraud, Bias, Negligence, and Hype Undermine the Search for Truth</title>.
+      Metropolitan Books, New York, 2020.
+    </biblio>
+
   </references>
 
   <colophon>

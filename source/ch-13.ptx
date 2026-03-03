@@ -816,4 +816,305 @@ library(dplyr)
 
   </section>
 
+  <section xml:id="sec-ch13-exploring-data">
+    <title>Exploring data with R</title>
+
+    <subsection xml:id="subsec-ch13-playing-with-data">
+      <title>Playing around with data</title>
+
+      <p>
+        Now that we know the basic component, let's play around with using R as we will
+        throughout the book, for some data analysis. We will get some data by installing
+        a package which has data in it as well as functions, and then go on to produce
+        some basic summaries. This should give some practice!
+      </p>
+
+      <p>
+        We are going to look at some data that are part of the <em>fivethirtyeight</em>
+        package. This package contains datasets and code behind the stories in this
+        particular online magazine (<url href="http://fivethirtyeight.com/" visual="fivethirtyeight.com"/>).
+        This package is not part of the base installation of R, so you will need to
+        install it first.
+      </p>
+
+      <p>
+        Remember, first we have to load the package if we want to use it:
+      </p>
+
+      <program language="r"><input>
+library("fivethirtyeight")
+data(package="fivethirtyeight") #Show all data frames available in named package
+      </input></program>
+
+      <p>
+        Notice that this package has some datasets that relate to stories covered in this
+        newspaper that had a criminological angle. Let's look for example at the
+        <c>hate_crimes</c> dataset. How do you do that? First, we have to load the data
+        frame into our global environment. To do so use the following code:
+      </p>
+
+      <program language="r"><input>
+data("hate_crimes")
+      </input></program>
+
+      <p>
+        This function will search among all the <em>loaded</em> packages and locate the
+        <c>hate_crimes</c> dataset. Notice that it now appears in the global environment,
+        although it also says "promise" next to it. To see the data in full, you need to
+        do something to it first. So let's do that.
+      </p>
+
+      <p>
+        Every object in R can have <term>attributes</term>. These are names, dimensions
+        (for matrices and arrays: number of rows and columns) and dimension names, class
+        of object (numeric, character, etc.), length (for a vector this will be the
+        number of elements in the vector), and other user-defined ones. You can access
+        the attributes of an object using the <c>attributes()</c> function. Let's query
+        R for the attributes of this data frame.
+      </p>
+
+      <program language="r"><input>
+attributes(hate_crimes)
+      </input></program>
+
+      <p>
+        This prints out the row names (not very exciting here...) the class (see above
+        when we used <c>class()</c> function) and the names, which are the column
+        headers — or the <em>names of the variables within this dataset</em>. You can
+        see there are things like state, and share who voted for Trump in the 2016
+        election.
+      </p>
+
+      <p>
+        Now use the <c>View()</c> function to glance at your data frame. What you get
+        there is a spreadsheet with 12 variables and 51 observations. Each variable in
+        this case is providing you with information (demographics, voting patterns, and
+        hate crime) about each of the US states.
+      </p>
+
+      <p>
+        Ok, let's now have a quick look at the data. There are so many different ways of
+        producing summary stats for data stored in R that is impossible to cover them
+        all! We will just introduce a few functions that you may find useful for
+        summarising data. Before we do any of that, it is important you get a sense for
+        what is available in this dataset. Go to the help tab and in the search box input
+        the name of the data frame, this will take you to the documentation for this data
+        frame. Here you can see a list of the available variables.
+      </p>
+
+      <p>
+        Let's start with the <em>mean</em>. This function takes as an argument the
+        numeric variable for which you want to obtain the mean. If you want to obtain the
+        mean of the variable that gives us the proportion of people that voted for Donald
+        Trump, you can use the following expression:
+      </p>
+
+      <program language="r"><input>
+mean(hate_crimes$share_vote_trump)
+      </input></program>
+
+      <p>
+        Another function you may want to use with numeric variables is <c>summary()</c>:
+      </p>
+
+      <program language="r"><input>
+summary(hate_crimes$share_vote_trump)
+      </input></program>
+
+      <p>
+        This gives you the five number summary (minimum, first quartile, median, third
+        quartile, and maximum, plus the mean and the count of missing values if there
+        are any).
+      </p>
+
+      <p>
+        You don't have to specify a variable; you can ask for these summaries from the
+        whole data frame:
+      </p>
+
+      <program language="r"><input>
+summary(hate_crimes)
+      </input></program>
+
+      <p>
+        There are multiple ways of getting results in R. Particularly for basic- and
+        intermediate-level statistical analysis many core functions and packages can give
+        you the answer that you are looking for. For example, there are a variety of
+        packages that allow you to look at summary statistics using functions defined
+        within those packages. You will need to install these packages before you can
+        use them.
+      </p>
+
+      <p>
+        We are only going to introduce one of them here: <c>skimr</c>. You will need to
+        install it before anything else.
+      </p>
+
+      <program language="r"><input>
+library(skimr)
+      </input></program>
+
+      <p>
+        Once you have loaded the <em>skimr</em> package you can use it. Its main
+        function is <em>skim</em>. Like <em>summary</em> for data frames, <c>skim()</c>
+        presents results for all the columns, and the statistics will depend on the
+        class of the variable.
+      </p>
+
+      <program language="r"><input>
+skim(hate_crimes)
+      </input></program>
+
+      <p>
+        Hopefully in your statistical modules you have taken previously, you have learned
+        some things about how to graphically display variables. So you may have some
+        memory about the amount of work involved with this. Hopefully R will offer some
+        respite. Of course, there are many different ways of producing graphics in R. In
+        this course we rely on a package called <em>ggplot2</em>, which is part of the
+        tidyverse set of packages mentioned earlier.
+      </p>
+
+      <program language="r"><input>
+library(ggplot2)
+      </input></program>
+
+      <p>
+        Then we will use one of its functions to create a scatterplot.
+      </p>
+
+      <program language="r"><input>
+ggplot(hate_crimes, aes(x=share_vote_trump, y=avg_hatecrimes_per_100k_fbi)) +
+    geom_point(shape=1) +
+     geom_smooth(method=lm)
+      </input></program>
+
+      <p>
+        Graphing is very powerful in R, and much of the spatial visualisation we will
+        produce throughout the book will build on this. If you are not already familiar
+        with this, we recommend a read of the data visualisation chapter of
+        <xref ref="Wickham_2017"/>.
+      </p>
+
+    </subsection>
+
+  </section>
+
+  <section xml:id="sec-ch13-r-projects">
+    <title>Getting organised: R Projects</title>
+
+    <p>
+      One thing that can help you tremendously is keeping your code organised. RStudio
+      helps with this by virtue of something called <term>R Projects</term>.
+    </p>
+
+    <p>
+      Technically, a RStudio project is just a directory with the name of the project,
+      and a few files and folders created by RStudio for internal purposes. This is
+      where you should hold your scripts, your data, and reports. You can manage this
+      folder with your own operating system manager (discussed earlier, e.g., Windows)
+      or through the RStudio file manager (that you access in the bottom-right corner
+      set of windows in RStudio).
+    </p>
+
+    <p>
+      When a project is reopened, RStudio opens every file and data view that was open
+      when the project was closed last time around. Trust me, this is a really helpful
+      thing! If you create a project for this module, you can keep everything in one
+      place, and refer back to your old code and your learnings throughout the module.
+    </p>
+
+    <subsection xml:id="subsec-ch13-saving-work">
+      <title>Saving your work and projects</title>
+
+      <p>
+        First things first, hopefully you have already created a separate folder on your
+        computer. Now save the script you've been working on into this folder. By
+        clicking on "File" and "Save as...".
+      </p>
+
+      <p>
+        Then navigate to your folder for this module, and for your script make sure to
+        give it some meaningful name like appendixlab.R or something like this. Then
+        click 'save'.
+      </p>
+
+      <p>
+        Now, go back to "File" and select "New project..."
+      </p>
+
+      <p>
+        Then in the options that appear, choose "Existing Directory". This is because you
+        already have a folder for this work; this is where you saved your script just
+        before. For me this was my folder called 'crime_mapping'.
+      </p>
+
+      <p>
+        So select 'Existing Directory', and on the next page use the "Browse" button to
+        select this folder (directory) where you saved the script earlier. Once you have
+        done this, click on 'Create Project' on the bottom.
+      </p>
+
+      <p>
+        This will now open up a new RStudio window with your project. In the future, you
+        can start right back up where you finished last time by navigating to the .Rproj
+        file, and double clicking it. It helps you keep everything in one place, and
+        lets R read everything from that folder.
+      </p>
+
+      <p>
+        With simple projects, a single script file and a data file is all you may have.
+        But with more complex projects, things can rapidly become messy. So you may want
+        to create sub-directories within this project folder. You could use the following
+        structure to put all files of a certain type in the same sub-directory:
+      </p>
+
+      <ul>
+        <li><p><em>Scripts and code</em>: Here you put all the text files with the
+          analytic code, including Rmarkdown files which is something we don't introduce
+          here.</p></li>
+        <li><p><em>Source data</em>: Here you can put the original data. I would tend
+          not to touch this once I have obtained the original data.</p></li>
+        <li><p><em>Documentation</em>: This is the sub-directory where you can place
+          all the data documentation (e.g., codebooks, questionnaires,
+          etc.)</p></li>
+        <li><p><em>Modified data</em>: All analysis involves doing transformations and
+          changing things in the original data files. You don't want to mess up the
+          original data files, so what you should do is create new data files as soon as
+          you start changing your source data. I would go so far as to place them in a
+          different sub-directory.</p></li>
+        <li><p><em>Literature</em>: Analysis is all about answering research questions.
+          There is always a literature about these questions. I would place the relevant
+          literature for the analytic project I am conducting in this
+          sub-directory.</p></li>
+        <li><p><em>Reports and write-up</em>: Here is where I would file all the reports
+          and data visualisations that are associated with my
+          analysis.</p></li>
+      </ul>
+
+      <p>
+        You can read up on why projects are useful in <xref ref="Chan_2020"/>.
+      </p>
+
+    </subsection>
+
+  </section>
+
+  <section xml:id="sec-ch13-summary">
+    <title>Summary and further reading</title>
+
+    <p>
+      This has been a very superficial overview of using R and RStudio to write code.
+      If you were able to follow along, then you should be OK to follow along with the
+      contents of this book as well. If you are not yet feeling confident, and are
+      looking to further develop your R skills, we highly recommend
+      <xref ref="Wickham_2017"/>. Throughout the book we use Tidyverse packages and
+      syntax wherever possible. For an overview of this, check out
+      <xref ref="Wickham_2019"/>. And for those who want to hone their R skills even
+      further, there is <xref ref="Wickham_2019b"/> for generally more advanced R
+      skills, and of course, <xref ref="Bivand_2013"/> and <xref ref="Lovelace_2019"/>
+      are important reference texts.
+    </p>
+
+  </section>
+
 </chapter>
