@@ -535,6 +535,10 @@ system.time(d_okabe &lt;- densityEqualSplit(shoplifting_lpp,
                                          verbose= FALSE))
       </input>
     </program>
+    <console>
+      <output>##    user  system elapsed 
+##   9.381   0.154   9.550</output>
+    </console>
 
     <p>
       And to visualise:
@@ -574,6 +578,10 @@ system.time(d_mcswiggan &lt;- densityHeat.lpp(shoplifting_lpp,
                                     finespacing=FALSE))
       </input>
     </program>
+    <console>
+      <output>##    user  system elapsed 
+##   1.085   0.007   1.093</output>
+    </console>
 
     <program language="r">
       <input>
@@ -608,6 +616,10 @@ system.time(d_rakshit &lt;- densityQuick.lpp(shoplifting_lpp,
                                     edge2D = TRUE))
       </input>
     </program>
+    <console>
+      <output>##    user  system elapsed 
+##   0.250   0.002   0.254</output>
+    </console>
 
     <p>
       We can now plot the data and compare the results:
@@ -1640,6 +1652,9 @@ plot(tr_lorenz)
 ineq(tr_sections$summer_rate, type="Gini")
       </input>
     </program>
+    <console>
+      <output>## [1] 0.9</output>
+    </console>
 
     <p>
       This score is quite high. The Gini Index is calculated from the Lorenz curve, by taking the

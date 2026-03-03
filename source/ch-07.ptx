@@ -239,6 +239,12 @@ class(window)
 window
       </input>
     </program>
+    <console>
+      <output>## [1] "owin"
+## window: polygonal boundary
+## enclosing rectangle: [295965, 307869] x [57329, 79111] 
+## units</output>
+    </console>
 
     <p>
       You can see it prints the units of measurement. But it does not identify them:
@@ -249,6 +255,9 @@ window
 unitname(window)
       </input>
     </program>
+    <console>
+      <output>## unit / units</output>
+    </console>
 
     <p>
       As noted above, EPSG:32118 uses metres. So we can pass this information to our
@@ -296,6 +305,9 @@ bur_ppp &lt;- ppp(x = sf_nyc_burg_coords[,1], y = sf_nyc_burg_coords[,2],
                    window = window, check = T)
       </input>
     </program>
+    <console>
+      <output>## Warning: data contain duplicated points</output>
+    </console>
 
     <p>
       Notice the warning message about duplicated points? In spatial point pattern analysis
@@ -323,6 +335,9 @@ bur_ppp &lt;- ppp(x = sf_nyc_burg_coords[,1], y = sf_nyc_burg_coords[,2],
 any(duplicated.ppp(bur_ppp))
       </input>
     </program>
+    <console>
+      <output>## [1] TRUE</output>
+    </console>
 
     <p>
       To count the number of coincidence points, we use the <c>multiplicity()</c> function
@@ -347,6 +362,9 @@ multiplicity(bur_ppp)
 sum(multiplicity(bur_ppp) > 1)
       </input>
     </program>
+    <console>
+      <output>## [1] 915</output>
+    </console>
 
     <p>
       That's quite something! 915 points out of 1727 burglaries share the same coordinates.
@@ -444,6 +462,9 @@ jitter_bur &lt;- rjitter(bur_ppp, retry=TRUE, nsim=1, radius = 1.5, drop=TRUE)
 sum(multiplicity(jitter_bur) > 1)
       </input>
     </program>
+    <console>
+      <output>## [1] 0</output>
+    </console>
 
     <p>
       Later we will demonstrate how to use the number of incidents in the same address as a
@@ -493,6 +514,9 @@ marks(bur_ppp_m) &lt;- multiplicity(bur_ppp)
 intensity.ppp(jitter_bur)
       </input>
     </program>
+    <console>
+      <output>## [1] 2.92e-05</output>
+    </console>
 
     <p>
       Metres are a small unit. So the value we get is very close to zero and hard to
@@ -506,6 +530,9 @@ intensity.ppp(jitter_bur)
 intensity.ppp(rescale(jitter_bur, 1000, "km"))
       </input>
     </program>
+    <console>
+      <output>## [1] 29.2</output>
+    </console>
 
     <p>
       We see this result that overall the intensity across our study space is about 29
@@ -683,6 +710,16 @@ plot(q2, main = "Quadrat Count")
 quadrat.test(poisson_ppp, nx = 6, ny = 6)
       </input>
     </program>
+    <console>
+      <output>## 
+##  Chi-squared test of CSR using quadrat counts
+## 
+## data:  poisson_ppp
+## X2 = 44, df = 35, p-value = 0.3
+## alternative hypothesis: two.sided
+## 
+## Quadrats: 6 by 6 grid of tiles</output>
+    </console>
 
     <p>
       We can see this p-value is greater than the conventional alpha level of 0.05, and
@@ -700,6 +737,16 @@ quadrat.test(poisson_ppp, nx = 6, ny = 6)
 quadrat.test(jitter_bur, nx = 1, ny = 6)
       </input>
     </program>
+    <console>
+      <output>## 
+##  Chi-squared test of CSR using quadrat counts
+## 
+## data:  jitter_bur
+## X2 = 238, df = 5, p-value &lt;2e-16
+## alternative hypothesis: two.sided
+## 
+## Quadrats: 6 tiles (irregular windows)</output>
+    </console>
 
     <p>
       Observing the results, we see that the p value is well below conventional standards
@@ -788,6 +835,9 @@ ds &lt;- density.ppp(jitter_bur)
 class(ds)
         </input>
       </program>
+      <console>
+        <output>## [1] "im"</output>
+      </console>
 
       <p>
         The resulting object is of class <c>im</c>, a pixel image, a grid of spatial
@@ -875,6 +925,14 @@ bw.ppl(jitter_bur)
 bw.scott(jitter_bur)
         </input>
       </program>
+      <console>
+        <output>## sigma 
+## 2.912 
+## sigma 
+## 73.06 
+## sigma.x sigma.y 
+##   608.4  1447.6</output>
+      </console>
 
       <p>
         Scott's rule generally provides larger bandwidth than the other methods. Don't be
