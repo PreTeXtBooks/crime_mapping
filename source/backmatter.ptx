@@ -817,6 +817,727 @@
       Fotheringham, A. S., Brunsdon, C. and Charlton, M. (2003). <em>Geographically Weighted Regression: The Analysis of Spatially Varying Relationships</em>. John Wiley &amp; Sons.
     </biblio>
 
+    <biblio type="raw" xml:id="Brantingham_1995">
+      Patricia Brantingham and Paul Brantingham.
+      <title>Criminality of place: crime generators and crime attractors</title>.
+      <journal>European Journal on Criminal Policy and Research</journal>,
+      3:5&#x2013;26, 1995.
+    </biblio>
+
+    <biblio type="raw" xml:id="Langton_2020">
+      Samuel Langton and Reka Solymosi.
+      <title>Open Data for Crime and Place Research: A Practical Guide in R</title>.
+      In <pubtitle>The Study of Crime and Place: A Methods Handbook</pubtitle>,
+      eds. Elisabeth Groff and Corey Haberman. Temple University Press, 2018.
+      Available as pre-print at
+      <url href="https://osf.io/preprints/a96y7/">https://osf.io/preprints/a96y7/</url>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Padgham_2017">
+      Mark Padgham, Bob Rudis, Robin Lovelace, and Ma&#xEB;lle Salmon.
+      <title>osmdata</title>.
+      <journal>The Journal of Open Source Software</journal>,
+      2(14), June 2017.
+      <url href="https://doi.org/10.21105/joss.00305">https://doi.org/10.21105/joss.00305</url>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Lovelace_2019">
+      Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
+      <title>Geocomputation with R</title>.
+      Chapman &amp; Hall/CRC Press, Boca Raton, FL, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Pebesma_2020">
+      Edzer Pebesma and Roger Bivand.
+      R spatial follows GDAL and PROJ development, 2020.
+      <url href="https://r-spatial.org/r/2020/03/17/wkt.html">https://r-spatial.org/r/2020/03/17/wkt.html</url>.
+      Accessed: 02-08-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2019">
+      Roger Bivand.
+      ECS530: (III) Coordinate reference systems, 2019.
+      <url href="https://rsbivand.github.io/ECS530_h19/ECS530_III.html">https://rsbivand.github.io/ECS530_h19/ECS530_III.html</url>.
+      Accessed: 02-08-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2020">
+      Roger Bivand.
+      Migration to PROJ6/GDAL3, 2020.
+      <url href="http://rgdal.r-forge.r-project.org/articles/PROJ6_GDAL3.html">http://rgdal.r-forge.r-project.org/articles/PROJ6_GDAL3.html</url>.
+      Accessed: 02-08-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tompson_2015">
+      Lisa Tompson, Shane Johnson, Matthew Ashby, Chloe Perkins, and Philip Edwards.
+      UK Open Source Crime Data: Accuracy and Possibilities for Research.
+      <journal>Cartography and Geographic Information Science</journal>,
+      42(2):97&#x2013;111, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Briggs_2017">
+      Daniel Briggs and Rub&#xE9;n Monge-Gamero.
+      <title>Dead-End Lives: Drugs and Violence in the City Shadows</title>.
+      Policy Press, Bristol, UK, 2017.
+    </biblio>
+
+    <biblio type="raw" xml:id="Walker_2021">
+      Kyle Walker.
+      <title>crsuggest: Obtain Suggested Coordinate Reference System Information for
+      Spatial Data</title>.
+      R package version 0.3.1, 2021.
+      <url href="https://CRAN.R-project.org/package=crsuggest">https://CRAN.R-project.org/package=crsuggest</url>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Newton_2018">
+      Andrew Newton.
+      Macro-level generators of crime, including parks, stadiums, and transit stations.
+      In Gerben Bruinsma and Shane Johnson, eds.,
+      <title>The Oxford Handbook of Environmental Criminology</title>,
+      pages 497&#x2013;517. Oxford University Press, Oxford, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bowers_2021">
+      Kate Bowers.
+      Risky Places: Crime Absorbers, Crime Radiators as Risky Places, 2021.
+      <url href="https://play.kth.se/media/Risky+PlacesA+Crime+absorbers,+crime+radiators+as+risky+places,+Prof+Kate+Bowers,+UCL/0_zya4j354">https://play.kth.se/media/...</url>.
+      Accessed: 11-05-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bolstad_2019">
+      Paul Bolstad.
+      <title>GIS Fundamentals: A First Text on Geographic Information Systems</title>,
+      6th edition.
+      Eider Press, White Bear Lake, MN, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Pebesma_2021">
+      Edzer Pebesma and Roger Bivand.
+      <title>Spatial Data Science with applications in R</title>, 2021.
+      <url href="https://keen-swartz-3146c4.netlify.app/">https://keen-swartz-3146c4.netlify.app/</url>.
+      Accessed: 17-05-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tukey_1979">
+      John Tukey.
+      Statistical Mapping: What Should not be Plotted.
+      In DHEW, ed.,
+      <title>Proceedings of the 1976 Workshop on Automated Cartography and Epidemiology</title>,
+      chapter 3, pages 18&#x2013;21. US Department of Health, Education, and Welfare,
+      Washington, DC, 1979.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2018">
+      Kenneth Field.
+      <title>Cartography</title>.
+      ESRI Press, Redlands, CA, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brewer_2006">
+      Cynthia Brewer.
+      Basic Mapping Principles for Visualizing Cancer Data Using Geographic Information
+      Systems (GIS).
+      <journal>American Journal of Preventive Medicine</journal>,
+      30(2S):S25&#x2013;S36, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ratcliffe_2010">
+      Jerry Ratcliffe.
+      Crime Mapping: Spatial and Temporal Challenges.
+      In Alex Piquero and David Weisburd, eds.,
+      <title>Handbook of Quantitative Criminology</title>,
+      chapter 2, pages 5&#x2013;24. Springer, New York, NY, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Andresen_2011">
+      Martin Andresen.
+      The Ambient Population and Crime Analysis.
+      <journal>The Professional Geographer</journal>,
+      63(2):193&#x2013;212, 2011.
+    </biblio>
+
+    <biblio type="raw" xml:id="Goudriaan_2006">
+      Heike Goudriaan, Karin Witterbrood, and Paul Nieuwbeerta.
+      Neighbourhood characteristics and reporting crime.
+      <journal>British Journal of Criminology</journal>,
+      46:719&#x2013;742, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="HMIC_2014">
+      Her Majesty Inspectorate of Constabulary.
+      <title>Crime recording: making the victim count</title>.
+      Final Report, HMIC, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Buil-Gil_2021">
+      David Buil-Gil, Juanjo Medina, and Natalie Shlomo.
+      Measuring the Dark Figure of Crime in Geographic Areas: Small Area Estimation from
+      the Crime Survey for England and Wales.
+      <journal>British Journal of Criminology</journal>,
+      61(2):364&#x2013;388, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Hart_2012">
+      Timothy Hart and Paul Zandbergen.
+      <title>Effects of Data Quality on Predictive Hotspot Mapping</title>.
+      Final Report, National Institute of Justice, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ratcliffe_2004">
+      Jerry Ratcliffe.
+      Geocoding Crime and a First Estimate of a Minimum Acceptable Hit Rate.
+      <journal>International Journal of Geographical Information Science</journal>,
+      18(1):61&#x2013;72, 2004.
+    </biblio>
+
+    <biblio type="raw" xml:id="Andresen_2020">
+      Martin Andresen, Nick Malleson, Wouter Steenbek, Michael Townsley, and Christophe
+      Vandeviver.
+      Minimum Geocoding Match Rates: an International Study of the Impact of Data and
+      Areal Unit Sizes.
+      <journal>International Journal of Geographical Information Science</journal>,
+      34(7):1306&#x2013;1322, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="BrizRedon_2020">
+      &#xC1;lvaro Briz-Red&#xF3;n, Francisco Mart&#xED;nez-Ruiz, and Francisco Montes.
+      Reestimating a Minimum Acceptable Geocoding Hit Rate for Conducting a Spatial
+      Analysis.
+      <journal>International Journal of Geographical Information Science</journal>,
+      34(7):1283&#x2013;1305, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Buil_2019">
+      David Buil-Gil, Angelo Moretti, Natalie Shlomo, and Juanjo Medina.
+      Worry about crime in Europe: A model-based small area estimation from the European
+      Social Survey.
+      <journal>European Journal of Criminology</journal>, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Solymosi_2015">
+      Reka Solymosi, Kate Bowers, and Taku Fujiyama.
+      Mapping fear of crime as a context-dependent everyday experience that varies in
+      space and time.
+      <journal>Legal and Criminological Psychology</journal>,
+      20(2):193&#x2013;211, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Solymosi_2020">
+      Reka Solymosi, David Buil-Gil, Laura Vozmediano, and In&#xEA;s Sousa Guedes.
+      Towards a place-based measure of fear of crime: A systematic review of app-based
+      and crowdsourcing approaches.
+      <journal>Environment and Behavior</journal>, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Blumstein_1986">
+      Al Blumstein, J. Cohen, J. Roth, and C. Visher.
+      <title>Criminal Careers and Career Criminals</title>.
+      Research Report, National Science Foundation, 1986.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tanimura_2006">
+      Susumu Tanimura, Chusi Kuroiwa, and Tsutomu Mizota.
+      Proportional Symbol Mapping in R.
+      <journal>Journal of Statistical Software</journal>,
+      15(5):1&#x2013;7, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tennekes_2018">
+      Martijn Tennekes.
+      tmap: Thematic Maps in R.
+      <journal>Journal of Statistical Software</journal>,
+      84(6):1&#x2013;39, 2018.
+      <url href="https://doi.org/10.18637/jss.v084.i06">https://doi.org/10.18637/jss.v084.i06</url>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Policehu_2021">
+      Police.hu.
+      <title>K&#xF6;zrendv&#233;delem</title>, 2020.
+      <url href="http://www.police.hu/hu/a-rendorsegrol/statisztikak/kozrendvedelem">http://www.police.hu/hu/a-rendorsegrol/statisztikak/kozrendvedelem</url>.
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2012">
+      Kenneth Field and Damien Demaj.
+      Reasserting design relevance in cartography: some concepts.
+      <journal>The Cartographic Journal</journal>, 49(1):70&#x2013;76, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Dent_2008">
+      Borden Dent, J. Torguson, and T. Hodler.
+      <title>Thematic map design</title>.
+      McGraw-Hill, New York, NY, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2007">
+      Kenneth Field.
+      <title>Map Evaluation Guidelines</title>, 2007.
+      <url href="http://downloads.esri.com/MappingCenter2007/arcGISResources/more/MapEvaluationGuidelines.pdf">http://downloads.esri.com/MappingCenter2007/arcGISResources/more/MapEvaluationGuidelines.pdf</url>.
+      Accessed: 17-05-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Kirk_2016">
+      Andy Kirk.
+      <title>Data visualisation: A handbook for data driven design</title>.
+      Sage, London, UK, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Cairo_2016">
+      Alberto Cairo.
+      <title>The Truthful Art: Data, Charts, and Maps for Communication</title>.
+      New Riders, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Li_2014">
+      Huiyang Li and Nadine Moacdieh.
+      Is "chart junk" useful? An extended examination of visual embellishment.
+      In <title>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</title>,
+      volume 58, pages 1516&#x2013;1520. SAGE Publications, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brewer_1994">
+      Cynthia Brewer.
+      Color use guidelines for mapping.
+      <journal>Visualization in modern cartography</journal>, pages 123&#x2013;148, 1994.
+    </biblio>
+
+    <biblio type="raw" xml:id="Yutani_2018">
+      Hiroaki Yutani.
+      <title>geom_sf_text() and geom_sf_label() Are Coming</title>, 2018.
+      <url href="https://yutani.rbind.io/post/geom-sf-text-and-geom-sf-label-are-coming/">https://yutani.rbind.io/post/geom-sf-text-and-geom-sf-label-are-coming/</url>.
+      Accessed: 16-05-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wickham_2010">
+      Hadley Wickham.
+      A layered grammar of graphics.
+      <journal>Journal of Computational and Graphical Statistics</journal>,
+      19(1):3&#x2013;28, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Healy_2019">
+      Kieran Healy.
+      <title>Data Visualization: A Practical Introduction</title>.
+      Princeton University Press, Princeton, NJ, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Field_2015">
+      Kenneth Field.
+      When is a heat map not a heat map.
+      <url href="http://cartonerd.blogspot.com/2015/02/when-is-heat-map-not-heat-map.html">cartonerd.blogspot.com</url>, 2015.
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Baddeley_2016">
+      Adrian Baddeley, Ege Rubak, and Rolf Turner.
+      <title>Spatial Point Patterns: Methodology and Applications with R</title>.
+      CRC Press, Boca Raton, FL, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ashby_2018">
+      Matthew Ashby.
+      Studying crime and place with the Crime Open Database.
+      SocArXiv pre-print, 2018.
+      doi:10.31235/osf.io/9y7qz.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2016">
+      Spencer Chainey and Braulio-Figueiredo Alves-da-Silva.
+      Examining the extent of repeat and near repeat victimisation of domestic burglaries in
+      Belo Horizonte, Brazil.
+      <journal>Crime Science</journal>, 5(1):1&#x2013;10, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2013a">
+      Spencer Chainey.
+      Examining the influence of cell size and bandwidth size on kernel density estimation
+      crime hotspot maps for predicting spatial patterns of crime.
+      <journal>Bulletin of the Geographical Society of Liege</journal>, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2008">
+      Spencer Chainey, Lisa Tompson, and Sebastian Uhlig.
+      The utility of hotspot mapping for predicting spatial patterns of crime.
+      <journal>Security Journal</journal>, 21:4&#x2013;28, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2013b">
+      Spencer Chainey.
+      Methods and techniques for understanding crime hot spots.
+      In John Eck, Spencer Chainey, James Cameron, Michael Leitner, and Ronald Wilson (Eds.),
+      <title>Mapping Crime: Understanding Hot Spots</title>.
+      NIJ Special Report, Washington DC, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Davies_2017">
+      T Davies, Jonathan Marshall, and Martin Hazelton.
+      Tutorial on kernel estimation of continuous spatial and spatiotemporal relative risk
+      with accompanying instruction in R.
+      2017.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2021">
+      Spencer Chainey.
+      <title>Understanding Crime: Analyzing the Geography of Crime</title>.
+      ESRI Press, Redlands, CA, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Neville_2013">
+      Ned Neville.
+      CrimeStat IV. A Spatial Statistical Program for the Analysis of Incident Locations.
+      Technical Report, National Institute of Justice, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Levine_2013">
+      Ned Levine.
+      <title>Crime Stat IV: A Spatial Statistics Program for the Analysis of Crime Incident
+      Locations</title>.
+      National Institute of Justice, Washington, DC, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Silverman_1986">
+      B W Silverman.
+      The kernel method for univariate data.
+      In B W Silverman (Ed.), <title>Density Estimation for Statistics and Data
+      Analysis</title>.
+      Chapman &amp; Hall/CRC, 1986.
+    </biblio>
+
+    <biblio type="raw" xml:id="Smith_2008">
+      Susan Smith and Christopher Bruce.
+      <title>CrimeStat III. User Workbook</title>.
+      National Institute of Justice, Washington, DC, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chainey_2005">
+      Spencer Chainey and Jerry Ratcliffe.
+      <title>GIS and Crime Mapping</title>.
+      John Wiley &amp; Sons, Chichester, England, 2005.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gorr_2012">
+      Wilpen Gorr and Kristen Kurland.
+      <title>GIT Tutorial for Crime Analysis</title>.
+      ESRI Press, Redland, CA, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2013">
+      Roger Bivand, Edzer Pebesma, and Virgilio G&#xF3;mez-Rubio.
+      <title>Applied Spatial Data Analysis with R</title>.
+      Springer, New York, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Woodworth_2014">
+      J T Woodworth, G O Moehler, A L Bertozzi, and P J Brantingham.
+      Non-local crime density estimation incorporating housing information.
+      <journal>Philosophical Transactions of the Royal Society</journal>, 372, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Lu_2007">
+      Yongmei Lu and Xuwei Chen.
+      On the false alarm of planar K-function when analyzing urban crime distributed along streets.
+      <journal>Social Science Research</journal>, 36(2):611–632, 2007.
+    </biblio>
+
+    <biblio type="raw" xml:id="Baddeley_2005">
+      Adrian Baddeley and Rolf Turner.
+      spatstat: An R Package for Analyzing Spatial Point Patterns.
+      <journal>Journal of Statistical Software</journal>, 12(6):1–42, 2005.
+    </biblio>
+
+    <biblio type="raw" xml:id="Okabe_2001">
+      Atsuyuki Okabe and Ikuho Yamada.
+      The K-Function Method on a Network and Its Computational Implementation.
+      <journal>Geographical Analysis</journal>, 33(3):271–290, 2001.
+    </biblio>
+
+    <biblio type="raw" xml:id="Okabe_2012">
+      Atsuyuki Okabe and Kokichi Sugihara.
+      <title>Spatial Analysis along Networks</title>.
+      John Wiley &amp; Sons, Chichester, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ang_2012">
+      Qi Ang, Adrian Baddeley, and Gopalan Nair.
+      Geometrically Corrected Second Order Analysis of Events on a Linear Network, with Applications to Ecology and Criminology.
+      <journal>Scandinavian Journal of Statistics</journal>, 39(4):591–617, 2012.
+    </biblio>
+
+    <biblio type="raw" xml:id="Khalid_2018">
+      Shoaib Khalid, Fariha Shoaib, et al.
+      Network Constrained Spatio-Temporal Hotspot Mapping of Crimes in Faisalabad.
+      <journal>Applied Spatial Analysis and Policy</journal>, 11(3):599–622, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Haining_2020">
+      Robert Haining and Guangquan Li.
+      <title>Modelling Spatial and Spatial-Temporal Data: A Bayesian Approach</title>.
+      CRC Press, Boca Raton, FL, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Darmofal_2015">
+      David Darmofal.
+      <title>Spatial Analysis for the Social Sciences</title>.
+      Cambridge University Press, New York, NY, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chi_2020">
+      Guangqing Chi and Jun Zhu.
+      <title>Spatial Regression Models for the Social Sciences</title>.
+      Sage, Thousand Oaks, CA, 2020.
+    </biblio>
+
+    <biblio type="raw" xml:id="Aldstadt_2006">
+      Jared Aldstadt and Arthur Getis.
+      Using AMOEBA to create a spatial weights matrix and identify spatial clusters.
+      <journal>Geographical Analysis</journal>, 38(4):327–343, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2021">
+      Luc Anselin, Grant Morrison, Angela Li, and Karina Acosta.
+      Tutorials for the Center for Spatial Data Science, The University of Chicago.
+      2021. Available at: https://spatialanalysis.github.io/tutorials/.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_1996">
+      Luc Anselin.
+      The Moran Scatterplot as an ESDA Tool to Assess Local Instability in Spatial Association.
+      In Manfred Fischer, Henk Scholten, and David Unwin (eds.), <title>Spatial Analytical Perspectives on GIS</title>.
+      Taylor and Francis, London, 1996.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2021a">
+      Luc Anselin.
+      GeoDa Center Playlists.
+      2021. Available at: https://www.youtube.com/user/GeoDaCenter/playlists.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brunsdon_2015">
+      Chris Brunsdon and Lex Comber.
+      <title>R for Spatial Analysis and Mapping</title>.
+      SAGE, Thousand Oaks, CA, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Eck_1997">
+      John E. Eck and William Spelman.
+      Problem-Solving: Problem-Oriented Policing in Newport News.
+      Police Executive Research Forum, Washington DC, 1997.
+    </biblio>
+
+    <biblio type="raw" xml:id="Baller_2001">
+      Robert D. Baller, Luc Anselin, Steven F. Messner, Glenn Deane, and Darnell F. Hawkins.
+      Structural covariates of U.S. county homicide rates: Incorporating spatial effects.
+      <title>Criminology</title>, 39(3):561–590, 2001.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gelman_2007">
+      Andrew Gelman and Jennifer Hill.
+      <title>Data Analysis Using Regression and Multilevel/Hierarchical Models</title>.
+      Cambridge University Press, Cambridge, 2007.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gelman_2008">
+      Andrew Gelman.
+      Scaling regression inputs by dividing by two standard deviations.
+      <title>Statistics in Medicine</title>, 27(15):2865–2873, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gelman_2020">
+      Andrew Gelman and Aki Vehtari.
+      What are the most important statistical ideas of the past 50 years?
+      <title>arXiv preprint</title>, 2020. arXiv:2012.00174.
+    </biblio>
+
+    <biblio type="raw" xml:id="Haining_2003">
+      Robert Haining.
+      <title>Spatial Data Analysis: Theory and Practice</title>.
+      Cambridge University Press, Cambridge, 2003.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2014">
+      Luc Anselin.
+      <title>Modern Spatial Econometrics in Practice: A Guide to GeoDa, GeoDaSpace and PySAL</title>.
+      GeoDa Press LLC, Chicago, IL, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bivand_2021">
+      Roger Bivand.
+      A review of software for spatial econometrics in R.
+      <title>Mathematics</title>, 10(1):1, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Beale_2010">
+      Colin M. Beale, Jack J. Lennon, Jon M. Yearsley, Mark J. Brewer, and David A. Elston.
+      Regression analysis of spatial data.
+      <title>Ecology Letters</title>, 13(2):246–264, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Floch_2018">
+      Jean-Marc Floch.
+      Spatial regression in the presence of missing data.
+      <title>Review of Regional Research</title>, 38:161–187, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Kopczewska_2021">
+      Katarzyna Kopczewska.
+      <title>Applied Spatial Statistics and Econometrics: Data Analysis in R</title>.
+      Routledge, Abingdon, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Elhorst_2014">
+      J. Paul Elhorst.
+      <title>Spatial Econometrics: From Cross-Sectional Data to Spatial Panels</title>.
+      Springer, Heidelberg, 2014.
+    </biblio>
+
+    <biblio type="raw" xml:id="James_2013">
+      Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
+      <title>An Introduction to Statistical Learning</title>.
+      Springer, New York, 2013.
+    </biblio>
+
+    <biblio type="raw" xml:id="Brambor_2006">
+      Thomas Brambor, William Roberts Clark, and Matt Golder.
+      Understanding interaction models: Improving empirical analyses.
+      <title>Political Analysis</title>, 14(1):63–82, 2006.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_1998">
+      Luc Anselin, Anil K. Bera, Raymond Florax, and Mann J. Yoon.
+      Simple diagnostic tests for spatial dependence.
+      <title>Regional Science and Urban Economics</title>, 26(1):77–104, 1998.
+    </biblio>
+
+    <biblio type="raw" xml:id="Smith_2009">
+      Tony E. Smith.
+      Estimation bias in spatial models with strongly connected weight matrices.
+      <title>Geographical Analysis</title>, 41(3):307–332, 2009.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ward_2008">
+      Michael D. Ward and Kristian S. Gleditsch.
+      <title>Spatial Regression Models</title>.
+      SAGE, Thousand Oaks, CA, 2008.
+    </biblio>
+
+    <biblio type="raw" xml:id="Elhorst_2010">
+      J. Paul Elhorst.
+      Applied spatial econometrics: Raising the bar.
+      <title>Spatial Economic Analysis</title>, 5(1):9–28, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="LeSage_2009">
+      James LeSage and R. Kelley Pace.
+      <title>Introduction to Spatial Econometrics</title>.
+      CRC Press, Boca Raton, FL, 2009.
+    </biblio>
+
+    <biblio type="raw" xml:id="Tita_2010">
+      George E. Tita and Jacob Radil.
+      Spatial regression models in criminology: Modeling social processes in the spatial weights matrix.
+      In Alex R. Piquero and David Weisburd (eds.), <title>Handbook of Quantitative Criminology</title>, pp. 101–121.
+      Springer, New York, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Bernasco_2010">
+      Wim Bernasco.
+      A sentimental journey to crime: Effects of residential history on crime location choice.
+      <title>Criminology</title>, 48(2):389–416, 2010.
+    </biblio>
+
+    <biblio type="raw" xml:id="Kelejian_2017">
+      Harry Kelejian and Gianfranco Piras.
+      <title>Spatial Econometrics</title>.
+      Academic Press, London, 2017.
+    </biblio>
+
+    <biblio type="raw" xml:id="Lawson_2021a">
+      Andrew B. Lawson.
+      <title>Bayesian Disease Mapping: Hierarchical Modeling in Spatial Epidemiology</title>, 3rd ed.
+      CRC Press, Boca Raton, FL, 2018.
+    </biblio>
+
+    <biblio type="raw" xml:id="Lawson_2021b">
+      Andrew B. Lawson.
+      <title>Using R in Introductory and Advanced Statistical Classes</title>.
+      CRC Press, Boca Raton, FL, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Gomez_2005">
+      Fabio Gomez-Rubio.
+      Bayesian inference for spatial data analysis.
+      In Proceedings of the 17th International Workshop on Statistical Modelling, 2005.
+    </biblio>
+
+    <biblio type="raw" xml:id="Blangiardo_2015">
+      Marta Blangiardo and Michela Cameletti.
+      <title>Spatial and Spatio-temporal Bayesian Models with R-INLA</title>.
+      Wiley, Chichester, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wall_2004">
+      Melanie M. Wall.
+      A close look at the spatial structure implied by the CAR and SAR models.
+      <title>Journal of Statistical Planning and Inference</title>, 121(2):311–324, 2004.
+    </biblio>
+
+    <biblio type="raw" xml:id="Anselin_2007">
+      Luc Anselin.
+      <title>Spatial Regression Analysis in R: A Workbook</title>.
+      University of Illinois, Urbana-Champaign, 2007. Available at: https://geodacenter.github.io/docs/spr.pdf.
+    </biblio>
+
+    <biblio type="raw" xml:id="Caplan_2016">
+      Joel M. Caplan and Leslie W. Kennedy.
+      <title>Risk Terrain Modeling: Crime Prediction and Risk Reduction</title>.
+      University of California Press, Oakland, CA, 2016.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wheeler_2021">
+      Andrew P. Wheeler and Wouter Steenbeek.
+      Mapping the risk terrain for crime using machine learning.
+      <title>Journal of Quantitative Criminology</title>, 37(2):445–480, 2021.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wickham_2017">
+      Hadley Wickham and Garrett Grolemund.
+      <title>R for Data Science</title>.
+      O'Reilly Media, Sebastopol, CA, 2017.
+      <url href="https://r4ds.had.co.nz/" visual="r4ds.had.co.nz"/>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wickham_2019">
+      Hadley Wickham.
+      <title>Welcome to the Tidyverse</title>.
+      Journal of Open Source Software, 4(43):1686, 2019.
+    </biblio>
+
+    <biblio type="raw" xml:id="Wickham_2019b">
+      Hadley Wickham.
+      <title>Advanced R</title>, 2nd ed.
+      CRC Press, Boca Raton, FL, 2019.
+      <url href="https://adv-r.hadley.nz/" visual="adv-r.hadley.nz"/>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Chan_2020">
+      Martin Chan.
+      RStudio Projects and Working Directories: A Beginner's Guide.
+      R-bloggers, 2020.
+      <url href="https://www.r-bloggers.com/2020/01/rstudio-projects-and-working-directories-a-beginners-guide/" visual="r-bloggers.com"/>.
+    </biblio>
+
+    <biblio type="raw" xml:id="Leyser_2015">
+      Ottoline Leyser.
+      <title>Open science must be a research priority</title>.
+      The Guardian, 2015.
+    </biblio>
+
+    <biblio type="raw" xml:id="Ritchie_2020">
+      Stuart Ritchie.
+      <title>Science Fictions: How Fraud, Bias, Negligence, and Hype Undermine the Search for Truth</title>.
+      Metropolitan Books, New York, 2020.
+    </biblio>
+
   </references>
 
   <colophon>
