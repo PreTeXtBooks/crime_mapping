@@ -959,7 +959,7 @@ plot(density.ppp(jitter_bur, sigma = bw.scott(jitter_bur) ,edge=T),
 
       <figure xml:id="fig-kde-bandwidth-comparison">
         <caption>Kernel density maps with different bandwidth estimation algorithms</caption>
-        <image source="figure-ch07/kde-weighted.png">
+        <image source="figure-ch07/kde-kernel-shapes.png">
           <description>Three different shaded maps of Manhattan, titled 'Diggle', 'PPL',
           and 'Scott'. Each has a legend with a gradient from blue to yellow, though
           slightly different values. The first, 'Diggle', shows a mostly blue Manhattan,
@@ -1166,7 +1166,7 @@ plot(density.ppp(bur_ppp_m, sigma = bw.ppl(bur_ppp_m), edge = T,
 
       <figure xml:id="fig-kde-weighted">
         <caption>Weighting KDE estimates</caption>
-        <image source="figure-ch07/kde-leaflet-manhattan.png">
+        <image source="figure-ch07/kde-weighted-estimates.png">
           <description>This shaded map of Manhattan is titled 'Weighted Points'. Rather
           than blotches or speckles, the blue is broken up by thicker points of red, which
           sometimes turn into yellow at their centre in the north.</description>
