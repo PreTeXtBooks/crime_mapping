@@ -207,6 +207,9 @@ p3 &lt;- ggplot(df, aes(x = x, y = y)) +
 gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
           </input>
         </program>
+        <image source="figure-ch01/points-lines-polygons.png">
+          <description>Three panes, the first showing four dots, the second showing three lines connecting the four dots in a path, the third showing the same path now closed by an additional line.</description>
+        </image>
       </figure>
       <p>
         Spatial objects may also be stored as <term>raster data</term>. Raster data are made up of
@@ -438,6 +441,22 @@ library(tibble)
 glimpse(crimes)
       </input>
     </program>
+    <console>
+      <output>## Rows: 32,058
+## Columns: 12
+## $ `Crime ID`              &lt;chr&gt; NA, "aa1cc4cb0c436f46...
+## $ Month                   &lt;chr&gt; "2019-06", "2019-06",...
+## $ `Reported by`           &lt;chr&gt; "Greater Manchester P...
+## $ `Falls within`          &lt;chr&gt; "Greater Manchester P...
+## $ Longitude               &lt;dbl&gt; -2.464, -2.441, -2.44...
+## $ Latitude                &lt;dbl&gt; 53.61, 53.62, 53.61, ...
+## $ Location                &lt;chr&gt; "On or near Parking A...
+## $ `LSOA code`             &lt;chr&gt; "E01004768", "E010047...
+## $ `LSOA name`             &lt;chr&gt; "Bolton 001A", "Bolto...
+## $ `Crime type`            &lt;chr&gt; "Anti-social behaviou...
+## $ `Last outcome category` &lt;chr&gt; NA, "Unable to prosec...
+## $ Context                 &lt;lgl&gt; NA, NA, NA, NA, NA, N...</output>
+    </console>
     <p>
       You may notice that a lot of the variable names are messy in that they have a space in them,
       this can cause issues, so before playing around too much with the data we want to clean this
@@ -463,6 +482,14 @@ crimes &lt;- clean_names(crimes)
 names(crimes)
       </input>
     </program>
+    <console>
+      <output>##  [1] "crime_id"              "month"
+##  [3] "reported_by"           "falls_within"
+##  [5] "longitude"             "latitude"
+##  [7] "location"              "lsoa_code"
+##  [9] "lsoa_name"             "crime_type"
+## [11] "last_outcome_category" "context"</output>
+    </console>
   </section>
 
   <section xml:id="sec-dataframes-to-spatial">
@@ -677,6 +704,9 @@ crimes_sf &lt;- st_as_sf(crimes,   #dataframe
 class(crimes_sf)
       </input>
     </program>
+    <console>
+      <output>## [1] "sf"         "tbl_df"     "tbl"        "data.frame"</output>
+    </console>
     <p>
       You might also notice something else that is different between "crimes" and "crimes_sf."
       Have a look at the dimension (hint: look in your 'Environment' tab). In the <c>sf</c> object
@@ -729,6 +759,25 @@ df &lt;- crimes %&gt;%
 knitr::kable(df, caption = 'Example data table')
       </input>
     </program>
+    <tabular>
+      <title>Example data table</title>
+      <row header="yes">
+        <cell>crime_type</cell>
+        <cell>n</cell>
+      </row>
+      <row>
+        <cell>Robbery</cell>
+        <cell>463</cell>
+      </row>
+      <row>
+        <cell>Shoplifting</cell>
+        <cell>1479</cell>
+      </row>
+      <row>
+        <cell>Theft from the person</cell>
+        <cell>718</cell>
+      </row>
+    </tabular>
     <p>
       You then want to plot this. To do so, you want to create a plot that combines the following
       layers:
@@ -755,6 +804,9 @@ p3 &lt;- ggplot(df, aes(x = crime_type, y = n)) +
 gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
         </input>
       </program>
+      <image source="figure-ch01/layers-of-ggplot.png">
+        <description>Three panes showing different components of a plot. The first pane shows the column geometry, the second pane shows the axes, values along them, and their labels "Crime type" versus "Number of Crimes", and the third pane shows the title "Frequency of crime types", and a border.</description>
+      </image>
     </figure>
     <p>
       This will result in a final plot:
@@ -773,6 +825,9 @@ ggplot(df, aes(x = gsub(" from the person", "",crime_type), y = n)) +
   ylab("Number of crimes")
         </input>
       </program>
+      <image source="figure-ch01/final-plot.png">
+        <description>The completed bar plot "Frequency of crime types", combining the previous three layers into a single image.</description>
+      </image>
     </figure>
     <p>
       Taking our crime data as an example, we would build up our plot as follows. First let's
@@ -791,6 +846,15 @@ df &lt;- crimes %&gt;%
 df
       </input>
     </program>
+    <console>
+      <output>## # A tibble: 3 × 2
+## # Groups:   crime_type [3]
+##   crime_type                n
+##   &lt;chr&gt;                 &lt;int&gt;
+## 1 Robbery                 463
+## 2 Shoplifting            1479
+## 3 Theft from the person   718</output>
+    </console>
     <p>
       Now let us add the layers to our ggplot object. First, the data layer:
     </p>
@@ -803,6 +867,9 @@ library(ggplot2)
 ggplot(df, aes(x = crime_type, y = n))
         </input>
       </program>
+      <image source="figure-ch01/data-layer.png">
+        <description>A grid background, with horizontal axis "crime_type" with notches denoted "Robbery", "Shoplifting", and "Theft from the person", and vertical axis "n", ranging from five hundred to fifteen hundred.</description>
+      </image>
     </figure>
     <p>
       Then add the geometry (in this case, <c>geom_col()</c>):
@@ -815,6 +882,9 @@ ggplot(df, aes(x = crime_type, y = n)) +
   geom_col()
         </input>
       </program>
+      <image source="figure-ch01/geometry-layer.png">
+        <description>The previous grid, now containing rectangular bars denoting the values corresponding to the crime types. The height of the bars corresponds to just under five hundred for "Robbery", fifteen hundred for "Shoplifting", and seven hundred and fifty for "Theft from the person".</description>
+      </image>
     </figure>
     <p>
       Then our annotations:
@@ -830,6 +900,9 @@ ggplot(df, aes(x = crime_type, y = n)) +
   ylab("Number of crimes")
         </input>
       </program>
+      <image source="figure-ch01/annotations-layer.png">
+        <description>The previous plot, now with the title "Frequency of crime types", and the axes labeled as "Crime type" and "Number of crimes".</description>
+      </image>
     </figure>
     <p>
       We can also specify our themes, by using a custom theme such as <c>theme_minimal()</c>, and
@@ -849,6 +922,9 @@ ggplot(df, aes(x = crime_type, y = n)) +
         panel.border = element_rect(colour = "black", fill=NA, size=1))
         </input>
       </program>
+      <image source="figure-ch01/customise-themes.png">
+        <description>The previous plot, with the background shading altered, and a black border.</description>
+      </image>
     </figure>
     <p>
       We can add further specifications within the <c>aes()</c> (aesthetics) function, where we
@@ -879,6 +955,9 @@ ggplot(df, aes(x = crime_type, y = n, fill = last_outcome_category)) +
         panel.border = element_rect(colour = "black", fill=NA,  size=1))
         </input>
       </program>
+      <image source="figure-ch01/additional-layers.png">
+        <description>The previous graph has bars now divided into colours vertically. The right side contains a legend for the colours, the most prominent of which are "Investigation complete; no suspect identified", "Status update unavailable", and "Unable to prosecute suspect".</description>
+      </image>
     </figure>
     <p>
       We can be explicit about the colours we want to use with the function
@@ -901,6 +980,9 @@ ggplot(df, aes(x = crime_type,  y = n, fill = last_outcome_category)) +
   scale_fill_brewer(type = "qual", palette = 3, name = "Outcome")
         </input>
       </program>
+      <image source="figure-ch01/customise-colour.png">
+        <description>The previous graph with colours now has more easily distinguishable colours, and the legend has the title "Outcome".</description>
+      </image>
     </figure>
     <p>
       There are many more options. While this here is not the greatest graph you'll ever see, it
@@ -928,6 +1010,9 @@ ggplot() +
   geom_sf(data = crimes_sf)
         </input>
       </program>
+      <image source="figure-ch01/geom-sf.png">
+        <description>A plot of black points on a grey grid, the horizontal axis being longitude ranging from about two point seven degrees west to two degrees west, and the vertical axis latitudes ranging from about fifty three point three five degrees north to fifty three point six five degrees north. The points form a blob in the general shape of Greater Manchester.</description>
+      </image>
     </figure>
     <p>
       And here we have a map of each point in our dataset, each recorded crime in June 2019 in
@@ -956,6 +1041,9 @@ ggplot() +
   geom_sf(data = crimes_sf)
         </input>
       </program>
+      <image source="figure-ch01/basemap.png">
+        <description>The previous plot, with a map background replacing the grey grid, showing Manchester and its surroundings.</description>
+      </image>
     </figure>
     <p>
       So what you see above behind the points is what we call a <term>basemap</term>. The term
@@ -1045,6 +1133,9 @@ p3 &lt;- ggplot() +
 ggpubr::ggarrange(p1, p2, p3, nrow = 1, common.legend = TRUE)
           </input>
         </program>
+        <image source="figure-ch01/census-hierarchy.png">
+          <description>Three panes showing more and more zoomed in maps of the UK, down to Manchester's Lower Layer Super Output Areas. The maps are featureless, except for borders of the different levels of areas, outlined in three different colours.</description>
+        </image>
       </figure>
       <p>
         Here we will get some boundaries for Manchester. We know that our crime data has a column
@@ -1149,6 +1240,9 @@ ggplot() +
   geom_sf(data = manchester_lsoa)
           </input>
         </program>
+        <image source="figure-ch01/manchester-lsoas.png">
+          <description>A plot of all the boundaries of Manchester's Lower Layer Super Output Areas, placed on a grey grid. The horizontal axis shows longitude and the vertical axis shows latitude.</description>
+        </image>
       </figure>
       <p>
         Great, we now have an outline of the LSOAs in Manchester. Notice how the shape is
@@ -1336,6 +1430,9 @@ t2 &lt;- data.frame(name = c("Barb", "Steve", "Mike"),
 grid.arrange(tableGrob(t1), tableGrob(t2), nrow = 1)
           </input>
         </program>
+        <image source="figure-ch01/two-dataframes.png">
+          <description>Two tables side by side. The first has columns for name and age, and lists "Barb" as sixteen, "Steve" as sixteen, and "Mike" as thirteen. The second has columns for name and hair colour, and lists "Barb" as "Red", "Steve" as "Brown", and "Mike" as "Black".</description>
+        </image>
       </figure>
       <p>
         And by doing so, we produce a final table that contains all values, lined up
@@ -1350,6 +1447,9 @@ t3 &lt;- left_join(t1, t2)
 grid.arrange(tableGrob(t3))
           </input>
         </program>
+        <image source="figure-ch01/joined-dataframe.png">
+          <description>One table with three columns: name, age, and hair colour. The first row contains "Barb", with age sixteen, and a hair colour of red. The second, "Steve", sixteen, and brown, while the third "Mike", thirteen, and black.</description>
+        </image>
       </figure>
       <p>
         This is all we are doing, when merging tables: joining the two data sets using a common
@@ -1412,6 +1512,9 @@ ggplot() +
 geom_sf(data = manchester_lsoa, aes(fill = count))
           </input>
         </program>
+        <image source="figure-ch01/crimes-by-lsoa.png">
+          <description>A plot of all the boundaries of Manchester's Lower Layer Super Output Areas. To the right, labeled 'count', is a gradient legend. Each LSOA in the plot is shaded by a colour on this gradient corresponding to its number of crimes.</description>
+        </image>
       </figure>
       <p>
         Just like we did with the ggplot bar charts we created earlier, we can adjust the opacity
@@ -1433,6 +1536,9 @@ geom_sf(data = manchester_lsoa,
   scale_fill_gradient2(name ="Number of crimes")
           </input>
         </program>
+        <image source="figure-ch01/crimes-lsoa-adjusted.png">
+          <description>The previous plot overlaid on a map of Manchester. The gradient has been adjusted, with lighter colours denoting lower number of crimes, and darker colours for more. The legend is labeled "Number of crimes".</description>
+        </image>
       </figure>
       <p>
         In subsequent chapters we will play around with other packages in R that you can use to
