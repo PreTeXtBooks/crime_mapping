@@ -5,14 +5,6 @@
 
   <introduction>
     <p>
-      This chapter covers basic geospatial operations in R.
-    </p>
-  </introduction>
-
-  <section xml:id="sec-ch02-introduction">
-    <title>Introduction</title>
-
-    <p>
       In this chapter we get our hands dirty with <term>spatial manipulation of data</term>.
       Thus far, our data manipulation exercises (using <c>dplyr</c>) were such that you might
       be familiar with, from any earlier exposures to data analysis. For example, linking
@@ -84,7 +76,7 @@ library(osmdata)
       </input>
     </program>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch02-alcohol-crime">
     <title>Exploring the relationship between alcohol outlets and crime</title>
