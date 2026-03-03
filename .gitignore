@@ -8,3 +8,4 @@ rsconnect
 logs/
 .error_schema.log
 output/
+docs/
