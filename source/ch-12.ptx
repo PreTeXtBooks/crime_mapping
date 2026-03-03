@@ -371,10 +371,10 @@ summary(fit3_70_sr_sar)
 ## UE70:SOUTH -0.522353   0.079210 -6.5945 4.267e-11
 ## UE70:NORTH -0.039129   0.060706 -0.6446 0.5192148
 ## 
-## Rho: 0.3957, LR test value: 181.8, p-value: < 2.22e-16
+## Rho: 0.3957, LR test value: 181.8, p-value: &lt; 2.22e-16
 ## Asymptotic standard error: 0.02846
-##     z-value: 13.9, p-value: < 2.22e-16
-## Wald statistic: 193.3, p-value: < 2.22e-16
+##     z-value: 13.9, p-value: &lt; 2.22e-16
+## Wald statistic: 193.3, p-value: &lt; 2.22e-16
 ## 
 ## Log likelihood: -9710 for lag model
 ## ML residual variance (sigma squared): 31.21, (sigma: 5.587)
