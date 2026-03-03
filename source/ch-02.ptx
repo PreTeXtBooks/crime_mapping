@@ -460,7 +460,7 @@ osm_bar_sf &lt;- osm_bar_sf %&gt;% filter(!is.na(name))
       </program>
 
       <p>
-        We are still left with many bars in our data set.
+        We are still left with 283 bars in our data set.
       </p>
 
     </subsection>
@@ -771,6 +771,9 @@ plot(st_geometry(city_centre), add = TRUE)
 st_crs(city_centre) == st_crs(crimes)
         </input>
       </program>
+<pre>
+## [1] TRUE
+</pre>
 
       <p>
         We do indeed, as we made sure in the previous section. Now we can move on to our
@@ -1608,14 +1611,15 @@ addresses %&gt;% geocode(address, method = 'osm')
     </p>
 
     <p>
-      So do this now. Save the file to your working directory. For me, this will be in a
-      sub-folder called 'data':
+      Another way is to read into R directly from the URL provided. Here, let’s read in the licensed premises data directly from the web using the URL 
+<c>"http://www.manchester.gov.uk/open/download/downloads/id/169/licensed_premises.csv"</c>
     </p>
 
     <program language="r" label="read-lic-prem">
       <input>
-lic_prem &lt;- read_csv('data/LicensedPremises.csv') %&gt;%
-  clean_names()
+data_url &lt;- "http://www.manchester.gov.uk/open/download/downloads/id/169/licensed_premises.csv"
+
+lic_prem &lt;- read_csv(data_url) %&gt;-% clean_names()
       </input>
     </program>
 
