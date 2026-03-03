@@ -3,9 +3,7 @@
 <chapter xml:id="ch-10" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Detecting Hot Spots and Repeats</title>
 
-  <section xml:id="sec-ch10-intro">
-    <title>Introduction</title>
-
+  <introduction>
     <subsection xml:id="subsec-ch10-clusters">
       <title>Clusters, hot spots of crime, and near repeat victimisation</title>
 
@@ -253,7 +251,7 @@ burglary_lsoa &lt;- st_transform(burglary_lsoa, 27700)
       </p>
 
     </subsection>
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch10-raster-hotspots">
     <title>Using <c>raster</c> micro-grid cells to spot hot spots</title>
