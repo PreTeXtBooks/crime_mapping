@@ -3,8 +3,7 @@
 <chapter xml:id="ch-06" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Time Matters</title>
 
-  <section xml:id="sec-ch6-intro">
-    <title>Introduction</title>
+  <introduction>
 
     <p>
       In this chapter we provide a brief introduction into spatio-temporal visualisation. The
@@ -65,7 +64,7 @@ library(tmap)
       </input>
     </program>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch6-temporal-data">
     <title>Temporal data in crime analysis</title>
