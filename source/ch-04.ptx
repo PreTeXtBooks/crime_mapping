@@ -3,8 +3,7 @@
 <chapter xml:id="ch-04" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Variations of Thematic Mapping</title>
 
-  <section xml:id="sec-ch04-intro">
-    <title>Introduction</title>
+  <introduction>
 
     <p>
       In this chapter we are going to discuss some additional features around thematic maps.
@@ -52,7 +51,7 @@ library(cartogram)
       </input>
     </program>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch04-binning">
     <title>Binning points</title>
