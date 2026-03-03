@@ -38,8 +38,8 @@
       the network and not in other parts of the study region. Several authors have argued that
       crime is best represented and predicted if we focus in the street network rather than other
       kind of level of aggregation and that this has clear implications for operational policing
-      (<xref ref="bib-Singleton_2014" text="custom">Singleton and Brunsdon, 2014</xref>;
-      <xref ref="bib-Rosser_2017" text="custom">Rosser et al., 2017</xref>). It is clear that if
+      (<xref ref="Singleton_2014" text="custom">Singleton and Brunsdon, 2014</xref>;
+      <xref ref="Rosser_2017" text="custom">Rosser et al., 2017</xref>). It is clear that if
       our crime occurrences are collected and represented along a spatial network, we need to
       ensure we use techniques of analysis and visualisation that respect this existing underlying
       structure in our data.
@@ -51,17 +51,17 @@
       challenges when we move from planar to linear network analysis. There is some software such
       as <url href="http://sanet.csis.u-tokyo.ac.jp/">SANET</url> that was originally conceived
       as a toolbox for ArcGIS but with a beta standalone version already available
-      (<xref ref="bib-Okabe_2012" text="custom">Okabe and Sugihara, 2012</xref>). R users and
+      (<xref ref="Okabe_2012" text="custom">Okabe and Sugihara, 2012</xref>). R users and
       developers are working to expand the functionality of R in this regard. It was only in 2020
       that Lucas van der Meer, a Dutch spatial data scientist, published the first release of the
       <c>sfnetworks</c> package to facilitate the creation and analysis of spatial networks. Two
       other useful packages (<c>SpNetPrep</c> and <c>DRHotNet</c>) developed by Briz-Redón and
       colleagues are also only a couple of years old
-      (<xref ref="bib-BrizRedon_2019a" text="custom">Briz-Redón et al., 2019a</xref>;
-      <xref ref="bib-BrizRedon_2019b" text="custom">Briz-Redón et al., 2019b</xref>). Another
+      (<xref ref="BrizRedon_2019a" text="custom">Briz-Redón et al., 2019a</xref>;
+      <xref ref="BrizRedon_2019b" text="custom">Briz-Redón et al., 2019b</xref>). Another
       recent package, released in 2021, is <c>spNetwork</c> by Jeremy Gelb and Philippe Apparicio
       that can be used for kernel density estimation along networks
-      (<xref ref="bib-Gelb_2021" text="custom">Gelb, 2021</xref>). Finally, the package
+      (<xref ref="Gelb_2021" text="custom">Gelb, 2021</xref>). Finally, the package
       <c>spatstat</c>, covered in the last chapter, also provides functionality for the analysis
       of events along spatial networks.
     </p>
@@ -126,9 +126,9 @@ library(tigris)
       along a network might be more meaningful; there are other networks we might want to consider.
       Transport networks are a good example of this and are receiving an increasing interest in
       criminology and crime analysis
-      (<xref ref="bib-Newton_2008" text="custom">Newton, 2008</xref>;
-      <xref ref="bib-Tompson_2009" text="custom">Tompson et al., 2009</xref>;
-      <xref ref="bib-Ceccato_2013" text="custom">Ceccato, 2013</xref>).
+      (<xref ref="Newton_2008" text="custom">Newton, 2008</xref>;
+      <xref ref="Tompson_2009" text="custom">Tompson et al., 2009</xref>;
+      <xref ref="Ceccato_2013" text="custom">Ceccato, 2013</xref>).
     </p>
 
   </section>
@@ -155,7 +155,7 @@ library(tigris)
       data from Open Street Map, first we draw a bounding box around the area we are interested
       in, then select "highways" as the feature to extract (see <em>Appendix C</em> for details on
       building OSM queries). As discussed by
-      <xref ref="bib-Abad_2019" text="custom">Abad et al. (2019)</xref>, the <c>osmdata</c>
+      <xref ref="Abad_2019" text="custom">Abad et al. (2019)</xref>, the <c>osmdata</c>
       package turns streets that form loops into polygons; to ensure we end up with lines we use
       <c>osm_poly2line</c>.
     </p>
@@ -229,7 +229,7 @@ figure_1
     </p>
 
     <ul>
-      <li><p><xref ref="bib-Abad_2019" text="custom">Abad et al. (2019)</xref> explain how to
+      <li><p><xref ref="Abad_2019" text="custom">Abad et al. (2019)</xref> explain how to
         use the packages <c>rgrass7</c> and <c>link2GI</c> for this purpose. These packages bridge
         R to GRASS GIS software. So for this approach to work, you would require this software to
         be installed in your machine. Fortunately, GRASS GIS is freely available.</p></li>
@@ -237,8 +237,8 @@ figure_1
         object into a network. The function <c>as_sfnetwork()</c> provides the basic
         functionality for this. This package also includes several additional functions for
         cleaning the resulting network, and there is a specific vignette documenting these
-        (<xref ref="bib-Vandemeer_2021" text="custom">van der Meer et al., 2021</xref>).</p></li>
-      <li><p><xref ref="bib-BrizRedon_2019a" text="custom">Briz-Redón et al. (2019a)</xref>
+        (<xref ref="Vandemeer_2021" text="custom">van der Meer et al., 2021</xref>).</p></li>
+      <li><p><xref ref="BrizRedon_2019a" text="custom">Briz-Redón et al. (2019a)</xref>
         developed the <c>SpNetPrep</c> ("Spatial Network Preprocessing"). This package will open
         a Shiny application in RStudio that will allow for network creation and edition, network
         direction endowment and point pattern revision and modification. The key aim of this
@@ -277,8 +277,8 @@ plot(heswall_ntwk)
       spatial filters, etc. You can also apply standard social network analysis techniques and
       measures (such as centrality, measuring shortest path). Illustrations of these applications
       are available in the vignettes for <c>sfnetworks</c>
-      (<xref ref="bib-Vandemeer_2021" text="custom">van der Meer et al., 2021</xref>) and in
-      <xref ref="bib-Abad_2019" text="custom">Abad et al. (2019)</xref>.
+      (<xref ref="Vandemeer_2021" text="custom">van der Meer et al., 2021</xref>) and in
+      <xref ref="Abad_2019" text="custom">Abad et al. (2019)</xref>.
     </p>
 
     <p>
@@ -310,7 +310,7 @@ plot(heswall_ntwk)
         Euclidean distance underestimates the real distance between two objects on the network.
         Moreover, networks are not isotropic spaces. In other words, it is not possible to move
         in every direction, but only along the edges of the network
-        (<xref ref="bib-Gelb_2021" text="custom">Gelb, 2021</xref>).
+        (<xref ref="Gelb_2021" text="custom">Gelb, 2021</xref>).
       </p>
     </blockquote>
 
@@ -319,12 +319,12 @@ plot(heswall_ntwk)
       development and a number of approaches have been proposed over recent years, some of which
       provide a pragmatic (heuristic) solution, but "their properties are not well understood,
       statistical insight is lacking," and "computational cost is high"
-      (<xref ref="bib-McSwiggan_2016" text="custom">McSwiggan et al., 2016</xref>, p. 325). The
+      (<xref ref="McSwiggan_2016" text="custom">McSwiggan et al., 2016</xref>, p. 325). The
       existing software implementation of the "traditional" algorithms that have been developed
       can deal with small datasets, but may become prohibitive when dealing with larger datasets.
       More recent algorithms aim to provide faster solutions for larger datasets without seriously
       compromising performance (see
-      <xref ref="bib-Rakshit_2019" text="custom">Rakshit et al., 2019</xref>). You can currently
+      <xref ref="Rakshit_2019" text="custom">Rakshit et al., 2019</xref>). You can currently
       do this in R with at least two separate packages <c>spatstat</c> and the newer
       <c>spNetwork</c>. For reasons of space, given that it provides a more general framework for
       point pattern analysis and a wider selection of (more principled) approaches, we will only
@@ -437,7 +437,7 @@ shoplifting_ppp &lt;- ppp(x = shoplifting_coords[,1], y = shoplifting_coords[,2]
       (notice that, as noted above, there are other ways to input your points when creating a
       <c>lpp</c> object) and then plot it. There are 264 locations, some of which represent up to
       6 incidents. This is likely the result of geomasking due to privacy concerns
-      (<xref ref="bib-Tompson_2015" text="custom">Tompson et al., 2015</xref>).
+      (<xref ref="Tompson_2015" text="custom">Tompson et al., 2015</xref>).
     </p>
 
     <program language="r">
@@ -506,11 +506,11 @@ plot(d100, style="width")
       The visual inspection of the map suggests that the intensity of crime along the network is
       not spatially uniform. Alternatively one could use the new specific functions for each of
       these different algorithms: <c>densityQuick()</c> (see
-      <xref ref="bib-Rakshit_2019" text="custom">Rakshit et al., 2019</xref>),
+      <xref ref="Rakshit_2019" text="custom">Rakshit et al., 2019</xref>),
       <c>densityEqualSplit()</c> (see
-      <xref ref="bib-Okabe_2012" text="custom">Okabe and Sugihara, 2012</xref>), or
+      <xref ref="Okabe_2012" text="custom">Okabe and Sugihara, 2012</xref>), or
       <c>densityHeat()</c> (see
-      <xref ref="bib-McSwiggan_2016" text="custom">McSwiggan et al., 2016</xref>).
+      <xref ref="McSwiggan_2016" text="custom">McSwiggan et al., 2016</xref>).
     </p>
 
     <p>
@@ -559,7 +559,7 @@ plot(d_okabe, main="Okabe-Sugihara (disc.)")
     </figure>
 
     <p>
-      <xref ref="bib-McSwiggan_2016" text="custom">McSwiggan et al. (2016)</xref> subsequently
+      <xref ref="McSwiggan_2016" text="custom">McSwiggan et al. (2016)</xref> subsequently
       developed an algorithm that is equivalent to the Okabe-Sugihara method using the continuous
       rule applied to the Gaussian kernel, and therefore has more desirable properties than the
       equal split discontinuous, but that runs faster (than the Okabe-Sugihara equal split
@@ -593,11 +593,11 @@ plot(d_mcswiggan, main="McSwiggan")
 
     <p>
       Finally, as noted above,
-      <xref ref="bib-Rakshit_2019" text="custom">Rakshit et al. (2019)</xref> developed a fast
+      <xref ref="Rakshit_2019" text="custom">Rakshit et al. (2019)</xref> developed a fast
       algorithm, using a convolution method, that is particularly helpful with large datasets. The
       analysis of the authors suggest this estimator "is consistent, and its statistical
       efficiency is only slightly suboptimal"
-      (<xref ref="bib-Rakshit_2019" text="custom">Rakshit et al., 2019</xref>).
+      (<xref ref="Rakshit_2019" text="custom">Rakshit et al., 2019</xref>).
     </p>
 
     <program language="r">
@@ -743,10 +743,10 @@ ggplot() +
         segments of the network and visualise this through colour. We can create a hot routes
         visualisation by thematically shading each street segment with a colour (and line
         thickness if desired) that corresponds to the range of the rate of crime per metre. It was
-        used by <xref ref="bib-Newton_2008" text="custom">Newton (2008)</xref> to map crime and
+        used by <xref ref="Newton_2008" text="custom">Newton (2008)</xref> to map crime and
         disorder on the bus network in Merseyside. A useful how-to guide on using hot routes was
         later produced by
-        <xref ref="bib-Tompson_2009" text="custom">Tompson et al. (2009)</xref>. In it they
+        <xref ref="Tompson_2009" text="custom">Tompson et al. (2009)</xref>. In it they
         break down the process into four stages:
       </p>
 
@@ -767,7 +767,7 @@ ggplot() +
         <p>
           The prerequisite to visualising hot routes is to have a network layer which meets
           certain conditions. For example,
-          <xref ref="bib-Tompson_2009" text="custom">Tompson et al. (2009)</xref> advise that
+          <xref ref="Tompson_2009" text="custom">Tompson et al. (2009)</xref> advise that
           since network layers typically contain streets of unequal length, longer segments might
           show up as hot simply because they have more space to contain more crimes. Therefore in
           such cases, it is advisable in this analysis to use equal length street segments, where
@@ -986,7 +986,7 @@ ggplot() +
           since there are not many crimes on each road, we might artificially dilute the crime
           rate. If you suspect this might be the case, then segmentation might be a better
           approach, and then refer back to the paper by
-          <xref ref="bib-Tompson_2009" text="custom">Tompson et al. (2009)</xref> for guidance on
+          <xref ref="Tompson_2009" text="custom">Tompson et al. (2009)</xref> for guidance on
           that.
         </p>
 
@@ -1035,7 +1035,7 @@ ggplot() +
         concentration. It may not always be necessary to include the geographic component of a
         spatial network for the purposes of crime analysis in these networks. Instead, another
         approach could be to make use of street profile analysis introduced by
-        <xref ref="bib-Spicer_2016" text="custom">Spicer et al. (2016)</xref>. Street profile
+        <xref ref="Spicer_2016" text="custom">Spicer et al. (2016)</xref>. Street profile
         analysis was initially developed as a method for visualising temporal and spatial crime
         patterns along major roadways in metropolitan areas. The idea is that the geographical
         location of the street may not actually be as important as the ability to visualise data
@@ -1078,7 +1078,7 @@ telegraph_rd &lt;- heswall_tc %&gt;% filter(name == "Telegraph Road")
           downloaded from OSM. We see there are seven segments, but they don't necessarily
           correspond to anything specific. In Street Profile Analysis we want to be conscious
           about how we divide up the segment. In their paper,
-          <xref ref="bib-Spicer_2016" text="custom">Spicer et al. (2016)</xref> just segment into
+          <xref ref="Spicer_2016" text="custom">Spicer et al. (2016)</xref> just segment into
           100-metre lengths. Another thing we might be interested in is to slice into segments
           wherever there is an intersection with another road. Here let's use the intersections as
           a way to divide our street into segments.
@@ -1556,7 +1556,7 @@ ggplot() +
       place literature we explore the concentration of crime at micro-places. "Perhaps the first
       and most important empirical observation in the criminology of place is that crime
       concentrates at very small units of geography"
-      (<xref ref="bib-Weisburd_2015" text="custom">Weisburd, 2015</xref>, p. 135). A significant
+      (<xref ref="Weisburd_2015" text="custom">Weisburd, 2015</xref>, p. 135). A significant
       proportion of crime concentrates around a small proportion of micro places.
     </p>
 
@@ -1571,14 +1571,14 @@ ggplot() +
       typically to graph inequality of distribution of wealth, they can be applied in this case to
       explore unequal distribution of crimes between micro-places. A perfectly equal distribution
       would be depicted by the straight line <m>y = x</m>
-      (<xref ref="bib-lorenz1905methods" text="custom">Lorenz, 1905</xref>;
-      <xref ref="bib-zeileis2012package" text="custom">Zeileis et al., 2012</xref>). The
+      (<xref ref="lorenz1905methods" text="custom">Lorenz, 1905</xref>;
+      <xref ref="zeileis2012package" text="custom">Zeileis et al., 2012</xref>). The
       corresponding Gini coefficient represents the ratio of the area between the line of perfect
       equality and the observed Lorenz curve to the area between the line of perfect equality and
       the line of perfect inequality
-      (<xref ref="bib-gastwirth1972estimation" text="custom">Gastwirth, 1972</xref>). The closer
+      (<xref ref="gastwirth1972estimation" text="custom">Gastwirth, 1972</xref>). The closer
       the coefficient is to 1, the more unequal the distribution is
-      (<xref ref="bib-zeileis2012package" text="custom">Zeileis et al., 2012</xref>).
+      (<xref ref="zeileis2012package" text="custom">Zeileis et al., 2012</xref>).
     </p>
 
     <p>
@@ -1662,14 +1662,14 @@ ineq(tr_sections$summer_rate, type="Gini")
       There has been increasing recognition in recent years that the spatial existence of many
       phenomena is constrained by networks. We have discussed some of the issues associated with
       the storage, handling, and visualisation of this kind of data. Chapter 1 of
-      <xref ref="bib-Okabe_2012" text="custom">Okabe and Sugihara (2012)</xref> provides a fairly
+      <xref ref="Okabe_2012" text="custom">Okabe and Sugihara (2012)</xref> provides a fairly
       accessible introduction to the relevance of point pattern data along a network, whereas
       Chapter 3 offers a slightly more technical discussion of the computational issues associated
       with the statistical analysis of points along a network. The first few sections of chapter
-      17 of <xref ref="bib-Baddeley_2016" text="custom">Baddeley et al. (2015)</xref> provide
+      17 of <xref ref="Baddeley_2016" text="custom">Baddeley et al. (2015)</xref> provide
       background and very useful detail on the way that <c>spatstat</c> handles and stores point
       pattern data in a network.
-      <xref ref="bib-Baddeley_2021" text="custom">Baddeley et al. (2021)</xref> offers an
+      <xref ref="Baddeley_2021" text="custom">Baddeley et al. (2021)</xref> offers an
       excellent overview of the challenges of analysing this kind of data and the available
       methods we have. This overview can also offers an excellent framework to understand the
       issues of clustering and detection of local clusters along networks to which we will return
@@ -1679,7 +1679,7 @@ ineq(tr_sections$summer_rate, type="Gini")
     <p>
       But spatial networks analysis is a more general area, with various other applications that
       we could not explore in detail here.
-      <xref ref="bib-OSullivan_2014" text="custom">O'Sullivan (2014)</xref> provides an
+      <xref ref="OSullivan_2014" text="custom">O'Sullivan (2014)</xref> provides an
       introduction to spatial network analysis, basically a translation of social network metrics
       and concepts applied to spatial networks. This kind of perspective is particularly helpful
       within transport, routing, and similar applications. See, for example, the kind of
@@ -1687,9 +1687,9 @@ ineq(tr_sections$summer_rate, type="Gini")
       cross-fertilisation between social network analysis and spatial analysis. In epidemiology,
       for example, we see how this is done for studying the transmission of disease through
       personal and geographic networks (see, for example,
-      <xref ref="bib-Emch_2010" text="custom">Emch et al., 2010</xref>). Whereas
-      <xref ref="bib-Radil_2010" text="custom">Radil et al. (2010)</xref> and
-      <xref ref="bib-Tita_2011" text="custom">Tita and Radil (2011)</xref> offer some
+      <xref ref="Emch_2010" text="custom">Emch et al., 2010</xref>). Whereas
+      <xref ref="Radil_2010" text="custom">Radil et al. (2010)</xref> and
+      <xref ref="Tita_2011" text="custom">Tita and Radil (2011)</xref> offer some
       criminological examples (focused on the study of gangs) linking social network analysis and
       spatial analysis. Along these lines, the package <c>spnet</c> facilitates the rendering of
       social network data into a geographical space. Some of these applications can be relevant
@@ -1697,13 +1697,13 @@ ineq(tr_sections$summer_rate, type="Gini")
       which social networks are being used within the context of environmental criminology is in
       contributing to the alternative specifications of neighbourhoods that aim to move beyond the
       traditional use of census geographies (see
-      <xref ref="bib-Hipp_2012" text="custom">Hipp et al., 2012</xref> and
-      <xref ref="bib-Hipp_2013" text="custom">Hipp and Boessen, 2013</xref>). Finally, it is also
+      <xref ref="Hipp_2012" text="custom">Hipp et al., 2012</xref> and
+      <xref ref="Hipp_2013" text="custom">Hipp and Boessen, 2013</xref>). Finally, it is also
       worth exploring the literature on <alert>space syntax</alert> and crime, and the various
       analyses that are looking at the structural characteristics of the street network (such as
       betweenness) and how these characteristics influence crime
-      (<xref ref="bib-Davies_2018" text="custom">Davies and Bowers, 2018</xref>;
-      <xref ref="bib-Kim_2019" text="custom">Kim and Hipp, 2019</xref>).
+      (<xref ref="Davies_2018" text="custom">Davies and Bowers, 2018</xref>;
+      <xref ref="Kim_2019" text="custom">Kim and Hipp, 2019</xref>).
     </p>
 
   </section>

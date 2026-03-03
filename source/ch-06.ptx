@@ -80,11 +80,11 @@ library(tmap)
     <p>
       On a macro-scale, the relationship between crime and the seasons is something that had been a
       topic of concern for researchers as long as space has
-      (<xref ref="bib-Baumer_1996" text="custom">Baumer and Wright, 1996</xref>). Zooming into a
+      (<xref ref="Baumer_1996" text="custom">Baumer and Wright, 1996</xref>). Zooming into a
       micro-scale, changes in routine activities with time of day or day of week will affect the
       profile of a place, and linking back to the idea of crime places such as <em>generators</em>
       or <em>attractors</em>, will have significant effect on crime rates. In conceptualising these
-      crime places, <xref ref="bib-Newton_2018" text="custom">Newton (2018)</xref> emphasised the
+      crime places, <xref ref="Newton_2018" text="custom">Newton (2018)</xref> emphasised the
       importance to consider the measure of busyness of a place by time of day in order to
       understand its role as an attractor, generator, or other crime place. For example, at transit
       stations during school days, there is a morning peak time of work and school users combined,
@@ -92,7 +92,7 @@ library(tmap)
       time. Any calculation of crime rates needs to account for these micro-level temporal
       variations. At whatever unit of analysis, time is a vital variable to include in our crime
       analysis and criminological research. To quote
-      <xref ref="bib-Tompson_2013" text="custom">Tompson and Bowers (2013)</xref>:
+      <xref ref="Tompson_2013" text="custom">Tompson and Bowers (2013)</xref>:
     </p>
 
     <blockquote>
@@ -108,11 +108,11 @@ library(tmap)
       time-referenced data in order to extract meaning and patterns from our data. In the earlier
       days, crime pattern analysis has tended to focus on identifying areas with higher densities
       of criminal activity, but not so much the monitoring of change in crime patterns over time
-      (<xref ref="bib-Ratcliffe_1998" text="custom">Ratcliffe and McCullagh, 1998</xref>). However,
+      (<xref ref="Ratcliffe_1998" text="custom">Ratcliffe and McCullagh, 1998</xref>). However,
       crime hot spots display significant spatio-temporal variance, and the identification of
       spatio-temporal patterns of hot streets provides significant 'actionable intelligence' for
       police departments
-      (<xref ref="bib-Herrmann_2013" text="custom">Herrmann, 2013</xref>). Evidently, we cannot
+      (<xref ref="Herrmann_2013" text="custom">Herrmann, 2013</xref>). Evidently, we cannot
       ignore time as a variable in our analyses. And while the main focus of this book is space, we
       must take at least one chapter to introduce some key concepts, and provide additional
       resources for readers to follow up with.
@@ -140,7 +140,7 @@ library(tmap)
     <p>
       For crime data, we will be using crime data from New York City made available by the R
       package <c>crimedata</c>
-      (<xref ref="bib-Ashby_2019" text="custom">Ashby, 2019</xref>). You can refer to these
+      (<xref ref="Ashby_2019" text="custom">Ashby, 2019</xref>). You can refer to these
       citations to learn more about acquiring data from this fantastic resource. However for now,
       let's make use of the data provided with the book, where we selected a specific subset of
       aggravated assault in New York for a period of five years.
@@ -431,7 +431,7 @@ ggplot_calendar_heatmap(
       This sort of visualisation might be useful for example to see if certain days of the week
       have more incidents than others, possibly due to differences in the underlying routine
       activities that predominate for example weekends versus weekdays. For a bit of fun, you can
-      read <xref ref="bib-Moss_2013" text="custom">Moss (2013)</xref> for a safety rating on each
+      read <xref ref="Moss_2013" text="custom">Moss (2013)</xref> for a safety rating on each
       day of the week.
     </p>
 
@@ -443,7 +443,7 @@ ggplot_calendar_heatmap(
         other approaches to visualise change over time as well. One such approach is to present
         <alert>percentage change</alert> from one point in time to the next. There are many issues
         with this approach, which lead to misinterpreting the data, which are explored in detail
-        by <xref ref="bib-Wheeler_2016" text="custom">Wheeler (2016)</xref>. For example, he
+        by <xref ref="Wheeler_2016" text="custom">Wheeler (2016)</xref>. For example, he
         mentions that percentage change is not symmetric: "For example, an increase from 4 to 5
         crimes is a 25% increase, whereas a decrease from 5 to 4 crimes is only a 20% decrease"
         (p.x). He presents an alternative metric in Poisson z-scores.
@@ -453,7 +453,7 @@ ggplot_calendar_heatmap(
         Another issue is with the very popular approach of showing changes as
         <alert>year-to-date</alert>. In the post: "Why you can't identify changes in crime by
         comparing this month to last month,"
-        <xref ref="bib-Ashby_2020" text="custom">Ashby (2020)</xref> presents some great arguments
+        <xref ref="Ashby_2020" text="custom">Ashby (2020)</xref> presents some great arguments
         for why attempts to identify changes in crime frequency that involve simply comparing the
         number of crimes this week/month/year to the number that occurred last week/month/year, or
         comparing this week, month, etc. to the same period last year is not an appropriate way to
@@ -754,7 +754,7 @@ plot(ny_timeseriescomponents)
       <p>
         We can also use <c>ggplot2</c> for these purposes. In particular, we can use the
         <c>ggseas</c> extension which allows for seasonal decomposition within <c>ggplot</c> (see
-        <xref ref="bib-Ellis_2018" text="custom">Ellis (2018)</xref> for details). First, we can
+        <xref ref="Ellis_2018" text="custom">Ellis (2018)</xref> for details). First, we can
         use the <c>tsdf()</c> function from the <c>ggseas</c> package. This turns the <c>ts</c>
         object we just created into a dataframe and then plot the series.
       </p>
@@ -859,7 +859,7 @@ tm_shape(mcr_burglary) +
       <title>Small multiples to show temporal variation</title>
 
       <p>
-        As noted by <xref ref="bib-Pebesma_2012" text="custom">Pebesma (2012)</xref>, spatio-temporal
+        As noted by <xref ref="Pebesma_2012" text="custom">Pebesma (2012)</xref>, spatio-temporal
         data often come in the form of single tables expressed in one of the three following
         formats:
       </p>
@@ -918,7 +918,7 @@ tm_shape(mcr_burglary) +
         use spaghetti plots. On their own they are not great, but they can be used when one wants
         to put a trajectory within a broader context or when comparing different trajectories. You
         can read more about how to not use them in
-        <xref ref="bib-Nussbaumer_2013" text="custom">Nussbaumer (2013)</xref>.
+        <xref ref="Nussbaumer_2013" text="custom">Nussbaumer (2013)</xref>.
       </p>
 
       <p>
@@ -1112,29 +1112,29 @@ anim +
       then introduced some approaches to visualising temporal data, and finally, ways to visualise
       spatio-temporal variation as well. To read up on the importance of time, and specifically
       spatio-temporal crime analysis, we recommend
-      <xref ref="bib-Ratcliffe_2010" text="custom">Ratcliffe (2010)</xref>,
-      <xref ref="bib-Wheeler_2016" text="custom">Wheeler (2016)</xref>, and
-      <xref ref="bib-Roth_2013" text="custom">Roth et al. (2013)</xref>.
+      <xref ref="Ratcliffe_2010" text="custom">Ratcliffe (2010)</xref>,
+      <xref ref="Wheeler_2016" text="custom">Wheeler (2016)</xref>, and
+      <xref ref="Roth_2013" text="custom">Roth et al. (2013)</xref>.
     </p>
 
     <p>
       While we did not get to go into any spatio-temporal analysis at this stage, visualisation is
       a good starting point to begin to engage with this important element of crime data. For
       additional details about how to visualise space-time data with R, we suggest
-      <xref ref="bib-Perpinan_2014" text="custom">Perpi&#x00F1;an Lamigueiro (2014)</xref> and
-      chapter 2 of <xref ref="bib-Wikle_2019" text="custom">Wikle et al. (2019)</xref>.
+      <xref ref="Perpinan_2014" text="custom">Perpi&#x00F1;an Lamigueiro (2014)</xref> and
+      chapter 2 of <xref ref="Wikle_2019" text="custom">Wikle et al. (2019)</xref>.
     </p>
 
     <p>
       To move into spatio-temporal analysis would require a more thorough training in temporal data
       analysis first, and so we do not cover it here. But we provide some resources for those
-      interested. Notably, <xref ref="bib-Hyndman_2021" text="custom">Hyndman and
+      interested. Notably, <xref ref="Hyndman_2021" text="custom">Hyndman and
       Athanasopoulos (2021)</xref> is an excellent resource for this, and we can also recommend
-      <xref ref="bib-Chatfield_2019" text="custom">Chatfield and Xing (2019)</xref>. For those
-      already comfortable with this, <xref ref="bib-Pebesma_2012" text="custom">Pebesma (2012)</xref>
+      <xref ref="Chatfield_2019" text="custom">Chatfield and Xing (2019)</xref>. For those
+      already comfortable with this, <xref ref="Pebesma_2012" text="custom">Pebesma (2012)</xref>
       also offers a very thoughtful introduction to how spatio-temporal data layouts appear and
       useful graphs for spatio-temporal data.
-      <xref ref="bib-Pebesma_2012" text="custom">Pebesma (2012)</xref> also introduces the R
+      <xref ref="Pebesma_2012" text="custom">Pebesma (2012)</xref> also introduces the R
       package <c>spacetime</c>, for handling such analyses. At the time of writing, functions in
       <c>spacetime</c> take as inputs older <c>sp</c> objects, but the work on the emerging
       package <c>sftime</c>, to work with <c>sf</c> objects is ongoing.
@@ -1142,20 +1142,20 @@ anim +
 
     <p>
       Specific to crime mapping, we see frequent use of the Mantel test
-      (<xref ref="bib-Mantel_1967" text="custom">Mantel, 1967</xref>), which provides a single
+      (<xref ref="Mantel_1967" text="custom">Mantel, 1967</xref>), which provides a single
       index that indicates whether space-time clustering is apparent, and the Knox test
-      (<xref ref="bib-knox_1964" text="custom">Knox, 1964</xref>), which examines this pattern in
+      (<xref ref="knox_1964" text="custom">Knox, 1964</xref>), which examines this pattern in
       more detail by determining whether there are more instances of events within a defined
       spatio-temporal area than would be expected on the basis of chance alone
-      (<xref ref="bib-Johnson_2007" text="custom">Johnson et al., 2007</xref>;
-      <xref ref="bib-Marchione_2013" text="custom">Marchione and Johnson, 2013</xref>;
-      <xref ref="bib-Adepeju_2017" text="custom">Adepeju and Evans, 2017</xref>). To implement
+      (<xref ref="Johnson_2007" text="custom">Johnson et al., 2007</xref>;
+      <xref ref="Marchione_2013" text="custom">Marchione and Johnson, 2013</xref>;
+      <xref ref="Adepeju_2017" text="custom">Adepeju and Evans, 2017</xref>). To implement
       these in R, we recommend exploring the <c>surveillance</c> package, which offers statistical
       methods for the modelling and monitoring of time series of counts, proportions and
       categorical data, including the <c>knox()</c> function to implement Knox test
-      (<xref ref="bib-salmon_2016" text="custom">Salmon et al., 2016</xref>;
-      <xref ref="bib-meyer_2017" text="custom">Meyer et al., 2017</xref>), and
-      <xref ref="bib-Thioulouse_2018" text="custom">Thioulouse et al. (2018)</xref>
+      (<xref ref="salmon_2016" text="custom">Salmon et al., 2016</xref>;
+      <xref ref="meyer_2017" text="custom">Meyer et al., 2017</xref>), and
+      <xref ref="Thioulouse_2018" text="custom">Thioulouse et al. (2018)</xref>
       'Multivariate Analysis of Ecological Data with <c>ade4</c>' &#x2014; a package for
       analysis of ecological data, which includes the functions which implement Mantel's (1967)
       space-time interaction test. We will encounter these tests again in Chapter 11 of this book,
@@ -1165,10 +1165,10 @@ anim +
     <p>
       As noted, there are packages that provide functionality for better handling of dates and
       time. It is worth to go over the details of <c>lubridate</c> in the official pages and the
-      relevant chapter in <xref ref="bib-Wickham_2017" text="custom">Wickham and
+      relevant chapter in <xref ref="Wickham_2017" text="custom">Wickham and
       Grolemund (2017)</xref> is also very helpful. There is a brand new package <c>clock</c>
       that aims to improve on <c>lubridate</c>, and that is also worth exploring (for details see
-      <xref ref="bib-Vaughan_2021" text="custom">Vaughan, 2021</xref>).
+      <xref ref="Vaughan_2021" text="custom">Vaughan, 2021</xref>).
     </p>
 
   </section>

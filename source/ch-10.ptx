@@ -13,23 +13,23 @@
         There has been a great interest within criminology and crime analysis in the study of local
         clusters of crime or hot spots over the last 30 years. "Hot spots" is the term typically
         used within criminology and crime analysis to refer to small geographical areas with a high
-        concentration of crime. <xref ref="bib-Weisburd_2015" text="custom">Weisburd (2015)</xref>
+        concentration of crime. <xref ref="Weisburd_2015" text="custom">Weisburd (2015)</xref>
         argues for a <em>law of concentration</em> of crime that postulates that a large proportion
         of crime events occur at relatively few places (such as specific addresses, street
         intersections, street blocks, or other small micro-places) within larger geographical areas
         such as cities. In one of the earlier contributions to this field of research,
-        <xref ref="bib-Sherman_1989" text="custom">Sherman et al. (1989)</xref> noted how roughly
+        <xref ref="Sherman_1989" text="custom">Sherman et al. (1989)</xref> noted how roughly
         3% of all addresses in Minneapolis (USA) generated about 50% of all calls to police
         services. A number of subsequent studies have confirmed this pattern elsewhere.
-        <xref ref="bib-Steenbeek_2016" text="custom">Steenbeek and Weisburd (2016)</xref> argue
+        <xref ref="Steenbeek_2016" text="custom">Steenbeek and Weisburd (2016)</xref> argue
         that, in fact, most of the geographical variability of crime (58% to 69% in their data from
         the Hague) can be attributed to micro-geographic units, with a very limited contribution
         from the neighbourhood level (see, however,
-        <xref ref="bib-Ramos_2021" text="custom">Ramos et al. (2021)</xref>). This literature also
+        <xref ref="Ramos_2021" text="custom">Ramos et al. (2021)</xref>). This literature also
         argues that many crime hot spots are relatively stable over time
-        (<xref ref="bib-Andresen_2011b" text="custom">Andresen and Malleson, 2011</xref>;
-        <xref ref="bib-Andresen_2017" text="custom">Andresen et al., 2017</xref>;
-        <xref ref="bib-Andresen_2017b" text="custom">Andresen et al., 2017b</xref>).
+        (<xref ref="Andresen_2011b" text="custom">Andresen and Malleson, 2011</xref>;
+        <xref ref="Andresen_2017" text="custom">Andresen et al., 2017</xref>;
+        <xref ref="Andresen_2017b" text="custom">Andresen et al., 2017b</xref>).
       </p>
 
       <p>
@@ -37,20 +37,20 @@
         this insight as key for articulating responses to crime. <alert>Hot spots policing</alert>,
         or place-based policing, assumes that police can reduce crime by focusing their resources on
         the small number of places that generate a majority of crime problems
-        (<xref ref="bib-Braga_2010" text="custom">Braga and Weisburd, 2010</xref>). Policing crime
+        (<xref ref="Braga_2010" text="custom">Braga and Weisburd, 2010</xref>). Policing crime
         hot spots has become a popular strategy in the US and efforts to adopt this approach have
         also taken place elsewhere. Theoretically, one could use all sorts of proactive creative
         approaches to solve crime in these locations (using for example conceptual and tactical
-        tools from <xref ref="bib-Goldstein_1990" text="custom">Goldstein's (1990)</xref>
+        tools from <xref ref="Goldstein_1990" text="custom">Goldstein's (1990)</xref>
         problem oriented policing approach); though too often in practice directed patrol becomes
         the default response. Recent reviews of the literature (dominated by the US experience)
         suggest the approach can have a small effect size
-        (<xref ref="bib-Braga_2019" text="custom">Braga et al., 2019</xref>), though some authors
+        (<xref ref="Braga_2019" text="custom">Braga et al., 2019</xref>), though some authors
         contend alternative measures of effect size (which are suggestive of a moderate effect)
         should be used instead
-        (<xref ref="bib-Braga_2020" text="custom">Braga and Weisburd, 2020</xref>). Whether these
+        (<xref ref="Braga_2020" text="custom">Braga and Weisburd, 2020</xref>). Whether these
         findings would replicate well in other contexts is still an open question (see, for example,
-        <xref ref="bib-Collazos_2020" text="custom">Collazos et al., 2020</xref>).
+        <xref ref="Collazos_2020" text="custom">Collazos et al., 2020</xref>).
       </p>
 
       <p>
@@ -59,7 +59,7 @@
         concentration of crime incidents in particular locations as a way to explore places with an
         elevated intensity of crime. We used tesselation and kernel density estimation as a way to
         do this. But, as noted by
-        <xref ref="bib-Chainey_2014" text="custom">Chainey (2014)</xref>:
+        <xref ref="Chainey_2014" text="custom">Chainey (2014)</xref>:
       </p>
 
       <blockquote>
@@ -74,21 +74,21 @@
 
       <p>
         Apparent clusters may indeed appear by chance alone
-        (<xref ref="bib-Marshall_1991" text="custom">Marshall, 1991</xref>). There are a number of
+        (<xref ref="Marshall_1991" text="custom">Marshall, 1991</xref>). There are a number of
         tools that have been developed to detect local clusters among random variation. It is not
         exaggerated to say that this has been a key concern in the field of spatial statistics with
         practical applications in many fields of study. In crime analysis, for example, it is common
         to use the local <m>Gi^*</m> statistic, which is a type of a <alert>local indicator of
         spatial association</alert> (LISA). Another popular LISA is the local Moran's <m>I</m>,
-        developed by <xref ref="bib-Anselin_1995" text="custom">Anselin (1995)</xref>.
+        developed by <xref ref="Anselin_1995" text="custom">Anselin (1995)</xref>.
       </p>
 
       <p>
         These LISA statistics serve two purposes. On one hand, they may be interpreted as indicators
         of local pockets of non-stationarity, to identify outliers. On the other hand, they may be
         used to assess the influence of individual locations on the magnitude of the global
-        statistic (<xref ref="bib-Anselin_1995" text="custom">Anselin, 1995</xref>).
-        <xref ref="bib-Anselin_1995" text="custom">Anselin (1995)</xref> suggests that any LISA
+        statistic (<xref ref="Anselin_1995" text="custom">Anselin, 1995</xref>).
+        <xref ref="Anselin_1995" text="custom">Anselin (1995)</xref> suggests that any LISA
         satisfies two requirements (p. 94):
       </p>
 
@@ -106,7 +106,7 @@
         programmers. These differences in design may result on apparent differences in numerical
         findings generated with these different programs. The defaults used by different software
         may give the impression different results are achieved.
-        <xref ref="bib-Bivand_2018" text="custom">Bivand and Wong (2018)</xref> offer an excellent
+        <xref ref="Bivand_2018" text="custom">Bivand and Wong (2018)</xref> offer an excellent
         thorough review of these different implementations (and steps needed for ensuring
         comparability). Our focus here will be in introducing the functionality of the
         <c>spdep</c> packages.
@@ -115,12 +115,12 @@
       <p>
         Aside from these LISAs, in spatial epidemiology a number of techniques have been developed
         for detecting areas with an unusually high risk of disease
-        (<xref ref="bib-Marshall_1991_b" text="custom">Marshall, 1991</xref>). Although originally
+        (<xref ref="Marshall_1991_b" text="custom">Marshall, 1991</xref>). Although originally
         developed in the context of clusters of disease, these techniques can also be applied to the
-        study of crime (<xref ref="bib-Gomez_2005" text="custom">Gomez-Rubio et al., 2005</xref>).
+        study of crime (<xref ref="Gomez_2005" text="custom">Gomez-Rubio et al., 2005</xref>).
         Most of the methods in spatial epidemiology are based on the idea of "moving windows", such
         as the spatial scan statistic developed by
-        <xref ref="bib-Kulldorff_1997" text="custom">Kulldorff (1997)</xref>. Several packages
+        <xref ref="Kulldorff_1997" text="custom">Kulldorff (1997)</xref>. Several packages
         bring these scan statistics to R. There are also other packages that use different algorithms
         to detect disease clusters, such as AMOEBA, that is based in the Getis-Ord algorithm. As we
         will see, we are spoiled for choice in this regard. Here we will only provide a glimpse into
@@ -136,28 +136,28 @@
         Graham Farrell, who noticed that the risk of re-victimisation is much higher in the days
         immediate to the first offence and that repeat victimisation accounts for a non-trivial
         proportion of crime
-        (<xref ref="bib-Pease_1998" text="custom">Pease, 1998</xref>). There continues to be some
+        (<xref ref="Pease_1998" text="custom">Pease, 1998</xref>). There continues to be some
         debate as to whether this is to do with underlying stable vulnerabilities (<em>flag</em>
         hypothesis) or to increased risk resulting form the first victimisation (<em>boost</em>
         hypothesis), although likely both play a role. Subsequent research has extended the foci of
         application well beyond the study of burglary and the UK (for a review see
-        <xref ref="bib-Pease_2017" text="custom">Pease and Farrell, 2017</xref> and
-        <xref ref="bib-Pease_2018" text="custom">Pease et al., 2018</xref>). From the very
+        <xref ref="Pease_2017" text="custom">Pease and Farrell, 2017</xref> and
+        <xref ref="Pease_2018" text="custom">Pease et al., 2018</xref>). From the very
         beginning this literature emphasised the importance for crime prevention policy, for this
         helps to identify potential targets for it. The advocates of this concept argue that using
         insights from repeat victimisation is a successful approach to crime reduction
-        (<xref ref="bib-Grove_2014" text="custom">Grove et al., 2014</xref>;
-        <xref ref="bib-Farrell_2017" text="custom">Farrell and Pease, 2017</xref>).
+        (<xref ref="Grove_2014" text="custom">Grove et al., 2014</xref>;
+        <xref ref="Farrell_2017" text="custom">Farrell and Pease, 2017</xref>).
       </p>
 
       <p>
         A related phenomenon is that of <alert>near repeat victimisation</alert>.
-        <xref ref="bib-Townsley_2003" text="custom">Townsley et al. (2003)</xref>, building in the
+        <xref ref="Townsley_2003" text="custom">Townsley et al. (2003)</xref>, building in the
         epidemiological notion of contagion, proposed and tested the idea that "proximity to a
         burgled dwelling increases burglary risk for those areas that have a high degree of housing
         homogeneity and that this risk is similar in nature to the temporarily heightened risk of
         becoming a repeat victim after an initial victimisation" (p. 615). Or as, in a subsequent
-        paper, <xref ref="bib-Bowers_2004" text="custom">Bowers and Johnson (2004)</xref> put it,
+        paper, <xref ref="Bowers_2004" text="custom">Bowers and Johnson (2004)</xref> put it,
         "following a burglary at one home the risk of burglary at nearby homes is amplified" (p.
         12). So if we combine the ideas of repeat victimisation and near repeats we would observe:
         (1) a heightened but short-lived risk of victimisation for the original victim following a
@@ -166,10 +166,10 @@
         some that have also successfully applied this concept to other forms of criminal
         victimisation. In 2006 and with funds from the US National Institute of Justice, Jerry
         Ratcliffe developed a free point-and-click interface to perform near repeat analysis
-        (<xref ref="bib-Ratcliffe_2020" text="custom">Ratcliffe, 2020</xref>). This software can
+        (<xref ref="Ratcliffe_2020" text="custom">Ratcliffe, 2020</xref>). This software can
         be accessed from his personal home-page. But our focus in this chapter will be in a package
         (<c>NearRepeat</c>) developed by Wouter Steenbeek in 2019 to bring this functionality into
-        R <xref ref="bib-Steenbeek_2021" text="custom">Steenbeek (2021)</xref>. At the time of
+        R <xref ref="Steenbeek_2021" text="custom">Steenbeek (2021)</xref>. At the time of
         writing, this package is not yet available from CRAN but needs to be installed from its
         GitHub repository. This can be done by using the <c>install_github()</c> function from the
         <c>remotes</c> package, with the code below:
@@ -264,7 +264,7 @@ burglary_lsoa &lt;- st_transform(burglary_lsoa, 27700)
       different ways in which one could define this "micro-unit". A number of studies, recognising
       the nature of police data, look at this from the perspective of street segments. Another way
       of approaching the problem would be to define micro-grid cells.
-      <xref ref="bib-Chainey_2021" text="custom">Chainey (2021)</xref> argues that if street
+      <xref ref="Chainey_2021" text="custom">Chainey (2021)</xref> argues that if street
       segments are available, this should be the preferred level of analysis "because they act as a
       behavioral setting along which social activities are organized" (p. 42). Yet, as we will see
       throughout this chapter, most of the more traditional techniques that have been developed for
@@ -444,7 +444,7 @@ plot(burglary_raster_cc)
         their attributes. It can also be considered a data-driven API for the leaflet package as it
         will automatically render correct map types, depending on the type of the data (points,
         lines, polygons, raster)
-        (<xref ref="bib-Appelhans_2021" text="custom">Appelhans et al., 2021</xref>).
+        (<xref ref="Appelhans_2021" text="custom">Appelhans et al., 2021</xref>).
       </p>
     </blockquote>
 
@@ -501,8 +501,8 @@ mapview(burglary_raster_cc,
 
     <p>
       In crime analysis it is common to use a technique developed by Arthur Getis and JK Ord in the
-      early 1990s (see <xref ref="bib-Getis_1992" text="custom">Getis and Ord (1992)</xref> and
-      <xref ref="bib-Ord_1995" text="custom">Ord and Getis (1995)</xref>), partly because it was
+      early 1990s (see <xref ref="Getis_1992" text="custom">Getis and Ord (1992)</xref> and
+      <xref ref="Ord_1995" text="custom">Ord and Getis (1995)</xref>), partly because it was
       implemented in the widely successful ArcGIS software tool as part of their hot spot analysis
       tool. This statistic provides a measure of spatial dependence at the local level. They are not
       testing homogeneity, they are testing dependence of a given attribute around neighbouring
@@ -516,7 +516,7 @@ mapview(burglary_raster_cc,
       identify pockets of dependence. They are also called <alert>local indicators of spatial
       autocorrelation</alert>. It is indeed useful for us to be able to assess quantitatively
       whether crime events cluster in a non-random manner. In the words of Jerry
-      <xref ref="bib-Ratcliffe_2010" text="custom">Ratcliffe (2010)</xref>, however, "while a
+      <xref ref="Ratcliffe_2010" text="custom">Ratcliffe (2010)</xref>, however, "while a
       global Moran's I test can show that crime events cluster in a non-random manner, this simply
       explains what most criminal justice students learn in their earliest classes." (p. 13). For a
       crime analyst and practitioner, while clustering is of interest, learning about the existence
@@ -529,8 +529,8 @@ mapview(burglary_raster_cc,
       locations, not including the value at the location. It is generally used for spread and
       diffusion studies. The local <m>G^*</m> on the other hand, includes the value at the location
       in both numerator and denominator. It is more generally used for clustering studies (for
-      formula details, see <xref ref="bib-Getis_1992" text="custom">Getis and Ord, 1992</xref> and
-      <xref ref="bib-Ord_1995" text="custom">Ord and Getis, 1995</xref>). High positive values
+      formula details, see <xref ref="Getis_1992" text="custom">Getis and Ord, 1992</xref> and
+      <xref ref="Ord_1995" text="custom">Ord and Getis, 1995</xref>). High positive values
       indicate the possibility of a local cluster of high values of the variable being analysed
       ("hot spot"); very low relative values indicate a similar cluster of low values ("cold spot").
     </p>
@@ -540,7 +540,7 @@ mapview(burglary_raster_cc,
         A value larger than the mean (or, a positive value for a standardized z-value) suggests a
         High-High cluster or hot spot, a value smaller than the mean (or, negative for a z-value)
         indicates a Low-Low cluster or cold spot
-        (<xref ref="bib-Anselin_2020a" text="custom">Anselin, 2020</xref>).
+        (<xref ref="Anselin_2020a" text="custom">Anselin, 2020</xref>).
       </p>
     </blockquote>
 
@@ -548,9 +548,9 @@ mapview(burglary_raster_cc,
       For statistical inference, a Bonferroni-type test is suggested in the papers by Getis and
       Ord, where tables of critical values are included. The critical values for the 95th percentile
       under the assumptions discussed by
-      <xref ref="bib-Ord_1995" text="custom">Ord and Getis (1995)</xref> are for <m>n</m>=30:
+      <xref ref="Ord_1995" text="custom">Ord and Getis (1995)</xref> are for <m>n</m>=30:
       2.93, <m>n</m>=50: 3.08, <m>n</m>=100: 3.29, <m>n</m>=500: 3.71, and for <m>n</m>=1000:
-      3.89. <xref ref="bib-Anselin_2020a" text="custom">Anselin (2020)</xref> suggests that this
+      3.89. <xref ref="Anselin_2020a" text="custom">Anselin (2020)</xref> suggests that this
       analytical approximation may not be reliable in practice and that conditional permutation is
       advisable. Inference with these local measures are also complicated by problems of multiple
       comparisons, so it is typically advisable to use some form of adjustment to this problem.
@@ -610,12 +610,12 @@ summary(grid_cc$G_hotspot_z)
 
     <p>
       A known problem with this statistic is that of multiple comparisons. As noted by
-      <xref ref="bib-Pebesma_2021" text="custom">Pebesma and Bivand (2021)</xref>: "although the
+      <xref ref="Pebesma_2021" text="custom">Pebesma and Bivand (2021)</xref>: "although the
       apparent detection of hot spots from values of local indicators has been quite widely adopted,
       it remains fraught with difficulty because adjustment of the inferential basis to accommodate
       multiple comparisons is not often chosen." So we need to ensure the critical values we use to
       adjust for this. As recommended by
-      <xref ref="bib-Pebesma_2021" text="custom">Pebesma and Bivand (2021)</xref>, we can use the
+      <xref ref="Pebesma_2021" text="custom">Pebesma and Bivand (2021)</xref>, we can use the
       <c>p.adjust()</c> function to count the number of observations that this statistic identifies
       as hot spots using different solutions for the multiple comparison problem, such as Bonferroni,
       False Discovery Rate (<c>fdr</c>), or the method developed by Benjamini and Yekutielli
@@ -799,7 +799,7 @@ m_plot_burglary &lt;- moran.plot(as.vector(scale(grid_cc$layer)),
         burglary, or <em>low-high spatial outliers</em>, areas that have themselves low levels of
         burglary (or whatever else we are mapping) and that are surrounded by areas with above
         average levels of burglary. This would suggest pockets of non-stationarity.
-        <xref ref="bib-Anselin_1996" text="custom">Anselin (1996)</xref> warns these can sometimes
+        <xref ref="Anselin_1996" text="custom">Anselin (1996)</xref> warns these can sometimes
         surface as a consequence of problems with the specification of the weight matrix.
       </p>
 
@@ -884,7 +884,7 @@ sum(bonferroni_lm &lt; 0.05)
         <c>localmoran_perm()</c> function also from the <c>spdep</c> package. This approach is
         based on simulations, so we also have to specify an additional argument <c>nsim</c> setting
         the number of simulations.
-        <xref ref="bib-Bivand_2018" text="custom">Bivand and Wong (2018)</xref> suggest that
+        <xref ref="Bivand_2018" text="custom">Bivand and Wong (2018)</xref> suggest that
         "increasing the number of draws beyond 999 has no effect" (p. 741). The <c>iseed</c>
         argument ensures we use the same random seed and get reproducible results. As before
         adjusting for multiple comparisons notably reduces the number of significant clusters.
@@ -1087,7 +1087,7 @@ tm_shape(grid_cc_sf) +
         different philosophy to those that are based on the idea of LISA have been developed within
         spatial epidemiology. Rather than focusing on local dependence, these tests focus on
         assessing homogeneity
-        (<xref ref="bib-Marshall_1991" text="custom">Marshall, 1991</xref>):
+        (<xref ref="Marshall_1991" text="custom">Marshall, 1991</xref>):
       </p>
 
       <blockquote>
@@ -1102,7 +1102,7 @@ tm_shape(grid_cc_sf) +
       <p>
         Here we will look at two well-known approaches with a focus on their implementation in the
         <c>DCluster</c> package: Openshaw's GAM and Kulldorff's scan statistic. The package
-        <c>DCluster</c> (<xref ref="bib-Gomez_2005" text="custom">Gomez-Rubio et al., 2005</xref>)
+        <c>DCluster</c> (<xref ref="Gomez_2005" text="custom">Gomez-Rubio et al., 2005</xref>)
         was one of the first to introduce tools to assess spatial disease clusters to R. This
         package precedes <c>sf</c> and it likes the data to be stored in a data frame with at least
         four columns: observed number of cases, expected number of cases, and longitude and
@@ -1122,7 +1122,7 @@ tm_shape(grid_cc_sf) +
         aggregation for which we have some population measure that we could use for standardising or
         (2) get creative and try to find other ways of solving this problem. Increasingly,
         environmental criminologists are trying to find ways of taking this second route (see
-        <xref ref="bib-Andresen_2021" text="custom">Andresen et al., 2021</xref>). For this
+        <xref ref="Andresen_2021" text="custom">Andresen et al., 2021</xref>). For this
         illustration and for convenience reasons, we will take the first one. Although it is
         important to warn we should try to stick whenever possible to the level of the spatial
         process we are interested in exploring.
@@ -1208,7 +1208,7 @@ chtest
       <p>
         It also includes the Pottoff and Withinghill test of homogeneity. The alternative hypothesis
         of this test is that the observed cases are distributed following a negative binomial
-        distribution (<xref ref="bib-Bivand_2013" text="custom">Bivand et al., 2013</xref>).
+        distribution (<xref ref="Bivand_2013" text="custom">Bivand et al., 2013</xref>).
       </p>
 
       <program language="r">
@@ -1223,7 +1223,7 @@ oplus &lt;- sum(lsoas$Observed)
 
       <p>
         Detail in those two tests and the used code is available from
-        <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref>. In what follows we
+        <xref ref="Bivand_2013" text="custom">Bivand et al. (2013)</xref>. In what follows we
         introduce two of the approaches implemented here for the detection of clusters.
       </p>
 
@@ -1238,7 +1238,7 @@ oplus &lt;- sum(lsoas$Observed)
         areal unit problem. In 1987, together with several colleagues, he published his second most
         highly cited paper introducing <alert>geographical analysis machine</alert> (GAM). This was
         a technique developed to work with point pattern data with the aim of finding clusters
-        (<xref ref="bib-Openshaw_1987" text="custom">Openshaw et al., 1987</xref>). The machine is
+        (<xref ref="Openshaw_1987" text="custom">Openshaw et al., 1987</xref>). The machine is
         essentially an automated algorithm that tries to assess whether "there is an excess of
         observed points within <m>x</m> km of a specific location" (p. 338). A test statistic is
         computed for this circular search area, and some form of inference can then be made.
@@ -1253,7 +1253,7 @@ oplus &lt;- sum(lsoas$Observed)
         each of the circles individually. The statistically trained reader may already note a
         problem with this. In a way, this is similar to tests for quadrat counting, only here we
         have overlapping "quadrats" and we have many more of them
-        (<xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>).
+        (<xref ref="Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>).
       </p>
 
       <p>
@@ -1294,15 +1294,15 @@ map_gam &lt;- tm_shape(burglary_lsoa) + tm_borders(alpha = 0.3) +
       <p>
         One of the problems with this method is that the tests are not independent; very similar
         clusters (i.e., most of their regions are the same) are tested
-        (<xref ref="bib-Bivand_2013" text="custom">Bivand et al., 2013</xref>). Inference then is a
+        (<xref ref="Bivand_2013" text="custom">Bivand et al., 2013</xref>). Inference then is a
         bit compromised and the approach has received criticism over the years for this failure to
         solve the multiple testing problem: "any Bonferroni type of procedure to adjust for multiple
         testing is futile due to the extremely large number of dependent tests performed"
-        (<xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>). For
+        (<xref ref="Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>). For
         these reasons and others (see
-        <xref ref="bib-Marshall_1991_b" text="custom">Marshall, 1991</xref>), it is considered hard
+        <xref ref="Marshall_1991_b" text="custom">Marshall, 1991</xref>), it is considered hard
         to ask meaningful statistical questions from a GAM. Notwithstanding this, this technique, as
-        noted by <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref>, can still
+        noted by <xref ref="Bivand_2013" text="custom">Bivand et al. (2013)</xref>, can still
         be helpful as part of the exploration of your data, as long as you are aware of its
         limitations.
       </p>
@@ -1314,11 +1314,11 @@ map_gam &lt;- tm_shape(burglary_lsoa) + tm_borders(alpha = 0.3) +
 
       <p>
         More popular has been the approach developed by
-        <xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla (1995)</xref>. This
+        <xref ref="Kulldorff_1995" text="custom">Kulldorff and Nagarwalla (1995)</xref>. This
         test could be used for aggregated or point pattern data. It aims to overcome the limitations
         from previous attempts to assess clusters of disease. Unlike previous methods, the scan
         statistic constructs circles of varying radii
-        (<xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>):
+        (<xref ref="Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref>):
       </p>
 
       <blockquote>
@@ -1332,8 +1332,8 @@ map_gam &lt;- tm_shape(burglary_lsoa) + tm_borders(alpha = 0.3) +
       <p>
         The test statistic then compares the relative risk within the circle to the relative risk
         outside the circles (for more details, see
-        <xref ref="bib-Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref> and
-        <xref ref="bib-Kulldorff_1997" text="custom">Kulldorff, 1997</xref>).
+        <xref ref="Kulldorff_1995" text="custom">Kulldorff and Nagarwalla, 1995</xref> and
+        <xref ref="Kulldorff_1997" text="custom">Kulldorff, 1997</xref>).
       </p>
 
       <p>
@@ -1353,7 +1353,7 @@ map_gam &lt;- tm_shape(burglary_lsoa) + tm_borders(alpha = 0.3) +
         clear now we are using the clustering function for Kulldorff and Nagarwalla scan statistic.
         <c>R</c> is the number of bootstrap permutations to compute. The <c>model</c> argument
         allows us to specify the model to generate the random observations.
-        <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref> suggest the use of a
+        <xref ref="Bivand_2013" text="custom">Bivand et al. (2013)</xref> suggest the use of a
         negative binomial model (<c>"negbin"</c>) to account for over-dispersion which may result
         from unaccounted spatial autocorrelation. And <c>mle</c> specifies parameters that are
         needed for the bootstrap calculation. These can be computed with the
@@ -1452,9 +1452,9 @@ nyc_burg &lt;- st_transform(nyc_burg, 32118)
       and time period. The Knox algorithm counts the pair of points within a specified space and
       time interval and compares this to the expected number of points. "If many of the cases that
       are 'close' in time are also 'close' in space or vice versa, then there is space-time
-      interaction" (<xref ref="bib-Kulldorff_1999" text="custom">Kulldorff and Hjalmars,
+      interaction" (<xref ref="Kulldorff_1999" text="custom">Kulldorff and Hjalmars,
       1999</xref>). The idea underpinning the test, as highlighted by
-      <xref ref="bib-Mantel_1967" text="custom">Mantel (1967)</xref>, is that "if there is
+      <xref ref="Mantel_1967" text="custom">Mantel (1967)</xref>, is that "if there is
       time-space clustering, cases in a cluster will be close both in time and space, while
       unrelated cases will tend to have a larger average separation in time and space." (p. 209).
     </p>
@@ -1563,14 +1563,14 @@ plot(results_knox)
       This test was commonly used in epidemiology for preliminary analysis where an infectious
       origin is suspected before criminologists started to use it. It is worthwhile noticing that
       within the epidemiological literature there are known concerns with this test (see
-      <xref ref="bib-Kulldorff_1999" text="custom">Kulldorff and Hjalmars, 1999</xref> and
-      <xref ref="bib-Townsley_2003" text="custom">Townsley et al., 2003</xref>). One is bias
+      <xref ref="Kulldorff_1999" text="custom">Kulldorff and Hjalmars, 1999</xref> and
+      <xref ref="Townsley_2003" text="custom">Townsley et al., 2003</xref>). One is bias
       introduced by shifts in the population that, considering the temporal scale typically
       considered in criminological issues, is not the greatest concern. We also need to worry about
       arbitrary cut offs and the related problem of multiple comparisons. The near repeat calculator
       manual suggestion for experimentation around these cut-offs likely exacerbates this problem in
       the practice of crime analysis.
-      <xref ref="bib-Townsley_2003" text="custom">Townsley et al. (2003)</xref> suggest using past
+      <xref ref="Townsley_2003" text="custom">Townsley et al. (2003)</xref> suggest using past
       findings reported in the literature to establish the time and space intervals. If there are
       seasonal effects, this test is not well suited to account for them. Finally, the literature
       also discusses edge effects. Within the epidemiological literature, several modifications to
@@ -1580,7 +1580,7 @@ plot(results_knox)
 
     <p>
       A recent article by
-      <xref ref="bib-BrizRedon_2020b" text="custom">Briz-Redón et al. (2020)</xref> proposes a
+      <xref ref="BrizRedon_2020b" text="custom">Briz-Redón et al. (2020)</xref> proposes a
       modification of the traditional Knox test. The classic test assumes that crime risk is
       homogeneous in time and space, despite the fact that this assumption rarely holds. Their
       procedures relax this assumption, but have yet to be implemented in an R package.
@@ -1593,7 +1593,7 @@ plot(results_knox)
 
     <p>
       Hot spots of crime are simply a convenient perceptual construct. As Ned
-      <xref ref="bib-Levine_2013" text="custom">Levine (2013)</xref> (chapter 7, p. 1) highlights,
+      <xref ref="Levine_2013" text="custom">Levine (2013)</xref> (chapter 7, p. 1) highlights,
       <em>"Hot spots do not exist in reality, but are areas where there is sufficient clustering of
       certain activities (in this case, crime) such that they get labeled such. There is not a
       border around these incidents, but a gradient where people draw an imaginary line to indicate
@@ -1616,7 +1616,7 @@ plot(results_knox)
       mind as well the points we raised about the problems with police data in earlier chapters.
       This data presents limitations. There is reporting bias, recording bias, and issues with
       geocoding quality.
-      <xref ref="bib-BrizRedon_2020" text="custom">Briz-Redón et al. (2020)</xref>, specifically,
+      <xref ref="BrizRedon_2020" text="custom">Briz-Redón et al. (2020)</xref>, specifically,
       highlight that the common standard of a 85% match in geocoding is not good enough if the
       purpose is detecting clusters. What we see in our data may not be what it is, because of the
       quality of this data.
@@ -1626,37 +1626,37 @@ plot(results_knox)
       A more advanced approach at considering space time interactions and exploration of highly
       clustered even sequences than the one assumed by the Knox test relies on the idea of
       self-exciting points that are common in seismology. For details on this approach, see
-      <xref ref="bib-Mohler_2011" text="custom">Mohler et al. (2011)</xref>.
-      <xref ref="bib-Kulldorff_2005" text="custom">Kulldorff et al. (2005)</xref> also developed a
+      <xref ref="Mohler_2011" text="custom">Mohler et al. (2011)</xref>.
+      <xref ref="Kulldorff_2005" text="custom">Kulldorff et al. (2005)</xref> also developed a
       space time permutation scan statistic for detecting disease outbreaks that may be useful
       within the context of crime analysis (see, for example,
-      <xref ref="bib-Uittenbogaard_2012" text="custom">Uittenbogaard and Ceccato (2012)</xref> use
+      <xref ref="Uittenbogaard_2012" text="custom">Uittenbogaard and Ceccato (2012)</xref> use
       to study spatio-temporal clusters of crime in Stockholm or
-      <xref ref="bib-Cheng_2014" text="custom">Cheng and Adepeju (2014)</xref> use of the
+      <xref ref="Cheng_2014" text="custom">Cheng and Adepeju (2014)</xref> use of the
       prospective scan statistic in London).
-      <xref ref="bib-Gorr_2015" text="custom">Gorr and Lee (2015)</xref> discuss an alternative
+      <xref ref="Gorr_2015" text="custom">Gorr and Lee (2015)</xref> discuss an alternative
       approach to study and respond to chronic and temporary hot spots. Of interest as well is the
-      work by <xref ref="bib-Adepeju_2021" text="custom">Adepeju et al. (2021)</xref>, and the
+      work by <xref ref="Adepeju_2021" text="custom">Adepeju et al. (2021)</xref>, and the
       associated R package <c>Akmedoids</c>
-      (<xref ref="bib-Adepeju_2020" text="custom">Adepeju et al., 2020</xref>), for classifying
+      (<xref ref="Adepeju_2020" text="custom">Adepeju et al., 2020</xref>), for classifying
       longitudinal trajectories of crime at micro-places.
     </p>
 
     <p>
       Also, as noted in previous chapters, we need to acknowledge the underlying network structure
       constraining the spatial distribution of our crime data.
-      <xref ref="bib-Shiode_2015" text="custom">Shiode et al. (2015)</xref> developed a hot spot
+      <xref ref="Shiode_2015" text="custom">Shiode et al. (2015)</xref> developed a hot spot
       detection method that uses a network-based space-time search window technique (see also
-      <xref ref="bib-Shiode_2020" text="custom">Shiode and Shiode (2020)</xref> for more recent
+      <xref ref="Shiode_2020" text="custom">Shiode and Shiode (2020)</xref> for more recent
       work). However, the software implementation of this approach has not yet seen the light as of
       this writing despite the authors mentioning a "GIS plug-in tool" to be in development in
       their 2015 paper. Also relevant is the work by
-      <xref ref="bib-BrizRedon_2019b" text="custom">Briz-Redón et al. (2019)</xref> that developed
+      <xref ref="BrizRedon_2019b" text="custom">Briz-Redón et al. (2019)</xref> that developed
       an R package (<c>DRHotNet</c>) for differential risk hot spots on a linear network. This is a
       procedure to detect whether specific type of event is over-represented in relation to the
       other types of events observed (say, for example, burglaries in relation to other crimes).
       There is a detailed tutorial for this package in
-      <xref ref="bib-BrizRedon_2019a" text="custom">Briz-Redón et al. (2019)</xref>.
+      <xref ref="BrizRedon_2019a" text="custom">Briz-Redón et al. (2019)</xref>.
     </p>
 
   </section>

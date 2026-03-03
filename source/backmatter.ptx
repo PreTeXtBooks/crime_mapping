@@ -32,788 +32,594 @@
   </appendix>
 
   <references xml:id="references">
-    <title>References</title>
-
-    <biblio xml:id="bib-Andresen_2011" type="raw">
-      Andresen, M. (2011). The Ambient Population and Crime Analysis.
-      <em>The Professional Geographer</em>, 63(2), 193&#x2013;212.
-    </biblio>
-
-    <biblio xml:id="bib-Andresen_2020" type="raw">
-      Andresen, M., Malleson, N., Steenbek, W., Townsley, M., and Vandeviver, C. (2020).
-      Minimum Geocoding Match Rates: an International Study of the Impact of Data and Areal Unit
-      Sizes. <em>International Journal of Geographical Information Science</em>, 34(7),
-      1306&#x2013;1322.
-    </biblio>
-
-    <biblio xml:id="bib-Blumstein_1986" type="raw">
-      Blumstein, A., Cohen, J., Roth, J., and Visher, C. (1986).
-      <em>Criminal Careers and Career Criminals</em>. National Science Foundation.
-    </biblio>
-
-    <biblio xml:id="bib-Brewer_2006" type="raw">
-      Brewer, C. (2006). Basic Mapping Principles for Visualizing Cancer Data Using Geographic
-      Information Systems (GIS). <em>American Journal of Preventive Medicine</em>, 30(2S),
-      S25&#x2013;S36.
-    </biblio>
-
-    <biblio xml:id="bib-BrizRedon_2020" type="raw">
-      Briz-Red&#xF3;n, &#xC1;., Mart&#xED;nez-Ruiz, F., and Montes, F. (2020). Reestimating a
-      Minimum Acceptable Geocoding Hit Rate for Conducting a Spatial Analysis.
-      <em>International Journal of Geographical Information Science</em>, 34(7), 1283&#x2013;1305.
-    </biblio>
-
-    <biblio xml:id="bib-Buil_2019" type="raw">
-      Buil-Gil, D., Moretti, A., Shlomo, N., and Medina, J. (2019). Worry about crime in Europe:
-      A model-based small area estimation from the European Social Survey.
-      <em>European Journal of Criminology</em>.
-    </biblio>
-
-    <biblio xml:id="bib-Buil-Gil_2021" type="raw">
-      Buil-Gil, D., Medina, J., and Shlomo, N. (2021). Measuring the Dark Figure of Crime in
-      Geographic Areas: Small Area Estimation from the Crime Survey for England and Wales.
-      <em>British Journal of Criminology</em>, 61(2), 364&#x2013;388.
-    </biblio>
-
-    <biblio xml:id="bib-Field_2018" type="raw">
-      Field, K. (2018). <em>Cartography</em>. ESRI Press. Redlands, CA.
-    </biblio>
-
-    <biblio xml:id="bib-Goudriaan_2006" type="raw">
-      Goudriaan, H., Witterbrood, K., and Nieuwbeerta, P. (2006). Neighbourhood characteristics
-      and reporting crime. <em>British Journal of Criminology</em>, 46, 719&#x2013;742.
-    </biblio>
-
-    <biblio xml:id="bib-Hart_2012" type="raw">
-      Hart, T. and Zandbergen, P. (2012). <em>Effects of Data Quality on Predictive Hotspot
-      Mapping</em>. Final Report. National Institute of Justice.
-    </biblio>
-
-    <biblio xml:id="bib-HMIC_2014" type="raw">
-      Her Majesty Inspectorate of Constabulary (2014). <em>Crime recording: making the victim
-      count</em>. Final Report. HMIC.
-    </biblio>
-
-    <biblio xml:id="bib-Ratcliffe_2004" type="raw">
-      Ratcliffe, J. (2004). Geocoding Crime and a First Estimate of a Minimum Acceptable Hit Rate.
-      <em>International Journal of Geographical Information Science</em>, 18(1), 61&#x2013;72.
-    </biblio>
-
-    <biblio xml:id="bib-Ratcliffe_2010" type="raw">
-      Ratcliffe, J. (2010). Crime Mapping: Spatial and Temporal Challenges. In A. Piquero and
-      D. Weisburd (Eds.), <em>Handbook of Quantitative Criminology</em> (pp. 5&#x2013;24).
-      Springer. New York, NY.
-    </biblio>
-
-    <biblio xml:id="bib-Solymosi_2015" type="raw">
-      Solymosi, R., Bowers, K., and Fujiyama, T. (2015). Mapping fear of crime as a
-      context-dependent everyday experience that varies in space and time.
-      <em>Legal and Criminological Psychology</em>, 20(2), 193&#x2013;211.
-    </biblio>
-
-    <biblio xml:id="bib-Solymosi_2020" type="raw">
-      Solymosi, R., Buil-Gil, D., Vozmediano, L., and Sousa Guedes, I. (2020). Towards a
-      place-based measure of fear of crime: A systematic review of app-based and crowdsourcing
-      approaches. <em>Environment and Behavior</em>.
-    </biblio>
-
-    <biblio xml:id="bib-Tanimura_2006" type="raw">
-      Tanimura, S., Kuroiwa, C., and Mizota, T. (2006). Proportional Symbol Mapping in R.
-      <em>Journal of Statistical Software</em>, 15(5), 1&#x2013;7.
-    </biblio>
-
-    <biblio xml:id="bib-Tennekes_2018" type="raw">
-      Tennekes, M. (2018). tmap: Thematic Maps in R.
-      <em>Journal of Statistical Software</em>, 84(6), 1&#x2013;39.
-      doi: 10.18637/jss.v084.i06.
-    </biblio>
-
-    <biblio xml:id="bib-Tukey_1979" type="raw">
-      Tukey, J. (1979). Statistical Mapping: What Should not be Plotted. In DHEW (Ed.),
-      <em>Proceedings of the 1976 Workshop on Automated Cartography and Epidemiology</em>
-      (pp. 18&#x2013;21). US Department of Health, Education, and Welfare. Washington, DC.
-    </biblio>
-
-    <biblio xml:id="bib-Cameron_2005" type="raw">
+    <title>References</title>    <biblio xml:id="Cameron_2005" type="raw">
       Cameron, J. (2005). In J. Eck, S. Chainey, J. Cameron, M. Leitner, and R. Wilson (Eds.),
       <em>Mapping Crime: Understanding Hot Spots</em> (pp. 35&#x2013;64). National Institute of
       Justice. Washington, DC.
     </biblio>
 
-    <biblio xml:id="bib-Harries_1999" type="raw">
+    <biblio xml:id="Harries_1999" type="raw">
       Harries, K. (1999). <em>Mapping Crime: Principle and Practice</em>. Research Report.
       National Institute of Justice.
     </biblio>
 
-    <biblio xml:id="bib-Jiang_2013" type="raw">
+    <biblio xml:id="Jiang_2013" type="raw">
       Jiang, B. (2013). Head/Tail Breaks: A New Classification Scheme for Data with a
       Heavy-Tailed Distribution. <em>The Professional Geographer</em>, 65(3), 482&#x2013;494.
     </biblio>
 
-    <biblio xml:id="bib-Tufte_1983" type="raw">
+    <biblio xml:id="Tufte_1983" type="raw">
       Tufte, E. (1983). <em>The Visual Display of Quantitative Information</em>. Graphics Press.
       Cheshire, CT.
     </biblio>
-
-    <biblio xml:id="bib-Baller_2001" type="raw">
-      Baller, R., Anselin, L., Messner, S., Deane, G., and Hawkins, D. (2001). Structural
-      covariates of US county homicide rates: Incorporating spatial effects.
-      <em>Criminology</em>, 39(3), 561&#x2013;588.
-    </biblio>
-
-    <biblio xml:id="bib-Clayton_1987" type="raw">
+    <biblio xml:id="Clayton_1987" type="raw">
       Clayton, D. and Kaldor, J. (1987). Empirical Bayes estimates of age-standardized relative
       risks for use in disease mapping. <em>Biometrics</em>, 671&#x2013;681.
     </biblio>
 
-    <biblio xml:id="bib-Carr_2010" type="raw">
+    <biblio xml:id="Carr_2010" type="raw">
       Carr, D. and Pickle, L. (2010). <em>Visualizing Data Patterns with Micromaps</em>. CRC
       Press. Boca Raton, FL.
     </biblio>
 
-    <biblio xml:id="bib-Gelman_1999" type="raw">
+    <biblio xml:id="Gelman_1999" type="raw">
       Gelman, A. and Price, P. (1999). All Maps of Parameters Estimates are Misleading.
       <em>Statistics in Medicine</em>, 18, 3221&#x2013;3234.
     </biblio>
 
-    <biblio xml:id="bib-Lawson_2006" type="raw">
+    <biblio xml:id="Lawson_2006" type="raw">
       Lawson, A. (2006). <em>Statistical Methods in Spatial Epidemiology</em> (2nd ed.).
       John Wiley &amp; Sons. Chichester, UK.
     </biblio>
-
-    <biblio xml:id="bib-Lawson_2021a" type="raw">
-      Lawson, A. (2021a). <em>Bayesian Disease Mapping</em> (3rd ed.). CRC Press. Boca Raton, FL.
-    </biblio>
-
-    <biblio xml:id="bib-Lawson_2021b" type="raw">
-      Lawson, A. (2021b). <em>Using R for Bayesian Spatial and Spatio-Temporal Health
-      Modeling</em>. CRC Press. Boca Raton, FL.
-    </biblio>
-
-    <biblio xml:id="bib-Marshall_1991" type="raw">
+    <biblio xml:id="Marshall_1991" type="raw">
       Marshall, R. (1991). Mapping Disease and Mortality Rates using Empirical Bayes Estimators.
       <em>Applied Statistics</em>, 40(2), 283&#x2013;294.
     </biblio>
 
-    <biblio xml:id="bib-McElreath_2018" type="raw">
+    <biblio xml:id="McElreath_2018" type="raw">
       McElreath, R. (2018). <em>Statistical Rethinking: A Bayesian Course with Examples in R and
       Stan</em>. Chapman &amp; Hall/CRC.
     </biblio>
 
-    <biblio xml:id="bib-Monmonier_1996" type="raw">
+    <biblio xml:id="Monmonier_1996" type="raw">
       Monmonier, M. (1996). <em>How to Lie with Maps</em> (2nd ed.). The University of Chicago
       Press. Chicago.
     </biblio>
 
-    <biblio xml:id="bib-Oliveira_2021" type="raw">
+    <biblio xml:id="Oliveira_2021" type="raw">
       Oliveira, M. (2021). More crime in cities? On the scaling laws of crime and the inadequacy
       of per capita rankings&#x2014;a cross-country study. <em>Crime Science</em>, 10.
       <url href="https://doi.org/10.1186/s40163-021-00155-8">https://doi.org/10.1186/s40163-021-00155-8</url>
     </biblio>
 
-    <biblio xml:id="bib-Waller_2004" type="raw">
+    <biblio xml:id="Waller_2004" type="raw">
       Waller, L. and Gotway, C. (2004). <em>Applied Spatial Statistics for Public Health
       Data</em>. John Wiley &amp; Sons. Chichester, UK.
     </biblio>
 
-    <biblio xml:id="bib-Ashby_2019" type="raw">
+    <biblio xml:id="Ashby_2019" type="raw">
       Ashby, M. (2019). Studying Crime and Place with the Crime Open Database.
       <em>Research Data Journal for the Humanities and Social Sciences</em>, 4(1), 65&#x2013;80.
     </biblio>
 
-    <biblio xml:id="bib-Ashby_2020" type="raw">
+    <biblio xml:id="Ashby_2020" type="raw">
       Ashby, M. (2020). Why you can't identify changes in crime by comparing this month to last
       month. SRA Blog.
       <url href="https://the-sra.org.uk/SRA/Blog/whyyoucantidentifychangesincrimebycomparingthismonthtolastmonth.aspx">https://the-sra.org.uk/SRA/Blog/whyyoucantidentifychangesincrimebycomparingthismonthtolastmonth.aspx</url>
       Accessed: 19-05-2021.
     </biblio>
 
-    <biblio xml:id="bib-Baumer_1996" type="raw">
+    <biblio xml:id="Baumer_1996" type="raw">
       Baumer, E. and Wright, R. (1996). Crime seasonality and serious scholarship: a comment on
       Farrell and Pease. <em>British Journal of Criminology</em>, 36, 579.
     </biblio>
 
-    <biblio xml:id="bib-Herrmann_2013" type="raw">
+    <biblio xml:id="Herrmann_2013" type="raw">
       Herrmann, C. R. (2013). Street-level spatiotemporal crime analysis: Examples from Bronx
       County, NY (2006&#x2013;2010). In <em>Crime Modeling and Mapping Using Geospatial
       Technologies</em>, pp. 73&#x2013;104. Springer.
     </biblio>
 
-    <biblio xml:id="bib-Moss_2013" type="raw">
+    <biblio xml:id="Moss_2013" type="raw">
       Moss, S. (2013). Which is the most dangerous day of the week?
       <url href="https://www.theguardian.com/lifeandstyle/2013/may/29/most-dangerous-day-of-week">https://www.theguardian.com/lifeandstyle/2013/may/29/most-dangerous-day-of-week</url>
       Accessed: 17-05-2021.
     </biblio>
-
-    <biblio xml:id="bib-Newton_2018" type="raw">
-      Newton, A. (2018). Macro-level generators of crime, including parks, stadiums, and transit
-      stations. In G. Bruinsma and S. Johnson (eds.), <em>The Oxford Handbook of Environmental
-      Criminology</em>, pp. 497&#x2013;517. Oxford University Press. Oxford.
-    </biblio>
-
-    <biblio xml:id="bib-Ratcliffe_1998" type="raw">
+    <biblio xml:id="Ratcliffe_1998" type="raw">
       Ratcliffe, J. and McCullagh, M. (1998). Aoristic crime analysis.
       <em>International Journal of Geographical Information Science</em>, 12(7),
       751&#x2013;764.
     </biblio>
 
-    <biblio xml:id="bib-Tompson_2013" type="raw">
+    <biblio xml:id="Tompson_2013" type="raw">
       Tompson, L. and Bowers, K. (2013). A stab in the dark? A research note on temporal
       patterns of street robbery. <em>Journal of Research in Crime and Delinquency</em>, 50(4),
       616&#x2013;631.
     </biblio>
 
-    <biblio xml:id="bib-Wheeler_2016" type="raw">
+    <biblio xml:id="Wheeler_2016" type="raw">
       Wheeler, A. (2016). Tables and graphs for monitoring temporal crime trends: Translating
       theory into practical crime analysis advice. <em>International Journal of Police Science
       &amp; Management</em>, 18(3), 159&#x2013;172.
     </biblio>
 
-    <biblio xml:id="bib-Ellis_2018" type="raw">
+    <biblio xml:id="Ellis_2018" type="raw">
       Ellis, P. (2018). <em>ggseas: 'stats' for Seasonal Adjustment on the Fly with 'ggplot2'</em>.
       R package version 0.5.4.
       <url href="https://CRAN.R-project.org/package=ggseas">https://CRAN.R-project.org/package=ggseas</url>
     </biblio>
 
-    <biblio xml:id="bib-Nussbaumer_2013" type="raw">
+    <biblio xml:id="Nussbaumer_2013" type="raw">
       Nussbaumer, C. (2013). Strategies for avoiding the spaghetti graph.
       <url href="https://www.storytellingwithdata.com/blog/2013/03/avoiding-spaghetti-graph">https://www.storytellingwithdata.com/blog/2013/03/avoiding-spaghetti-graph</url>
       Accessed: 17-05-2020.
     </biblio>
 
-    <biblio xml:id="bib-Pebesma_2012" type="raw">
+    <biblio xml:id="Pebesma_2012" type="raw">
       Pebesma, E. (2012). spacetime: Spatio-Temporal Data in R.
       <em>Journal of Statistical Software</em>, 51(7), 1&#x2013;30.
     </biblio>
 
-    <biblio xml:id="bib-Roth_2013" type="raw">
+    <biblio xml:id="Roth_2013" type="raw">
       Roth, R., Ross, K., Finch, B., Luo, W., and MacEachren, A. (2013). Spatiotemporal crime
       analysis in US law enforcement agencies: Current practices and unmet needs.
       <em>Government Information Quarterly</em>, 30(3), 226&#x2013;240.
     </biblio>
 
-    <biblio xml:id="bib-Perpinan_2014" type="raw">
+    <biblio xml:id="Perpinan_2014" type="raw">
       Perpi&#x00F1;an Lamigueiro, O. (2014). <em>Displaying Time Series, Spatial, and
       Space-Time Data with R</em>. CRC Press, Boca Raton, FL.
     </biblio>
 
-    <biblio xml:id="bib-Wikle_2019" type="raw">
+    <biblio xml:id="Wikle_2019" type="raw">
       Wikle, C., Zammit-Mangion, A., and Cressie, N. (2019). <em>Spatio-Temporal Statistics
       with R</em>. CRC Press, Boca Raton, FL.
     </biblio>
 
-    <biblio xml:id="bib-Hyndman_2021" type="raw">
+    <biblio xml:id="Hyndman_2021" type="raw">
       Hyndman, R. and Athanasopoulos, G. (2021). <em>Forecasting: Principles and Practice</em>
       (3rd ed.). OTexts, Melbourne, Australia.
     </biblio>
 
-    <biblio xml:id="bib-Chatfield_2019" type="raw">
+    <biblio xml:id="Chatfield_2019" type="raw">
       Chatfield, C. and Xing, H. (2019). <em>The Analysis of Time Series: An Introduction with
       R</em> (7th ed.). CRC Press, Boca Raton, FL.
     </biblio>
 
-    <biblio xml:id="bib-Mantel_1967" type="raw">
+    <biblio xml:id="Mantel_1967" type="raw">
       Mantel, N. (1967). The detection of disease clustering and a generalized regression
       approach. <em>Cancer Research</em>, 27(2), 209&#x2013;220.
     </biblio>
 
-    <biblio xml:id="bib-knox_1964" type="raw">
+    <biblio xml:id="knox_1964" type="raw">
       Knox, E. G. and Bartlett, M. S. (1964). The detection of space-time interactions.
       <em>Journal of the Royal Statistical Society. Series C (Applied Statistics)</em>,
       13(1), 25&#x2013;30.
     </biblio>
 
-    <biblio xml:id="bib-Johnson_2007" type="raw">
+    <biblio xml:id="Johnson_2007" type="raw">
       Johnson, S. D., Bernasco, W., Bowers, K. J., Elffers, H., Ratcliffe, J., Rengert, G., and
       Townsley, M. (2007). Space-time patterns of risk: a cross national assessment of
       residential burglary victimization. <em>Journal of Quantitative Criminology</em>,
       23(3), 201&#x2013;219.
     </biblio>
 
-    <biblio xml:id="bib-Marchione_2013" type="raw">
+    <biblio xml:id="Marchione_2013" type="raw">
       Marchione, E. and Johnson, S. D. (2013). Spatial, temporal and spatio-temporal patterns of
       maritime piracy. <em>Journal of Research in Crime and Delinquency</em>, 50(4),
       504&#x2013;524.
     </biblio>
 
-    <biblio xml:id="bib-Adepeju_2017" type="raw">
+    <biblio xml:id="Adepeju_2017" type="raw">
       Adepeju, M. and Evans, A. (2017). Comparative analysis of two variants of the Knox test:
       Inferences from space-time crime pattern analysis. In <em>International Conference on
       Computational Science and Its Applications</em> (pp. 770&#x2013;778). Springer.
     </biblio>
 
-    <biblio xml:id="bib-salmon_2016" type="raw">
+    <biblio xml:id="salmon_2016" type="raw">
       Salmon, M., Schumacher, D., and H&#x00F6;hle, M. (2016). Monitoring count time series in
       R: aberration detection in public health surveillance. <em>Journal of Statistical
       Software</em>, 70(10), 1&#x2013;35.
     </biblio>
 
-    <biblio xml:id="bib-meyer_2017" type="raw">
+    <biblio xml:id="meyer_2017" type="raw">
       Meyer, S., Held, L., and H&#x00F6;hle, M. (2017). Spatio-temporal analysis of epidemic
       phenomena using the R package surveillance. <em>Journal of Statistical Software</em>,
       77(11), 1&#x2013;55.
     </biblio>
 
-    <biblio xml:id="bib-Thioulouse_2018" type="raw">
+    <biblio xml:id="Thioulouse_2018" type="raw">
       Thioulouse, J., Dray, S., Dufour, A.-B., Siberchicot, A., Jombart, T., and Pavoine, S.
       (2018). <em>Multivariate Analysis of Ecological Data with ade4</em>. Springer.
     </biblio>
-
-    <biblio xml:id="bib-Wickham_2017" type="raw">
-      Wickham, H. and Grolemund, G. (2017). <em>R for Data Science: Import, Tidy, Transform,
-      Visualize, and Model Data</em>. O'Reilly, Boston, MA.
-    </biblio>
-
-    <biblio xml:id="bib-Vaughan_2021" type="raw">
+    <biblio xml:id="Vaughan_2021" type="raw">
       Vaughan, D. (2021). Comprehensive Date-Time Handling for R.
       <url href="https://www.tidyverse.org/blog/2021/03/clock-0-1-0/">https://www.tidyverse.org/blog/2021/03/clock-0-1-0/</url>
       Accessed: 17-05-2021.
     </biblio>
 
-    <biblio xml:id="bib-Andresen_2011b" type="raw">
+    <biblio xml:id="Andresen_2011b" type="raw">
       Andresen, M. and Malleson, N. (2011). Testing the Stability of Crime Patterns: Implications
       for Theory and Policy. <em>Journal of Research in Crime and Delinquency</em>, 48(1), 58–82.
     </biblio>
 
-    <biblio xml:id="bib-Andresen_2017" type="raw">
+    <biblio xml:id="Andresen_2017" type="raw">
       Andresen, M., Curman, A. and Linning, S. (2017). The Trajectories of Crime at Places:
       Understanding the Patterns of Disaggregated Crime Types. <em>Journal of Quantitative
       Criminology</em>, 33, 427–449.
     </biblio>
 
-    <biblio xml:id="bib-Andresen_2017b" type="raw">
+    <biblio xml:id="Andresen_2017b" type="raw">
       Andresen, M., Linning, S. and Malleson, N. (2017). Crime at Places and Spatial
       Concentrations: Exploring the Spatial Stability of Property Crime in Vancouver BC, 2003–2013.
       <em>Journal of Quantitative Criminology</em>, 33, 255–275.
     </biblio>
 
-    <biblio xml:id="bib-Anselin_1995" type="raw">
+    <biblio xml:id="Anselin_1995" type="raw">
       Anselin, L. (1995). Local Indicators of Spatial Association: LISA.
       <em>Geographical Analysis</em>, 27(2), 93–115.
     </biblio>
-
-    <biblio xml:id="bib-Anselin_1996" type="raw">
-      Anselin, L. (1996). The Moran Scatterplot as an ESDA Tool to Assess Local Instability in
-      Spatial Association. In Fischer, M., Scholten, H. and Unwin, D. (eds), <em>Spatial Analytical
-      Perspectives on GIS</em>. Routledge, London, pp. 111–125.
-    </biblio>
-
-    <biblio xml:id="bib-Anselin_2020a" type="raw">
+    <biblio xml:id="Anselin_2020a" type="raw">
       Anselin, L. (2020). Local Spatial Autocorrelation (2): Other Local Spatial Autocorrelation
       Statistics.
       <url href="https://geodacenter.github.io/workbook/6b_local_adv/lab6b.html">https://geodacenter.github.io/workbook/6b_local_adv/lab6b.html</url>
       Accessed: 12-05-2021.
     </biblio>
 
-    <biblio xml:id="bib-Appelhans_2021" type="raw">
+    <biblio xml:id="Appelhans_2021" type="raw">
       Appelhans, T., Detsch, F., Reudenbach, C. and Woellauer, S. (2021). mapview: Interactive
       Viewing of Spatial Data in R. R package version 2.10.0.
       <url href="https://CRAN.R-project.org/package=mapview">https://CRAN.R-project.org/package=mapview</url>
     </biblio>
 
-    <biblio xml:id="bib-Bivand_2018" type="raw">
+    <biblio xml:id="Bivand_2018" type="raw">
       Bivand, R. and Wong, D. (2018). Comparing Implementations of Global and Local Indicators of
       Spatial Association. <em>TEST</em>, 27, 716–748.
     </biblio>
 
-    <biblio xml:id="bib-Bowers_2004" type="raw">
+    <biblio xml:id="Bowers_2004" type="raw">
       Bowers, K. and Johnson, S. (2004). Who Commits Near Repeats? A Test of the Boost Explanation.
       <em>Western Criminology Review</em>, 5(3).
     </biblio>
 
-    <biblio xml:id="bib-Braga_2010" type="raw">
+    <biblio xml:id="Braga_2010" type="raw">
       Braga, A. and Weisburd, D. (2010). <em>Policing Problem Places: Crime Hot Spots and Effective
       Prevention</em>. Oxford University Press, New York.
     </biblio>
 
-    <biblio xml:id="bib-Braga_2019" type="raw">
+    <biblio xml:id="Braga_2019" type="raw">
       Braga, A., Turchan, B., Papachristos, A. and Hureau, D. (2019). Hot Spots Policing and Crime
       Reduction: an Update of an Ongoing Systematic Review and Meta-analysis.
       <em>Journal of Experimental Criminology</em>, 15, 289–311.
     </biblio>
 
-    <biblio xml:id="bib-Braga_2020" type="raw">
+    <biblio xml:id="Braga_2020" type="raw">
       Braga, A. and Weisburd, D. (2020). Does Hot Spots Policing Have Meaningful Impacts on Crime?
       Findings from An Alternative Approach to Estimating Effect Sizes from Place-Based Program
       Evaluations. <em>Journal of Quantitative Criminology</em>.
       doi.org/10.1007/s10940-020-09481-7.
     </biblio>
 
-    <biblio xml:id="bib-Chainey_2014" type="raw">
+    <biblio xml:id="Chainey_2014" type="raw">
       Chainey, S. (2014). <em>Examining the extent to which hotspot analysis can support spatial
       predictions of crime</em>. PhD Thesis, UCL (University College London).
     </biblio>
-
-    <biblio xml:id="bib-Chainey_2021" type="raw">
-      Chainey, S. (2021). <em>Understanding Crime: Analyzing the Geography of Crime</em>. ESRI
-      Press, Redlands, CA.
-    </biblio>
-
-    <biblio xml:id="bib-Collazos_2020" type="raw">
+    <biblio xml:id="Collazos_2020" type="raw">
       Collazos, D., García, E., Mejía, D., Ortega, D. and Tobón, S. (2020). Hot Spots Policing in
       a High-Crime Environment: an Experimental Evaluation in Medellín.
       <em>Journal of Experimental Criminology</em>. doi.org/10.1007/s11292-019-09390-1.
     </biblio>
 
-    <biblio xml:id="bib-Farrell_2017" type="raw">
+    <biblio xml:id="Farrell_2017" type="raw">
       Farrell, G. and Pease, K. (2017). Preventing Repeat and Near Repeat Crime Concentrations.
       In Tilley, N. and Sidebottom, A. (eds), <em>Handbook of Crime Prevention and Community
       Safety</em>. Routledge, London, pp. 143–156.
     </biblio>
 
-    <biblio xml:id="bib-Getis_1992" type="raw">
+    <biblio xml:id="Getis_1992" type="raw">
       Getis, A. and Ord, J.K. (1992). The Analysis of Spatial Association by Use of Distance
       Statistics. <em>Geographical Analysis</em>, 24(3), 189–206.
     </biblio>
 
-    <biblio xml:id="bib-Goldstein_1990" type="raw">
+    <biblio xml:id="Goldstein_1990" type="raw">
       Goldstein, H. (1990). <em>Problem-Oriented Policing</em>. McGraw Hill.
     </biblio>
-
-    <biblio xml:id="bib-Gomez_2005" type="raw">
-      Gomez-Rubio, V., Ferrandiz, J. and Lopez, A. (2005). Detecting Clusters of Disease with R.
-      <em>Journal of Geographical Systems</em>, 7, 189–206.
-    </biblio>
-
-    <biblio xml:id="bib-Grove_2014" type="raw">
+    <biblio xml:id="Grove_2014" type="raw">
       Grove, L., Farrell, G., Farrington, D. and Johnson, S. (2014). <em>Preventing repeat
       victimisation: a systematic review</em>. Swedish National Council for Crime Prevention.
     </biblio>
 
-    <biblio xml:id="bib-Kulldorff_1997" type="raw">
+    <biblio xml:id="Kulldorff_1997" type="raw">
       Kulldorff, M. (1997). A Spatial Scan Statistic. <em>Communications in Statistics, Theory,
       and Methods</em>, 26(6), 1481–1496.
     </biblio>
 
-    <biblio xml:id="bib-Marshall_1991_b" type="raw">
+    <biblio xml:id="Marshall_1991_b" type="raw">
       Marshall, R. (1991). A Review of Methods for the Statistical Analysis of Spatial Patterns of
       Disease. <em>Journal of the Royal Statistical Society</em>, 154(3), 421–441.
     </biblio>
 
-    <biblio xml:id="bib-Ord_1995" type="raw">
+    <biblio xml:id="Ord_1995" type="raw">
       Ord, J.K. and Getis, A. (1995). Local Spatial Autocorrelation Statistics: Distributional
       Issues and Applications. <em>Geographical Analysis</em>, 27(4), 286–306.
     </biblio>
 
-    <biblio xml:id="bib-Pease_1998" type="raw">
+    <biblio xml:id="Pease_1998" type="raw">
       Pease, K. (1998). <em>Repeat Victimisation: Taking Stock</em>. Home Office.
     </biblio>
 
-    <biblio xml:id="bib-Pease_2017" type="raw">
+    <biblio xml:id="Pease_2017" type="raw">
       Pease, K. and Farrell, G. (2017). Repeat Victimisation. In Wortley, R. and Townsley, M.
       (eds), <em>Environmental Criminology and Crime Analysis</em>. Routledge, London.
     </biblio>
 
-    <biblio xml:id="bib-Pease_2018" type="raw">
+    <biblio xml:id="Pease_2018" type="raw">
       Pease, K., Ignatans, D. and Batty, L. (2018). Whatever Happened to Repeat Victimisation?
       <em>Crime Prevention and Community Safety</em>, 20, 256–267.
     </biblio>
-
-    <biblio xml:id="bib-Pebesma_2021" type="raw">
-      Pebesma, E. and Bivand, R. (2021). <em>Spatial Data Science with applications in R</em>.
-      <url href="https://keen-swartz-3146c4.netlify.app/">https://keen-swartz-3146c4.netlify.app/</url>
-      Accessed: 17-05-2021.
-    </biblio>
-
-    <biblio xml:id="bib-Ramos_2021" type="raw">
+    <biblio xml:id="Ramos_2021" type="raw">
       Ramos, R., Silva, B., Clarke, K. and Prates, M. (2021). Too Fine to be Good? Issues of
       Granularity, Uniformity and Error in Spatial Crime Analysis. <em>Journal of Quantitative
       Criminology</em>, 37, 419–443.
     </biblio>
 
-    <biblio xml:id="bib-Ratcliffe_2020" type="raw">
+    <biblio xml:id="Ratcliffe_2020" type="raw">
       Ratcliffe, J. (2020). Near repeat analysis.
       <url href="https://www.jratcliffe.net/near-repeat-analysis">https://www.jratcliffe.net/near-repeat-analysis</url>
       Accessed: 30-07-2021.
     </biblio>
 
-    <biblio xml:id="bib-Sherman_1989" type="raw">
+    <biblio xml:id="Sherman_1989" type="raw">
       Sherman, L., Gartin, P. and Buerger, M. (1989). Hot spots of predatory crime: routine
       activities and the criminology of place. <em>Criminology</em>, 27(1), 27–56.
     </biblio>
 
-    <biblio xml:id="bib-Steenbeek_2016" type="raw">
+    <biblio xml:id="Steenbeek_2016" type="raw">
       Steenbeek, W. and Weisburd, D. (2016). Where the Action is in Crime? An Examination of
       Variability of Crime Across Different Spatial Units in The Hague, 2001–2009.
       <em>Journal of Quantitative Criminology</em>, 32, 442–469.
     </biblio>
 
-    <biblio xml:id="bib-Steenbeek_2021" type="raw">
+    <biblio xml:id="Steenbeek_2021" type="raw">
       Steenbeek, W. (2021). NearRepeat: Near Repeat Calculation using the Knox Test (Monte Carlo
       permutation). R package version 0.1.1.
       <url href="https://github.com/wsteenbeek/NearRepeat">https://github.com/wsteenbeek/NearRepeat</url>
     </biblio>
 
-    <biblio xml:id="bib-Townsley_2003" type="raw">
+    <biblio xml:id="Townsley_2003" type="raw">
       Townsley, M., Homel, R. and Chaseling, J. (2003). Infectious burglaries: a test of the near
       repeat hypothesis. <em>British Journal of Criminology</em>, 43, 615–633.
     </biblio>
 
-    <biblio xml:id="bib-Weisburd_2015" type="raw">
+    <biblio xml:id="Weisburd_2015" type="raw">
       Weisburd, D. (2015). The Law of Crime Concentration and the Criminology of Place.
       <em>Criminology</em>, 53(2), 133–157.
     </biblio>
 
-    <biblio xml:id="bib-Adepeju_2020" type="raw">
+    <biblio xml:id="Adepeju_2020" type="raw">
       Adepeju, M., Langton, S. and Bannister, J. (2020). Akmedoids R package for generating
       directionally-homogeneous clusters of longitudinal data sets. <em>The Journal of Open
       Software</em>, 5(56). doi.org/10.21105/joss.02379.
     </biblio>
 
-    <biblio xml:id="bib-Adepeju_2021" type="raw">
+    <biblio xml:id="Adepeju_2021" type="raw">
       Adepeju, M., Langton, S. and Bannister, J. (2021). Anchored K-medoids: a Novel Adaptation of
       K-medoids Further Refined to Measure Long-term Instability in the Exposure to Crime.
       <em>Journal of Computational Social Science</em>. doi.org/10.1007/s42001-021-00103-1.
     </biblio>
 
-    <biblio xml:id="bib-Andresen_2021" type="raw">
+    <biblio xml:id="Andresen_2021" type="raw">
       Andresen, M., Haberman, C., Johnson, S. and Steenbeek, W. (2021). Advances in Place-Based
       Methods: Editors' Introduction. <em>Journal of Quantitative Criminology</em>.
       doi.org/10.1007/s10940-021-09517-6.
     </biblio>
-
-    <biblio xml:id="bib-Bivand_2013" type="raw">
-      Bivand, R., Pebesma, E. and Gómez-Rubio, V. (2013). <em>Applied Spatial Data Analysis with
-      R</em>, 2nd ed. Springer, New York.
-    </biblio>
-
-    <biblio xml:id="bib-BrizRedon_2019a" type="raw">
+    <biblio xml:id="BrizRedon_2019a" type="raw">
       Briz-Redón, Á., Martínez-Ruiz, F. and Montes, F. (2019). DRHotNet: An R package for
       detecting differential risk hotspots on a linear network. arXiv:1911.07827.
     </biblio>
 
-    <biblio xml:id="bib-BrizRedon_2019b" type="raw">
+    <biblio xml:id="BrizRedon_2019b" type="raw">
       Briz-Redón, Á., Martínez-Ruiz, F. and Montes, F. (2019). Identification of Differential Risk
       Hotspots for Collision and Vehicle Type in a Directed Linear Network.
       <em>Accident Analysis and Prevention</em>. doi.org/10.1016/j.aap.2019.105278.
     </biblio>
 
-    <biblio xml:id="bib-BrizRedon_2020b" type="raw">
+    <biblio xml:id="BrizRedon_2020b" type="raw">
       Briz-Redón, Á., Martínez-Ruiz, F. and Montes, F. (2020). Adjusting the Knox Test by
       Accounting for Spatio-temporal Crime Risk Heterogeneity to Analyse Near-repeats.
       <em>European Journal of Criminology</em>. doi.org/10.1177/1477370820905106.
     </biblio>
 
-    <biblio xml:id="bib-Cheng_2014" type="raw">
+    <biblio xml:id="Cheng_2014" type="raw">
       Cheng, T. and Adepeju, M. (2014). Modifiable Temporal Unit Problem (MTUP) and Its Effect on
       Space-Time Cluster Detection. <em>PLOS One</em>. doi:10.1371/journal.pone.0100465.
     </biblio>
 
-    <biblio xml:id="bib-Gorr_2015" type="raw">
+    <biblio xml:id="Gorr_2015" type="raw">
       Gorr, W. and Lee, Y. (2015). Early Warning System for Temporary Crime Hot Spots.
       <em>Journal of Quantitative Criminology</em>, 31, 25–47.
     </biblio>
 
-    <biblio xml:id="bib-Kulldorff_1995" type="raw">
+    <biblio xml:id="Kulldorff_1995" type="raw">
       Kulldorff, M. and Nagarwalla, N. (1995). Spatial Disease Clusters: Detection and Inference.
       <em>Statistics in Medicine</em>, 14, 799–810.
     </biblio>
 
-    <biblio xml:id="bib-Kulldorff_1999" type="raw">
+    <biblio xml:id="Kulldorff_1999" type="raw">
       Kulldorff, M. and Hjalmars, U. (1999). The Knox Method and other Tests for Space-Time
       Interaction. <em>Biometrics</em>, 55, 544–552.
     </biblio>
 
-    <biblio xml:id="bib-Kulldorff_2005" type="raw">
+    <biblio xml:id="Kulldorff_2005" type="raw">
       Kulldorff, M., Heffernan, R., Hartman, J., Assunção, R. and Mostashari, F. (2005). A
       Space–Time Permutation Scan Statistic for Disease Outbreak Detection. <em>PLOS Medicine</em>.
       doi:10.1371/journal.pmed.0020059.
     </biblio>
-
-    <biblio xml:id="bib-Levine_2013" type="raw">
-      Levine, N. (2013). <em>Crime Stat IV: A Spatial Statistics Program for the Analysis of Crime
-      Incident Locations</em>. National Institute of Justice, Washington, DC.
-    </biblio>
-
-    <biblio xml:id="bib-Mohler_2011" type="raw">
+    <biblio xml:id="Mohler_2011" type="raw">
       Mohler, G.O., Short, M.B., Brantingham, P.J., Schoenberg, F.P. and Tita, G.E. (2011).
       Self-Exciting Point Process Modeling of Crime. <em>Journal of the American Statistical
       Association</em>, 106(493), 100–108.
     </biblio>
 
-    <biblio xml:id="bib-Openshaw_1987" type="raw">
+    <biblio xml:id="Openshaw_1987" type="raw">
       Openshaw, S., Charlton, M., Wymer, C. and Craft, A. (1987). A Mark 1 Geographical Analysis
       Machine for the Automated Analysis of Point data Sets. <em>International Journal of
       Geographical Information Systems</em>, 1(4), 335–358.
     </biblio>
 
-    <biblio xml:id="bib-Shiode_2015" type="raw">
+    <biblio xml:id="Shiode_2015" type="raw">
       Shiode, S., Shiode, N., Block, R. and Block, C. (2015). Space-time characteristics of
       micro-scale crime occurrences: an application of a network-based space-time search window
       technique for crime incidents in Chicago. <em>International Journal of Geographical
       Information Science</em>, 29(5), 697–719.
     </biblio>
 
-    <biblio xml:id="bib-Shiode_2020" type="raw">
+    <biblio xml:id="Shiode_2020" type="raw">
       Shiode, S. and Shiode, N. (2020). Crime Geosurveillance in Microscale Urban Environments:
       NetSurveillance. <em>Annals of the American Association of Geographers</em>, 110(5),
       1386–1406.
     </biblio>
 
-    <biblio xml:id="bib-Uittenbogaard_2012" type="raw">
+    <biblio xml:id="Uittenbogaard_2012" type="raw">
       Uittenbogaard, A. and Ceccato, V. (2012). Space-time Clusters of Crime in Stockholm, Sweden.
       <em>Review of European Studies</em>, 4(5), 148–156.
     </biblio>
 
-    <biblio xml:id="bib-Abad_2019" type="raw">
+    <biblio xml:id="Abad_2019" type="raw">
       Abad, L., Lovelace, R. and van der Meer, L. (2019). Spatial networks in R with sf and
       tidygraph. Accessed: 30-07-2021. Available at:
       https://r-spatial.org/r/2019/09/26/spatial-networks.html
     </biblio>
 
-    <biblio xml:id="bib-Ceccato_2013" type="raw">
+    <biblio xml:id="Ceccato_2013" type="raw">
       Ceccato, V. (2013). <em>Moving Safely: Crime and Perceived Safety in Stockholm's Subway
       Stations</em>. Lexington Books, Lanham.
     </biblio>
 
-    <biblio xml:id="bib-Gelb_2021" type="raw">
+    <biblio xml:id="Gelb_2021" type="raw">
       Gelb, J. (2021). <em>spNetwork: Spatial Analysis on Network</em>. R package version 0.1.1.
       Available at: https://CRAN.R-project.org/package=spNetwork
     </biblio>
 
-    <biblio xml:id="bib-McSwiggan_2016" type="raw">
+    <biblio xml:id="McSwiggan_2016" type="raw">
       McSwiggan, G., Baddeley, A. and Nair, G. (2016). Kernel Density Estimation on a Linear
       Network. <em>Scandinavian Journal of Statistics</em>, 44(2), 324–345.
     </biblio>
 
-    <biblio xml:id="bib-Newton_2008" type="raw">
+    <biblio xml:id="Newton_2008" type="raw">
       Newton, A. (2008). A Study of Bus Route Crime Risk in Urban Areas: The Changing Environs of
       a Bus Journey. <em>Built Environment</em>, 34(1), 88–103.
     </biblio>
-
-    <biblio xml:id="bib-Okabe_2012" type="raw">
-      Okabe, A. and Sugihara, K. (2012). <em>Spatial Analysis along Networks</em>. John Wiley
-      &amp; Sons, Chichester.
-    </biblio>
-
-    <biblio xml:id="bib-Rakshit_2019" type="raw">
+    <biblio xml:id="Rakshit_2019" type="raw">
       Rakshit, S., Davies, T., Mehdi-Moradi, M., McSwiggan, G., Nair, G., Mateu, J. and Baddeley,
       A. (2019). Fast Kernel Smoothing of Point Patterns on a Large Network using Two-dimensional
       Convolution. <em>International Statistical Review</em>, 87(3), 531–556.
     </biblio>
 
-    <biblio xml:id="bib-Rosser_2017" type="raw">
+    <biblio xml:id="Rosser_2017" type="raw">
       Rosser, G., Davies, T., Bowers, K., Johnson, S. and Cheng, T. (2017). Predictive Crime
       Mapping: Arbitrary Grids or Street Networks? <em>Journal of Quantitative Criminology</em>,
       33, 569–594.
     </biblio>
 
-    <biblio xml:id="bib-Singleton_2014" type="raw">
+    <biblio xml:id="Singleton_2014" type="raw">
       Singleton, A. and Brunsdon, C. (2014). Escaping the Pushpin Paradigm in Geographic
       Information Science: (Re)presenting National Crime Data. <em>Area</em>, 46(3), 294–304.
     </biblio>
 
-    <biblio xml:id="bib-Spicer_2016" type="raw">
+    <biblio xml:id="Spicer_2016" type="raw">
       Spicer, V., Song, J., Brantingham, P., Park, A. and Andresen, M. (2016). Street profile
       analysis: A new method for mapping crime on major roadways. <em>Applied Geography</em>, 69,
       65–74.
     </biblio>
 
-    <biblio xml:id="bib-Tompson_2009" type="raw">
+    <biblio xml:id="Tompson_2009" type="raw">
       Tompson, L., Partridge, H. and Shepherd, N. (2009). Hot Routes: Developing a New Technique
       for the Spatial Analysis of Crime. <em>Crime Mapping: A Journal of Research and
       Practice</em>, 1(1), 77–96.
     </biblio>
-
-    <biblio xml:id="bib-Tompson_2015" type="raw">
-      Tompson, L., Johnson, S., Ashby, M., Perkins, C. and Edwards, P. (2015). UK Open Source
-      Crime Data: Accuracy and Possibilities for Research. <em>Cartography and Geographic
-      Information Science</em>, 42(2), 97–111.
-    </biblio>
-
-    <biblio xml:id="bib-Vandemeer_2021" type="raw">
+    <biblio xml:id="Vandemeer_2021" type="raw">
       van der Meer, L., Abad, L., Gilardi, A. and Lovelace, R. (2021). <em>sfnetworks: Tidy
       Geospatial Networks</em>. R package version 0.5.2. Available at:
       https://CRAN.R-project.org/package=sfnetworks
     </biblio>
-
-    <biblio xml:id="bib-Baddeley_2016" type="raw">
-      Baddeley, A., Rubak, E. and Turner, R. (2015). <em>Spatial Point Patterns: Methodology and
-      Applications with R</em>. CRC Press, Boca Raton, FL.
-    </biblio>
-
-    <biblio xml:id="bib-Baddeley_2021" type="raw">
+    <biblio xml:id="Baddeley_2021" type="raw">
       Baddeley, A., Nair, G., Rakshit, S., McSwiggan, G. and Davies, T.M. (2021). Analysing Point
       Patterns on Networks — A Review. <em>Spatial Statistics</em>, 42,
       doi.org/10.1016/j.spasta.2020.100435.
     </biblio>
 
-    <biblio xml:id="bib-Davies_2018" type="raw">
+    <biblio xml:id="Davies_2018" type="raw">
       Davies, T. and Bowers, K. (2018). Street Networks and Crime. In G. Bruinsma and S. Johnson
       (eds.), <em>The Oxford Handbook of Environmental Criminology</em>. Oxford University Press,
       New York, pp. 545–578.
     </biblio>
 
-    <biblio xml:id="bib-Emch_2010" type="raw">
+    <biblio xml:id="Emch_2010" type="raw">
       Emch, M., Root, E., Giebultowicz, S., Ali, M., Perez-Heydrich, C. and Yunus, M. (2010).
       Integration of Spatial and Social Network Analysis in Disease Transmission Studies.
       <em>Annals of the Association of American Geographers</em>, 102(5), 1004–1015.
     </biblio>
 
-    <biblio xml:id="bib-gastwirth1972estimation" type="raw">
+    <biblio xml:id="gastwirth1972estimation" type="raw">
       Gastwirth, J.L. (1972). The Estimation of the Lorenz Curve and Gini Index. <em>The Review
       of Economics and Statistics</em>, 54(3), 306–316.
     </biblio>
 
-    <biblio xml:id="bib-Hipp_2012" type="raw">
+    <biblio xml:id="Hipp_2012" type="raw">
       Hipp, J., Faris, R. and Boessen, A. (2012). Measuring 'Neighborhood': Constructing Network
       Neighborhoods. <em>Social Networks</em>, 34(1), 128–140.
     </biblio>
 
-    <biblio xml:id="bib-Hipp_2013" type="raw">
+    <biblio xml:id="Hipp_2013" type="raw">
       Hipp, J. and Boessen, A. (2013). Egohoods as Waves Washing Across the City: A New Measure
       of "Neighborhoods". <em>Criminology</em>, 51(2), 287–327.
     </biblio>
 
-    <biblio xml:id="bib-Kim_2019" type="raw">
+    <biblio xml:id="Kim_2019" type="raw">
       Kim, Y. and Hipp, J. (2019). Pathways: Examining Street Network Configurations, Structural
       Characteristics and Spatial Crime Patterns in Street Segments. <em>Journal of Quantitative
       Criminology</em>, 36, 725–752.
     </biblio>
 
-    <biblio xml:id="bib-lorenz1905methods" type="raw">
+    <biblio xml:id="lorenz1905methods" type="raw">
       Lorenz, M.O. (1905). Methods of Measuring the Concentration of Wealth. <em>Publications of
       the American Statistical Association</em>, 9(70), 209–219.
     </biblio>
 
-    <biblio xml:id="bib-OSullivan_2014" type="raw">
+    <biblio xml:id="OSullivan_2014" type="raw">
       O'Sullivan, D. (2014). Spatial Network Analysis. In M. Fischer and P. Nijkamp (eds.),
       <em>Handbook of Regional Science</em>. Springer, Heidelberg, pp. 1253–1273.
     </biblio>
 
-    <biblio xml:id="bib-Radil_2010" type="raw">
+    <biblio xml:id="Radil_2010" type="raw">
       Radil, S., Flint, C. and Tita, G. (2010). Spatializing Social Networks: Using Social Network
       Analysis to Investigate Geographies of Gang Rivalry, Territoriality, and Violence in Los
       Angeles. <em>Annals of the Association of American Geographers</em>, 100(2), 307–326.
     </biblio>
 
-    <biblio xml:id="bib-Tita_2011" type="raw">
+    <biblio xml:id="Tita_2011" type="raw">
       Tita, G. and Radil, S. (2011). Spatializing the Social Networks of Gangs to Explore Patterns
       of Violence. <em>Journal of Quantitative Criminology</em>, 27, 521–545.
     </biblio>
 
-    <biblio xml:id="bib-zeileis2012package" type="raw">
+    <biblio xml:id="zeileis2012package" type="raw">
       Zeileis, A. and Kleiber, C. (2012). <em>ineq: Measuring Inequality, Concentration, and
       Poverty</em>. R package. Vienna: Comprehensive R Archive Network.
     </biblio>
 
-    <biblio type="raw" xml:id="bib-Andresen_2020b">
+    <biblio type="raw" xml:id="Andresen_2020b">
       Andresen, M. A. and Ha, O. (2020). Spatially varying relationships between immigration measures and property crime types in Vancouver census tracts, 2016. <em>The British Journal of Criminology</em>, 60(5), 1342–1367.
     </biblio>
-
-    <biblio type="raw" xml:id="bib-Anselin_2007">
-      Anselin, L. (2007). <em>Spatial Regression Analysis in R: A Workbook</em>. Center for Spatially Integrated Social Science.
-    </biblio>
-
-    <biblio type="raw" xml:id="bib-Banerjee_2014">
+    <biblio type="raw" xml:id="Banerjee_2014">
       Banerjee, S., Carlin, B. and Gelfand, A. (2014). <em>Hierarchical Modeling and Analysis for Spatial Data</em>. CRC Press.
     </biblio>
 
-    <biblio type="raw" xml:id="bib-Cahill_2007">
+    <biblio type="raw" xml:id="Cahill_2007">
       Cahill, M. and Mulligan, G. (2007). Using geographically weighted regression to explore local crime patterns. <em>Social Science Computer Review</em>, 25(2), 174–193.
     </biblio>
 
-    <biblio type="raw" xml:id="bib-Fotheringham_2003">
+    <biblio type="raw" xml:id="Fotheringham_2003">
       Fotheringham, A. S., Brunsdon, C. and Charlton, M. (2003). <em>Geographically Weighted Regression: The Analysis of Spatially Varying Relationships</em>. John Wiley &amp; Sons.
     </biblio>
 

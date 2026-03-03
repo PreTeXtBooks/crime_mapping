@@ -24,7 +24,7 @@
       data partition, <alert>full spatial regimes</alert> also imply using different coefficients
       for each subset of the data, but you fit everything in one go. This is essentially the same
       as running as many models as subsets you have. As
-      <xref ref="bib-Anselin_2007" text="custom">Anselin (2007)</xref> highlights, this corrects
+      <xref ref="Anselin_2007" text="custom">Anselin (2007)</xref> highlights, this corrects
       for heterogeneity but does not explain it. We can then test whether this was necessary,
       using a <em>Chow test</em> comparing the simpler model with the one where we allow
       variability. Of course, we can also include spatial dependence in these models.
@@ -79,7 +79,7 @@ library(spgwr)
       <p>
         To illustrate this solution, we will go back to the "ncovr" data we explored last week and
         use the same spatial weight matrix as in the previous chapter. If you have read the
-        <xref ref="bib-Baller_2001" text="custom">Baller et al. (2001)</xref> paper that we are
+        <xref ref="Baller_2001" text="custom">Baller et al. (2001)</xref> paper that we are
         in a way replicating here, you could see they decided that they needed to run separate
         models for the South and the North. Let's explore this here.
       </p>
@@ -181,7 +181,7 @@ summary(fit2_70_sr)
       <p>
         The Chow test is often used in econometrics to determine whether the independent variables
         have different impacts on different sub-groups of the population.
-        <xref ref="bib-Anselin_2007" text="custom">Anselin (2007)</xref> provides an
+        <xref ref="Anselin_2007" text="custom">Anselin (2007)</xref> provides an
         implementation for this test that extracts the residuals and the degrees of freedom from
         the constrained (the simpler OLS model) and the unconstrained models (the less parsimonious
         spatial regime), and then computes the test based on the F distribution.
@@ -275,7 +275,7 @@ summary(fit3_70_sr_sar)
       <p>
         We can now also run a Chow test; only in this case, we need to adjust the previous one to
         account for spatial dependence.
-        <xref ref="bib-Anselin_2007" text="custom">Anselin (2007)</xref> also provides for an
+        <xref ref="Anselin_2007" text="custom">Anselin (2007)</xref> also provides for an
         implementation of this test in R with the following ad-hoc function:
       </p>
 
@@ -704,7 +704,7 @@ qtm(gwr_results, fill =  "RD70_se" )
       a priori segmentation to our data, based on contextual knowledge and possible patterns in
       our regression results. We illustrated this by imposing spatial regimes in our NCOVR data
       set, splitting into separate North and South USA, as was done by the original authors of
-      the paper by <xref ref="bib-Baller_2001" text="custom">Baller et al. (2001)</xref>. The
+      the paper by <xref ref="Baller_2001" text="custom">Baller et al. (2001)</xref>. The
       second approach was to explore how the coefficients may vary across our study space by
       applying Geographically Weighted Regression to our study area. We provided a high-level
       overview of this process and recommended it as an illustrative, exploratory technique to
@@ -714,24 +714,24 @@ qtm(gwr_results, fill =  "RD70_se" )
 
     <p>
       To delve into greater detail on the topic of spatial heterogeneity, chapters 8 and 9 in
-      <xref ref="bib-Anselin_2007" text="custom">Anselin (2007)</xref> discuss specification of
+      <xref ref="Anselin_2007" text="custom">Anselin (2007)</xref> discuss specification of
       spatial heterogeneity. This is particularly helpful as an introduction to the issues and
       solutions we have discussed in this chapter. For more details and applications of
       Geographically Weighted Regression, we recommend
-      <xref ref="bib-Fotheringham_2003" text="custom">Fotheringham et al. (2003)</xref>. For
+      <xref ref="Fotheringham_2003" text="custom">Fotheringham et al. (2003)</xref>. For
       applications and an illustration of the importance to consider spatial variation within the
       context of criminology and crime analysis, read
-      <xref ref="bib-Cahill_2007" text="custom">Cahill and Mulligan (2007)</xref> and
-      <xref ref="bib-Andresen_2020b" text="custom">Andresen and Ha (2020)</xref> as good
+      <xref ref="Cahill_2007" text="custom">Cahill and Mulligan (2007)</xref> and
+      <xref ref="Andresen_2020b" text="custom">Andresen and Ha (2020)</xref> as good
       examples.
     </p>
 
     <p>
       And for those wishing to explore additional ways to model spatial interactions, such as CAR
       and Bayesian models, we suggest to read
-      <xref ref="bib-Banerjee_2014" text="custom">Banerjee et al. (2014)</xref> as well as
+      <xref ref="Banerjee_2014" text="custom">Banerjee et al. (2014)</xref> as well as
       chapters 9 and 10 in
-      <xref ref="bib-Bivand_2013" text="custom">Bivand et al. (2013)</xref>.
+      <xref ref="Bivand_2013" text="custom">Bivand et al. (2013)</xref>.
     </p>
 
   </section>
