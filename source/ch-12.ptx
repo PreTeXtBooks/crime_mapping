@@ -150,7 +150,7 @@ ggplot(ncovr, aes(x = res_fit1, colour = as.factor(SOUTH))) +
 
       <figure xml:id="fig-ch12-regimes-residuals">
         <caption>Distribution of residuals by study region (South versus North)</caption>
-        <image source="external/fig-ch12-regimes-residuals.png">
+        <image source="images/fig-ch12-regimes-residuals.png">
           <description>A plot of two data sets, in red and blue. The vertical axis is labeled
           'density' and ranges from zero to point one seven, while the horizontal axis is labeled
           'Residuals', ranging from negative twenty five to seventy five. A legend to the right
@@ -546,7 +546,7 @@ qtm(ncovr, fill = "resids")
 
     <figure xml:id="fig-ch12-gwr-residuals">
       <caption>Map of model residuals</caption>
-      <image source="external/fig-ch12-gwr-residuals.png">
+      <image source="images/fig-ch12-gwr-residuals.png">
         <description>A map of counties in the United States, shaded in reds and blues. A legend
         at the bottom left, labeled 'resids' matches reds with negative values, and blues with
         positive values. Most of the counties are coloured in light colours. The midwest appears
@@ -798,7 +798,7 @@ qtm(gwr_results, fill =  "localR2" )
 </pre>
       <figure xml:id="fig-ch12-gwr-localr2">
         <caption>Map of local R square value for each county</caption>
-        <image source="external/fig-ch12-gwr-localr2.png">
+        <image source="images/fig-ch12-gwr-localr2.png">
           <description>Counties of the United States are now shaded in shades of blue. A legend
           in the bottom left, labeled 'local R 2', matches increasing values to darker blues. The
           colour transitions are smooth, with a dark blue emanating from New York, with counties
@@ -837,7 +837,7 @@ qtm(gwr_results, fill =  "RD70.1" )
 
       <figure xml:id="fig-ch12-gwr-rd70">
         <caption>Map of coefficient for resource deprivation value for each county</caption>
-        <image source="external/fig-ch12-gwr-rd70.png">
+        <image source="images/fig-ch12-gwr-rd70.png">
           <description>The counties of the United States are shaded in shades of blue and orange.
           A legend in the bottom left, labeled 'RD70.1', matches negative two to zero to orange,
           and zero to eight in increasingly darker blues. The northwest, and south of lake Michigan
@@ -872,7 +872,7 @@ qtm(gwr_results, fill =  "RD70_se" )
 
       <figure xml:id="fig-ch12-gwr-rd70-se">
         <caption>Map of standard errors for resource deprivation value for each county</caption>
-        <image source="external/fig-ch12-gwr-rd70-se.png">
+        <image source="images/fig-ch12-gwr-rd70-se.png">
           <description>This shaded map of the counties of the United States has a legend titled
           'RD70 se', matching values increasing from zero to darker shades of blue. Counties
           around the west coast, upper midwest, and New Hampshire are dark blues, while some of
