@@ -1344,6 +1344,325 @@
       Metropolitan Books, New York, 2020.
     </biblio>
 
+    <biblio xml:id="Boba_2013" type="raw">
+      Boba, R. (2013). <em>Crime Analysis with Crime Mapping</em> (3rd ed.). Sage. Thousand Oaks, CA.
+    </biblio>
+
+    <biblio xml:id="Brantingham_1982" type="raw">
+      Brantingham, P. and Brantingham, P. (1982). Mobility, notoriety and crime: A study of crime
+      patterns in urban nodal points. <em>Journal of Environmental Systems</em>, 11(1), 89&#x2013;99.
+    </biblio>
+
+    <biblio xml:id="Bruinsma_2018" type="raw">
+      Bruinsma, G. and Johnson, S. (Eds.). (2018). <em>The Oxford Handbook of Environmental
+      Criminology</em>. Oxford University Press. Oxford, England.
+    </biblio>
+
+    <biblio xml:id="Camoes_2016" type="raw">
+      Camoes, J. (2016). <em>Data at Work: Best Practices for Creating Effective Charts and
+      Information Graphics in Microsoft Excel</em>. New Riders.
+    </biblio>
+
+    <biblio xml:id="Cohen_1979" type="raw">
+      Cohen, L. and Felson, M. (1979). Social change and crime rate trends: A routine activity
+      approach. <em>American Sociological Review</em>, 44(4), 588&#x2013;608.
+    </biblio>
+
+    <biblio xml:id="Cornish_1986" type="raw">
+      Cornish, D. and Clarke, R. (1986). <em>The Reasoning Criminal: Rational Choice Perspectives
+      on Offending</em>. Transaction Publishers.
+    </biblio>
+
+    <biblio xml:id="Eck_2015" type="raw">
+      Eck, J. and Weisburd, D. (2015). Crime places in crime theory. <em>Crime and Place: Crime
+      Prevention Studies</em>, 4.
+    </biblio>
+
+    <biblio xml:id="Guerry_1833" type="raw">
+      Guerry, A.-M. (1833). <em>Essay on the Moral Statistics of France</em>. Trans. H. P. Whitt
+      and V. W. Reinking. Lewiston, NY: Edwin Mellen Press.
+    </biblio>
+
+    <biblio xml:id="Mayhew_1861" type="raw">
+      Mayhew, H. (1861). <em>London Labour and the London Poor</em>. Charles Griffin.
+    </biblio>
+
+    <biblio xml:id="Moraga_2021" type="raw">
+      Moraga, P., Seimon, D., Vijay Kumar, V., and Ribeiro-Amaral, A. (2021). rspatialdata: a
+      collection of data sources and tutorials on visualising spatial data using R.
+      <url href="https://rspatialdata.github.io/index.html">https://rspatialdata.github.io/index.html</url>
+      Accessed: 01-08-2021.
+    </biblio>
+
+    <biblio xml:id="OSullivan_2010" type="raw">
+      O'Sullivan, D. and Unwin, D. (2010). <em>Geographic Information Analysis</em> (2nd ed.).
+      John Wiley &amp; Sons. Hoboken, NJ.
+    </biblio>
+
+    <biblio xml:id="Park_1925" type="raw">
+      Park, R. and Burgess, E. (1925). <em>The City</em>. University of Chicago Press.
+    </biblio>
+
+    <biblio xml:id="Pebesma_2018" type="raw">
+      Pebesma, E. (2018). Simple Features for R: Standardized Support for Spatial Vector Data.
+      <em>The R Journal</em>, 10(1), 439&#x2013;446.
+    </biblio>
+
+    <biblio xml:id="Quetelet_1842" type="raw">
+      Quetelet, A. (1842). <em>Instructions pour l'observation des ph&#x00E9;nom&#x00E8;nes
+      p&#x00E9;riodiques</em>.
+    </biblio>
+
+    <biblio xml:id="Radil_2016" type="raw">
+      Radil, S. (2016). Spatial Analysis of Crime. In B. Huebner and T. Bynum (Eds.),
+      <em>The Handbook of Measurement Issues in Criminology and Criminal Justice</em>
+      (pp. 535&#x2013;554). John Wiley &amp; Sons.
+    </biblio>
+
+    <biblio xml:id="Schwabish_2021" type="raw">
+      Schwabish, J. (2021). <em>Better Data Visualizations: A Guide for Scholars, Researchers,
+      and Wonks</em>. Columbia University Press. New York.
+    </biblio>
+
+    <biblio xml:id="Shaw_1942" type="raw">
+      Shaw, C. and McKay, H. (1942). <em>Juvenile Delinquency and Urban Areas</em>. University
+      of Chicago Press.
+    </biblio>
+
+    <biblio xml:id="Weisburd_2009" type="raw">
+      Weisburd, D., Bruinsma, G., and Bernasco, W. (2009). Units of analysis in geographic
+      criminology: Historical development, critical issues, and open questions. In
+      <em>Putting Crime in its Place</em> (pp. 3&#x2013;31). Springer.
+    </biblio>
+
+    <biblio xml:id="Wickham_2021" type="raw">
+      Wickham, H., Fran&#x00E7;ois, R., Henry, L., and M&#x00FC;ller, K. (2021). dplyr: A Grammar
+      of Data Manipulation. R package version 1.0.7.
+      <url href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</url>
+    </biblio>
+
+    <biblio xml:id="Wickham_2021a" type="raw">
+      Wickham, H. (2021). <em>The tidyverse style guide</em>.
+      <url href="https://style.tidyverse.org/index.html">https://style.tidyverse.org/index.html</url>
+    </biblio>
+
+    <biblio xml:id="ArcGIS_2021" type="raw">
+      ArcGIS Pro. (2021). Why hexagons?
+      <url href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-whyhexagons.htm">https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-whyhexagons.htm</url>
+      Accessed: 04-08-2021.
+    </biblio>
+
+    <biblio xml:id="Bycoffe_2018" type="raw">
+      Bycoffe, A., Koeze, E., Wasserman, D., and Wolfe, J. (2018). The Atlas Of Redistricting.
+      <url href="https://projects.fivethirtyeight.com/redistricting-maps/">https://projects.fivethirtyeight.com/redistricting-maps/</url>
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio xml:id="CDC_2021" type="raw">
+      Centers for Disease Control and Prevention. (2021). Shapefiles.
+      <url href="https://www.cdc.gov/epiinfo/support/downloads/shapefiles.html">https://www.cdc.gov/epiinfo/support/downloads/shapefiles.html</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="DIVAGIS_2021" type="raw">
+      Hijmans, R., Rojas, E., Cruz, M., OBrien, R., and Barrantes, I. (2021). DIVA-GIS.
+      <url href="http://www.diva-gis.org/gData">http://www.diva-gis.org/gData</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="DeVeaux_2012" type="raw">
+      De Veaux, R., Velleman, P., and Bock, D. (2012). <em>Stats: Data and Models with
+      Statistical Methods for the Social Sciences</em>. Pearson. Boston, MA.
+    </biblio>
+
+    <biblio xml:id="Dorling_1991" type="raw">
+      Dorling, D. (1991). <em>The Visualisation of Spatial Social Structure</em>. PhD thesis,
+      University of Newcastle upon Tyne.
+    </biblio>
+
+    <biblio xml:id="Dorling_1996" type="raw">
+      Dorling, D. (1996). <em>Area Cartograms: Their Use and Creation, Concepts and Techniques
+      in Modern Geography</em>. Institute of British Geographers.
+    </biblio>
+
+    <biblio xml:id="Dougenik_1985" type="raw">
+      Dougenik, J., Chrisman, N., and Niemeyer, D. (1985). An algorithm to construct continuous
+      area cartograms. <em>The Professional Geographer</em>, 37(1), 75&#x2013;81.
+    </biblio>
+
+    <biblio xml:id="Field_2012b" type="raw">
+      Field, K. (2012). Using a binning technique for point-based multiscale web maps.
+      <url href="https://www.esri.com/arcgis-blog/products/arcgis-online/mapping/using-a-binning-technique-for-point-based-multiscale-web-maps/">https://www.esri.com/arcgis-blog/</url>
+      Accessed: 30-07-2021.
+    </biblio>
+
+    <biblio xml:id="Field_2016" type="raw">
+      Field, K. and Dorling, D. (2016). UK Election Cartography. <em>International Journal of
+      Cartography</em>, 2, 202&#x2013;232.
+    </biblio>
+
+    <biblio xml:id="Fox_2003" type="raw">
+      Fox, J. (2003). Effect Displays in R for Generalised Linear Models. <em>Journal of
+      Statistical Software</em>, 8(15).
+    </biblio>
+
+    <biblio xml:id="Friedman_2001" type="raw">
+      Friedman, J., Hastie, T., and Tibshirani, R. (2001). <em>The Elements of Statistical
+      Learning</em>. Springer. New York.
+    </biblio>
+
+    <biblio xml:id="Gerell_2017" type="raw">
+      Gerell, M. (2017). Smallest is better? The spatial distribution of arson and the modifiable
+      areal unit problem. <em>Journal of Quantitative Criminology</em>, 33(2), 293&#x2013;318.
+    </biblio>
+
+    <biblio xml:id="Grossenbacher_2019" type="raw">
+      Grossenbacher, T. (2019). Bivariate maps with ggplot2 and sf. Blog post, Tamedia.
+      <url href="https://timogrossenbacher.ch/2019/04/bivariate-maps-with-ggplot2-and-sf/">https://timogrossenbacher.ch/2019/04/bivariate-maps-with-ggplot2-and-sf/</url>
+      Accessed: 01-04-2021.
+    </biblio>
+
+    <biblio xml:id="Inegi_2021" type="raw">
+      INEGI. (2021). National Geostatistical Framework.
+      <url href="https://en.www.inegi.org.mx/temas/mg/#Downloads">https://en.www.inegi.org.mx/temas/mg/#Downloads</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="Johnson_2011" type="raw">
+      Johnson, Z.-F. (2011). Hexbins!
+      <url href="http://indiemaps.com/blog/2011/10/hexbins/">http://indiemaps.com/blog/2011/10/hexbins/</url>
+      Accessed: 16-05-2021.
+    </biblio>
+
+    <biblio xml:id="Langton_2021" type="raw">
+      Langton, S. and Solymosi, R. (2021). Cartograms, hexograms and regular grids: Minimising
+      misrepresentation in spatial data visualisations. <em>Environment and Planning B: Urban
+      Analytics and City Science</em>, 48(2), 348&#x2013;357.
+    </biblio>
+
+    <biblio xml:id="MIT_2021" type="raw">
+      MIT. (2021). Geographic Information Systems (GIS): Data for the world.
+      <url href="https://libguides.mit.edu/gis/world">https://libguides.mit.edu/gis/world</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="Nusrat_2016" type="raw">
+      Nusrat, S. and Kobourov, S. (2016). The state of the art in cartograms. <em>Computer
+      Graphics Forum</em>, 35(3), 619&#x2013;642.
+    </biblio>
+
+    <biblio xml:id="OSM_2021" type="raw">
+      Open Street Map. (2021). Overpass API/Overpass QL.
+      <url href="https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL">https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="Openshaw_1981" type="raw">
+      Openshaw, S. (1981). The modifiable areal unit problem. <em>Quantitative Geography: A
+      British View</em>, pp. 60&#x2013;69. Routledge and Kegan Paul.
+    </biblio>
+
+    <biblio xml:id="Rengert_2009" type="raw">
+      Rengert, G. and Lockwood, B. (2009). Geographical units of analysis and the analysis of
+      crime. In D. Weisburd, W. Bernasco, and G. Bruinsma (Eds.), <em>Putting Crime in its
+      Place</em> (pp. 109&#x2013;122). Springer. New York.
+    </biblio>
+
+    <biblio xml:id="Sampson_1997" type="raw">
+      Sampson, R., Raudenbush, S., and Earls, F. (1997). Neighborhoods and violent crime: A
+      multilevel study of collective efficacy. <em>Science</em>, 277(5328), 918&#x2013;924.
+    </biblio>
+
+    <biblio xml:id="Smith_2014" type="raw">
+      Smith, N. (2014). Binning: An Alternative to Point Maps.
+      <url href="https://blog.mapbox.com/binning-an-alternative-to-point-maps-2cfc7b01d2ed">https://blog.mapbox.com/binning-an-alternative-to-point-maps-2cfc7b01d2ed</url>
+      Accessed: 04-08-2021.
+    </biblio>
+
+    <biblio xml:id="Solymosi_2021" type="raw">
+      Solymosi, R. (2021). Minimizing Misrepresentation in Spatial Data Visualizations.
+      <url href="https://www.doi.org/10.4135/9781529774047">https://www.doi.org/10.4135/9781529774047</url>
+      Accessed: 16-05-2021.
+    </biblio>
+
+    <biblio xml:id="South_2017" type="raw">
+      South, A. (2017). rnaturalearth: World Map Data from Natural Earth. R package version 0.1.0.
+      <url href="https://CRAN.R-project.org/package=rnaturalearth">https://CRAN.R-project.org/package=rnaturalearth</url>
+    </biblio>
+
+    <biblio xml:id="StatsCan_2021" type="raw">
+      Statistics Canada. (2021). Census Geography.
+      <url href="https://www12.statcan.gc.ca/census-recensement/2016/geo/index-eng.cfm">https://www12.statcan.gc.ca/census-recensement/2016/geo/index-eng.cfm</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="Stevens_2015" type="raw">
+      Stevens, J. (2015). Bivariate Choropleth Maps: A How-to Guide. Blog post, NASA's Earth
+      Observatory.
+      <url href="https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/">https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</url>
+      Accessed: 01-04-2021.
+    </biblio>
+
+    <biblio xml:id="Tobler_2004" type="raw">
+      Tobler, W. (2004). Thirty five years of computer cartograms. <em>Annals of the Association
+      of American Geographers</em>, 94(1), 58&#x2013;73.
+    </biblio>
+
+    <biblio xml:id="UKDS_2013" type="raw">
+      UK Data Service. (2013). Generalisation in Census Support, UK Data Service Census Support
+      Help.
+      <url href="https://borders.ukdataservice.ac.uk/webhelp/index.htm">https://borders.ukdataservice.ac.uk/webhelp/index.htm</url>
+      Accessed: 22-07-2021.
+    </biblio>
+
+    <biblio xml:id="USACB_2021" type="raw">
+      United States Census Bureau. (2021). Census Mapping Files.
+      <url href="https://www.census.gov/geographies/mapping-files.html">https://www.census.gov/geographies/mapping-files.html</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="Weisburd_2014" type="raw">
+      Weisburd, D. and Britt, C. (2014). <em>Statistics in Criminal Justice</em>. Springer.
+    </biblio>
+
+    <biblio xml:id="Wikstrom_2011" type="raw">
+      Wikstr&#x00F6;m, P.-O., Tseloni, A., and Karlis, D. (2011). Do people comply with the law
+      because they fear getting caught? <em>European Journal of Criminology</em>, 8(5),
+      401&#x2013;420.
+    </biblio>
+
+    <biblio xml:id="Wilson_1982" type="raw">
+      Wilson, J. and Kelling, G. (1982). Broken windows. <em>Atlantic Monthly</em>, 249(3),
+      29&#x2013;38.
+    </biblio>
+
+    <biblio xml:id="foster2016big" type="raw">
+      Foster, I., Ghani, R., Jarmin, R., Kreuter, F., and Lane, J. (2016). <em>Big Data and
+      Social Science: A Practical Guide to Methods and Tools</em>. CRC Press.
+    </biblio>
+
+    <biblio xml:id="kounadi2009assessing" type="raw">
+      Kounadi, O. (2009). Assessing the quality of OpenStreetMap data. MSc thesis, University
+      College of London.
+    </biblio>
+
+    <biblio xml:id="mooney2017review" type="raw">
+      Mooney, P. and Minghini, M. (2017). <em>A Review of OpenStreetMap Data</em>. Ubiquity
+      Press.
+    </biblio>
+
+    <biblio xml:id="olmedilla2016harvesting" type="raw">
+      Olmedilla, M., Mart&#x00ED;nez-Torres, M., and Toral, S. (2016). Harvesting Big Data in
+      social science: A methodological approach for collecting online user-generated content.
+      <em>Computer Standards &amp; Interfaces</em>, 46, 79&#x2013;87.
+    </biblio>
+
+    <biblio xml:id="osm_2021b" type="raw">
+      Open Street Map. (2021). Tag:boundary=administrative.
+      <url href="https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative">https://wiki.openstreetmap.org/wiki/Tag:boundary=administrative</url>
+      Accessed: 26-07-2021.
+    </biblio>
+
   </references>
 
   <colophon>
