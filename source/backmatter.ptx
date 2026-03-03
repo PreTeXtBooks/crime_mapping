@@ -1641,6 +1641,17 @@
       Accessed: 26-07-2021.
     </biblio>
 
+    <biblio xml:id="Baller_2001" type="raw">
+      Baller, R., Anselin, L., Messner, S., Deane, G., and Hawkins, D. (2001). Structural
+      covariates of US county homicide rates: Incorporating spatial effects.
+      <em>Criminology</em>, 39(3), 561&#x2013;588.
+    </biblio>
+
+    <biblio xml:id="Gelman_2008" type="raw">
+      Gelman, A. (2008). Scaling Regression Inputs by Dividing by Two Standard Deviations.
+      <em>Statistics in Medicine</em>, 27, 2865&#x2013;2873.
+    </biblio>
+
   </references>
 
   <colophon>
