@@ -3,8 +3,7 @@
 <chapter xml:id="ch-03" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Mapping Rates and Counts</title>
 
-  <section xml:id="sec-ch03-intro">
-    <title>Introduction</title>
+  <introduction>
 
     <p>
       In Chapter 1 we showed you fairly quickly how to create maps by understanding how data
@@ -60,7 +59,7 @@ library(geodaData)
       </input>
     </program>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch03-thematic-maps-terms">
     <title>Thematic maps: key terms and ideas</title>
@@ -121,8 +120,7 @@ library(geodaData)
         <title>Crime rates</title>
 
         <p>
-          In this section we discuss crime rates, for they are often the key quantity
-          represented in this kind of maps. In a choropleth map, you "can" show raw totals
+          In a choropleth map, you "can" show raw totals
           (absolute values), for example, number of crimes, or derived values (ratios), such
           as crime per 100,000 inhabitants. But as a general rule, you should restrict
           choropleth maps to show derived variables such as rates or percentages
@@ -586,7 +584,7 @@ hist(manchester$wkdpop, main = "Distribution of workday population across LSOAs"
       </p>
 
       <p>
-        To create new variables, we can use the <c>mutate()</c> function from the <c>dplyr</c>
+        First we need to create new variables. For this we can use the <c>mutate()</c> function from the <c>dplyr</c>
         package. This is a very helpful function to create new variables in a dataframe based
         on transformations or mathematical operations performed on other variables within the
         dataframe. In this function, the first argument is the name of the data frame, and
@@ -1230,18 +1228,6 @@ tm_shape(manchester) +
       </input>
     </program>
 
-    <figure xml:id="fig-ch3-interactive-crimr1">
-      <caption>Interactive Jenks map of crime by residential population in Manchester</caption>
-      <image source="figure-ch03/interactive-crimr1.png">
-        <description>
-          A leaflet street map of Manchester and area, with overlaid semi-transparent shading. The
-          top right contains a legend labeled 'Crime per residential pop', and separates five
-          colours according to the Jenks classification seen before. The same darker shaded areas
-          can be seen as before, now on the map.
-        </description>
-      </image>
-    </figure>
-
     <p>
       If you are following along, you can now scroll down to see that the crime rate is highest in
       the city centre of Manchester, but there are also pockets of high level of the crime rate in
@@ -1261,20 +1247,6 @@ tm_shape(manchester) +
   tm_basemap(leaflet::providers$OpenStreetMap)
       </input>
     </program>
-
-    <figure xml:id="fig-ch3-interactive-crimr2">
-      <caption>Interactive Jenks map of crime rate by workday population in Manchester</caption>
-      <image source="figure-ch03/interactive-crimr2.png">
-        <description>
-          A leaflet street map of Manchester and area, with a different overlaid semi-transparent
-          shading. The top right contains a legend labeled 'Crime per workday pop', and separates
-          numbers up to nine thousand four hundred into five colours. The three lightest colours
-          correspond to a range of about one thousand each, the next one to two thousand, and the
-          darkest to four thousand. The distribution of darker colours is much different, with some
-          dark areas in the northeast, southwest, and less of a cluster in central Manchester.
-        </description>
-      </image>
-    </figure>
 
     <p>
       Things look different, don't they? For starters look at the values in the labels for the
