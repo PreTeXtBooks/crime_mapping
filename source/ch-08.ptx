@@ -1547,4 +1547,165 @@ ggplot() +
 
   </section>
 
+  <section xml:id="sec-ch8-concentration">
+    <title>Quantifying crime concentration at micro-places</title>
+
+    <p>
+      So far we have shown ways to visualise crime along a network, but what if we want to
+      actually quantify the extent to which crime concentrates in these micro-places. In crime and
+      place literature we explore the concentration of crime at micro-places. "Perhaps the first
+      and most important empirical observation in the criminology of place is that crime
+      concentrates at very small units of geography"
+      (<xref ref="bib-Weisburd_2015" text="custom">Weisburd, 2015</xref>, p. 135). A significant
+      proportion of crime concentrates around a small proportion of micro places.
+    </p>
+
+    <p>
+      One way to measure inequality in the distribution of a quantitative variable is to use the
+      <alert>Lorenz curve</alert>, and associated <alert>Gini coefficient</alert>. The Lorenz
+      curve is a probability plot (P–P plot) comparing the distribution of a variable against a
+      hypothetical uniform distribution of that variable. It can usually be represented by a
+      function <m>L(F)</m>, where <m>F</m>, the cumulative portion of the population, is
+      represented by the horizontal axis, and <m>L</m>, the cumulative portion of the variable of
+      interest (e.g., crime), is represented by the vertical axis. While Lorenz curves are used
+      typically to graph inequality of distribution of wealth, they can be applied in this case to
+      explore unequal distribution of crimes between micro-places. A perfectly equal distribution
+      would be depicted by the straight line <m>y = x</m>
+      (<xref ref="bib-lorenz1905methods" text="custom">Lorenz, 1905</xref>;
+      <xref ref="bib-zeileis2012package" text="custom">Zeileis et al., 2012</xref>). The
+      corresponding Gini coefficient represents the ratio of the area between the line of perfect
+      equality and the observed Lorenz curve to the area between the line of perfect equality and
+      the line of perfect inequality
+      (<xref ref="bib-gastwirth1972estimation" text="custom">Gastwirth, 1972</xref>). The closer
+      the coefficient is to 1, the more unequal the distribution is
+      (<xref ref="bib-zeileis2012package" text="custom">Zeileis et al., 2012</xref>).
+    </p>
+
+    <p>
+      In R we can implement these tests using the functions in the <c>ineq</c> package. To obtain
+      a Lorenz curve, we can use the <c>Lc()</c> function. <c>Lc()</c> computes the (empirical)
+      ordinary Lorenz curve of a vector <m>x</m> (in this case, our <c>crimes_per_m</c>
+      variable). The function also computes a generalised Lorenz curve
+      (<m>= \text{ordinary Lorenz curve} \times mean(x)</m>). The result can be interpreted like
+      this: <m>p \times 100</m>% account for <m>L(p) \times 100</m>% of <m>x</m>.
+    </p>
+
+    <p>
+      Let's illustrate this again with the segments of Telegraph Road.
+    </p>
+
+    <program language="r">
+      <input>
+tr_lorenz &lt;- Lc(tr_sections$summer_rate)
+      </input>
+    </program>
+
+    <p>
+      Our resulting <c>tr_lorenz</c> object has three elements. First, the <c>p</c> represents
+      the cumulative percent of crimes (per metre) for each line segment. Then, <c>L</c> contains
+      the values of the ordinary Lorenz curve, while the <c>L.general</c> element the values for
+      the generalised Lorenz curve. We can plot the Lorenz curve with the <c>plot()</c> function
+      from base R.
+    </p>
+
+    <program language="r">
+      <input>
+plot(tr_lorenz)
+      </input>
+    </program>
+
+    <figure>
+      <caption>Lorenz curve for crimes in Heswall</caption>
+      <image>
+        <description>A plot titled 'Lorenz curve', with vertical axis labeled 'L of p', ranging
+        from zero to one, and horizontal axis labeled 'p' also ranging from zero to one. A
+        straight line bisects the plot from the origin to the top right, where both values are
+        one. Another line runs along the horizontal axis from zero to about point eight five,
+        before climbing quickly to meet the line where both 'p' and 'L of p' are
+        one.</description>
+      </image>
+    </figure>
+
+    <p>
+      Upon seeing this, we can consider that many of the segments of the Telegraph Road contribute
+      very little to overall crimes, and it is instead the top few (less than the top 20%) which
+      contribute to all the shoplifting incidents. From a visual inspection, it appears that the
+      Telegraph Road very precisely fits (and exceeds) the Pareto Principle, whereby 20% of the
+      segments seem to account for 80% of the crimes (per metre length of the segment). We can
+      quantify this further using the Gini coefficient.
+    </p>
+
+    <program language="r">
+      <input>
+ineq(tr_sections$summer_rate, type="Gini")
+      </input>
+    </program>
+
+    <p>
+      This score is quite high. The Gini Index is calculated from the Lorenz curve, by taking the
+      area between the line of equality and the Lorenz curve, and dividing this by the total area
+      under the line of equality. This number is bounded between 0 (perfect equality where the
+      Lorenz curve sits right on top of the line of equality) and 1 (perfect inequality, where the
+      Lorenz curve sits right on top of the x-axis and bends at right angle); so the closer we
+      get to 1, the higher the inequality in the distribution in our value of interest, in this
+      case crimes per metre. Clearly we see crime concentrate in certain segments of Telegraph
+      Road.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-ch8-summary">
+    <title>Summary and further reading</title>
+
+    <p>
+      The focus in this chapter has been to introduce the issue of crime events along a network.
+      There has been increasing recognition in recent years that the spatial existence of many
+      phenomena is constrained by networks. We have discussed some of the issues associated with
+      the storage, handling, and visualisation of this kind of data. Chapter 1 of
+      <xref ref="bib-Okabe_2012" text="custom">Okabe and Sugihara (2012)</xref> provides a fairly
+      accessible introduction to the relevance of point pattern data along a network, whereas
+      Chapter 3 offers a slightly more technical discussion of the computational issues associated
+      with the statistical analysis of points along a network. The first few sections of chapter
+      17 of <xref ref="bib-Baddeley_2016" text="custom">Baddeley et al. (2015)</xref> provide
+      background and very useful detail on the way that <c>spatstat</c> handles and stores point
+      pattern data in a network.
+      <xref ref="bib-Baddeley_2021" text="custom">Baddeley et al. (2021)</xref> offers an
+      excellent overview of the challenges of analysing this kind of data and the available
+      methods we have. This overview can also offers an excellent framework to understand the
+      issues of clustering and detection of local clusters along networks to which we will return
+      in the next two chapters.
+    </p>
+
+    <p>
+      But spatial networks analysis is a more general area, with various other applications that
+      we could not explore in detail here.
+      <xref ref="bib-OSullivan_2014" text="custom">O'Sullivan (2014)</xref> provides an
+      introduction to spatial network analysis, basically a translation of social network metrics
+      and concepts applied to spatial networks. This kind of perspective is particularly helpful
+      within transport, routing, and similar applications. See, for example, the kind of
+      functionality and applications provided by <c>stplanr</c>. We are also witnessing
+      cross-fertilisation between social network analysis and spatial analysis. In epidemiology,
+      for example, we see how this is done for studying the transmission of disease through
+      personal and geographic networks (see, for example,
+      <xref ref="bib-Emch_2010" text="custom">Emch et al., 2010</xref>). Whereas
+      <xref ref="bib-Radil_2010" text="custom">Radil et al. (2010)</xref> and
+      <xref ref="bib-Tita_2011" text="custom">Tita and Radil (2011)</xref> offer some
+      criminological examples (focused on the study of gangs) linking social network analysis and
+      spatial analysis. Along these lines, the package <c>spnet</c> facilitates the rendering of
+      social network data into a geographical space. Some of these applications can be relevant
+      for investigative crime analysis and other criminological uses. Finally, another way in
+      which social networks are being used within the context of environmental criminology is in
+      contributing to the alternative specifications of neighbourhoods that aim to move beyond the
+      traditional use of census geographies (see
+      <xref ref="bib-Hipp_2012" text="custom">Hipp et al., 2012</xref> and
+      <xref ref="bib-Hipp_2013" text="custom">Hipp and Boessen, 2013</xref>). Finally, it is also
+      worth exploring the literature on <alert>space syntax</alert> and crime, and the various
+      analyses that are looking at the structural characteristics of the street network (such as
+      betweenness) and how these characteristics influence crime
+      (<xref ref="bib-Davies_2018" text="custom">Davies and Bowers, 2018</xref>;
+      <xref ref="bib-Kim_2019" text="custom">Kim and Hipp, 2019</xref>).
+    </p>
+
+  </section>
+
 </chapter>

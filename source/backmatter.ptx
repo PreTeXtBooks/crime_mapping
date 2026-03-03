@@ -727,6 +727,76 @@
       https://CRAN.R-project.org/package=sfnetworks
     </biblio>
 
+    <biblio xml:id="bib-Baddeley_2016" type="raw">
+      Baddeley, A., Rubak, E. and Turner, R. (2015). <em>Spatial Point Patterns: Methodology and
+      Applications with R</em>. CRC Press, Boca Raton, FL.
+    </biblio>
+
+    <biblio xml:id="bib-Baddeley_2021" type="raw">
+      Baddeley, A., Nair, G., Rakshit, S., McSwiggan, G. and Davies, T.M. (2021). Analysing Point
+      Patterns on Networks — A Review. <em>Spatial Statistics</em>, 42,
+      doi.org/10.1016/j.spasta.2020.100435.
+    </biblio>
+
+    <biblio xml:id="bib-Davies_2018" type="raw">
+      Davies, T. and Bowers, K. (2018). Street Networks and Crime. In G. Bruinsma and S. Johnson
+      (eds.), <em>The Oxford Handbook of Environmental Criminology</em>. Oxford University Press,
+      New York, pp. 545–578.
+    </biblio>
+
+    <biblio xml:id="bib-Emch_2010" type="raw">
+      Emch, M., Root, E., Giebultowicz, S., Ali, M., Perez-Heydrich, C. and Yunus, M. (2010).
+      Integration of Spatial and Social Network Analysis in Disease Transmission Studies.
+      <em>Annals of the Association of American Geographers</em>, 102(5), 1004–1015.
+    </biblio>
+
+    <biblio xml:id="bib-gastwirth1972estimation" type="raw">
+      Gastwirth, J.L. (1972). The Estimation of the Lorenz Curve and Gini Index. <em>The Review
+      of Economics and Statistics</em>, 54(3), 306–316.
+    </biblio>
+
+    <biblio xml:id="bib-Hipp_2012" type="raw">
+      Hipp, J., Faris, R. and Boessen, A. (2012). Measuring 'Neighborhood': Constructing Network
+      Neighborhoods. <em>Social Networks</em>, 34(1), 128–140.
+    </biblio>
+
+    <biblio xml:id="bib-Hipp_2013" type="raw">
+      Hipp, J. and Boessen, A. (2013). Egohoods as Waves Washing Across the City: A New Measure
+      of "Neighborhoods". <em>Criminology</em>, 51(2), 287–327.
+    </biblio>
+
+    <biblio xml:id="bib-Kim_2019" type="raw">
+      Kim, Y. and Hipp, J. (2019). Pathways: Examining Street Network Configurations, Structural
+      Characteristics and Spatial Crime Patterns in Street Segments. <em>Journal of Quantitative
+      Criminology</em>, 36, 725–752.
+    </biblio>
+
+    <biblio xml:id="bib-lorenz1905methods" type="raw">
+      Lorenz, M.O. (1905). Methods of Measuring the Concentration of Wealth. <em>Publications of
+      the American Statistical Association</em>, 9(70), 209–219.
+    </biblio>
+
+    <biblio xml:id="bib-OSullivan_2014" type="raw">
+      O'Sullivan, D. (2014). Spatial Network Analysis. In M. Fischer and P. Nijkamp (eds.),
+      <em>Handbook of Regional Science</em>. Springer, Heidelberg, pp. 1253–1273.
+    </biblio>
+
+    <biblio xml:id="bib-Radil_2010" type="raw">
+      Radil, S., Flint, C. and Tita, G. (2010). Spatializing Social Networks: Using Social Network
+      Analysis to Investigate Geographies of Gang Rivalry, Territoriality, and Violence in Los
+      Angeles. <em>Annals of the Association of American Geographers</em>, 100(2), 307–326.
+    </biblio>
+
+    <biblio xml:id="bib-Tita_2011" type="raw">
+      Tita, G. and Radil, S. (2011). Spatializing the Social Networks of Gangs to Explore Patterns
+      of Violence. <em>Journal of Quantitative Criminology</em>, 27, 521–545.
+    </biblio>
+
+    <biblio xml:id="bib-zeileis2012package" type="raw">
+      Zeileis, A. and Kleiber, C. (2012). <em>ineq: Measuring Inequality, Concentration, and
+      Poverty</em>. R package. Vienna: Comprehensive R Archive Network.
+    </biblio>
+
   </references>
 
   <colophon>
