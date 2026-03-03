@@ -3,9 +3,7 @@
 <chapter xml:id="ch-12" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Spatial Heterogeneity and Regression</title>
 
-  <section xml:id="sec-ch12-intro">
-    <title>Introduction</title>
-
+  <introduction>
     <p>
       One of the challenges of spatial data is that we may encounter exceptions to stationary
       processes. There may be, for example, parameter variability across the study area. When we
@@ -68,7 +66,7 @@ library(spgwr)
       </input>
     </program>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch12-spatial-regimes">
     <title>Spatial regimes</title>
