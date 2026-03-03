@@ -1080,9 +1080,9 @@ plot(allEffects(fit_5), ask=FALSE)
       <li>
         <p>
           The coefficient of <em>SOUTH_f1</em> now can be thought of as the difference
-          between the predicted score of homicide rate for northern counties <em>that have
-          a score of 0 in resource deprivation</em> and northern counties <em>that have a
-          score of 0 in resource deprivation</em>.
+          between the predicted score of homicide rate for <em>southern</em> counties
+          <em>that have a score of 0 in resource deprivation</em> and northern counties
+          <em>that have a score of 0 in resource deprivation</em>.
         </p>
       </li>
       <li>
