@@ -836,7 +836,7 @@ plot(classIntervals(manchester$crimr1,
 
     <figure xml:id="fig-ch3-class-equal">
       <caption>Results for equal intervals classification</caption>
-      <image source="external/fig-ch3-class-equal.png">
+      <image source="figure-ch03/class-equal.png">
         <description>
           A line graph titled 'Equal Intervals'. The vertical axis is labeled 'fn of x', and ranges
           from zero point zero to one point zero. The horizontal axis is labeled 'x', and ranges
@@ -872,7 +872,7 @@ plot(classIntervals(manchester$crimr1, n=5, style="quantile"), pal = pal1,
 
     <figure xml:id="fig-ch3-class-quantile">
       <caption>Results for quantiles classification</caption>
-      <image source="external/fig-ch3-class-quantile.png">
+      <image source="figure-ch03/class-quantile.png">
         <description>
           The previous line graph is now titled 'Quantiles', and has had the colours along the
           horizontal axis squished, except for the last deep red. The colour changes all happen in
@@ -899,7 +899,7 @@ plot(classIntervals(manchester$crimr1, n=5, style="jenks"), pal = pal1,
 
     <figure xml:id="fig-ch3-class-jenks">
       <caption>Results for Jenks classification</caption>
-      <image source="external/fig-ch3-class-jenks.png">
+      <image source="figure-ch03/class-jenks.png">
         <description>
           This time the previous line graph is titled 'Jenks', and seems to be a compromise between
           the previous two figures. The steep climb is divided into two colours, and the following
@@ -927,7 +927,7 @@ plot(classIntervals(manchester$crimr1, style="sd"), pal = pal1,
 
     <figure xml:id="fig-ch3-class-sd">
       <caption>Results for standard deviation classification</caption>
-      <image source="external/fig-ch3-class-sd.png">
+      <image source="figure-ch03/class-sd.png">
         <description>
           The same line graph is now titled 'Standard Deviation', and has gained more colours,
           fourteen total, for its gradient. Each one is the same size, and includes about four
@@ -957,7 +957,7 @@ plot(classIntervals(manchester$crimr1, style="headtails"), pal = pal1,
 
     <figure xml:id="fig-ch3-class-headtails">
       <caption>Results for headtails classification</caption>
-      <image source="external/fig-ch3-class-headtails.png">
+      <image source="figure-ch03/class-headtails.png">
         <description>
           The same line graph yet again, with the title 'Headtails'. The five colours are
           distributed in a similar way to the Jenks classification, with the colour changes all
@@ -1085,7 +1085,7 @@ map3
 
     <figure xml:id="fig-ch3-map3-quantile">
       <caption>Quantile classification of crime in Manchester</caption>
-      <image source="external/fig-ch3-map3-quantile.png">
+      <image source="figure-ch03/map3-quantile.png">
         <description>
           A shaded map of the LSOAs in Manchester, similar to the ones before, using the
           colourblind friendly blue gradient. The legend in the top left, titled 'Quantile', lists
@@ -1111,7 +1111,7 @@ tmap_arrange(map1, map2, map3, map4, map5)
 
     <figure xml:id="fig-ch3-tmap-arrange">
       <caption>Compare maps using the different classifications of crime in Manchester</caption>
-      <image source="external/fig-ch3-tmap-arrange.png">
+      <image source="figure-ch03/tmap-arrange.png">
         <description>
           Five different shaded maps of the LSOAs in Manchester are aligned in a grid. The first
           one, labeled 'Equal', was the first map we constructed, and the third one, 'Quantile', is
@@ -1202,6 +1202,9 @@ tmap_arrange(map1, map2, map3, map4, map5)
 tmap_mode("view")
       </input>
     </program>
+    <console>
+      <output>## tmap mode set to interactive viewing</output>
+    </console>
 
     <p>
       When you use <c>tmap</c>, R will remember the mode you want to use. So once you specify
@@ -1229,7 +1232,7 @@ tm_shape(manchester) +
 
     <figure xml:id="fig-ch3-interactive-crimr1">
       <caption>Interactive Jenks map of crime by residential population in Manchester</caption>
-      <image source="external/fig-ch3-interactive-crimr1.png">
+      <image source="figure-ch03/interactive-crimr1.png">
         <description>
           A leaflet street map of Manchester and area, with overlaid semi-transparent shading. The
           top right contains a legend labeled 'Crime per residential pop', and separates five
@@ -1261,7 +1264,7 @@ tm_shape(manchester) +
 
     <figure xml:id="fig-ch3-interactive-crimr2">
       <caption>Interactive Jenks map of crime rate by workday population in Manchester</caption>
-      <image source="external/fig-ch3-interactive-crimr2.png">
+      <image source="figure-ch03/interactive-crimr2.png">
         <description>
           A leaflet street map of Manchester and area, with a different overlaid semi-transparent
           shading. The top right contains a legend labeled 'Crime per workday pop', and separates
@@ -1379,6 +1382,9 @@ data("ncovr")
 class(ncovr)
       </input>
     </program>
+    <console>
+      <output>## [1] "sf"         "data.frame"</output>
+    </console>
 
     <p>
       Let's look at the "ncovr" data. We can start by looking at the homicide rate for 1960.
@@ -1389,6 +1395,10 @@ class(ncovr)
 summary(ncovr$HR60)
       </input>
     </program>
+    <console>
+      <output>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00    0.00    2.78    4.50    6.89   92.94</output>
+    </console>
 
     <p>
       We can see that the county with the highest homicide rate in the 1960s had a very high rate
@@ -1403,6 +1413,9 @@ borden &lt;- filter(ncovr, NAME == "Borden")
 borden$HR60
       </input>
     </program>
+    <console>
+      <output>## [1] 92.94</output>
+    </console>
 
     <p>
       <url href="https://en.wikipedia.org/wiki/Borden_County,_Texas">Borden county</url> is in
@@ -1423,6 +1436,9 @@ borden$HR60
 borden$HC60
       </input>
     </program>
+    <console>
+      <output>## [1] 1</output>
+    </console>
 
     <p>
       What? A total homicide count of 1. How can a county with just one homicide have a rate that
@@ -1435,6 +1451,9 @@ borden$HC60
 borden$PO60
       </input>
     </program>
+    <console>
+      <output>## [1] 1076</output>
+    </console>
 
     <p>
       Well, there were about 1000 people living there. It is among some of the least populous
@@ -1446,6 +1465,10 @@ borden$PO60
 summary(ncovr$PO60)
       </input>
     </program>
+    <console>
+      <output>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     208    9417   18408   57845   39165 7781984</output>
+    </console>
 
     <p>
       If you contrast that population count with the population of the average county in the US,
@@ -1462,6 +1485,11 @@ borden$HR80
 borden$HR90
       </input>
     </program>
+    <console>
+      <output>## [1] 0
+## [1] 0
+## [1] 0</output>
+    </console>
 
     <p>
       It has a homicide rate of 0 in most decades. But it only takes one homicide and, bang, it
@@ -1535,6 +1563,10 @@ ncovr$raw_risk &lt;- ncovr$observed / ncovr$expected
 summary(ncovr$raw_risk)
       </input>
     </program>
+    <console>
+      <output>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   0.000   0.614   0.994   1.520  20.510</output>
+    </console>
 
     <p>
       And then estimate the smoothed relative risk:
@@ -1557,6 +1589,10 @@ ncovr$H60EBS &lt;- res$smthrr
 summary(ncovr$H60EBS)
       </input>
     </program>
+    <console>
+      <output>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.234   0.870   0.936   0.968   1.035   2.787</output>
+    </console>
 
     <p>
       We can observe that the dispersion narrows significantly and that there are fewer observations
@@ -1613,7 +1649,7 @@ tmap_arrange(map1, map2)
 
     <figure xml:id="fig-ch3-smooth-maps">
       <caption>Compare raw and smoothed rates across counties in the USA</caption>
-      <image source="external/fig-ch3-smooth-maps.png">
+      <image source="figure-ch03/smooth-maps.png">
         <description>
           Two shaded maps of counties in the United States. Both maps use five shades of red,
           getting darker to represent higher values, the first one corresponding to 'Raw rate', the
@@ -1645,7 +1681,7 @@ boxplot(ncovr$HR60, ncovr$HR60EBSL,
 
     <figure xml:id="fig-ch3-smooth-boxplot">
       <caption>Boxplots to compare variation in rates</caption>
-      <image source="external/fig-ch3-smooth-boxplot.png">
+      <image source="figure-ch03/smooth-boxplot.png">
         <description>
           A box plot titled 'Different rates of homicide per hundred thousand people'. The vertical
           axis is labeled 'Rates', ranging from zero to nearly one hundred. Two datasets are

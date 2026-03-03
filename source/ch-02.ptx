@@ -180,6 +180,14 @@ crimes &lt;- read_csv("data/2019-06-greater-manchester-street.csv")
 names(crimes)
         </input>
       </program>
+      <console>
+        <output>##  [1] "Crime ID"              "Month"                
+##  [3] "Reported by"           "Falls within"         
+##  [5] "Longitude"             "Latitude"             
+##  [7] "Location"              "LSOA code"            
+##  [9] "LSOA name"             "Crime type"           
+## [11] "Last outcome category" "Context"</output>
+      </console>
 
       <p>
         This is because last time, we cleaned these names using the <c>clean_names()</c>
@@ -196,6 +204,14 @@ crimes &lt;- crimes %&gt;% clean_names()
 names(crimes)
         </input>
       </program>
+      <console>
+        <output>##  [1] "crime_id"              "month"                
+##  [3] "reported_by"           "falls_within"         
+##  [5] "longitude"             "latitude"             
+##  [7] "location"              "lsoa_code"            
+##  [9] "lsoa_name"             "crime_type"           
+## [11] "last_outcome_category" "context"</output>
+      </console>
 
       <p>
         Much better! Now let's get some boundary data for Manchester.
@@ -567,6 +583,9 @@ crimes &lt;- crimes %&gt;%
 st_crs(crimes)
         </input>
       </program>
+      <console>
+        <output>## Coordinate Reference System: NA</output>
+      </console>
 
       <p>
         You can see that we get the CRS returned as <c>NA</c>. Can you think why? Have we made
@@ -657,6 +676,9 @@ st_crs(city_centre)
 st_crs(crimes) == st_crs(city_centre)
         </input>
       </program>
+      <console>
+        <output>## [1] TRUE</output>
+      </console>
 
       <p>
         It is true! Finally, to check our bar data from Open Street Map:
@@ -1184,6 +1206,15 @@ crimes_per_prem_2 %&gt;%
   select(name, num_crimes)
         </input>
       </program>
+      <console>
+        <output>## Simple feature collection with 1 feature and 2 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -2.236 ymin: 53.48 xmax: -2.236 ymax: 53.48
+## Geodetic CRS:  WGS 84
+##         name num_crimes             geometry
+## 1 Crafty Pig         50 POINT (-2.236 53.48)</output>
+      </console>
 
       <p>
         The bar with the highest number of crimes is still the same bar, but the number of
@@ -1547,6 +1578,14 @@ addresses &lt;- data.frame(name = "Sherlock Holmes",
 addresses %&gt;% geocode(address, method = 'osm')
       </input>
     </program>
+    <console>
+      <output>## Passing 1 address to the Nominatim single address geocoder
+## Query completed in: 1 seconds
+## # A tibble: 1 × 4
+##   name            address                    lat   long
+##   &lt;chr&gt;           &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Sherlock Holmes 221B Baker Street, Lond…  51.5 -0.158</output>
+    </console>
 
     <p>
       To illustrate on scale, let's have a look at another source of data of bars. Manchester
@@ -1623,6 +1662,10 @@ lic_prem &lt;- lic_prem %&gt;%
   geocode(complete_address, method = 'osm')  # geocode with osm method
       </input>
     </program>
+    <console>
+      <output>## Passing 30 addresses to the Nominatim single address geocoder
+## Query completed in: 30.2 seconds</output>
+    </console>
 
     <p>
       Now we have these licenced premises geocoded, with brand new latitude and longitude
@@ -1758,6 +1801,11 @@ dist_headquarters &lt;- st_distance(slice(comisarias_sf, 34),
 dist_headquarters # distance in metres
         </input>
       </program>
+      <console>
+        <output>## Units: [m]
+##      [,1] [,2] [,3]
+## [1,] 8124 5086 8555</output>
+      </console>
 
       <p>
         The result is a matrix with a single row or column (depending on the order of the
@@ -1771,6 +1819,11 @@ dist_headquarters # distance in metres
 set_units(dist_headquarters, "km")
         </input>
       </program>
+      <console>
+        <output>## Units: [km]
+##       [,1]  [,2]  [,3]
+## [1,] 8.124 5.086 8.555</output>
+      </console>
 
       <p>
         We can compute the distance between all police stations as well.
@@ -1785,6 +1838,9 @@ m_distance &lt;- st_distance(comisarias_sf)
 dim(m_distance)
         </input>
       </program>
+      <console>
+        <output>## [1] 34 34</output>
+      </console>
 
       <p>
         If you want to preview the top of the matrix, you can use:
@@ -1829,6 +1885,13 @@ suggested_crs &lt;- suggest_crs(madrid)
 head(suggested_crs, n = 1)
         </input>
       </program>
+      <console>
+        <output>## # A tibble: 1 × 6
+##   crs_code crs_name          crs_type crs_gcs crs_units
+##   &lt;chr&gt;    &lt;chr&gt;             &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;    
+## 1 2062     Madrid 1870 (Mad… project…    4903 m        
+## # … with 1 more variable: crs_proj4 &lt;chr&gt;</output>
+      </console>
 
       <p>
         Now we can transform our <c>madrid</c> object appropriately:
