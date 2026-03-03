@@ -797,6 +797,26 @@
       Poverty</em>. R package. Vienna: Comprehensive R Archive Network.
     </biblio>
 
+    <biblio type="raw" xml:id="bib-Andresen_2020b">
+      Andresen, M. A. and Ha, O. (2020). Spatially varying relationships between immigration measures and property crime types in Vancouver census tracts, 2016. <em>The British Journal of Criminology</em>, 60(5), 1342–1367.
+    </biblio>
+
+    <biblio type="raw" xml:id="bib-Anselin_2007">
+      Anselin, L. (2007). <em>Spatial Regression Analysis in R: A Workbook</em>. Center for Spatially Integrated Social Science.
+    </biblio>
+
+    <biblio type="raw" xml:id="bib-Banerjee_2014">
+      Banerjee, S., Carlin, B. and Gelfand, A. (2014). <em>Hierarchical Modeling and Analysis for Spatial Data</em>. CRC Press.
+    </biblio>
+
+    <biblio type="raw" xml:id="bib-Cahill_2007">
+      Cahill, M. and Mulligan, G. (2007). Using geographically weighted regression to explore local crime patterns. <em>Social Science Computer Review</em>, 25(2), 174–193.
+    </biblio>
+
+    <biblio type="raw" xml:id="bib-Fotheringham_2003">
+      Fotheringham, A. S., Brunsdon, C. and Charlton, M. (2003). <em>Geographically Weighted Regression: The Analysis of Spatially Varying Relationships</em>. John Wiley &amp; Sons.
+    </biblio>
+
   </references>
 
   <colophon>
