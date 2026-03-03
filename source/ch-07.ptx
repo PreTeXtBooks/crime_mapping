@@ -379,7 +379,7 @@ hist(multiplicity(bur_ppp))
 
     <figure xml:id="fig-multiplicity-histogram">
       <caption>Histogram of incidents in overlapping coordinates (multiplicity)</caption>
-      <image source="figure-ch07/quadrat-count.png">
+      <image source="figure-ch07/hexagon-intensity.png">
         <description>A bar chart titled 'Histogram of multiplicity, bur_ppp', with bars
         shaded grey. The vertical axis is labeled 'Frequency', and ranges from zero to eight
         hundred, with notches every two hundred values. The horizontal axis is labeled
