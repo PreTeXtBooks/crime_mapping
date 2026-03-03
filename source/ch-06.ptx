@@ -162,6 +162,12 @@ agassault_ny &lt;- read_csv("data/agassault.csv")
 agassault_ny %&gt;% dplyr::select(date_single) %&gt;% head(1)
       </input>
     </program>
+    <console>
+      <output>## # A tibble: 1 × 1
+##   date_single        
+##   &lt;dttm&gt;             
+## 1 2014-01-01 00:03:00</output>
+    </console>
 
     <p>
       We can see that the date is stored in the following format: year-month-day
@@ -174,6 +180,9 @@ agassault_ny %&gt;% dplyr::select(date_single) %&gt;% head(1)
 class(agassault_ny$date_single)
       </input>
     </program>
+    <console>
+      <output>## [1] "POSIXct" "POSIXt"</output>
+    </console>
 
     <p>
       Our date and time variables are of class <c>POSIXct</c> and <c>POSIXt</c>. These are the
@@ -194,7 +203,7 @@ ggplot(agassault_ny, aes(date_single)) +
 
     <figure xml:id="fig-ch6-assaults-weekly">
       <caption>Number of assaults aggregated to 7 day chunks</caption>
-      <image source="external/fig-ch6-assaults-weekly.png">
+      <image source="figure-ch06/assaults-weekly.png">
         <description>
           A black line plot over a grey grid background. The vertical axis is labeled 'count', and
           ranges from zero to over five hundred, with notches every fifty values and numbers every
@@ -232,7 +241,7 @@ agassault_ny %&gt;%
 
     <figure xml:id="fig-ch6-assaults-monthly">
       <caption>Number of assaults aggregated to Month</caption>
-      <image source="external/fig-ch6-assaults-monthly.png">
+      <image source="figure-ch06/assaults-monthly.png">
         <description>
           This plot, again a black line on a grey grid, has a vertical axis labeled 'n', ranging
           from twelve hundred to twenty two hundred. The horizontal axis has the same years as the
@@ -285,7 +294,7 @@ ggplot(agassault_ny, aes(x = wday)) + geom_bar()
 
     <figure xml:id="fig-ch6-assaults-wday">
       <caption>Distribution of events per day of week</caption>
-      <image source="external/fig-ch6-assaults-wday.png">
+      <image source="figure-ch06/assaults-wday.png">
         <description>
           A bar chart with dark grey bars over a grey grid, with the vertical axis labeled as
           'count', ranging from zero to nearly twenty thousand. The horizontal axis is labeled
@@ -312,6 +321,9 @@ ggplot(agassault_ny, aes(x = wday)) + geom_bar()
 dmy("15/3/2021") == mdy("3/15/2021")
       </input>
     </program>
+    <console>
+      <output>## [1] TRUE</output>
+    </console>
 
     <p>
       In fact, <c>lubridate</c> is so good, it can even parse text representations of months. Look
@@ -323,6 +335,9 @@ dmy("15/3/2021") == mdy("3/15/2021")
 dmy("15/3/2021") == mdy("March/15/2021")
       </input>
     </program>
+    <console>
+      <output>## [1] TRUE</output>
+    </console>
 
     <p>
       This is amazing stuff, which will definitely come in handy, especially if you might be a
@@ -360,6 +375,9 @@ agassault_ny$date &lt;- date(agassault_ny$date_single)
 agassault_ny$date[1]
       </input>
     </program>
+    <console>
+      <output>## [1] "2014-01-01"</output>
+    </console>
 
     <p>
       That looks like what we are expecting. Now let's see the class of this variable.
@@ -370,6 +388,9 @@ agassault_ny$date[1]
 class(agassault_ny$date)
       </input>
     </program>
+    <console>
+      <output>## [1] "Date"</output>
+    </console>
 
     <p>
       It is a date object, so we will be able to do date-time operations to it. Now what we want
@@ -413,7 +434,7 @@ ggplot_calendar_heatmap(
 
     <figure xml:id="fig-ch6-calendar-heatmap">
       <caption>Calendar heat map of aggravated assaults</caption>
-      <image source="external/fig-ch6-calendar-heatmap.png">
+      <image source="figure-ch06/calendar-heatmap.png">
         <description>
           With one row per year, labeled with each year from 2014 to 2018, a grid of shaded
           squares appears. Each of the five grids is seven cells tall, with labels at the left
@@ -533,7 +554,7 @@ ggplot(femicidios, aes(x = month, y = femicidios, group = 1)) +
 
       <figure xml:id="fig-ch6-femicides-month">
         <caption>Plot the number of femicides per month</caption>
-        <image source="external/fig-ch6-femicides-month.png">
+        <image source="figure-ch06/femicides-month.png">
           <description>
             A line plot with the title 'Number of femicides per month', and subtitle 'In Spain',
             over a grey grid. The vertical axis, labeled 'femicidios', ranges from around one to
@@ -622,7 +643,7 @@ plot.ts(fem_timeseries)
 
       <figure xml:id="fig-ch6-ts-basic">
         <caption>Basic plot of the ts object</caption>
-        <image source="external/fig-ch6-ts-basic.png">
+        <image source="figure-ch06/ts-basic.png">
           <description>
             The plot from the previous figure, now without titles and grid, is framed by a
             rectangle. The horizontal axis has gained the new label 'Time', and has more years
@@ -693,7 +714,7 @@ plot(fem_timeseriescomponents)
 
       <figure xml:id="fig-ch6-ts-decomposed-femicides">
         <caption>Decomposed time series of femicides in Spain</caption>
-        <image source="external/fig-ch6-ts-decomposed-femicides.png">
+        <image source="figure-ch06/ts-decomposed-femicides.png">
           <description>
             A plot which is actually four plots tiled vertically, is labeled 'Decomposition of
             additive time series'. Each of the four plots has its own vertical axis, labeled
@@ -739,7 +760,7 @@ plot(ny_timeseriescomponents)
 
       <figure xml:id="fig-ch6-ts-decomposed-nyc">
         <caption>Decomposed time series of aggravated assaults in NYC</caption>
-        <image source="external/fig-ch6-ts-decomposed-nyc.png">
+        <image source="figure-ch06/ts-decomposed-nyc.png">
           <description>
             Another four plots tiled vertically, with the title 'Decomposition of additive time
             series'. The four plots' vertical axes are once again labeled 'observed', 'trend',
@@ -781,7 +802,7 @@ ggsdc(ny_df, aes(x = x, y = y),  method = "decompose") +
 
       <figure xml:id="fig-ch6-ts-ggseas">
         <caption>Decomposed time series of aggravated assaults in NYC using ggseas</caption>
-        <image source="external/fig-ch6-ts-ggseas.png">
+        <image source="figure-ch06/ts-ggseas.png">
           <description>
             The previous four vertically tiled plots, now spaced out more, each with a grey grid
             background, a title of its own which was previously the vertical axis legend, and
@@ -840,7 +861,7 @@ tm_shape(mcr_burglary) +
 
     <figure xml:id="fig-ch6-mcr-burglary">
       <caption>Burglaries in Manchester</caption>
-      <image source="external/fig-ch6-mcr-burglary.png">
+      <image source="figure-ch06/mcr-burglary.png">
         <description>
           The wards of Manchester separated by a thin black border, shaded in shades of blue.
           A legend to the bottom right, labeled 'burglaries' matches boxes of six shades of blue
@@ -893,7 +914,7 @@ tm_shape(mcr_burglary) +
 
       <figure xml:id="fig-ch6-small-multiples">
         <caption>Small multiples of burglary across Manchester by month</caption>
-        <image source="external/fig-ch6-small-multiples.png">
+        <image source="figure-ch06/small-multiples.png">
           <description>
             Twelve copies of the previous map, each with the label 2018 dash one through twelve,
             are tiled in a six by two grid. The maps have different shadings. The same legend from
@@ -939,7 +960,7 @@ ggplot(mcr_burglary, aes(x = month, y = burglaries, group = ward_name)) +
 
       <figure xml:id="fig-ch6-spaghetti">
         <caption>Spaghetti plot of burglaries by ward</caption>
-        <image source="external/fig-ch6-spaghetti.png">
+        <image source="figure-ch06/spaghetti.png">
           <description>
             Many line charts in one plot, with vertical axis labeled 'burglaries' ranging from
             zero to one hundred, and horizontal axis labeled 'month', ranging through the months
@@ -970,7 +991,7 @@ ggplot(mcr_burglary, aes(x = month,  y = burglaries, group = ward_name)) +
 
       <figure xml:id="fig-ch6-spaghetti-median">
         <caption>Spaghetti plot of burglaries by ward showing variation around central tendency measure</caption>
-        <image source="external/fig-ch6-spaghetti-median.png">
+        <image source="figure-ch06/spaghetti-median.png">
           <description>
             The previous plot of line chars, with all but one of the lines turned light grey. The
             one line which has stayed black, is slightly thicker, and hovers around twenty the
@@ -1002,7 +1023,7 @@ ggplot(mcr_burglary, aes(x = month, y = burglaries, group = ward_name)) +
 
       <figure xml:id="fig-ch6-spaghetti-fallowfield">
         <caption>Spaghetti plot to highlight burglaries in Fallowfield ward</caption>
-        <image source="external/fig-ch6-spaghetti-fallowfield.png">
+        <image source="figure-ch06/spaghetti-fallowfield.png">
           <description>
             The same plot, but this time another line has been chosen. It is in a thicker blue
             colour, while all other lines are light grey. It fluctuates between around ten and

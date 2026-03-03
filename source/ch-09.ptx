@@ -751,12 +751,30 @@ nb_queen &lt;- poly2nb(cc_burglary_sp, row.names=cc_burglary_sp$code)
 class(nb_queen)
         </input>
       </program>
+      <console>
+        <output>## [1] "nb"</output>
+      </console>
 
       <program language="r" label="summary-nb-ch09">
         <input>
 summary(nb_queen)
         </input>
       </program>
+      <console>
+        <output>## Neighbour list object:
+## Number of regions: 23 
+## Number of nonzero links: 100 
+## Percentage nonzero weights: 18.9 
+## Average number of links: 4.348 
+## Link number distribution:
+## 
+## 2 3 4 5 6 7 8 
+## 3 4 6 5 3 1 1 
+## 3 least connected regions:
+## E01033673 E01033674 E01033684 with 2 links
+## 1 most connected region:
+## E01033658 with 8 links</output>
+      </console>
 
       <p>
         This is basically telling us that using this criteria each LSOA polygon has an
@@ -863,6 +881,9 @@ radius &lt;- max(unlist(nbdists(nb_nearest_n, xy)))
 radius
           </input>
         </program>
+        <console>
+          <output>## [1] 690.9</output>
+        </console>
 
         <program language="r" label="dnearneigh-ch09">
           <input>
@@ -870,6 +891,21 @@ nb_distance &lt;- dnearneigh(xy, 0, radius)
 summary(nb_distance)
           </input>
         </program>
+        <console>
+          <output>## Neighbour list object:
+## Number of regions: 23 
+## Number of nonzero links: 88 
+## Percentage nonzero weights: 16.64 
+## Average number of links: 3.826 
+## Link number distribution:
+## 
+## 1 2 3 4 5 6 7 
+## 3 4 4 4 2 3 3 
+## 3 least connected regions:
+## 1 17 23 with 1 link
+## 3 most connected regions:
+## 5 12 18 with 7 links</output>
+        </console>
 
         <program language="r" label="plot-distance-nb-ch09">
           <input>
@@ -1072,6 +1108,20 @@ lw_inverse_d &lt;- nb2listw(nb_distance,
 moran.test(cc_burglary_sp$burglary, lw_queen)
           </input>
         </program>
+        <console>
+          <output>## 
+##  Moran I test under randomisation
+## 
+## data:  cc_burglary_sp$burglary  
+## weights: lw_queen    
+## 
+## Moran I statistic standard deviate = 1.6,
+## p-value = 0.06
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##           0.12033          -0.04545           0.01111</output>
+        </console>
 
         <p>
           So the Moran's I here is 0.12, which does not look very large. With this
@@ -1091,6 +1141,9 @@ moran_range &lt;- function(lw) {
 moran_range(lw_queen)
           </input>
         </program>
+        <console>
+          <output>## [1] -2.541  5.023</output>
+        </console>
 
         <p>
           The second issue is whether this statistic is significant. We can also use a
@@ -1112,6 +1165,18 @@ burg_moranmc_results &lt;- moran.mc(cc_burglary_sp$burglary, lw_queen, nsim=99)
 burg_moranmc_results
           </input>
         </program>
+        <console>
+          <output>## 
+##  Monte-Carlo simulation of Moran I
+## 
+## data:  cc_burglary_sp$burglary 
+## weights: lw_queen  
+## number of simulations + 1: 100 
+## 
+## statistic = 0.12, observed rank = 92, p-value =
+## 0.08
+## alternative hypothesis: greater</output>
+        </console>
 
         <p>
           We can use this test to check for our various specifications of the spatial
@@ -1125,6 +1190,44 @@ moran.test(cc_burglary_sp$burglary, lw_k3)
 moran.test(cc_burglary_sp$burglary, lw_inverse_d)
           </input>
         </program>
+        <console>
+          <output>## 
+##  Moran I test under randomisation
+## 
+## data:  cc_burglary_sp$burglary  
+## weights: lw_distance    
+## 
+## Moran I statistic standard deviate = 3, p-value
+## = 0.002
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##           0.28763          -0.04545           0.01266
+## 
+##  Moran I test under randomisation
+## 
+## data:  cc_burglary_sp$burglary  
+## weights: lw_k3    
+## 
+## Moran I statistic standard deviate = 1.9,
+## p-value = 0.03
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##           0.18567          -0.04545           0.01423
+## 
+##  Moran I test under randomisation
+## 
+## data:  cc_burglary_sp$burglary  
+## weights: lw_inverse_d    
+## 
+## Moran I statistic standard deviate = 2.4,
+## p-value = 0.008
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##           0.23700          -0.04545           0.01380</output>
+        </console>
 
         <p>
           As we can see, using the different specifications of neighbours produces results
@@ -1150,6 +1253,14 @@ mat &lt;- listw2mat(wm_queen_rs)
 apply(mat, 1, sum)[1:15]
           </input>
         </program>
+        <console>
+          <output>## E01005065 E01005066 E01005128 E01005212 E01033653 
+##         1         1         1         1         1 
+## E01033654 E01033655 E01033656 E01033658 E01033659 
+##         1         1         1         1         1 
+## E01033661 E01033662 E01033664 E01033667 E01033672 
+##         1         1         1         1         1</output>
+        </console>
 
         <program language="r" label="moran-plot-ch09">
           <input>
@@ -1227,6 +1338,20 @@ moran.plot(as.vector(scale(cc_burglary_sp$burglary)), wm_queen_rs)
 geary.test(cc_burglary_sp$burglary, lw_queen)
           </input>
         </program>
+        <console>
+          <output>## 
+##  Geary C test under randomisation
+## 
+## data:  cc_burglary_sp$burglary 
+## weights: lw_queen 
+## 
+## Geary C statistic standard deviate = -1.7,
+## p-value = 1
+## alternative hypothesis: Expectation greater than statistic
+## sample estimates:
+## Geary C statistic       Expectation          Variance 
+##           1.39340           1.00000           0.05395</output>
+        </console>
 
         <p>
           Note that for Geary's C, the test assumes that the weights matrix is
@@ -1273,6 +1398,17 @@ queen_w_geoda &lt;- queen_weights(cc_burglary)
 summary(queen_w_geoda)
         </input>
       </program>
+      <console>
+        <output>##                      name             value
+## 1 number of observations:                23
+## 2          is symmetric:               TRUE
+## 3               sparsity: 0.189035916824197
+## 4        # min neighbors:                 2
+## 5        # max neighbors:                 8
+## 6       # mean neighbors:  4.34782608695652
+## 7     # median neighbors:                 4
+## 8           has isolates:             FALSE</output>
+      </console>
 
       <p>
         There are similar functions for other types of weights:
