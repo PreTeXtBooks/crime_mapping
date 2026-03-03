@@ -1344,6 +1344,108 @@
       Metropolitan Books, New York, 2020.
     </biblio>
 
+    <biblio xml:id="Boba_2013" type="raw">
+      Boba, R. (2013). <em>Crime Analysis with Crime Mapping</em> (3rd ed.). Sage. Thousand Oaks, CA.
+    </biblio>
+
+    <biblio xml:id="Brantingham_1982" type="raw">
+      Brantingham, P. and Brantingham, P. (1982). Mobility, notoriety and crime: A study of crime
+      patterns in urban nodal points. <em>Journal of Environmental Systems</em>, 11(1), 89&#x2013;99.
+    </biblio>
+
+    <biblio xml:id="Bruinsma_2018" type="raw">
+      Bruinsma, G. and Johnson, S. (Eds.). (2018). <em>The Oxford Handbook of Environmental
+      Criminology</em>. Oxford University Press. Oxford, England.
+    </biblio>
+
+    <biblio xml:id="Camoes_2016" type="raw">
+      Camoes, J. (2016). <em>Data at Work: Best Practices for Creating Effective Charts and
+      Information Graphics in Microsoft Excel</em>. New Riders.
+    </biblio>
+
+    <biblio xml:id="Cohen_1979" type="raw">
+      Cohen, L. and Felson, M. (1979). Social change and crime rate trends: A routine activity
+      approach. <em>American Sociological Review</em>, 44(4), 588&#x2013;608.
+    </biblio>
+
+    <biblio xml:id="Cornish_1986" type="raw">
+      Cornish, D. and Clarke, R. (1986). <em>The Reasoning Criminal: Rational Choice Perspectives
+      on Offending</em>. Transaction Publishers.
+    </biblio>
+
+    <biblio xml:id="Eck_2015" type="raw">
+      Eck, J. and Weisburd, D. (2015). Crime places in crime theory. <em>Crime and Place: Crime
+      Prevention Studies</em>, 4.
+    </biblio>
+
+    <biblio xml:id="Guerry_1833" type="raw">
+      Guerry, A.-M. (1833). <em>Essay on the Moral Statistics of France</em>. Trans. H. P. Whitt
+      and V. W. Reinking. Lewiston, NY: Edwin Mellen Press.
+    </biblio>
+
+    <biblio xml:id="Mayhew_1861" type="raw">
+      Mayhew, H. (1861). <em>London Labour and the London Poor</em>. Charles Griffin.
+    </biblio>
+
+    <biblio xml:id="Moraga_2021" type="raw">
+      Moraga, P., Seimon, D., Vijay Kumar, V., and Ribeiro-Amaral, A. (2021). rspatialdata: a
+      collection of data sources and tutorials on visualising spatial data using R.
+      <url href="https://rspatialdata.github.io/index.html">https://rspatialdata.github.io/index.html</url>
+      Accessed: 01-08-2021.
+    </biblio>
+
+    <biblio xml:id="OSullivan_2010" type="raw">
+      O'Sullivan, D. and Unwin, D. (2010). <em>Geographic Information Analysis</em> (2nd ed.).
+      John Wiley &amp; Sons. Hoboken, NJ.
+    </biblio>
+
+    <biblio xml:id="Park_1925" type="raw">
+      Park, R. and Burgess, E. (1925). <em>The City</em>. University of Chicago Press.
+    </biblio>
+
+    <biblio xml:id="Pebesma_2018" type="raw">
+      Pebesma, E. (2018). Simple Features for R: Standardized Support for Spatial Vector Data.
+      <em>The R Journal</em>, 10(1), 439&#x2013;446.
+    </biblio>
+
+    <biblio xml:id="Quetelet_1842" type="raw">
+      Quetelet, A. (1842). <em>Instructions pour l'observation des ph&#x00E9;nom&#x00E8;nes
+      p&#x00E9;riodiques</em>.
+    </biblio>
+
+    <biblio xml:id="Radil_2016" type="raw">
+      Radil, S. (2016). Spatial Analysis of Crime. In B. Huebner and T. Bynum (Eds.),
+      <em>The Handbook of Measurement Issues in Criminology and Criminal Justice</em>
+      (pp. 535&#x2013;554). John Wiley &amp; Sons.
+    </biblio>
+
+    <biblio xml:id="Schwabish_2021" type="raw">
+      Schwabish, J. (2021). <em>Better Data Visualizations: A Guide for Scholars, Researchers,
+      and Wonks</em>. Columbia University Press. New York.
+    </biblio>
+
+    <biblio xml:id="Shaw_1942" type="raw">
+      Shaw, C. and McKay, H. (1942). <em>Juvenile Delinquency and Urban Areas</em>. University
+      of Chicago Press.
+    </biblio>
+
+    <biblio xml:id="Weisburd_2009" type="raw">
+      Weisburd, D., Bruinsma, G., and Bernasco, W. (2009). Units of analysis in geographic
+      criminology: Historical development, critical issues, and open questions. In
+      <em>Putting Crime in its Place</em> (pp. 3&#x2013;31). Springer.
+    </biblio>
+
+    <biblio xml:id="Wickham_2021" type="raw">
+      Wickham, H., Fran&#x00E7;ois, R., Henry, L., and M&#x00FC;ller, K. (2021). dplyr: A Grammar
+      of Data Manipulation. R package version 1.0.7.
+      <url href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</url>
+    </biblio>
+
+    <biblio xml:id="Wickham_2021a" type="raw">
+      Wickham, H. (2021). <em>The tidyverse style guide</em>.
+      <url href="https://style.tidyverse.org/index.html">https://style.tidyverse.org/index.html</url>
+    </biblio>
+
   </references>
 
   <colophon>

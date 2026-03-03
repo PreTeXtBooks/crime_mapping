@@ -24,7 +24,7 @@
       personal preference. We will introduce many different approaches throughout the book, to allow
       readers to select their own preferences. In this chapter we will focus on map-making with
       <c>ggplot2</c>, a general package for data visualisation (not just maps) based on the theory
-      of the grammar of graphics <xref provisional="Wickham_2010"/>. If you are not new to R, you
+      of the grammar of graphics <xref ref="Wickham_2010"/>. If you are not new to R, you
       may already be familiar with this package. Our intention in this chapter is to introduce
       enough background to let you to quickly produce your first map. In subsequent chapters we will
       further refine their look and aesthetic appeal, and discuss the many decisions that go into
@@ -90,14 +90,14 @@ library(ggspatial)
       <p>
         In Environmental Criminology, place has acquired different meanings through history. The
         first geographical studies of crime during the 19th century looked at variation across
-        provinces in France <xref provisional="Guerry_1833"/>, Belgium
-        <xref provisional="Quetelet_1842"/>, and England <xref provisional="Mayhew_1861"/>. Later
+        provinces in France <xref ref="Guerry_1833"/>, Belgium
+        <xref ref="Quetelet_1842"/>, and England <xref ref="Mayhew_1861"/>. Later
         on, in the first decades of the 20th century, the Chicago School of Sociology focused on
-        the study of neighbourhoods <xref provisional="Park_1925"/>
-        <xref provisional="Shaw_1942"/>. With the emergence of Environmental Criminology
-        <xref provisional="Brantingham_1982"/> <xref provisional="Cohen_1979"/>
-        <xref provisional="Cornish_1986"/> a shift towards a greater interest in microplaces, such
-        as street segments or particular addresses, can be seen <xref provisional="Eck_2015"/>.
+        the study of neighbourhoods <xref ref="Park_1925"/>
+        <xref ref="Shaw_1942"/>. With the emergence of Environmental Criminology
+        <xref ref="Brantingham_1982"/> <xref ref="Cohen_1979"/>
+        <xref ref="Cornish_1986"/> a shift towards a greater interest in microplaces, such
+        as street segments or particular addresses, can be seen <xref ref="Eck_2015"/>.
         Although an interest in variation across large administrative units (as
         <q>place</q>) remains within criminology, there has been a trend towards understanding
         place as particular locations, and focusing on risky places for crime.
@@ -328,7 +328,7 @@ gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
       <url href="https://epsg.io/">https://epsg.io/</url> for the different keys and information
       associated to each of them. This EPSG dataset was originally developed by the European
       Petroleum Survey Group (EPSG), thus the name. You can also define the coordinate system in R
-      using ways other than an EPSG code (for details see <xref provisional="Lovelace_2019"/>).
+      using ways other than an EPSG code (for details see <xref ref="Lovelace_2019"/>).
     </p>
     <p>
       A word of caution about WGS84. Although it is very popular (global positioning systems rely
@@ -464,7 +464,7 @@ glimpse(crimes)
       contains the function <c>clean_names()</c>. This function will clean your variable names not
       only of spaces but also of special characters, and it will convert characters to lower-case,
       to follow tidyverse naming conventions outlined in the tidyverse style guide
-      <xref provisional="Wickham_2021a"/>.
+      <xref ref="Wickham_2021a"/>.
     </p>
     <program language="r" label="cleannames">
       <input>
@@ -586,7 +586,7 @@ tail(crimes, n = 1)
         less neat thing is that although we use them to operationalise the concept of neighbourhood
         a lot, they may not bear much resemblance to what residents might think of as their
         neighbourhood. This is a common problem in the UK and elsewhere (that has been widely
-        discussed in the literature, see <xref provisional="Weisburd_2009"/> for example) when
+        discussed in the literature, see <xref ref="Weisburd_2009"/> for example) when
         relying on census units as our proxy for community or neighbourhood; but, one that is hard
         to escape from, for these units are those at which key demographic variables are typically
         sourced and published.
@@ -610,7 +610,7 @@ tail(crimes, n = 1)
         addressing the question makes sense, and at what level we can get reliable data for the
         variables we wish to analyse. There is no simple answer to this. Questions around levels
         of measurement have formed a central part of discourse in the area of crime mapping
-        <xref provisional="Weisburd_2009"/>. It is important that careful thought and
+        <xref ref="Weisburd_2009"/>. It is important that careful thought and
         consideration is given to this decision.
       </p>
     </subsection>
@@ -645,7 +645,7 @@ tail(crimes, n = 1)
       those packages that still don't use this new format can be used. In this book we will
       emphasise the use of <c>sf</c> whenever possible. You can read more about the history of
       spatial packages and the <c>sf</c> package in the first two chapters of
-      <xref provisional="Lovelace_2019"/>.
+      <xref ref="Lovelace_2019"/>.
     </p>
     <p>
       Features can be thought of as "things" or objects that have a spatial location or extent;
@@ -656,7 +656,7 @@ tail(crimes, n = 1)
       property that linestrings and polygons are built from points connected by straight line
       segments. Features typically also have other properties (temporal properties, colour, name,
       measured quantity), which are called feature attributes. For more detailed insight, we
-      recommend <xref provisional="Pebesma_2018"/>.
+      recommend <xref ref="Pebesma_2018"/>.
     </p>
     <p>
       Let's get started with making some maps using <c>sf</c>. First, make sure you install the
@@ -987,7 +987,7 @@ ggplot(df, aes(x = crime_type,  y = n, fill = last_outcome_category)) +
     <p>
       There are many more options. While this here is not the greatest graph you'll ever see, it
       illustrates the process of building up your graphics the ggplot way. Do read up on
-      <c>ggplot2</c> for example in <xref provisional="Wickham_2017"/>. In later chapters, we will
+      <c>ggplot2</c> for example in <xref ref="Wickham_2017"/>. In later chapters, we will
       talk more about visualisation, colour choice, and more!
     </p>
   </section>
@@ -1288,7 +1288,7 @@ nrow(manchester_lsoa)
         To achieve this, we will wrangle our data using functions from the <c>dplyr</c> package.
         This is a package for conducting all sorts of operations with dataframes. We are not going
         to cover the full functionality of <c>dplyr</c> (which you can consult in the
-        <c>dplyr</c> vignette <xref provisional="Wickham_2021"/>), but we are going to cover three
+        <c>dplyr</c> vignette <xref ref="Wickham_2021"/>), but we are going to cover three
         different very useful elements of dplyr: the <c>select</c> function, the <c>group_by</c>
         function, and the piping operator.
       </p>
@@ -1557,7 +1557,7 @@ geom_sf(data = manchester_lsoa,
       In this chapter we had a play around with some regular old crime data and discovered how we
       can use the <c>sf</c> package in R to assign it a geometry (both at point and polygon
       level), and how that can help us visualise our results. If you want to explore other spatial
-      data, you can explore <xref provisional="Moraga_2021"/> for short tutorials in how to get
+      data, you can explore <xref ref="Moraga_2021"/> for short tutorials in how to get
       and visualise different kinds of spatial data.
     </p>
     <p>
@@ -1569,25 +1569,25 @@ geom_sf(data = manchester_lsoa,
     </p>
     <p>
       There are a number of introductory texts to geographic information systems and analysis —
-      eg., <xref provisional="OSullivan_2010"/>, <xref provisional="Bolstad_2019"/> — that
+      eg., <xref ref="OSullivan_2010"/>, <xref ref="Bolstad_2019"/> — that
       provide adequate background to some of the key concepts we introduce in this chapter. The
-      report by <xref provisional="Harries_1999"/> produced for the National Institute of Justice
+      report by <xref ref="Harries_1999"/> produced for the National Institute of Justice
       still provides a good general introduction for basic ideas around crime mapping and can be
-      accessed for free online. Chapter 3 of <xref provisional="Haining_2020"/> offers invaluable
+      accessed for free online. Chapter 3 of <xref ref="Haining_2020"/> offers invaluable
       observations on the nature of spatial and spatial-temporal attribute data, often using
-      examples from crime research. The chapter by <xref provisional="Radil_2016"/> on the spatial
+      examples from crime research. The chapter by <xref ref="Radil_2016"/> on the spatial
       analysis of crime offers a very succinct review of what will be the focus of most of this
       book. From a more domain-knowledge point of view, the early chapters of
-      <xref provisional="Boba_2013"/> and <xref provisional="Chainey_2005"/> set the stage for the
+      <xref ref="Boba_2013"/> and <xref ref="Chainey_2005"/> set the stage for the
       use of GIS as part of the crime analysis process, whereas
-      <xref provisional="Bruinsma_2018"/>, edited handbook provides an excellent introduction to
+      <xref ref="Bruinsma_2018"/>, edited handbook provides an excellent introduction to
       environmental criminology (that provides the theoretical and empirical backbone to spatial
-      analysis of crime). <xref provisional="Chainey_2021"/> is a more recent addition, but
-      focuses on ArcGIS. Finally, <xref provisional="Healy_2019"/> provides a general introduction
+      analysis of crime). <xref ref="Chainey_2021"/> is a more recent addition, but
+      focuses on ArcGIS. Finally, <xref ref="Healy_2019"/> provides a general introduction
       to data visualisation with R using the <c>ggplot2</c> package. Although Healy's text is not
       just about mapping, it offers a very practical and helpful introduction to using
       <c>ggplot2</c> where you can learn how to further customise your maps and other charts. For
-      specifics of <c>ggplot2</c> refer to <xref provisional="Wickham_2010"/>.
+      specifics of <c>ggplot2</c> refer to <xref ref="Wickham_2010"/>.
     </p>
     <p>
       This is a book about maps and spatial analysis, but clearly one of the first questions you
@@ -1595,8 +1595,8 @@ geom_sf(data = manchester_lsoa,
       because your data is spatial doesn't mean you need a map for every question you pose to this
       data. There may be other forms of data visualisation that are more appropriate for exploring
       and summarising the story you want to tell with your data. If you are uncertain about whether
-      you need a map or other kind of plot, books such as <xref provisional="Cairo_2016"/>,
-      <xref provisional="Camoes_2016"/>, or <xref provisional="Schwabish_2021"/> provide useful
+      you need a map or other kind of plot, books such as <xref ref="Cairo_2016"/>,
+      <xref ref="Camoes_2016"/>, or <xref ref="Schwabish_2021"/> provide useful
       guidance.
     </p>
   </section>
