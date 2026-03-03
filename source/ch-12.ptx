@@ -107,7 +107,31 @@ fit1_70 &lt;- lm(HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70, data = ncovr)
 summary(fit1_70)
         </input>
       </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -21.12  -3.14  -1.02   1.90  69.75 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  11.1376     0.7602   14.65   &lt;2e-16 ***
+## RD70          4.1541     0.1147   36.23   &lt;2e-16 ***
+## PS70          1.1449     0.1165    9.82   &lt;2e-16 ***
+## MA70         -0.2080     0.0233   -8.94   &lt;2e-16 ***
+## DV70          1.4066     0.1064   13.22   &lt;2e-16 ***
+## UE70         -0.4268     0.0497   -8.59   &lt;2e-16 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.03 on 3079 degrees of freedom
+## Multiple R-squared:  0.328,  Adjusted R-squared:  0.327 
+## F-statistic:  301 on 5 and 3079 DF,  p-value: &lt;2e-16
+</pre>
       <p>
         A simple visualisation of the residuals suggests the model may not be optimal for the
         entire study region:
@@ -164,7 +188,38 @@ fit2_70_sr &lt;- lm(HR70 ~ 0 + (ONE + RD70 + PS70 + MA70 + DV70 + UE70):(SOUTH +
 summary(fit2_70_sr)
         </input>
       </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR70 ~ 0 + (ONE + RD70 + PS70 + MA70 + DV70 + UE70):(SOUTH + 
+##     NORTH), data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -17.47  -2.79  -0.76   1.71  65.60 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## ONE:SOUTH   15.0305     1.0714   14.03  &lt;2e-16 ***
+## ONE:NORTH    6.6485     1.1308    5.88  4.6e-09 ***
+## RD70:SOUTH   3.2364     0.1884   17.18  &lt;2e-16 ***
+## RD70:NORTH   2.9523     0.2745   10.75  &lt;2e-16 ***
+## PS70:SOUTH   0.9953     0.2114    4.71  2.6e-06 ***
+## PS70:NORTH   0.8428     0.1402    6.01  2.0e-09 ***
+## MA70:SOUTH  -0.1656     0.0338   -4.90  1.0e-06 ***
+## MA70:NORTH  -0.1749     0.0325   -5.37  8.2e-08 ***
+## DV70:SOUTH   0.6271     0.1750    3.58  0.00034 ***
+## DV70:NORTH   1.4263     0.1313   10.86  &lt;2e-16 ***
+## UE70:SOUTH  -0.7916     0.0817   -9.69  &lt;2e-16 ***
+## UE70:NORTH  -0.0293     0.0631   -0.46  0.64265    
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.81 on 3073 degrees of freedom
+## Multiple R-squared:  0.645,  Adjusted R-squared:  0.644 
+## F-statistic:  465 on 12 and 3073 DF,  p-value: &lt;2e-16
+</pre>
       <p>
         We can see a higher intercept for the South, reflecting the higher level of homicide in
         these counties. Aside from this, the two more notable differences are the insignificant
@@ -211,6 +266,19 @@ chow.test &lt;- function(rest, unrest) {
  chow.test(fit1_70,fit2_70_sr)
         </input>
       </program>
+<pre>
+## [[1]]
+## [1] 40.16
+## 
+## [[2]]
+## [1] 2.674e-47
+## 
+## [[3]]
+## [1] 6
+## 
+## [[4]]
+## [1] 3073
+</pre>
 
       <p>
         How we interpret this test? When the Chow test is significant, as here, this provides
@@ -235,7 +303,24 @@ chow.test &lt;- function(rest, unrest) {
 summary(lm.LMtests(fit2_70_sr, rwm, test = c("LMerr","LMlag","RLMerr","RLMlag")))
         </input>
       </program>
-
+<pre>
+##  Lagrange multiplier diagnostics for spatial
+##  dependence
+## data:  
+## model: lm(formula = HR70 ~ 0 + (ONE + RD70 +
+## PS70 + MA70 + DV70 + UE70):(SOUTH + NORTH), data
+## = ncovr)
+## weights: rwm
+##  
+##        statistic parameter p.value    
+## LMerr     227.20         1 &lt;2e-16 ***
+## LMlag     252.00         1 &lt;2e-16 ***
+## RLMerr      5.25         1   0.022 *  
+## RLMlag     30.05         1 4.2e-08 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+</pre>
       <p>
         The Lagrange multiplier tests, according to Anselin's suggestions for how to interpret
         these, point to a spatial lag model (since RLMlag is several orders more significant than
@@ -260,7 +345,45 @@ fit3_70_sr_sar &lt;- lagsarlm(HR70 ~ 0 +
 summary(fit3_70_sr_sar)
         </input>
       </program>
-
+<pre>
+## 
+## Call:
+## lagsarlm(formula = HR70 ~ 0 + (ONE + RD70 + PS70 + MA70 + DV70 + 
+##     UE70):(SOUTH + NORTH), data = ncovr, listw = rwm)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -17.15273  -2.66726  -0.67209   1.49219  65.86918 
+## 
+## Type: lag 
+## Coefficients: (asymptotic standard errors) 
+##             Estimate Std. Error z value  Pr(>|z|)
+## ONE:SOUTH   8.391260   1.103507  7.6042 2.864e-14
+## ONE:NORTH   4.903963   1.091437  4.4931 7.019e-06
+## RD70:SOUTH  2.355243   0.191445 12.3025 < 2.2e-16
+## RD70:NORTH  2.669956   0.266521 10.0178 < 2.2e-16
+## PS70:SOUTH  0.653640   0.203791  3.2074 0.0013394
+## PS70:NORTH  0.778913   0.135054  5.7674 8.050e-09
+## MA70:SOUTH -0.100568   0.032699 -3.0756 0.0021009
+## MA70:NORTH -0.138235   0.031328 -4.4126 1.022e-05
+## DV70:SOUTH  0.636867   0.168184  3.7867 0.0001527
+## DV70:NORTH  1.157985   0.128559  9.0074 < 2.2e-16
+## UE70:SOUTH -0.522353   0.079210 -6.5945 4.267e-11
+## UE70:NORTH -0.039129   0.060706 -0.6446 0.5192148
+## 
+## Rho: 0.3957, LR test value: 181.8, p-value: < 2.22e-16
+## Asymptotic standard error: 0.02846
+##     z-value: 13.9, p-value: < 2.22e-16
+## Wald statistic: 193.3, p-value: < 2.22e-16
+## 
+## Log likelihood: -9710 for lag model
+## ML residual variance (sigma squared): 31.21, (sigma: 5.587)
+## Number of observations: 3085 
+## Number of parameters estimated: 14 
+## AIC: 19448, (AIC for lm: 19628)
+## LM test for residual autocorrelation
+## test value: 0.7147, p-value: 0.39789
+</pre>
       <p>
         We see that the AIC is better than for the non-spatial model and that there is no more
         residual autocorrelation. We could explore other specifications (i.e., spatial Durbin
@@ -314,7 +437,18 @@ fit4_70_sar &lt;-
 spatialchow.test(fit4_70_sar, fit3_70_sr_sar)
         </input>
       </program>
-
+<pre>
+## [[1]]
+##       [,1]
+## [1,] 58.59
+## 
+## [[2]]
+##           [,1]
+## [1,] 8.712e-11
+## 
+## [[3]]
+## [1] 6
+</pre>
       <p>
         The test is again highly significant providing evidence for the spatial lag model with the
         spatial regimes.
@@ -372,7 +506,31 @@ model &lt;- lm(HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70, data = ncovr)
 summary(model)
       </input>
     </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -21.12  -3.14  -1.02   1.90  69.75 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  11.1376     0.7602   14.65   &lt;2e-16 ***
+## RD70          4.1541     0.1147   36.23   &lt;2e-16 ***
+## PS70          1.1449     0.1165    9.82   &lt;2e-16 ***
+## MA70         -0.2080     0.0233   -8.94   &lt;2e-16 ***
+## DV70          1.4066     0.1064   13.22   &lt;2e-16 ***
+## UE70         -0.4268     0.0497   -8.59   &lt;2e-16 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.03 on 3079 degrees of freedom
+## Multiple R-squared:  0.328,  Adjusted R-squared:  0.327 
+## F-statistic:  301 on 5 and 3079 DF,  p-value: &lt;2e-16
+</pre>
     <p>
       And now, to get an idea of how our model might perform differently in different areas, we
       can map the residuals across each county:
@@ -476,6 +634,29 @@ gwr_bandwidth &lt;- gwr.sel(HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70,
                          adapt = T)
         </input>
       </program>
+<pre>
+## Adaptive q: 0.382 CV score: 109039 
+## Adaptive q: 0.618 CV score: 110549 
+## Adaptive q: 0.2361 CV score: 107560 
+## Adaptive q: 0.1459 CV score: 105925 
+## Adaptive q: 0.09017 CV score: 104176 
+## Adaptive q: 0.05573 CV score: 102283 
+## Adaptive q: 0.03444 CV score: 100199 
+## Adaptive q: 0.02129 CV score: 98707 
+## Adaptive q: 0.01316 CV score: 98388 
+## Adaptive q: 0.01161 CV score: 98447 
+## Adaptive q: 0.01475 CV score: 98373 
+## Adaptive q: 0.0145 CV score: 98390 
+## Adaptive q: 0.01725 CV score: 98566 
+## Adaptive q: 0.01571 CV score: 98411 
+## Adaptive q: 0.01512 CV score: 98356 
+## Adaptive q: 0.01534 CV score: 98364 
+## Adaptive q: 0.01508 CV score: 98358 
+## Adaptive q: 0.01517 CV score: 98354 
+## Adaptive q: 0.01524 CV score: 98351 
+## Adaptive q: 0.01528 CV score: 98356 
+## Adaptive q: 0.01524 CV score: 98351
+</pre>
 
       <p>
         So we now have our bandwidth. It is:
@@ -486,7 +667,9 @@ gwr_bandwidth &lt;- gwr.sel(HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70,
 gwr_bandwidth
         </input>
       </program>
-
+<pre>
+## [1] 0.01524
+</pre>
       <p>
         As our data are in WGS84, this value is in degrees.
       </p>
@@ -526,7 +709,41 @@ gwr_model = gwr(
 gwr_model
         </input>
       </program>
-
+<pre>
+## Call:
+## gwr(formula = HR70 ~ RD70 + PS70 + MA70 + DV70 + UE70, data = ncovr, 
+##     coords = ncovr$cent_coords, adapt = gwr_bandwidth, hatmatrix = TRUE, 
+##     se.fit = TRUE)
+## Kernel function: gwr.Gauss 
+## Adaptive quantile: 0.01524 (about 47 of 3085 data points)
+## Summary of GWR coefficient estimates at data points:
+##                 Min. 1st Qu.  Median 3rd Qu.    Max.
+## X.Intercept. -4.2897  4.4361  7.4395 12.3212 30.1335
+## RD70         -0.3625  2.0168  2.8788  3.8206  6.6405
+## PS70         -4.0630  0.2914  1.0987  1.9019  3.4998
+## MA70         -0.6831 -0.2072 -0.1028 -0.0186  0.2971
+## DV70         -0.7513  0.5368  0.9652  1.4351  3.1027
+## UE70         -1.4895 -0.4286 -0.1787 -0.0220  1.8486
+##              Global
+## X.Intercept.  11.14
+## RD70           4.15
+## PS70           1.14
+## MA70          -0.21
+## DV70           1.41
+## UE70          -0.43
+## Number of data points: 3085 
+## Effective number of parameters (residual: 2traceS - traceS'S): 244 
+## Effective degrees of freedom (residual: 2traceS - traceS'S): 2841 
+## Sigma (residual: 2traceS - traceS'S): 5.405 
+## Effective number of parameters (model: traceS): 171.2 
+## Effective degrees of freedom (model: traceS): 2914 
+## Sigma (model: traceS): 5.337 
+## Sigma (ML): 5.186 
+## AICc (GWR p. 61, eq 2.33; p. 96, eq. 4.21): 19276 
+## AIC (GWR p. 96, eq. 4.22): 19082 
+## Residual sum of squares: 82986 
+## Quasi-global R2: 0.5022
+</pre>
       <p>
         This output tells us the 5-number summary for the coefficients (<m>Y</m>) for each
         predictor variable <m>X</m>. We can see for all predictor variables, some counties have
@@ -572,7 +789,13 @@ gwr_results &lt;- cbind(ncovr, gwr_results)
 qtm(gwr_results, fill =  "localR2" )
         </input>
       </program>
-
+<pre>
+## old-style crs object detected; please recreate object with a recent sf::st_crs()
+## old-style crs object detected; please recreate object with a recent sf::st_crs()
+## old-style crs object detected; please recreate object with a recent sf::st_crs()
+## old-style crs object detected; please recreate object with a recent sf::st_crs()
+## old-style crs object detected; please recreate object with a recent sf::st_crs()
+</pre>
       <figure xml:id="fig-ch12-gwr-localr2">
         <caption>Map of local R square value for each county</caption>
         <image source="external/fig-ch12-gwr-localr2.png">
