@@ -115,7 +115,7 @@ library(cartogram)
 
       <p>
         Binning itself is a general term used to describe the grouping of a dataset's values
-        into smaller groups. The bins can be based on a variety of factors and attributes such
+        into smaller groups (<xref ref="Johnson_2011" text="custom">Johnson, 2011</xref>). The bins can be based on a variety of factors and attributes such
         as spatial and temporal and can thus be used for many different projects.
       </p>
 
@@ -179,10 +179,12 @@ library(cartogram)
           of points and develops a spatial histogram that shows different data points as a range
           or group of pairs with common distances and directions. In hexagonal binning the
           number of points falling within a particular hexagon in a gridded surface is what
-          makes the different colors to easily visualize data. Hexagonal binning was first
+          makes the different colors to easily visualize data
+          (<xref ref="Smith_2014" text="custom">Smith, 2014</xref>). Hexagonal binning was first
           developed in 1987 and today <q>hexbinning</q> is conducted by laying a hexagonal grid
-          on top of two-dimensional data. Once this is done users can conduct data point counts
-          to determine the number of points for each hexagon. The bins are then symbolized
+          on top of two-dimensional data (<xref ref="Johnson_2011" text="custom">Johnson, 2011</xref>).
+          Once this is done users can conduct data point counts
+          to determine the number of points for each hexagon (<xref ref="Johnson_2011" text="custom">Johnson, 2011</xref>). The bins are then symbolized
           differently to show meaningful patterns in the data.
         </p>
 
@@ -368,11 +370,13 @@ ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
         with the point map!). Above we used a hexagon shape for our binning; however, you
         might choose other shapes as well. We will illustrate in a moment the approach to use
         rectangular binning, but first, we want to highlight why hexagon might still be your
-        ideal choice. Here are some thoughts:
+        ideal choice. Here are some thoughts, summarised from
+        (<xref ref="ArcGIS_2021" text="custom">ArcGIS Pro, 2021</xref>):
       </p>
 
       <ul>
-        <li><p>Hexagons reduce sampling bias due to edge effects of the grid shape.</p></li>
+        <li><p>Hexagons reduce sampling bias due to edge effects
+          (<xref ref="Rengert_2009" text="custom">Rengert and Lockwood, 2009</xref>) of the grid shape.</p></li>
         <li><p>As hexagons are circular, they represent curves in the patterns of your data
           more naturally than square grids.</p></li>
         <li><p>When comparing polygons with equal areas, the more similar to a circle the
@@ -543,7 +547,7 @@ plot_grid(rectangular_bin_map, hexagonal_bin_map, heatmap, nrow =1,
       on <term>cartograms</term>. A cartogram is a method of distortion whereby distinct
       definable spatial regions on a map (e.g., countries, provinces, etc.) are distorted in
       some way through being weighted by some quantitative value (e.g., population count,
-      carbon emissions, etc.)
+      carbon emissions, etc.) (<xref ref="Kirk_2016" text="custom">Kirk, 2016</xref>).
     </p>
 
     <p>
@@ -632,7 +636,10 @@ ggplot() +
       remains connected during its creation. On the other hand, you can
       have <term>Non-Contiguous Cartograms</term>, where features in non-contiguous
       cartograms don’t have to stay connected. Finally, <term>Dorling Cartograms</term>
-      use shapes like circles and rectangles to depict areas.  These types of cartograms make it easy to recognize patterns.
+      (named after Professor Danny Dorling
+      (<xref ref="Dorling_1991" text="custom">Dorling, 1991</xref>))
+      use shapes like circles and rectangles to depict areas.
+      These types of cartograms make it easy to recognize patterns.
     </p>
 
     <p>
@@ -659,7 +666,7 @@ eu_cartogram &lt;- cartogram_cont(eu_sf, "Electorate")
       If you run this, it might take a long time. This function, while it looks nice and
       simple, is actually very computationally taxing for your computer. For those interested,
       you may like to take the time while R works this out for you to read up on the maths
-      behind this transformation in Dougenik, Chrisman, and Niemeyer (1985) (it’s got a fun
+      behind this transformation in <xref ref="Dougenik_1985" text="custom">Dougenik, Chrisman, and Niemeyer (1985)</xref> (it’s got a fun
       name: a rubber sheet distortion algorithm!).
     </p>
 
