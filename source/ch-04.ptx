@@ -95,9 +95,12 @@ library(cartogram)
       </p>
 
       <p>
-        Spatial binning (also called <em>spatial discretization</em>) discretizes the location
-        values into a small number of groups associated with geographical areas or shapes. The
-        assignment of a location to a group can be done by any of the following methods:
+        Spatial binning (also called <em>spatial discretization</em>) discretizes the location values
+        into a small number of groups associated with geographical areas or shapes. This approach to
+        binning generates an array of repeating shapes over a user-specified area. These shapes can
+        be hexagons, squares, rectangles, triangles, circles or points, and they can be generated with
+        any directional orientation. The assignment of a location to a group can be done by any of the
+        following methods:
       </p>
 
       <ul>
@@ -289,7 +292,9 @@ ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
         Authority. However, it is hard to tell from this map where these incidents might occur
         more frequently and where they are just a few one-off incidents. A binned map may help
         us better understand. To create such a map, we must first create the grid (or fishnet)
-        of tessellating shapes. We can use the <c>ggplot</c> library to achieve this. To map a
+        of tessellating shapes.Once we have this grid, we can overlay it on top of our map, and
+        count the number of ASB incidents (points) which fall into each grid shape (polygon). 
+        We can use the <c>ggplot</c> library to achieve this. To map a
         hexbinned version of our point data of antisocial behaviour, we can use the
         <c>stat_binhex()</c> function as a layer added on to our ggplot object. We can also
         recreate the thematic map element, using the frequency of points in each hex to shade
@@ -399,8 +404,7 @@ ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
       </figure>
 
       <p>
-        To compare the different approaches, we can assign each map to an object, and then
-        print them all side-by-side. Let's start with rectangular binning:
+        To illustrate the differences of different approaches. Like we did in earlier chapters, we can assign each map to an object, and then print them all side-by-side. Let’s start with rectangular binning:
       </p>
 
       <program language="r" label="rectangular-bin-map">
@@ -437,13 +441,16 @@ hexagonal_bin_map &lt;- ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
       <program language="r" label="heatmap-map">
         <input>
 heatmap &lt;- ggplot(ma_spatial, aes(x = longitude, y = latitude)) +
-  annotation_map_tile() +
-  stat_density2d(aes(fill = ..level..,
-                     alpha = ..level..),
-                 geom = "polygon") +
-  scale_fill_gradientn(colours = c("white","red"),
-                       name = "Frequency") +
-  scale_alpha(guide = "none") +
+  annotation_map_tile() + 
+  stat_density2d(aes(fill = ..level.., # value corresponding to 
+                                       # discretized density estimates 
+                     alpha = ..level..), 
+                 geom = "polygon") +  # creates the bands of 
+                                      # different colours
+  ## Configure the colours, transparency and panel
+  scale_fill_gradientn(colours = c("white","red"), 
+                       name = "Frequency") + 
+  scale_alpha(guide = "none") + 
   theme_void()
         </input>
       </program>
@@ -615,36 +622,45 @@ ggplot() +
     </figure>
 
     <p>
-      The Local Authorities (LAs) vary greatly in their shape and size, and in the case of
-      smaller LAs the result is barely visible. This is the sort of situation where augmenting
-      our polygons may be handy. Cartograms offer one way to achieve this.
+      The Local Authorities (LAs) vary greatly in their shape and size, and in the case of smaller LAs the result is barely visible. In this case, we cannot really see what was happening with the EU referendum in London, for example. This is the sort of situation where augmenting our polygons may be handy. Cartograms offer one way to achieve this.
     </p>
 
     <p>
       There are different types of cartograms. <term>Density-Equalizing (contiguous)
       Cartograms</term> are your traditional cartograms. In density-equalizing cartograms, map
-      features bulge out a specific variable but remain connected. On the other hand, you can
-      have <term>Non-Contiguous Cartograms</term>, where features don't have to stay connected.
-      Finally, <term>Dorling Cartograms</term> use shapes like circles and rectangles to depict
-      areas.
+      features bulge out a specific variable. Even though it distorts each feature, it
+      remains connected during its creation. On the other hand, you can
+      have <term>Non-Contiguous Cartograms</term>, where features in non-contiguous
+      cartograms don’t have to stay connected. Finally, <term>Dorling Cartograms</term>
+      use shapes like circles and rectangles to depict areas.  These types of cartograms make it easy to recognize patterns.
     </p>
 
     <p>
-      We can explore cartograms using the <c>cartogram</c> package. In the
-      <c>cartogram_cont()</c> function, we specify the shape file and the variable which it
-      should use to distort the polygon by. In our dataset we have a variable
-      <c>Electorate</c> which refers to the total number of registered electors in that Local
-      Authority. We can use this variable to distort our polygons and create our cartogram.
+      We can explore cartograms using the <c>cartogram</c> package. Within that we will use the 
+      <c>cartogram()</c> function. In this function, we will specify two parameters: first the
+      <c>shp =</c>, which asks for the shape file (it can be a SpatialPolygonDataFrame or an
+      sf object), and second, <c>weight =</c>, which asks for the variable which it should use
+      to distort the polygon by.
     </p>
+      In our data set we have a variable <c>Electorate</c> which refers to the total number of
+      registered electors in that Local Authority. It serves to give an indicator of the total
+      number of people who were eligible to vote in the referendum. We can use this variable
+      to distort our polygons and create our cartogram.
+    </p>
+
+    <program language="r" label="create-cartogram">
+      <input>
+# construct a cartogram using the percentage voting leave
+eu_cartogram &lt;- cartogram_cont(eu_sf, "Electorate")
+      </input>
+    </program>
 
     <p>
       If you run this, it might take a long time. This function, while it looks nice and
-      simple, is actually very computationally taxing for your computer. I do have a tip for
-      you if you want to make sure the process does not take too long. You can set another
-      parameter in the cartogram function which is the <c>itermax=</c> parameter. This
-      specifies the maximum number of iterations we are happy to sit through for our cartogram.
-      If you do not specify an alternative the default is set to 15. Let's set to 5 for the
-      sake of speed:
+      simple, is actually very computationally taxing for your computer. For those interested,
+      you may like to take the time while R works this out for you to read up on the maths
+      behind this transformation in Dougenik, Chrisman, and Niemeyer (1985) (it’s got a fun
+      name: a rubber sheet distortion algorithm!).
     </p>
 
     <program language="r" label="create-cartogram">
@@ -653,6 +669,14 @@ ggplot() +
 eu_cartogram &lt;- cartogram_cont(eu_sf, "Electorate", itermax = 5)
       </input>
     </program>
+
+    <p> I do have a tip for you if you want to make sure the process does not take too long
+      You can set another
+      parameter in the cartogram function which is the <c>itermax=</c> parameter. This
+      specifies the maximum number of iterations we are happy to sit through for our cartogram.
+      If you do not specify an alternative the default is set to 15. Let's set to 5 for the
+      sake of speed:
+    </p>
 
     <p>
       This will be faster (but may not result in the best possible cartogram output). Once
@@ -784,7 +808,7 @@ ggplot() +
     </p>
 
     <p>
-      Using the EU referendum example, it may be an interesting question to look into not only
+      It may be an interesting question to look into not only
       how the voting outcome was distributed (<c>Pct_Leave</c>) but how this varies with voter
       turnout (<c>Pct_Turnout</c>). We might be interested in areas with high turnout and high
       percentage voting to leave, as these may be areas where people felt passionately. On the
@@ -818,10 +842,11 @@ ggplot() +
       <program language="r" label="leave-breaks">
         <input>
 leave_breaks &lt;- quantile(eu_sf$Pct_Leave,
-                         probs = seq(0,1, by = 1/3),
-                         na.rm=TRUE,
-                         names=TRUE,
-                         include.lowest=TRUE)
+                         probs = seq(0,1, by = 1/3), # probabilities
+                         na.rm=TRUE, # remove NAs 
+                         names=TRUE, # keep names attribute
+                         include.lowest=TRUE) # include value equal to 
+                                              # lowest ‘breaks’ value 
         </input>
       </program>
 
@@ -855,7 +880,9 @@ leave_breaks
 
       <p>
         The results are the cutoff values which we want to use to <q>cut</q> our numeric
-        variable. We do this with the <c>cut()</c> function:
+        variable. We do this with the <c>cut()</c> function, , where we specify again what
+        to cut (the variables <c>Pct_Leave</c> and <c>Pct_Turnout</c>), and the breaks at
+        which to cut (the objects we created above, <c>leave_breaks</c> and <c>turnout_breaks</c>):
       </p>
 
       <program language="r" label="cut-quantiles">
@@ -867,6 +894,10 @@ eu_sf &lt;- eu_sf %&gt;%
                                  breaks = turnout_breaks))
         </input>
       </program>
+
+    <p>We have two resulting variables, <c>leave_quantiles</c> and <c>turnout_quantiles</c>
+       which classify each one of our observations into one of these quartiles for both
+       the variables. In the next step, we use these to create a new variable.</p>
 
     </subsection>
 
@@ -1003,19 +1034,21 @@ bivariate_color_scale &lt;- bivariate_color_scale_2 %&gt;%
       </program>
 
       <p>
-        Then to create the legend, we actually build a <c>ggplot()</c> object:
+        Then to create the legend, we actually build a <c>ggplot()</c> object. This genius bit of
+        code is borrowed from Grossenbacher (2019) implementation of bivariate choropleth maps.
       </p>
 
       <program language="r" label="build-legend">
         <input>
 legend &lt;- ggplot() +
-  geom_tile( data = bivariate_color_scale,
+  geom_tile( data = bivariate_color_scale, 
              aes(x = Pct_Turnout, y = Pct_Leave, fill = fill_col)) +
   scale_fill_identity() +
   labs(x = "Higher % turnout ->",
        y = "Higher % voted leave ->") +
-  theme(axis.title = element_text(size = 6)) +
-  coord_fixed()
+  theme(axis.title = element_text(size = 6)) + # makes text small for 
+                                               # adding legend to map
+  coord_fixed()  # forces a specified ratio to create quadratic tiles
         </input>
       </program>
 
@@ -1108,8 +1141,10 @@ ggdraw() +
     <title>A note of caution: MAUP</title>
 
     <p>
-      Now that we've shown you how to do a lot of spatial crime analysis, we wanted to close
-      with some words of caution. We borrow here from George Rengert and Brian Lockwood:
+      Now that we’ve shown you how to do a lot of spatial crime analysis, we wanted to close with some words of caution. Remember that everything you’ve learned here are just tools that you will be applying to data you are working with, but it’s up to you, the researcher, the analyst, the domain expert, to apply and use these with careful consideration and cautions. This discussion is very much part of spatial crime analysis, and an important field of thought.
+    </p>
+    <p>
+      We borrow here from George Rengert and Brian Lockwood:
     </p>
 
     <blockquote>
@@ -1136,6 +1171,8 @@ ggdraw() +
         changes in the level of aggregation.</p></li>
     </ul>
 
+   <subsection>
+    <title>Scale</title>
     <p>
       The <term>scale problem</term> involves results that change based on data that are
       analyzed at higher or lower levels of aggregation (changing the number of units). For
@@ -1149,7 +1186,9 @@ ggdraw() +
       likely to be more homogenous than larger areas
       (<xref ref="Gerell_2017" text="custom">Gerell, 2017</xref>).
     </p>
-
+</subsection>
+<subsection>
+    <title>Zone</title>
     <p>
       The <term>zonal problem</term> involves keeping the same scale of research (say, at the
       state level) but changing the actual shape and size of those areas.
@@ -1182,6 +1221,10 @@ ggdraw() +
       gerrymandering.
     </p>
 
+</subsection>
+<subsection>
+    <title>Why does MAUP matter?</title>
+
     <p>
       The practical implications of MAUP are immense for almost all decision-making processes
       involving mapping technology, since with the availability of aggregated maps, policy
@@ -1193,7 +1236,7 @@ ggdraw() +
       All studies based on geographical areas are susceptible to MAUP. The implications of
       the MAUP affect potentially any area level data, whether direct measures or complex
       model-based estimates. Here are a few examples of situations where the MAUP is expected
-      to make a difference:
+      to make a difference, taken from Gerell (2017):
     </p>
 
     <ul>
@@ -1211,6 +1254,9 @@ ggdraw() +
         be lost.</p></li>
     </ul>
 
+</subsection>
+<subsection>
+    <title>What can we do?</title>
     <p>
       Most often you will just have to remain aware of the MAUP and its possible effects.
       There are some techniques that can help you address these issues. It is possible to also
