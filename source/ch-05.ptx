@@ -3,9 +3,7 @@
 <chapter xml:id="ch-05" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Basics of Cartographic Design: Elements of a Map</title>
 
-  <section xml:id="sec-ch05-intro">
-    <title>Introduction</title>
-
+  <introduction>
     <p>
       This chapter aims to focus on introducing good practice in map design and presentation.
       When putting a map together, you need to think about its intended audience (their level
@@ -170,7 +168,7 @@ hu_dd &lt;- left_join(hungary, drink_driving, by = c("name" = "name"))
       practical example of how to apply these to the maps we make.
     </p>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch05-data-representation">
     <title>Data representation</title>
