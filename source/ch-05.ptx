@@ -445,8 +445,7 @@ hu_dd &lt;- hu_dd %&gt;%
       </program>
 
       <p>
-        We can visualise this rate on our thematic map in exactly the same way as the count
-        data, but using our new variable in the <c>fill =</c> argument:
+        We can see the county with the highers proportion of test yielding drink drivers is Pest megye with 3 %, while the county with the lowest is Hajdú-Bihar with 0.2 %. We can visualise this rate on our thematic map in exactly the same way as the count data, but using our new variable in the <c>fill =</c> argument:
       </p>
 
       <program language="r" label="hungary-rate-fill">
