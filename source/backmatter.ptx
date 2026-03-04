@@ -3,33 +3,11 @@
 <backmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="backmatter">
   <title>Backmatter</title>
 
-  <appendix xml:id="app-a">
-    <title>A Quick Intro to R and RStudio</title>
-    <introduction>
-      <p>
-        This appendix provides a quick introduction to R and RStudio for readers who are new to these tools.
-      </p>
-    </introduction>
-  </appendix>
+  <xi:include href="./app-a.ptx" />
 
-  <appendix xml:id="app-b">
-    <title>Regression Analysis: A Refresher</title>
-    <introduction>
-      <p>
-        This appendix provides a refresher on regression analysis for readers who need a review of the basics.
-      </p>
-    </introduction>
-  </appendix>
+  <xi:include href="./app-b.ptx" />
 
-  <appendix xml:id="app-c">
-    <title>Sourcing Geographical Data for Crime Analysis</title>
-    <introduction>
-      <p>
-        This appendix covers sources of geographical data for crime analysis, including open data portals,
-        APIs, and R packages that provide access to spatial data.
-      </p>
-    </introduction>
-  </appendix>
+  <xi:include href="./app-c.ptx" />
 
   <references xml:id="references">
     <title>References</title>    <biblio xml:id="Cameron_2005" type="raw">
@@ -1661,6 +1639,17 @@
       Open Street Map. (2021). Tag:boundary=administrative.
       <url href="https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative">https://wiki.openstreetmap.org/wiki/Tag:boundary=administrative</url>
       Accessed: 26-07-2021.
+    </biblio>
+
+    <biblio xml:id="Baller_2001" type="raw">
+      Baller, R., Anselin, L., Messner, S., Deane, G., and Hawkins, D. (2001). Structural
+      covariates of US county homicide rates: Incorporating spatial effects.
+      <em>Criminology</em>, 39(3), 561&#x2013;588.
+    </biblio>
+
+    <biblio xml:id="Gelman_2008" type="raw">
+      Gelman, A. (2008). Scaling Regression Inputs by Dividing by Two Standard Deviations.
+      <em>Statistics in Medicine</em>, 27, 2865&#x2013;2873.
     </biblio>
 
   </references>
