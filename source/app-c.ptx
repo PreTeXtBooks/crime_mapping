@@ -458,6 +458,7 @@ ggplot() + geom_sf(data = kampala_boundaries) +
       originally trained on proprietary GIS software such as ESRI Arc Suite. On the other
       hand, KML files are neat, simple, and can easily be imported into R using the
       <c>st_read()</c> function from the <c>sf</c> package.
+Again, it is up to you which format to choose, what you are familiar with, and whether other co-authors or collaborators might be using other GIS software which supports some formats better than others. R is flexible, so you can be too.
     </p>
     <p>
       Here, let's download the KML format of the most simplified geometry. Once you
