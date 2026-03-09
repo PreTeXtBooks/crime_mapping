@@ -77,7 +77,7 @@ library(spgwr)
       <p>
         To illustrate this solution, we will go back to the "ncovr" data we explored last week and
         use the same spatial weight matrix as in the previous chapter. If you have read the
-        <xref ref="Baller_2001" text="custom">Baller et al. (2001)</xref> paper that we are
+        <xref ref="Baller_etal_2001" text="custom">Baller et al. (2001)</xref> paper that we are
         in a way replicating here, you could see they decided that they needed to run separate
         models for the South and the North. Let's explore this here.
       </p>
@@ -925,7 +925,7 @@ qtm(gwr_results, fill =  "RD70_se" )
       a priori segmentation to our data, based on contextual knowledge and possible patterns in
       our regression results. We illustrated this by imposing spatial regimes in our NCOVR data
       set, splitting into separate North and South USA, as was done by the original authors of
-      the paper by <xref ref="Baller_2001" text="custom">Baller et al. (2001)</xref>. The
+      the paper by <xref ref="Baller_etal_2001" text="custom">Baller et al. (2001)</xref>. The
       second approach was to explore how the coefficients may vary across our study space by
       applying Geographically Weighted Regression to our study area. We provided a high-level
       overview of this process and recommended it as an illustrative, exploratory technique to

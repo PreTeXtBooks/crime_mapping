@@ -1333,7 +1333,7 @@ manchester %&gt;% filter(code=="E01033658") %&gt;% select(code, count, respop, w
     <p>
       Let's illustrate with an example. We are going to use historic data on homicide across US
       counties. The dataset was used as the basis for the study by
-      <xref ref="Baller_2001" text="custom">Baller et al. (2001)</xref>. It contains data on
+      <xref ref="Baller_etal_2001" text="custom">Baller et al. (2001)</xref>. It contains data on
       homicide counts and rates for various decades across the US, as well as information on
       structural factors often thought to be associated with violence. The data is freely available
       through the webpage of Geoda, a clever point-and-click interface developed by Luc Anselin (a
