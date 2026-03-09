@@ -649,6 +649,8 @@ ggplot() +
       sf object), and second, <c>weight =</c>, which asks for the variable which it should use
       to distort the polygon by.
     </p>
+
+    <p>
       In our data set we have a variable <c>Electorate</c> which refers to the total number of
       registered electors in that Local Authority. It serves to give an indicator of the total
       number of people who were eligible to vote in the referendum. We can use this variable
@@ -1279,6 +1281,8 @@ ggdraw() +
       use binning of any form, make sure you consider how and if your conclusions might change
       compared to another possible approach.
     </p>
+
+</subsection>
 
   </section>
 
