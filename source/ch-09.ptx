@@ -295,7 +295,7 @@ plot(k1)
 
       <figure xml:id="fig-k-function-corrections">
         <caption>Isotropic and translation correction techniques for edge effects</caption>
-        <image source="figure-ch09/global-envelope-inhomogeneous.png">
+        <image source="figure-ch09/buenos-aires-homicides.png">
           <description>A plot of three curves, titled 'k1', with vertical axis 'K of r',
           from zero to large values, and horizontal axis 'r in Metres', from zero to five
           thousand. A legend near the top left identifies the three curves, all of which
@@ -358,7 +358,7 @@ plot(density.ppp(delitos_jit, sigma = bw.scott(delitos_jit),edge=T),
 
       <figure xml:id="fig-kde-buenos-aires">
         <caption>KDE map of homicides in Buenos Aires</caption>
-        <image source="figure-ch09/k-function-isotropic-translation.png">
+        <image source="figure-ch09/global-envelope-buenos-aires.png">
           <description>A shaded map of Buenos Aires, with the title 'Density estimate of
           homicides in Buenos Aires'. To the right, a legend matches a gradient from dark
           blue to purple to yellow, to values from zero to slightly more. The region of
@@ -388,7 +388,7 @@ plot(inhk_hom)
 
       <figure xml:id="fig-inhomogeneous-k-function">
         <caption>Inhomogeneous (adjusted) K-function for non-stationary point pattern</caption>
-        <image source="figure-ch09/inhomogeneous-k-function.png">
+        <image source="figure-ch09/kde-buenos-aires.png">
           <description>A plot of 'K inhom of r' versus 'r in metres', up to five thousand.
           Three curves appear, climbing similarly to before, each of which now has the
           subscript 'inhom' in the legend. Two are nearly identical, labeled 'K hat iso of
