@@ -672,7 +672,7 @@ eu_cartogram &lt;- cartogram_cont(eu_sf, "Electorate")
       name: a rubber sheet distortion algorithm!).
     </p>
 
-    <program language="r" label="create-cartogram">
+    <program language="r" label="create-cartogram-itermax">
       <input>
 # construct a cartogram using the percentage voting leave
 eu_cartogram &lt;- cartogram_cont(eu_sf, "Electorate", itermax = 5)
