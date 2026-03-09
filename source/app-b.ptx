@@ -358,15 +358,15 @@ summary(fit_1)
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   6.1829     0.0984    62.8   <2e-16 ***
-## RD90          3.7712     0.0985    38.3   <2e-16 ***
+## (Intercept)   6.1829     0.0984    62.8   &lt;2e-16 ***
+## RD90          3.7712     0.0985    38.3   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.47 on 3083 degrees of freedom
 ## Multiple R-squared:  0.322,  Adjusted R-squared:  0.322 
-## F-statistic: 1.47e+03 on 1 and 3083 DF,  p-value: <2e-16
+## F-statistic: 1.47e+03 on 1 and 3083 DF,  p-value: &lt;2e-16
 </pre>
     <p>
       Or if you prefer more parsimonious presentation, you could use the <c>display()</c>
@@ -708,8 +708,8 @@ summary(fit_2)
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value Pr(>|t|)
-## (Intercept)          3.342      0.144    23.2   <2e-16
-## as.factor(SOUTH)1    6.208      0.212    29.2   <2e-16
+## (Intercept)          3.342      0.144    23.2   &lt;2e-16
+## as.factor(SOUTH)1    6.208      0.212    29.2   &lt;2e-16
 ##                      
 ## (Intercept)       ***
 ## as.factor(SOUTH)1 ***
@@ -719,7 +719,7 @@ summary(fit_2)
 ## 
 ## Residual standard error: 5.88 on 3083 degrees of freedom
 ## Multiple R-squared:  0.217,  Adjusted R-squared:  0.217 
-## F-statistic:  854 on 1 and 3083 DF,  p-value: <2e-16
+## F-statistic:  854 on 1 and 3083 DF,  p-value: &lt;2e-16
 </pre>
     <p>
       As you will see, the output does not look too different. But notice in the print
@@ -882,16 +882,16 @@ summary(fit_3)
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)    4.727      0.139    33.9   <2e-16 ***
-## RD90           2.965      0.111    26.8   <2e-16 ***
-## SOUTH_f1       3.181      0.222    14.3   <2e-16 ***
+## (Intercept)    4.727      0.139    33.9   &lt;2e-16 ***
+## RD90           2.965      0.111    26.8   &lt;2e-16 ***
+## SOUTH_f1       3.181      0.222    14.3   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.3 on 3082 degrees of freedom
 ## Multiple R-squared:  0.365,  Adjusted R-squared:  0.364 
-## F-statistic:  884 on 2 and 3082 DF,  p-value: <2e-16
+## F-statistic:  884 on 2 and 3082 DF,  p-value: &lt;2e-16
 </pre>
 
     <p>
@@ -1124,18 +1124,18 @@ summary(fit_4)
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept)   4.2035     0.9847    4.27    2e-05 ***
-## RD90          3.1992     0.1117   28.65   <2e-16 ***
-## SOUTH_f1      2.5998     0.2156   12.06   <2e-16 ***
-## DV90          0.4759     0.0531    8.97   <2e-16 ***
+## RD90          3.1992     0.1117   28.65   &lt;2e-16 ***
+## SOUTH_f1      2.5998     0.2156   12.06   &lt;2e-16 ***
+## DV90          0.4759     0.0531    8.97   &lt;2e-16 ***
 ## MA90         -0.0761     0.0274   -2.77   0.0056 ** 
-## PS90          1.2645     0.1005   12.59   <2e-16 ***
+## PS90          1.2645     0.1005   12.59   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.04 on 3079 degrees of freedom
 ## Multiple R-squared:  0.426,  Adjusted R-squared:  0.425 
-## F-statistic:  457 on 5 and 3079 DF,  p-value: <2e-16
+## F-statistic:  457 on 5 and 3079 DF,  p-value: &lt;2e-16
 </pre>
 
     <p>
@@ -1252,9 +1252,9 @@ summary(fit_5)
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)      4.548      0.159   28.68   <2e-16 ***
-## RD90             2.581      0.196   13.15   <2e-16 ***
-## SOUTH_f1         3.261      0.225   14.51   <2e-16 ***
+## (Intercept)      4.548      0.159   28.68   &lt;2e-16 ***
+## RD90             2.581      0.196   13.15   &lt;2e-16 ***
+## SOUTH_f1         3.261      0.225   14.51   &lt;2e-16 ***
 ## RD90:SOUTH_f1    0.562      0.238    2.37    0.018 *  
 ## ---
 ## Signif. codes:  
@@ -1262,7 +1262,7 @@ summary(fit_5)
 ## 
 ## Residual standard error: 5.29 on 3081 degrees of freedom
 ## Multiple R-squared:  0.366,  Adjusted R-squared:  0.365 
-## F-statistic:  592 on 3 and 3081 DF,  p-value: <2e-16
+## F-statistic:  592 on 3 and 3081 DF,  p-value: &lt;2e-16
 </pre>
     <p>
       You see here that essentially you have only two inputs (resource deprivation and

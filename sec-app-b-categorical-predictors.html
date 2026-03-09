@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sourcing Geographical Data for Crime Analysis</title>
+<title>Fitting Regression with Categorical Predictors</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -130,7 +130,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-app-b-inference.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="app-b.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-b-motivating-multiple.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
@@ -590,14 +590,14 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-summary.html" class="internal"><span class="codenumber">A.7</span> <span class="title">Summary and further reading</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-appendix">
+<li class="toc-item toc-appendix contains-active">
 <div class="toc-title-box"><a href="app-b.html" class="internal"><span class="codenumber">B</span> <span class="title">Regression Analysis: A Refresher</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-motivating-regression.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Motivating Regression</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-fitting-simple-regression.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Fitting a Simple Regression Model</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-residuals-r-squared.html" class="internal"><span class="codenumber">B.3</span> <span class="title">Residuals Revisited: R Squared</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-inference.html" class="internal"><span class="codenumber">B.4</span> <span class="title">Inference with Regression</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-categorical-predictors.html" class="internal"><span class="codenumber">B.5</span> <span class="title">Fitting Regression with Categorical Predictors</span></a></div></li>
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-app-b-categorical-predictors.html" class="internal"><span class="codenumber">B.5</span> <span class="title">Fitting Regression with Categorical Predictors</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-motivating-multiple.html" class="internal"><span class="codenumber">B.6</span> <span class="title">Motivating Multiple Regression</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-multiple-regression.html" class="internal"><span class="codenumber">B.7</span> <span class="title">Fitting and Interpreting a Multiple Regression Model</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-presenting-results.html" class="internal"><span class="codenumber">B.8</span> <span class="title">Presenting Your Regression Results</span></a></div></li>
@@ -608,9 +608,9 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-summary.html" class="internal"><span class="codenumber">B.13</span> <span class="title">Summary and Further Reading</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-appendix contains-active">
+<li class="toc-item toc-appendix">
 <div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div>
-<ul class="structural toc-item-list active">
+<ul class="structural toc-item-list">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></div></li>
 <li class="toc-item toc-section">
@@ -625,40 +625,66 @@ eBookConfig.enable_chatcodes =  false;
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="appendix" id="app-c"><h2 class="heading">
-<span class="type">Appendix</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sourcing Geographical Data for Crime Analysis</span>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-app-b-categorical-predictors"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Fitting Regression with Categorical Predictors</span>
 </h2>
-<section class="introduction" id="app-c-2"><div class="para" id="app-c-2-1">Throughout this book we provide example datasets and geometry files taken from various sources. Some, we get from data released with research papers, such as the NCOVR dataset on homicides in U.S. Counties. Some are administrative data, such as open crime data, which are linked with geometries from similarly available data provided on government or other institutional websites. In some cases we use APIs, for example to get data from Open Street Map, or from the Transport for London API, and in other cases we make use of resources made available for R such as the R package <code class="code-inline tex2jax_ignore">rnaturalearth</code> which makes available boundaries from the natural earth project through installing the package.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-categorical-predictors-2">So far we have explained regression using a numeric input. It turns out we can also use regression with categorical explanatory variables. It is quite straightforward to run it.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-2">As the kind of data, attribute and geometry, will vary between each reader of this book, and even for the same reader in different times, we cannot offer a definitive guide to sourcing the appropriate spatial data for your specific needs. However, we will instead show some examples of how we sourced our spatial data, in hopes that it might inspire and be useful to you in your mapping adventures.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-categorical-predictors-3">There is only one categorical explanatory variable in this dataset, a binary indicator that indicates whether the county is in a Southern State or not. We can also explore this relationship using regression and a regression line. This is how you would express the model:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-3">Specifically, we will highlight the following useful resources for getting UK boundary data:<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r"># We use the as.factor function to tell R that SOUTH is a categorical variable
+fit_2 &lt;- lm(HR90 ~ as.factor(SOUTH), data=ncovr)
+</code></pre></div>
+<div class="para" id="sec-app-b-categorical-predictors-5">Notice that there is nothing different in how we ask for the model.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<ul class="disc" id="app-c-2-4">
-<li id="app-c-2-4-1">
-<div class="para" id="app-c-2-4-1-1">
-<code class="code-inline tex2jax_ignore">rnaturalearth</code><div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-categorical-predictors-6">Let’s have a look at the results:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="app-c-2-4-2">
-<div class="para" id="app-c-2-4-2-1">Open Street Map API<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">summary(fit_2)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">## 
+## Call:
+## lm(formula = HR90 ~ as.factor(SOUTH), data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+##  -9.55  -3.34  -1.17   1.93  68.04 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)          3.342      0.144    23.2   &lt;2e-16
+## as.factor(SOUTH)1    6.208      0.212    29.2   &lt;2e-16
+##                      
+## (Intercept)       ***
+## as.factor(SOUTH)1 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.88 on 3083 degrees of freedom
+## Multiple R-squared:  0.217,  Adjusted R-squared:  0.217 
+## F-statistic:  854 on 1 and 3083 DF,  p-value: &lt;2e-16
+</pre>
+<div class="para" id="sec-app-b-categorical-predictors-9">As you will see, the output does not look too different. But notice in the print out how the row with the coefficient and other values for our input variable <code class="code-inline tex2jax_ignore">SOUTH</code> we see a value of <code class="code-inline tex2jax_ignore">1</code> after the name of the variable. What does this mean?<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="app-c-2-4-3">
-<div class="para" id="app-c-2-4-3-1">UK Data Service<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-categorical-predictors-10">It turns out that a linear regression model with just one dichotomous categorical predictor is just the equivalent of a t test. When you only have one predictor, the value of the intercept is the mean value of the <dfn class="terminology">reference category</dfn> and the coefficient for the slope tells you how much higher (if it is positive) or how much lower (if it is negative) is the mean value for the other category in your factor.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-</ul></section><nav class="summary-links"><ul>
-<li><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></li>
-<li><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></li>
-<li><a href="sec-app-c-data-repositories.html" class="internal"><span class="codenumber">C.3</span> <span class="title">Data from Data Repositories</span></a></li>
-<li><a href="sec-app-c-summary.html" class="internal"><span class="codenumber">C.4</span> <span class="title">Summary and Further Reading</span></a></li>
-</ul></nav><div class="autopermalink" data-description="Appendix C: Sourcing Geographical Data for Crime Analysis"><a href="#app-c" title="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis" aria-label="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis">🔗</a></div></section></div>
+<div class="para" id="sec-app-b-categorical-predictors-11">The reference category is the one for which R does not print the <em class="emphasis">level</em> next to the name of the variable for which it gives you the regression coefficient. Here we see that the named level is “1”. That’s telling you that the reference category here is “0”. If you look at the codebook, you will see that 1 means the county is in a Southern state. Therefore, the Y intercept in this case is the mean value of homicide rate for the northern counties, whereas the coefficient for the slope is telling you how much higher (since it is a positive value) the mean value is for the southern counties.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">mean(ncovr$HR90[ncovr$SOUTH == 0], na.rm=TRUE)
+mean(ncovr$HR90[ncovr$SOUTH == 1], na.rm=TRUE) - mean(ncovr$HR90[ncovr$SOUTH == 0], na.rm=TRUE)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">## [1] 3.342
+## [1] 6.208
+</pre>
+<div class="para" id="sec-app-b-categorical-predictors-14">So, to reiterate, for a binary predictor, the coefficient is nothing else than the difference between the mean of the two levels in your factor variable, between the averages in your two groups.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-categorical-predictors-15">With categorical variables encoded as <dfn class="terminology">factors</dfn>, you always have a situation like this: a reference category and then as many additional coefficients as there are additional levels in your categorical variable. Each of these additional categories is included into the model as <dfn class="terminology">dummy variables</dfn>. Here our categorical variable has two levels, thus we have only one dummy variable. There will always be one fewer dummy variable than the number of levels. The level with no dummy variable, northern counties in this example, is known as the <dfn class="terminology">reference category</dfn> or the <dfn class="terminology">baseline</dfn>.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-categorical-predictors-16">It turns out then that the regression table is printing out for us a t test of statistical significance for every input in the model. If we look at the table above, this t value is 29.22 and the p value associated with it is near 0. This is indeed considerably lower than the conventional significance level of 0.05. So we could conclude that the probability of obtaining this value if the null hypothesis is true is very low. The <span class="process-math">\(R^2\)</span> is not too bad either, although lower than we saw when using resource deprivation.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-categorical-predictors-16" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Section B.5: Fitting Regression with Categorical Predictors"><a href="#sec-app-b-categorical-predictors" title="Copy heading and permalink for Section B.5: Fitting Regression with Categorical Predictors" aria-label="Copy heading and permalink for Section B.5: Fitting Regression with Categorical Predictors">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-app-b-inference.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-b-motivating-multiple.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">

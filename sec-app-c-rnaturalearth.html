@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sourcing Geographical Data for Crime Analysis</title>
+<title>The rnaturalearth Package</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -130,7 +130,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="app-c.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="app-c.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-c-apis.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
@@ -610,8 +610,8 @@ eBookConfig.enable_chatcodes =  false;
 </li>
 <li class="toc-item toc-appendix contains-active">
 <div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div>
-<ul class="structural toc-item-list active">
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></div></li>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></div></li>
 <li class="toc-item toc-section">
 <div class="toc-title-box"><a href="sec-app-c-data-repositories.html" class="internal"><span class="codenumber">C.3</span> <span class="title">Data from Data Repositories</span></a></div>
@@ -625,40 +625,106 @@ eBookConfig.enable_chatcodes =  false;
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="appendix" id="app-c"><h2 class="heading">
-<span class="type">Appendix</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sourcing Geographical Data for Crime Analysis</span>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-app-c-rnaturalearth"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span>
 </h2>
-<section class="introduction" id="app-c-2"><div class="para" id="app-c-2-1">Throughout this book we provide example datasets and geometry files taken from various sources. Some, we get from data released with research papers, such as the NCOVR dataset on homicides in U.S. Counties. Some are administrative data, such as open crime data, which are linked with geometries from similarly available data provided on government or other institutional websites. In some cases we use APIs, for example to get data from Open Street Map, or from the Transport for London API, and in other cases we make use of resources made available for R such as the R package <code class="code-inline tex2jax_ignore">rnaturalearth</code> which makes available boundaries from the natural earth project through installing the package.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-c-rnaturalearth-2">The package <code class="code-inline tex2jax_ignore">rnaturalearth</code> is an R package created by Andy South to hold and facilitate interaction with Natural Earth map data (<a href="references.html#South_2017" class="xref" data-knowl="./knowl/xref/South_2017.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 267">[267]</a>). Natural Earth is a public domain map dataset collected and maintained by the North American Cartographic Information Society. This dataset contains both vector and raster data, which are available to download and use in your crime-mapping endeavours. The package <code class="code-inline tex2jax_ignore">rnaturalearth</code> allows us to access this database from within R, and to return the results as either <code class="code-inline tex2jax_ignore">sp</code> or <code class="code-inline tex2jax_ignore">sf</code> objects.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-2">As the kind of data, attribute and geometry, will vary between each reader of this book, and even for the same reader in different times, we cannot offer a definitive guide to sourcing the appropriate spatial data for your specific needs. However, we will instead show some examples of how we sourced our spatial data, in hopes that it might inspire and be useful to you in your mapping adventures.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-c-rnaturalearth-3">To do so, we need to install and load the package, and have a little understanding of the ways we can access and subset the data. We will give some small examples here but recommend the documentation and vignettes available with the package for further detail.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-3">Specifically, we will highlight the following useful resources for getting UK boundary data:<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-c-rnaturalearth-4">So step 1 is to install the package if you have not yet done so, and then load it with the <code class="code-inline tex2jax_ignore">library()</code> function:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<ul class="disc" id="app-c-2-4">
-<li id="app-c-2-4-1">
-<div class="para" id="app-c-2-4-1-1">
-<code class="code-inline tex2jax_ignore">rnaturalearth</code><div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">library(rnaturalearth)
+</code></pre></div>
+<div class="para" id="sec-app-c-rnaturalearth-6">Let’s start by plotting the outline of all the countries in the world. We can retrieve all countries in the dataset with the <code class="code-inline tex2jax_ignore">ne_countries()</code> function. Inside the function we specify the parameter <code class="code-inline tex2jax_ignore">returnclass =</code> which allows us to choose whether we want a <code class="code-inline tex2jax_ignore">sf</code> or <code class="code-inline tex2jax_ignore">sp</code> object. Here let’s choose <code class="code-inline tex2jax_ignore">sf</code>:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="app-c-2-4-2">
-<div class="para" id="app-c-2-4-2-1">Open Street Map API<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">all_countries &lt;- ne_countries(returnclass = "sf")
+</code></pre></div>
+<div class="para" id="sec-app-c-rnaturalearth-8">If we wanted now to plot this, we can use any of the many methods covered in this book from <code class="code-inline tex2jax_ignore">plot()</code> to <code class="code-inline tex2jax_ignore">ggplot()</code> to <code class="code-inline tex2jax_ignore">tmap</code> and so on.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="app-c-2-4-3">
-<div class="para" id="app-c-2-4-3-1">UK Data Service<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">library(ggplot2)
+
+ggplot() +
+  geom_sf(data = all_countries) +
+  theme_void()
+</code></pre></div>
+<figure class="figure figure-like" id="fig-app-c-world-countries"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-appC/world-countries.png" class="contained" alt="A featureless map of the world, with countries outlined in grey and shaded light grey. Oceans and seas are white."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Map of countries of the world<div class="autopermalink" data-description="Figure C.1.1"><a href="#fig-app-c-world-countries" title="Copy heading and permalink for Figure C.1.1" aria-label="Copy heading and permalink for Figure C.1.1">🔗</a></div></figcaption></figure><div class="para" id="sec-app-c-rnaturalearth-11">And here we see the boundaries for all the countries in the dataset. We can also have a look at the attribute data included by viewing the <code class="code-inline tex2jax_ignore">sf</code> object with the <code class="code-inline tex2jax_ignore">View()</code> function.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-</ul></section><nav class="summary-links"><ul>
-<li><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></li>
-<li><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></li>
-<li><a href="sec-app-c-data-repositories.html" class="internal"><span class="codenumber">C.3</span> <span class="title">Data from Data Repositories</span></a></li>
-<li><a href="sec-app-c-summary.html" class="internal"><span class="codenumber">C.4</span> <span class="title">Summary and Further Reading</span></a></li>
-</ul></nav><div class="autopermalink" data-description="Appendix C: Sourcing Geographical Data for Crime Analysis"><a href="#app-c" title="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis" aria-label="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis">🔗</a></div></section></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">View(all_countries)
+</code></pre></div>
+<div class="para" id="sec-app-c-rnaturalearth-13">You can see most of the information contained all relate to the ways to identify the different geometries, such as <code class="code-inline tex2jax_ignore">geounit</code> or <code class="code-inline tex2jax_ignore">name</code> or various codes. You can use these to filter, so that we only include certain countries we are interested in, or you can use this to join additional attribute data from elsewhere.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-c-rnaturalearth-14">Let’s say we wanted to select only Uganda. We could subset from the <code class="code-inline tex2jax_ignore">all_countries</code> object we called above:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">library(dplyr)
+
+uganda &lt;- all_countries %&gt;% filter(name == "Uganda")
+</code></pre></div>
+<div class="para" id="sec-app-c-rnaturalearth-16">Or we could filter within the original call, which saves us having to download all the data in the first place:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-16" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">uganda_2 &lt;- ne_countries(country = 'Uganda', returnclass = "sf")
+</code></pre></div>
+<div class="para" id="sec-app-c-rnaturalearth-18">You should be able to see the two results are the same.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">u1 &lt;- ggplot() + geom_sf(data = uganda) + theme_void()
+
+u2 &lt;- ggplot() + geom_sf(data = uganda_2) + theme_void()
+
+gridExtra::grid.arrange(u1, u2, nrow = 1)
+</code></pre></div>
+<figure class="figure figure-like" id="fig-app-c-uganda-comparison"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-appC/uganda-comparison.png" class="contained" alt="Two identical rough grey outlines of Uganda’s border, with the interior shaded in light grey."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1.2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Two identical maps showing border of Uganda<div class="autopermalink" data-description="Figure C.1.2"><a href="#fig-app-c-uganda-comparison" title="Copy heading and permalink for Figure C.1.2" aria-label="Copy heading and permalink for Figure C.1.2">🔗</a></div></figcaption></figure><div class="para" id="sec-app-c-rnaturalearth-21">If we are focusing on one country, we might want to see some boundaries <em class="emphasis">within</em> said country. For this, we can use the function <code class="code-inline tex2jax_ignore">ne_states()</code> when we request the file, and this will include boundaries.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-21" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">uganda &lt;- ne_states(country = "Uganda", returnclass = "sf")
+</code></pre></div>
+<div class="para" id="sec-app-c-rnaturalearth-23">Now, if we have a look, we can see the different districts within Uganda have been also downloaded.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-23" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">ggplot() + geom_sf(data = uganda) + theme_void()
+</code></pre></div>
+<figure class="figure figure-like" id="fig-app-c-uganda-districts"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-appC/uganda-districts.png" class="contained" alt="Uganda broken up into districts by grey borders. Each district is the same light grey shade."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Map of districts of Uganda<div class="autopermalink" data-description="Figure C.1.3"><a href="#fig-app-c-uganda-districts" title="Copy heading and permalink for Figure C.1.3" aria-label="Copy heading and permalink for Figure C.1.3">🔗</a></div></figcaption></figure><div class="para" id="sec-app-c-rnaturalearth-26">It is possible that sometimes this is not the ideal sub-geometry for your analysis, in which case you’ll have to go to other resources; but in some cases it might match up with your needs, in which case this will have been a very convenient way to be sourcing some geography data!<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-26" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-c-rnaturalearth-27">You can also change the scale of resolution at which you want to download your boundaries.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-27" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r"># small
+uganda_1 &lt;- ne_countries(country = "Uganda", returnclass = "sf", scale = 110)
+
+# medium
+uganda_2 &lt;- ne_countries(country = "Uganda", returnclass = "sf", scale = 50)
+
+# large
+uganda_3 &lt;- ne_countries(country = "Uganda", returnclass = "sf", scale = 10)
+
+# plot them to compare
+u1 &lt;- ggplot() + geom_sf(data = uganda_1) + theme_void()
+u2 &lt;- ggplot() + geom_sf(data = uganda_2) + theme_void()
+u3 &lt;- ggplot() + geom_sf(data = uganda_3) + theme_void()
+
+gridExtra::grid.arrange(u1, u2, u3, nrow = 1)
+</code></pre></div>
+<figure class="figure figure-like" id="fig-app-c-uganda-resolution"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-appC/uganda-resolution.png" class="contained" alt="Three side by side grey maps of Uganda. The borders of the first map looks very polygonal, while the detail increases in each successive map."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1.4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Three maps of Uganda with different scale of resolution for the boundary<div class="autopermalink" data-description="Figure C.1.4"><a href="#fig-app-c-uganda-resolution" title="Copy heading and permalink for Figure C.1.4" aria-label="Copy heading and permalink for Figure C.1.4">🔗</a></div></figcaption></figure><div class="para" id="sec-app-c-rnaturalearth-30">You can see as we move to lower numbers we get better resolution, which results in more detail around the border of the country (but also in larger file sizes!). It will be a decision for you to make about what is relevant and appropriate for the specific map you are making.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-30" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-c-rnaturalearth-31">A final note on <code class="code-inline tex2jax_ignore">rnaturalearth</code> before we move on. With the <code class="code-inline tex2jax_ignore">ne_states()</code> function, we specified which country we wanted with the <code class="code-inline tex2jax_ignore">country</code> argument. This was OK for Uganda, but what if we wanted to plot something in France instead?<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-31" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">france &lt;- ne_states(country = "France", returnclass = "sf")
+
+ggplot() + geom_sf(data = france) + theme_void()
+</code></pre></div>
+<figure class="figure figure-like" id="fig-app-c-france-territories"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-appC/france-with-territories.png" class="contained" alt="A map which is mostly white space, with France, broken into regions, appearing squished and very small near the top. Small, hard to see islands are scattered at the bottom right and left side of the map. French Guinea can be made out on the left side as well."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Map of France which shows also overseas territories of France<div class="autopermalink" data-description="Figure C.1.5"><a href="#fig-app-c-france-territories" title="Copy heading and permalink for Figure C.1.5" aria-label="Copy heading and permalink for Figure C.1.5">🔗</a></div></figcaption></figure><div class="para" id="sec-app-c-rnaturalearth-34">You see France appears, but so do the overseas territories of France, such as French Guiana, Guadeloupe, French Polynesia, and so on. It is possible you want to focus only on France. In this case, you can specify, instead of <code class="code-inline tex2jax_ignore">country</code>, the parameter <code class="code-inline tex2jax_ignore">geounit</code>. Like so:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-34" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">france &lt;- ne_states(geounit = "France", returnclass = "sf")
+
+ggplot() + geom_sf(data = france) + theme_void()
+</code></pre></div>
+<figure class="figure figure-like" id="fig-app-c-france-only"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-appC/france-without-territories.png" class="contained" alt="A grey outline of France and its districts, shaded in light grey."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C.1.6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Map of France that shows only France without overseas territories<div class="autopermalink" data-description="Figure C.1.6"><a href="#fig-app-c-france-only" title="Copy heading and permalink for Figure C.1.6" aria-label="Copy heading and permalink for Figure C.1.6">🔗</a></div></figcaption></figure><div class="para" id="sec-app-c-rnaturalearth-37">Now we see only France. But what if you do want to include it all? Well, in that case, one approach you might try is to add these territories in a way they appear closer to France, by inserting them by way of the <em class="emphasis">inset map</em>. We demonstrate how to add an inset map in Chapter 5.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-c-rnaturalearth-37" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Section C.1: The rnaturalearth Package"><a href="#sec-app-c-rnaturalearth" title="Copy heading and permalink for Section C.1: The rnaturalearth Package" aria-label="Copy heading and permalink for Section C.1: The rnaturalearth Package">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="app-c.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-c-apis.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
