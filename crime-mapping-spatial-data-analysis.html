@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Crime Mapping and Spatial Data Analysis using R</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math"
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Crime Mapping and Spatial Data Analysis using R">
+<meta property="book:author" content="Juanjo Medina">
+<meta property="book:author" content="Reka Solymosi">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="crime-mapping-spatial-data-analysis" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="crime-mapping-spatial-data-analysis.html"><span class="title">Crime Mapping and Spatial Data Analysis using R</span></a></h1>
+<p class="byline">Juanjo Medina, Reka Solymosi</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><span class="up-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></span><a class="next-button button" href="frontmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface: how to use this book</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-01.html" class="internal"><span class="codenumber">1</span> <span class="title">Producing Your First Crime Map</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-geospatial-perspective.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Geospatial Perspective: Key Terms and Ideas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-place" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Place</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-attributes" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Attributes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-spatial-objects" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Spatial Objects</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-networks" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Networks</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-maps-types.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Maps and Their Types</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-map-projections.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Map projections and geographic coordinate systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-key-terms-summary.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Key terms summary</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-getting-started.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Getting started with crime data</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dataframes-to-spatial.html" class="internal"><span class="codenumber">1.6</span> <span class="title">From dataframes to spatial objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-point" class="internal"><span class="codenumber">1.6.1</span> <span class="title">The point</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-line" class="internal"><span class="codenumber">1.6.2</span> <span class="title">The line</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-polygon" class="internal"><span class="codenumber">1.6.3</span> <span class="title">The polygon</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-choosing-unit" class="internal"><span class="codenumber">1.6.4</span> <span class="title">Choosing the ideal unit of analysis</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-simple-features.html" class="internal"><span class="codenumber">1.7</span> <span class="title">The simple features framework</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-plotting-ggplot2.html" class="internal"><span class="codenumber">1.8</span> <span class="title">Plotting data with ggplot2</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-mapping-points.html" class="internal"><span class="codenumber">1.9</span> <span class="title">Mapping crime data as points</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-mapping-polygons.html" class="internal"><span class="codenumber">1.10</span> <span class="title">Mapping crime data as polygons</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-finding-boundary-data" class="internal"><span class="codenumber">1.10.1</span> <span class="title">Finding boundary data</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-reading-shapefiles" class="internal"><span class="codenumber">1.10.2</span> <span class="title">Reading shapefiles into R</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-data-wrangling" class="internal"><span class="codenumber">1.10.3</span> <span class="title">Data wrangling with dplyr</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-join-data" class="internal"><span class="codenumber">1.10.4</span> <span class="title">Join data to sf object</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-putting-polygon-on-map" class="internal"><span class="codenumber">1.10.5</span> <span class="title">Putting polygon data on the map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-summary.html" class="internal"><span class="codenumber">1.11</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-02.html" class="internal"><span class="codenumber">2</span> <span class="title">Basic Geospatial Operations in R</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-alcohol-crime.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Exploring the relationship between alcohol outlets and crime</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-acquiring-data.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Acquiring relevant data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-reading-crime-data" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Reading in crime data</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-geojson" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Meet a new format: geoJSON</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-osm-poi" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Open Street Map and points of interest</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-attribute-operations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Attribute operations</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-spatial-operations.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Spatial operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-reprojecting-coordinates" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Reprojecting coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-subsetting-points" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Subsetting points</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-building-buffers" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Building buffers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-counting-points-polygon" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Counting points within a polygon</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-distances-nearest-point" class="internal"><span class="codenumber">2.4.5</span> <span class="title">Distances: Finding the nearest point</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-measuring-distances" class="internal"><span class="codenumber">2.4.6</span> <span class="title">Measuring distances</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-leaflet.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Plotting interactive maps with leaflet</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-geocoding.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Geocoding</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-measuring-distance.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Measuring distance more thoroughly</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-police-stations-madrid" class="internal"><span class="codenumber">2.7.1</span> <span class="title">How far are police stations in Madrid?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-distance-geographical-space" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Distance in geographical space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-practical-distance-madrid" class="internal"><span class="codenumber">2.7.3</span> <span class="title">A practical example to evaluate distance</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-summary.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-03.html" class="internal"><span class="codenumber">3</span> <span class="title">Mapping Rates and Counts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Thematic maps: key terms and ideas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-choropleth-maps" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Choropleth maps</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-choropleth-use" class="internal"><span class="codenumber">3.1.2</span> <span class="title">What do we use choropleth maps for?</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsubsec-crime-rates" class="internal"><span class="codenumber">3.1.2.1</span> <span class="title">Crime rates</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsubsec-prevalence-incidence" class="internal"><span class="codenumber">3.1.2.2</span> <span class="title">Prevalence vs. incidence</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-proportional-symbol-maps" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Proportional and graduate symbol maps: mapping crime counts</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch03-proportional-maps.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Creating proportional symbol maps</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch03-mapping-rates.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Mapping rates rather than counts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-mapping-rates.html#subsec-generating-rates" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Generating the rates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-mapping-rates.html#subsec-choropleth-tmap" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Creating a choropleth map with tmap</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-classification.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Classification systems for thematic maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-interactive.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Interactive mapping with tmap</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-smoothing.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Smoothing rates: adjusting for small sample noise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-summary.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-04.html" class="internal"><span class="codenumber">4</span> <span class="title">Variations of Thematic Mapping</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-binning.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Binning points</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-process" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The binning process</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-techniques" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Different binning techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-choropleth-binning" class="internal"><span class="codenumber">4.1.2.1</span> <span class="title">Choropleth maps</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-rectangular-binning" class="internal"><span class="codenumber">4.1.2.2</span> <span class="title">Rectangular binning</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-hexagonal-binning" class="internal"><span class="codenumber">4.1.2.3</span> <span class="title">Hexagonal binning</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-example" class="internal"><span class="codenumber">4.1.3</span> <span class="title">A practical binning example</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-benefits" class="internal"><span class="codenumber">4.1.4</span> <span class="title">Benefits of binning</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-cartograms.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Transforming polygons: cartograms</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-cartograms.html#subsec-dorling-cartogram" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Dorling cartogram</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-bivariate.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Bivariate maps</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step1" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Step 1: Bin our variables of interest</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step2" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Step 2: New variable</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step3" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Step 3: Create colour scheme</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step4" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Step 4: Join colour scheme</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step5" class="internal"><span class="codenumber">4.3.5</span> <span class="title">Step 5: Create legend</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step6" class="internal"><span class="codenumber">4.3.6</span> <span class="title">Step 6: Map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-maup.html" class="internal"><span class="codenumber">4.4</span> <span class="title">A note of caution: MAUP</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-7" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Scale</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-8" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Zone</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-9" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Why does MAUP matter?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-10" class="internal"><span class="codenumber">4.4.4</span> <span class="title">What can we do?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch04-summary.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-05.html" class="internal"><span class="codenumber">5</span> <span class="title">Basics of Cartographic Design: Elements of a Map</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-data-representation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Data representation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-thematic-maps" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Thematic maps</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-symbols" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Symbols</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-rate-vs-count" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Rate vs. count</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch05-colour.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Colour</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-text.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Text</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-titles" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Titles and subtitles</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-legend" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Legend</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-annotation" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Annotation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-production-notes" class="internal"><span class="codenumber">5.3.4</span> <span class="title">Production notes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-composition.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Composition</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-composition.html#subsec-ch05-orientation" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Orientation indicators</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-composition.html#subsec-ch05-scale" class="internal"><span class="codenumber">5.4.2</span> <span class="title">Scale indicators</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-context.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Context</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-context.html#subsec-ch05-basemap" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Basemap</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-context.html#subsec-ch05-inset-maps" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Inset maps</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch05-summary.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-06.html" class="internal"><span class="codenumber">6</span> <span class="title">Time Matters</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-temporal-data.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Temporal data in crime analysis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-wrangling.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Temporal data wrangling</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-visualising.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Visualising time data</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-visualising.html#subsec-ch6-how-not-to-present" class="internal"><span class="codenumber">6.3.1</span> <span class="title">How (not) to present time</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-time-series.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Time series analysis</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-time-series.html#subsec-ch6-plotting-ts" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Plotting time series data</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Spatio-temporal data visualisation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-small-multiples" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Small multiples to show temporal variation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-spaghetti" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Spaghetti plots</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-animations" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Animations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-summary.html" class="internal"><span class="codenumber">6.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-07.html" class="internal"><span class="codenumber">7</span> <span class="title">Spatial Point Patterns of Crime Events</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-isarithmic.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Mapping crime intensity with isarithmic maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-nyc-burglaries.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Burglaries in NYC</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-spatstat.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Using the <code class="code-inline tex2jax_ignore">spatstat</code> package</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-intensity.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Homogeneous or spatially varying intensity?</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch07-kde.html" class="internal"><span class="codenumber">7.5</span> <span class="title">Mapping intensity estimates with <code class="code-inline tex2jax_ignore">spatstat</code></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-basics" class="internal"><span class="codenumber">7.5.1</span> <span class="title">Basics of kernel density estimation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-bandwidth" class="internal"><span class="codenumber">7.5.2</span> <span class="title">Selecting the appropriate bandwidth for KDE</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-kernel" class="internal"><span class="codenumber">7.5.3</span> <span class="title">Selecting the smoothing kernel</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-weighted" class="internal"><span class="codenumber">7.5.4</span> <span class="title">Weighted kernel density estimates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-leaflet" class="internal"><span class="codenumber">7.5.5</span> <span class="title">Better KDE maps using <code class="code-inline tex2jax_ignore">leaflet</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-problems" class="internal"><span class="codenumber">7.5.6</span> <span class="title">Problems with KDE</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-other-packages" class="internal"><span class="codenumber">7.5.7</span> <span class="title">Other packages for KDE</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-summary.html" class="internal"><span class="codenumber">7.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-08.html" class="internal"><span class="codenumber">8</span> <span class="title">Crime Along Spatial Networks</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-intro.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-constructing.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Constructing and storing a spatial linear network</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch8-density.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Density estimation along networks</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch8-density.html#subsec-ch8-adding-context" class="internal"><span class="codenumber">8.3.1</span> <span class="title">Adding context</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Visualising crime distribution along networks</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html#subsec-ch8-hot-routes" class="internal"><span class="codenumber">8.4.1</span> <span class="title">Hot Routes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-prepare" class="internal"><span class="codenumber">8.4.1.1</span> <span class="title">Preparing the network layer</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-link" class="internal"><span class="codenumber">8.4.1.2</span> <span class="title">Link crime events to street segments</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-rate" class="internal"><span class="codenumber">8.4.1.3</span> <span class="title">Calculating a rate</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-visualise" class="internal"><span class="codenumber">8.4.1.4</span> <span class="title">Visualise the results</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html#subsec-ch8-street-profile" class="internal"><span class="codenumber">8.4.2</span> <span class="title">Street Profile Analysis</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-prepare" class="internal"><span class="codenumber">8.4.2.1</span> <span class="title">Prepare the network layer</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-link" class="internal"><span class="codenumber">8.4.2.2</span> <span class="title">Link events to street segments</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-rate" class="internal"><span class="codenumber">8.4.2.3</span> <span class="title">Calculate a rate</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-visualise" class="internal"><span class="codenumber">8.4.2.4</span> <span class="title">Visualise the results</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-concentration.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Quantifying crime concentration at micro-places</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-summary.html" class="internal"><span class="codenumber">8.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-09.html" class="internal"><span class="codenumber">9</span> <span class="title">Spatial Dependence and Autocorrelation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch09-intro.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-pointpattern.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Exploring spatial dependence in point pattern data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-kfunction" class="internal"><span class="codenumber">9.2.1</span> <span class="title">The empirical K-function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-buenos-aires" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Homicide in Buenos Aires</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-kfunc-plot" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Estimating and plotting the K-function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-network-k" class="internal"><span class="codenumber">9.2.4</span> <span class="title">Network constrained K-function</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Exploring spatial autocorrelation in lattice data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-manchester" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Burglary in Manchester</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-neighbours" class="internal"><span class="codenumber">9.3.2</span> <span class="title">What is a neighbour?</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-contiguity" class="internal"><span class="codenumber">9.3.2.1</span> <span class="title">Contiguity-based neighbours</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-distance-neighbours" class="internal"><span class="codenumber">9.3.2.2</span> <span class="title">Distance-based neighbours</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-contiguity-list" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Creating a list of neighbours based on contiguity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-weight-matrix" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Generating the weight matrix</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-distance-matrix" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Spatial weight matrix based on distance</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-critical-threshold" class="internal"><span class="codenumber">9.3.5.1</span> <span class="title">Defining neighbours based on a critical threshold of distance</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-inverse-distance" class="internal"><span class="codenumber">9.3.5.2</span> <span class="title">Using the inverse distance weights</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-knn-matrix" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Spatial weight matrix based on k-neighbours</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-matrix-choice.html" class="internal"><span class="codenumber">9.4</span> <span class="title">Choosing the correct matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsec-ch09-moran" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Measuring global autocorrelation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsubsec-ch09-moran-i" class="internal"><span class="codenumber">9.4.1.1</span> <span class="title">Moran’s I</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsubsec-ch09-geary-c" class="internal"><span class="codenumber">9.4.1.2</span> <span class="title">Geary’s C</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsec-ch09-rgeoda" class="internal"><span class="codenumber">9.4.2</span> <span class="title">The <code class="code-inline tex2jax_ignore">rgeoda</code> and <code class="code-inline tex2jax_ignore">sfweight</code> packages</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch09-further-reading.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Further Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-10.html" class="internal"><span class="codenumber">10</span> <span class="title">Detecting Hot Spots and Repeats</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="ch-10-2.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Introduction</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="ch-10-2.html#subsec-ch10-clusters" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Clusters, hot spots of crime, and near repeat victimisation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="ch-10-2.html#subsec-ch10-burglaries-manc" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Burglaries in Manchester</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-raster-hotspots.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Using <code class="code-inline tex2jax_ignore">raster</code> micro-grid cells to spot hot spots</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-getis-ord.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Local Getis-Ord</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch10-local-moran.html" class="internal"><span class="codenumber">10.4</span> <span class="title">Local Moran’s I and Moran scatterplot</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-local-moran.html#subsec-ch10-computing-localmoran" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Computing the local Moran’s I</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-local-moran.html#subsec-ch10-lisa-map" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Creating a LISA map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch10-scan-stats.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Scan statistics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-dcluster" class="internal"><span class="codenumber">10.5.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">DCluster</code> package</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-gam" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Openshaw’s GAM</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-kulldorff" class="internal"><span class="codenumber">10.5.3</span> <span class="title">Kulldorff’s Scan Statistic</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-near-repeat.html" class="internal"><span class="codenumber">10.6</span> <span class="title">Exploring near repeat victimisation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-further-reading.html" class="internal"><span class="codenumber">10.7</span> <span class="title">Further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-11.html" class="internal"><span class="codenumber">11</span> <span class="title">Spatial Regression Models</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-challenges.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Challenges for regression with spatial data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-nonspatial-regression.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Fitting a non-spatial regression model with R</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-residuals.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Looking at the residuals and testing for spatial autocorrelation in regression</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch11-choosing.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Choosing a spatial regression model</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch11-choosing.html#subsec-ch11-basic-models" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Basic spatial models</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch11-choosing.html#subsec-ch11-lagrange" class="internal"><span class="codenumber">11.4.2</span> <span class="title">Lagrange multipliers: the bottom-up approach to select a model</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-sem.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Fitting and interpreting a spatial error model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-sar.html" class="internal"><span class="codenumber">11.6</span> <span class="title">Fitting and interpreting a spatially lagged model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-beyond.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Beyond the SAR and SEM models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-summary.html" class="internal"><span class="codenumber">11.8</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-12.html" class="internal"><span class="codenumber">12</span> <span class="title">Spatial Heterogeneity and Regression</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Spatial regimes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-constrained" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Fitting the constrained and the unconstrained models</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-chow" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Running the Chow test</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-dependence" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Spatial dependence with spatial heterogeneity</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch12-gwr.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Geographically Weighted Regression</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-bandwidth" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Calculate kernel bandwidth</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-model" class="internal"><span class="codenumber">12.2.2</span> <span class="title">Building the geographically weighted model</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-using" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Using GWR</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch12-summary.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-13.html" class="internal"><span class="codenumber">13</span> <span class="title">Appendix: A quick intro to R and RStudio</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Exploring RStudio</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsec-ch13-opening-script-pane" class="internal"><span class="codenumber">13.1.1</span> <span class="title">Opening up the script pane</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsec-ch13-four-panes" class="internal"><span class="codenumber">13.1.2</span> <span class="title">The four panes of RStudio</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsubsec-ch13-interacting-panes" class="internal"><span class="codenumber">13.1.2.1</span> <span class="title">Interacting with the four panes</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-customising.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Customising the RStudio look</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-r-grammar.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Elements of R grammar</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsec-ch13-functions" class="internal"><span class="codenumber">13.3.1</span> <span class="title">Functions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsec-ch13-objects" class="internal"><span class="codenumber">13.3.2</span> <span class="title">Objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-creating-object" class="internal"><span class="codenumber">13.3.2.1</span> <span class="title">Creating an object</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-types-of-objects" class="internal"><span class="codenumber">13.3.2.2</span> <span class="title">Types of objects</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-doing-things-to-objects" class="internal"><span class="codenumber">13.3.2.3</span> <span class="title">Doing things to objects</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-packages.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Packages</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-exploring-data.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Exploring data with R</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-exploring-data.html#subsec-ch13-playing-with-data" class="internal"><span class="codenumber">13.5.1</span> <span class="title">Playing around with data</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-r-projects.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Getting organised: R Projects</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-r-projects.html#subsec-ch13-saving-work" class="internal"><span class="codenumber">13.6.1</span> <span class="title">Saving your work and projects</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-summary.html" class="internal"><span class="codenumber">13.7</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-a.html" class="internal"><span class="codenumber">A</span> <span class="title">A Quick Intro to R and RStudio</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-b.html" class="internal"><span class="codenumber">B</span> <span class="title">Regression Analysis: A Refresher</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="book" id="crime-mapping-spatial-data-analysis"><nav class="summary-links"><ul>
+<li><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></li>
+<li><a href="ch-01.html" class="internal"><span class="codenumber">1</span> <span class="title">Producing Your First Crime Map</span></a></li>
+<li><a href="ch-02.html" class="internal"><span class="codenumber">2</span> <span class="title">Basic Geospatial Operations in R</span></a></li>
+<li><a href="ch-03.html" class="internal"><span class="codenumber">3</span> <span class="title">Mapping Rates and Counts</span></a></li>
+<li><a href="ch-04.html" class="internal"><span class="codenumber">4</span> <span class="title">Variations of Thematic Mapping</span></a></li>
+<li><a href="ch-05.html" class="internal"><span class="codenumber">5</span> <span class="title">Basics of Cartographic Design: Elements of a Map</span></a></li>
+<li><a href="ch-06.html" class="internal"><span class="codenumber">6</span> <span class="title">Time Matters</span></a></li>
+<li><a href="ch-07.html" class="internal"><span class="codenumber">7</span> <span class="title">Spatial Point Patterns of Crime Events</span></a></li>
+<li><a href="ch-08.html" class="internal"><span class="codenumber">8</span> <span class="title">Crime Along Spatial Networks</span></a></li>
+<li><a href="ch-09.html" class="internal"><span class="codenumber">9</span> <span class="title">Spatial Dependence and Autocorrelation</span></a></li>
+<li><a href="ch-10.html" class="internal"><span class="codenumber">10</span> <span class="title">Detecting Hot Spots and Repeats</span></a></li>
+<li><a href="ch-11.html" class="internal"><span class="codenumber">11</span> <span class="title">Spatial Regression Models</span></a></li>
+<li><a href="ch-12.html" class="internal"><span class="codenumber">12</span> <span class="title">Spatial Heterogeneity and Regression</span></a></li>
+<li><a href="ch-13.html" class="internal"><span class="codenumber">13</span> <span class="title">Appendix: A quick intro to R and RStudio</span></a></li>
+<li><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></li>
+</ul></nav><div class="autopermalink" data-description="Book: Crime Mapping and Spatial Data Analysis using R"><a href="#crime-mapping-spatial-data-analysis" title="Copy heading and permalink for Book: Crime Mapping and Spatial Data Analysis using R" aria-label="Copy heading and permalink for Book: Crime Mapping and Spatial Data Analysis using R">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<span class="previous-button button disabled"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></span><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="frontmatter.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>
