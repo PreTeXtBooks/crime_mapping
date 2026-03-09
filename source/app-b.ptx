@@ -908,7 +908,7 @@ summary(fit_3)
       Notice that the table printed also reports a t test for each of the predictors.
       These are testing whether each of these predictors is associated with the response
       variable when adjusting for the other variables in the model. They report the
-      <q>partial effect of adding that variable to the model</q> (James et al. 2013: 77). In this case we can see
+      <q>partial effect of adding that variable to the model</q> (<xref ref="James_2013"/>, p. 77). In this case we can see
       that both variables seem to be significantly associated with the response variable.
     </p>
     <p>
@@ -928,7 +928,7 @@ summary(fit_3)
       refers to holding constant <em>SOUTH</em>). But this terminology can be a bit misleading.
     </p>
    <p>
-      Other interpretations are also possible and are more generalizable. Gelman and Hill (2007)
+      Other interpretations are also possible and are more generalizable. <xref ref="Gelman_2007"/>
       emphasise what they call the predictive interpretation that considers how "the outcome variable
       differs, on average, when comparing two groups of units that differ by 1 in the relevant predictor
       while being identical in all the other predictors" (p. 34). So if you're regressing y on u and
@@ -1266,7 +1266,7 @@ summary(fit_5)
 </pre>
     <p>
       You see here that essentially you have only two inputs (resource deprivation and
-      south) but several regression coefficients. Gelman and Hill (2007) suggest
+      south) but several regression coefficients. <xref ref="Gelman_2007"/> suggest
       reserving the term <em>input</em> for the variables encoding the information and
       <em>term predictor</em> to refer to each of the terms in the model. So here we
       have two inputs and three predictors (one for SOUTH, another for resource
@@ -1351,7 +1351,7 @@ plot(allEffects(fit_5), ask=FALSE)
       How do you construct a good model? This partly depends on your goal, although there
       are commonalities. You do want to start with theory as a way to select your
       predictors and when specifying the nature of the relationship to your response
-      variable (e.g., additive, multiplicative). Gelman and Hill (2007) provide a series
+      variable (e.g., additive, multiplicative). <xref ref="Gelman_2007"/> provide a series
       of general principles. I would like to emphasise at this stage two of them:
     </p>
     <ul>
@@ -1395,11 +1395,7 @@ plot(allEffects(fit_5), ask=FALSE)
     <p>
 Although so far we have discussed the practicalities of fitting and interpreting regression models, in practical applications you want to first check your model and proceed from there. There is not much point spending time interpreting your model until you know that the model reasonably fits your data.
 </p><p>
-In previous data analysis modules we surely covered assumptions made by various statistical tests. The regression model also makes assumptions of its own. In fact, there are so many that we could spend an entire class discussing them. Gelman and Hill (2007) point out that the most important regression assumptions by decreasing order of importance are:
-    </p>
-    <p>
-      Gelman and Hill (2007) point out that the most important regression assumptions by
-      decreasing order of importance are:
+In previous data analysis modules we surely covered assumptions made by various statistical tests. The regression model also makes assumptions of its own. In fact, there are so many that we could spend an entire class discussing them. <xref ref="Gelman_2007"/> point out that the most important regression assumptions by decreasing order of importance are:
     </p>
     <ul>
       <li>
@@ -1445,7 +1441,7 @@ In previous data analysis modules we surely covered assumptions made by various 
       </li>
       <li>
         <p>
-          <term>Normality of errors</term>. The residuals should be normally distributed. Gelman and Hill (2007: 46) discuss this as the least important of the assumptions and in fact “do not recommend diagnostics of the normality of the regression residuals”. If the errors do not have a normal distribution, it usually is not particularly serious. Regression inferences tend to be robust with respect to normality (or nonnormality of the errors). In practice, the residuals may appear to be nonnormal when the wrong regression equation has been used. So, I will show you how to inspect normality of the residuals not because this is a problem on itself, but because it may be give you further evidence that there is some other problem with the model you are applying to your data.
+          <term>Normality of errors</term>. The residuals should be normally distributed. <xref ref="Gelman_2007"/> discuss this as the least important of the assumptions and in fact “do not recommend diagnostics of the normality of the regression residuals”. If the errors do not have a normal distribution, it usually is not particularly serious. Regression inferences tend to be robust with respect to normality (or nonnormality of the errors). In practice, the residuals may appear to be nonnormal when the wrong regression equation has been used. So, I will show you how to inspect normality of the residuals not because this is a problem on itself, but because it may give you further evidence that there is some other problem with the model you are applying to your data.
         </p>
       </li>
     </ul>
@@ -1476,7 +1472,7 @@ You may have noticed the second of this assumption is independence of errors. Th
     </p>
     <p>
       For those who wish to have a more thorough grounding in regression, please consider
-      also <xref ref="Field_2012b"/> and <xref ref="Field_2016"/> as further references.
+      also <xref ref="James_2013"/> and <xref ref="Gelman_2007"/> as further references.
     </p>
   </section>
 
