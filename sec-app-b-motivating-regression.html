@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sourcing Geographical Data for Crime Analysis</title>
+<title>Motivating Regression</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -130,7 +130,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="app-b.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="app-b.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-b-fitting-simple-regression.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
@@ -590,10 +590,10 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-summary.html" class="internal"><span class="codenumber">A.7</span> <span class="title">Summary and further reading</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-appendix">
+<li class="toc-item toc-appendix contains-active">
 <div class="toc-title-box"><a href="app-b.html" class="internal"><span class="codenumber">B</span> <span class="title">Regression Analysis: A Refresher</span></a></div>
-<ul class="structural toc-item-list">
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-motivating-regression.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Motivating Regression</span></a></div></li>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-app-b-motivating-regression.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Motivating Regression</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-fitting-simple-regression.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Fitting a Simple Regression Model</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-residuals-r-squared.html" class="internal"><span class="codenumber">B.3</span> <span class="title">Residuals Revisited: R Squared</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-inference.html" class="internal"><span class="codenumber">B.4</span> <span class="title">Inference with Regression</span></a></div></li>
@@ -608,9 +608,9 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-summary.html" class="internal"><span class="codenumber">B.13</span> <span class="title">Summary and Further Reading</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-appendix contains-active">
+<li class="toc-item toc-appendix">
 <div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div>
-<ul class="structural toc-item-list active">
+<ul class="structural toc-item-list">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></div></li>
 <li class="toc-item toc-section">
@@ -625,40 +625,64 @@ eBookConfig.enable_chatcodes =  false;
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="appendix" id="app-c"><h2 class="heading">
-<span class="type">Appendix</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sourcing Geographical Data for Crime Analysis</span>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-app-b-motivating-regression"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Motivating Regression</span>
 </h2>
-<section class="introduction" id="app-c-2"><div class="para" id="app-c-2-1">Throughout this book we provide example datasets and geometry files taken from various sources. Some, we get from data released with research papers, such as the NCOVR dataset on homicides in U.S. Counties. Some are administrative data, such as open crime data, which are linked with geometries from similarly available data provided on government or other institutional websites. In some cases we use APIs, for example to get data from Open Street Map, or from the Transport for London API, and in other cases we make use of resources made available for R such as the R package <code class="code-inline tex2jax_ignore">rnaturalearth</code> which makes available boundaries from the natural earth project through installing the package.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-motivating-regression-2">Now, imagine that we play a game. Imagine I have all the respondents waiting in a room, and I randomly call one of them to the stage. You’re sitting in the audience, and you have to guess the level of homicide (<em class="emphasis">HR90</em>) for that respondent. Imagine that I pay <span class="process-math">\(£150\)</span> to the student that gets the closest to the right value. What would you guess if you only have one guess and you knew (as we do) how homicide in the 90s is distributed?<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-2">As the kind of data, attribute and geometry, will vary between each reader of this book, and even for the same reader in different times, we cannot offer a definitive guide to sourcing the appropriate spatial data for your specific needs. However, we will instead show some examples of how we sourced our spatial data, in hopes that it might inspire and be useful to you in your mapping adventures.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">ggplot(ncovr, aes(x = HR90)) +
+  geom_density() +
+  geom_vline(xintercept = median(ncovr$HR90), linetype = "dashed", size = 1,
+             color="red") + # median = 4.377
+  geom_vline(xintercept = mean(ncovr$HR90), linetype = "dashed", size = 1,
+             color="blue") + # mean = 6.183
+  ggtitle("Density estimate, mean and median of homicide rate 1990")
+</code></pre></div>
+<figure class="figure figure-like" id="sec-app-b-motivating-regression-4"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/appB-3.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.1.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Density estimate, mean, and median of homicide rate in 1990<div class="autopermalink" data-description="Figure B.1.1"><a href="#sec-app-b-motivating-regression-4" title="Copy heading and permalink for Figure B.1.1" aria-label="Copy heading and permalink for Figure B.1.1">🔗</a></div></figcaption></figure><div class="code-box"><pre class="program clipboardable"><code class="language-r">summary(ncovr$HR90)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00    1.33    4.38    6.18    8.94   71.38
+</pre>
+<div class="para" id="sec-app-b-motivating-regression-7">If I only had one shot, you could go for the median (given the skew) but the mean perhaps would be your second best. Most of the areas here have values clustered around those values, which is another way of saying they are bound to be not too far from them.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-3">Specifically, we will highlight the following useful resources for getting UK boundary data:<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-motivating-regression-8">Imagine, however, that now when someone is called to the stage, you are told the level of resource deprivation in the county — so the value of the <em class="emphasis">RD90</em> variable for the individual that has been selected (for example 4). Imagine as well that you have the scatterplot that we produced earlier in front of you. Would you still go for the value of “4.377” as your best guess for the value of the selected county?<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<ul class="disc" id="app-c-2-4">
-<li id="app-c-2-4-1">
-<div class="para" id="app-c-2-4-1-1">
-<code class="code-inline tex2jax_ignore">rnaturalearth</code><div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-motivating-regression-9">I certainly would not go with the overall mean or median as my prediction anymore. If somebody said to me: the value <em class="emphasis">RD90</em> for the selected respondent is 4, I would be more inclined to guess the mean value for the level of homicide with that level of resource deprivation (the conditional mean), rather than the overall mean across all the counties. Wouldn’t you?<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="app-c-2-4-2">
-<div class="para" id="app-c-2-4-2-1">Open Street Map API<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-motivating-regression-10">If we plot the conditional means, we can see that the mean of homicide rate for counties that report a value of 4 in <em class="emphasis">RD90</em> is around 22. So you may be better off guessing that.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-<li id="app-c-2-4-3">
-<div class="para" id="app-c-2-4-3-1">UK Data Service<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">library(grid)
+ggplot() +
+  geom_point(data=ncovr, aes(x = RD90, y = HR90), alpha=.2) +
+  geom_line(data=ncovr, aes(x = round(RD90/0.12)*0.12, y = HR90),
+            stat='summary', fun.y=mean, color="red", size=1) +
+  annotate("segment", x=3, xend = 4, y = 25, yend= 22, color = "blue",
+           size = 2, arrow = arrow()) +
+  annotate("text", x = 3, y = 29, label = "Pick this one!",
+           size =7, colour = "blue")
+</code></pre></div>
+<figure class="figure figure-like" id="sec-app-b-motivating-regression-12"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/appB-4.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.1.2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Our best guess for homicide rate when resource deprivation score in the county is 4<div class="autopermalink" data-description="Figure B.1.2"><a href="#sec-app-b-motivating-regression-12" title="Copy heading and permalink for Figure B.1.2" aria-label="Copy heading and permalink for Figure B.1.2">🔗</a></div></figcaption></figure><div class="para" id="sec-app-b-motivating-regression-13">Linear regression tackles this problem using a slightly different approach. Rather than focusing on the conditional mean (smoothed or not), it draws a straight line that tries to capture the trend in the data. If we focus on the regions of the scatterplot that are less sparse, we see that this is an upward trend, suggesting that as resource deprivation increases, so does the homicide rate.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-</ul></section><nav class="summary-links"><ul>
-<li><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></li>
-<li><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></li>
-<li><a href="sec-app-c-data-repositories.html" class="internal"><span class="codenumber">C.3</span> <span class="title">Data from Data Repositories</span></a></li>
-<li><a href="sec-app-c-summary.html" class="internal"><span class="codenumber">C.4</span> <span class="title">Summary and Further Reading</span></a></li>
-</ul></nav><div class="autopermalink" data-description="Appendix C: Sourcing Geographical Data for Crime Analysis"><a href="#app-c" title="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis" aria-label="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis">🔗</a></div></section></div>
+<div class="para" id="sec-app-b-motivating-regression-14">Simple linear regression draws a single straight line of predicted values as the model for the data. This line would be a <dfn class="terminology">model</dfn>, a <em class="emphasis">simplification</em> of the real world like any other model (e.g., toy pistol, architectural drawing, subway map), that assumes that there is approximately a linear relationship between X and Y. Let’s draw the regression line using the function <code class="code-inline tex2jax_ignore">geom_smooth()</code>. This asks for a <code class="code-inline tex2jax_ignore">method=</code> parameter where we specify <code class="code-inline tex2jax_ignore">lm</code> for the linear regression line. We also set <code class="code-inline tex2jax_ignore">se=</code> to <code class="code-inline tex2jax_ignore">FALSE</code>, so we ask for just the line to be printed but not the standard error around it. The other arguments specify the colour and thickness of the line.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">ggplot(data = ncovr, aes(x = RD90, y = HR90)) +
+  geom_point(alpha = .2) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", size = 1)
+</code></pre></div>
+<figure class="figure figure-like" id="sec-app-b-motivating-regression-16"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/appB-5.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.1.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Linear regression line on relationship between homicide rate and resource deprivation<div class="autopermalink" data-description="Figure B.1.3"><a href="#sec-app-b-motivating-regression-16" title="Copy heading and permalink for Figure B.1.3" aria-label="Copy heading and permalink for Figure B.1.3">🔗</a></div></figcaption></figure><div class="para" id="sec-app-b-motivating-regression-17">What that line is doing is giving you guesses (predictions) for the values of homicide based on the information that we have about the level of resource deprivation. It gives you one possible guess for the value of homicide for every possible value of resource deprivation and links them all together in a straight line.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-motivating-regression-18">The linear model then is a model that takes the form of the equation of a straight line through the data. The line does not go through all the points.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-motivating-regression-19">Our regression line underpredicts at low levels of resource deprivation and does not seem to capture well the variability at higher levels of resource deprivation. But imperfect as a model as it might be it simplifies well the overall growing trend for homicide as resource deprivation increases.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-19" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-motivating-regression-20">As <a href="references.html#DeVeaux_2012" class="xref" data-knowl="./knowl/xref/DeVeaux_2012.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 246">[246]</a> highlight: “like all models of the real world, the line will be wrong, wrong in the sense that it can’t match reality exactly. But it can help us understand how the variables are associated” (p. 179). A map is never a perfect representation of the world, the same happens with statistical models. Yet, as with maps, models can be helpful.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-motivating-regression-20" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Section B.1: Motivating Regression"><a href="#sec-app-b-motivating-regression" title="Copy heading and permalink for Section B.1: Motivating Regression" aria-label="Copy heading and permalink for Section B.1: Motivating Regression">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="app-b.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-b-fitting-simple-regression.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">

@@ -14,7 +14,7 @@
 <!--******************************************-->
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sourcing Geographical Data for Crime Analysis</title>
+<title>Fitting a Simple Regression Model</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -130,7 +130,7 @@ eBookConfig.enable_chatcodes =  false;
 <ol id="searchresults" class="searchresults"></ol>
 </div>
 </div>
-<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="backmatter.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-app-b-motivating-regression.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="app-b.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-app-b-residuals-r-squared.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
 </div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
@@ -590,11 +590,11 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-summary.html" class="internal"><span class="codenumber">A.7</span> <span class="title">Summary and further reading</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-appendix">
+<li class="toc-item toc-appendix contains-active">
 <div class="toc-title-box"><a href="app-b.html" class="internal"><span class="codenumber">B</span> <span class="title">Regression Analysis: A Refresher</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-motivating-regression.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Motivating Regression</span></a></div></li>
-<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-fitting-simple-regression.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Fitting a Simple Regression Model</span></a></div></li>
+<li class="toc-item toc-section active"><div class="toc-title-box"><a href="sec-app-b-fitting-simple-regression.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Fitting a Simple Regression Model</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-residuals-r-squared.html" class="internal"><span class="codenumber">B.3</span> <span class="title">Residuals Revisited: R Squared</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-inference.html" class="internal"><span class="codenumber">B.4</span> <span class="title">Inference with Regression</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-categorical-predictors.html" class="internal"><span class="codenumber">B.5</span> <span class="title">Fitting Regression with Categorical Predictors</span></a></div></li>
@@ -608,9 +608,9 @@ eBookConfig.enable_chatcodes =  false;
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-b-summary.html" class="internal"><span class="codenumber">B.13</span> <span class="title">Summary and Further Reading</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-appendix contains-active">
+<li class="toc-item toc-appendix">
 <div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div>
-<ul class="structural toc-item-list active">
+<ul class="structural toc-item-list">
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></div></li>
 <li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></div></li>
 <li class="toc-item toc-section">
@@ -625,40 +625,128 @@ eBookConfig.enable_chatcodes =  false;
 </ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="appendix" id="app-c"><h2 class="heading">
-<span class="type">Appendix</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">C</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sourcing Geographical Data for Crime Analysis</span>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-app-b-fitting-simple-regression"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">B.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Fitting a Simple Regression Model</span>
 </h2>
-<section class="introduction" id="app-c-2"><div class="para" id="app-c-2-1">Throughout this book we provide example datasets and geometry files taken from various sources. Some, we get from data released with research papers, such as the NCOVR dataset on homicides in U.S. Counties. Some are administrative data, such as open crime data, which are linked with geometries from similarly available data provided on government or other institutional websites. In some cases we use APIs, for example to get data from Open Street Map, or from the Transport for London API, and in other cases we make use of resources made available for R such as the R package <code class="code-inline tex2jax_ignore">rnaturalearth</code> which makes available boundaries from the natural earth project through installing the package.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="sec-app-b-fitting-simple-regression-2">In order to draw a regression line (or in fact any line in a Cartesian coordinate system), we need to know two things:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-2">As the kind of data, attribute and geometry, will vary between each reader of this book, and even for the same reader in different times, we cannot offer a definitive guide to sourcing the appropriate spatial data for your specific needs. However, we will instead show some examples of how we sourced our spatial data, in hopes that it might inspire and be useful to you in your mapping adventures.<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<ul class="disc" id="sec-app-b-fitting-simple-regression-3">
+<li id="sec-app-b-fitting-simple-regression-3-1">
+<div class="para" id="sec-app-b-fitting-simple-regression-3-1-1">Where the line begins: what is the value of Y (our dependent variable) when X (our independent variable) is 0, so that we have a point from which to start drawing the line. The technical name for this point is the <dfn class="terminology">intercept</dfn>.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para" id="app-c-2-3">Specifically, we will highlight the following useful resources for getting UK boundary data:<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<ul class="disc" id="app-c-2-4">
-<li id="app-c-2-4-1">
-<div class="para" id="app-c-2-4-1-1">
-<code class="code-inline tex2jax_ignore">rnaturalearth</code><div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+<div class="autopermalink" data-description="Item"><a href="#sec-app-b-fitting-simple-regression-3-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
-<li id="app-c-2-4-2">
-<div class="para" id="app-c-2-4-2-1">Open Street Map API<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<li id="sec-app-b-fitting-simple-regression-3-2">
+<div class="para" id="sec-app-b-fitting-simple-regression-3-2-1">What is the <dfn class="terminology">slope</dfn> of that line, that is, how inclined the line is, the angle of the line.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+<div class="autopermalink" data-description="Item"><a href="#sec-app-b-fitting-simple-regression-3-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
-<li id="app-c-2-4-3">
-<div class="para" id="app-c-2-4-3-1">UK Data Service<div class="autopermalink" data-description="Paragraph"><a href="#app-c-2-4-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</ul>
+<div class="para" id="sec-app-b-fitting-simple-regression-4">If you recall from elementary algebra, the equation for any straight line is: <span class="process-math">\(y = mx + b\text{.}\)</span> In statistics we use a slightly different notation, although the equation remains the same: <span class="process-math">\(y = \beta_0 + \beta_1 x\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="autopermalink" data-description="Item"><a href="#app-c-2-4-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
-</li>
-</ul></section><nav class="summary-links"><ul>
-<li><a href="sec-app-c-rnaturalearth.html" class="internal"><span class="codenumber">C.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">rnaturalearth</code> Package</span></a></li>
-<li><a href="sec-app-c-apis.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Data from APIs</span></a></li>
-<li><a href="sec-app-c-data-repositories.html" class="internal"><span class="codenumber">C.3</span> <span class="title">Data from Data Repositories</span></a></li>
-<li><a href="sec-app-c-summary.html" class="internal"><span class="codenumber">C.4</span> <span class="title">Summary and Further Reading</span></a></li>
-</ul></nav><div class="autopermalink" data-description="Appendix C: Sourcing Geographical Data for Crime Analysis"><a href="#app-c" title="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis" aria-label="Copy heading and permalink for Appendix C: Sourcing Geographical Data for Crime Analysis">🔗</a></div></section></div>
+<div class="para" id="sec-app-b-fitting-simple-regression-5">We need the origin of the line (<span class="process-math">\(\beta_0\)</span>) and the slope of the line (<span class="process-math">\(\beta_1\)</span>). How does R get the intercept and the slope for the line? How does R know where to draw this line? We need to estimate these <dfn class="terminology">parameters</dfn> (or <dfn class="terminology">coefficients</dfn>) from the data. How? We don’t have the time to get into these more mathematical details now, but will suggest further reading at the end of this appendix for the curious. For now, suffice to say that for linear regression models like the one we cover here, when drawing the line, R tries to minimise the distance from every point in the scatterplot to the regression line using a method called <dfn class="terminology">least squares estimation</dfn>.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-fitting-simple-regression-6">In order to fit the model, we use the <code class="code-inline tex2jax_ignore">lm()</code> function using the formula specification <span class="process-math">\((Y \sim X)\text{.}\)</span> Typically you want to store your regression model in a “variable”, let’s call it <code class="code-inline tex2jax_ignore">fit_1</code>:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">fit_1 &lt;- lm(HR90 ~ RD90, data = ncovr)
+</code></pre></div>
+<div class="para" id="sec-app-b-fitting-simple-regression-8">You will see in your RStudio global environment space that there is a new object called <code class="code-inline tex2jax_ignore">fit_1</code> with 12 elements on it. We can get a sense for what this object is and includes using the functions we introduced in previous weeks:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">class(fit_1)
+attributes(fit_1)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">## [1] "lm"
+</pre>
+<pre class="code-block tex2jax_ignore clipboardable">## $names
+##  [1] "coefficients"  "residuals"     "effects"      
+##  [4] "rank"          "fitted.values" "assign"       
+##  [7] "qr"            "df.residual"   "xlevels"      
+## [10] "call"          "terms"         "model"        
+## 
+## $class
+## [1] "lm"
+</pre>
+<div class="para" id="sec-app-b-fitting-simple-regression-12">R is telling us that this is an object of class <code class="code-inline tex2jax_ignore">lm</code> and that it includes a number of attributes. One of the beauties of R is that you are producing all the results from running the model, putting them in an object, and then giving you the opportunity for using them later on. If you want to simply see the basic results from running the model, you can use the <code class="code-inline tex2jax_ignore">summary()</code> function.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">summary(fit_1)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">## 
+## Call:
+## lm(formula = HR90 ~ RD90, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -17.80  -3.42  -0.72   2.54  67.10 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   6.1829     0.0984    62.8   &lt;2e-16 ***
+## RD90          3.7712     0.0985    38.3   &lt;2e-16 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.47 on 3083 degrees of freedom
+## Multiple R-squared:  0.322,  Adjusted R-squared:  0.322 
+## F-statistic: 1.47e+03 on 1 and 3083 DF,  p-value: &lt;2e-16
+</pre>
+<div class="para" id="sec-app-b-fitting-simple-regression-15">Or if you prefer more parsimonious presentation, you could use the <code class="code-inline tex2jax_ignore">display()</code> function of the <code class="code-inline tex2jax_ignore">arm</code> package:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">library(arm)
+display(fit_1)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">## lm(formula = HR90 ~ RD90, data = ncovr)
+##             coef.est coef.se
+## (Intercept) 6.18     0.10   
+## RD90        3.77     0.10   
+## ---
+## n = 3085, k = 2
+## residual sd = 5.47, R-Squared = 0.32
+</pre>
+<div class="para" id="sec-app-b-fitting-simple-regression-18">For now I just want you to focus on the numbers in the “Estimate” (or coef.est) column. The value of 6.18 estimated for the <dfn class="terminology">intercept</dfn> is the “predicted” value for Y when X equals zero. This is the predicted value of the homicide score <em class="emphasis">when resource deprivation has a value of zero</em>.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-18" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">summary(ncovr$RD90)
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  -2.410  -0.667  -0.202   0.000   0.439   5.583
+</pre>
+<div class="para" id="sec-app-b-fitting-simple-regression-21">
+<code class="code-inline tex2jax_ignore">RD90</code> is a variable that has been centered at 0. It has been created by the researchers in such a way that it has a mean value of 0. Since we only have one explanatory variable in the model, this corresponds to the mean of the homicide rate, 6.18. In many other contexts the intercept has less of a meaning.<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-21" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-fitting-simple-regression-22">We then need the <span class="process-math">\(\beta_1\)</span> regression coefficient for our independent variable, the value that will shape the <dfn class="terminology">slope</dfn> in this scenario. This value is 3.77. This estimated regression coefficient for our independent variable has a convenient interpretation. When the value is positive, it tells us that <em class="emphasis">for every one unit increase in X, there is a <span class="process-math">\(\beta_1\)</span> increase on Y</em>. If the coefficient is negative, then it represents a decrease on Y. Here, we can read it as “for every one unit increase in the resource deprivation score, there is a 3.77 unit increase in the homicide rate.”<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-22" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-fitting-simple-regression-23">Knowing these two parameters not only allows us to draw the line, but we can also solve for any given value of X. Let’s go back to our guess-the-homicide-rate game. Imagine I tell you the level of resource deprivation is 1. What would be your best bet now? We can simply go back to our regression line equation and insert the estimated parameters:<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-23" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="sec-app-b-fitting-simple-regression-24">
+<div class="displaymath process-math" id="sec-app-b-fitting-simple-regression-24-1">
+\begin{equation*}
+y = b_0 + b_1 x
+\end{equation*}
+</div>
+<div class="displaymath process-math" id="sec-app-b-fitting-simple-regression-24-2">
+\begin{equation*}
+y = 6.18 + 3.77 \times 1
+\end{equation*}
+</div>
+<div class="displaymath process-math" id="sec-app-b-fitting-simple-regression-24-3">
+\begin{equation*}
+y = 9.95
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-24" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="sec-app-b-fitting-simple-regression-25">Or if you don’t want to do the calculation yourself, you can use the <code class="code-inline tex2jax_ignore">predict()</code> function (differences are due to rounding error). First, you name your stored model and then you identify the new data (which has to be in a dataframe format and with a variable name matching the one in the original data set).<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-25" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">predict(fit_1, data.frame(RD90 = c(1)))
+</code></pre></div>
+<pre class="code-block tex2jax_ignore clipboardable">##     1 
+## 9.954
+</pre>
+<div class="para" id="sec-app-b-fitting-simple-regression-28">This is the expected value of Y, homicide rate, when X, resource deprivation is 1 <em class="emphasis">according to our model</em> (according to our simplification of the real world, our simplification of the whole cloud of points into just one straight line). Look back at the scatterplot we produced earlier. Does it look as if the red line when X is 1 corresponds to a value of Y of 9.95?<div class="autopermalink" data-description="Paragraph"><a href="#sec-app-b-fitting-simple-regression-28" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Section B.2: Fitting a Simple Regression Model"><a href="#sec-app-b-fitting-simple-regression" title="Copy heading and permalink for Section B.2: Fitting a Simple Regression Model" aria-label="Copy heading and permalink for Section B.2: Fitting a Simple Regression Model">🔗</a></div></section></div>
 <div id="ptx-content-footer" class="ptx-content-footer">
-<a class="previous-button button" href="sec-app-b-summary.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-c-rnaturalearth.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="sec-app-b-motivating-regression.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-app-b-residuals-r-squared.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">

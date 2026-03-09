@@ -91,6 +91,13 @@ ggplot() +
       </code>
     </program>
 
+    <figure xml:id="fig-app-c-world-countries">
+      <caption>Map of countries of the world</caption>
+      <image source="figure-appC/world-countries.png">
+        <shortdescription>A featureless map of the world, with countries outlined in grey and shaded light grey. Oceans and seas are white.</shortdescription>
+      </image>
+    </figure>
+
     <p>
       And here we see the boundaries for all the countries in the dataset. We can also
       have a look at the attribute data included by viewing the <c>sf</c> object with the
@@ -147,6 +154,13 @@ gridExtra::grid.arrange(u1, u2, nrow = 1)
       </code>
     </program>
 
+    <figure xml:id="fig-app-c-uganda-comparison">
+      <caption>Two identical maps showing border of Uganda</caption>
+      <image source="figure-appC/uganda-comparison.png">
+        <shortdescription>Two identical rough grey outlines of Uganda's border, with the interior shaded in light grey.</shortdescription>
+      </image>
+    </figure>
+
     <p>
       If we are focusing on one country, we might want to see some boundaries
       <em>within</em> said country. For this, we can use the function <c>ne_states()</c>
@@ -169,6 +183,13 @@ uganda &lt;- ne_states(country = "Uganda", returnclass = "sf")
 ggplot() + geom_sf(data = uganda) + theme_void()
       </code>
     </program>
+
+    <figure xml:id="fig-app-c-uganda-districts">
+      <caption>Map of districts of Uganda</caption>
+      <image source="figure-appC/uganda-districts.png">
+        <shortdescription>Uganda broken up into districts by grey borders. Each district is the same light grey shade.</shortdescription>
+      </image>
+    </figure>
 
     <p>
       It is possible that sometimes this is not the ideal sub-geometry for your analysis,
@@ -201,6 +222,13 @@ gridExtra::grid.arrange(u1, u2, u3, nrow = 1)
       </code>
     </program>
 
+    <figure xml:id="fig-app-c-uganda-resolution">
+      <caption>Three maps of Uganda with different scale of resolution for the boundary</caption>
+      <image source="figure-appC/uganda-resolution.png">
+        <shortdescription>Three side by side grey maps of Uganda. The borders of the first map looks very polygonal, while the detail increases in each successive map.</shortdescription>
+      </image>
+    </figure>
+
     <p>
       You can see as we move to lower numbers we get better resolution, which results in
       more detail around the border of the country (but also in larger file sizes!). It
@@ -221,6 +249,13 @@ ggplot() + geom_sf(data = france) + theme_void()
       </code>
     </program>
 
+    <figure xml:id="fig-app-c-france-territories">
+      <caption>Map of France which shows also overseas territories of France</caption>
+      <image source="figure-appC/france-with-territories.png">
+        <shortdescription>A map which is mostly white space, with France, broken into regions, appearing squished and very small near the top. Small, hard to see islands are scattered at the bottom right and left side of the map. French Guinea can be made out on the left side as well.</shortdescription>
+      </image>
+    </figure>
+
     <p>
       You see France appears, but so do the overseas territories of France, such as
       French Guiana, Guadeloupe, French Polynesia, and so on. It is possible you want to
@@ -235,6 +270,13 @@ france &lt;- ne_states(geounit = "France", returnclass = "sf")
 ggplot() + geom_sf(data = france) + theme_void()
       </code>
     </program>
+
+    <figure xml:id="fig-app-c-france-only">
+      <caption>Map of France that shows only France without overseas territories</caption>
+      <image source="figure-appC/france-without-territories.png">
+        <shortdescription>A grey outline of France and its districts, shaded in light grey.</shortdescription>
+      </image>
+    </figure>
 
     <p>
       Now we see only France. But what if you do want to include it all? Well, in that
@@ -321,6 +363,13 @@ ggplot() + geom_sf(data = kampala_bb) + theme_void()
       </code>
     </program>
 
+    <figure xml:id="fig-app-c-kampala-boundary">
+      <caption>Boundary which follows the shape of Kampala</caption>
+      <image source="figure-appC/kampala-boundary.png">
+        <shortdescription>A grey outline of Kampala, shaded light grey.</shortdescription>
+      </image>
+    </figure>
+
     <p>
       That's looking Kampala-shaped to us, so we can continue. To query Open Street Map,
       we have to build an Overpass Query, Overpass being the Open Street Map API. We can
@@ -384,6 +433,13 @@ ggplot() + geom_sf(data = kampala_boundaries) +
   geom_sf_label(data = kampala_boundaries, aes(label = name)) + theme_void()
       </code>
     </program>
+
+    <figure xml:id="fig-app-c-kampala-labelled">
+      <caption>Kampala with regions labelled</caption>
+      <image source="figure-appC/kampala-labelled.png">
+        <shortdescription>A grey outline of Kampala and borders of its five regions, shaded light grey. Each region has a rounded white box with the name of the region as a label inside.</shortdescription>
+      </image>
+    </figure>
   </section>
 
   <section xml:id="sec-app-c-data-repositories">
@@ -513,6 +569,13 @@ las &lt;- st_read("data/England_lad_2011_gen_clipped/england_lad_2011_gen_clippe
 ggplot() + geom_sf(data = las) + theme_void()
       </code>
     </program>
+
+    <figure xml:id="fig-app-c-england-las">
+      <caption>Map of English Local Authorities boundaries</caption>
+      <image source="figure-appC/england-las.png">
+        <shortdescription>A grey outline of England, and the borders of the Local Authorities, all shaded in light grey.</shortdescription>
+      </image>
+    </figure>
 
     <subsection xml:id="subsec-app-c-international">
       <title>International Resources</title>
