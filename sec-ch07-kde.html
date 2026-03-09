@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Mapping intensity estimates with spatstat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math"
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Crime Mapping and Spatial Data Analysis using R">
+<meta property="book:author" content="Juanjo Medina">
+<meta property="book:author" content="Reka Solymosi">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="crime-mapping-spatial-data-analysis" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="crime-mapping-spatial-data-analysis.html"><span class="title">Crime Mapping and Spatial Data Analysis using R</span></a></h1>
+<p class="byline">Juanjo Medina, Reka Solymosi</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-ch07-intensity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-07.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-ch07-summary.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface: how to use this book</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-01.html" class="internal"><span class="codenumber">1</span> <span class="title">Producing Your First Crime Map</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-geospatial-perspective.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Geospatial Perspective: Key Terms and Ideas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-place" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Place</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-attributes" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Attributes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-spatial-objects" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Spatial Objects</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-networks" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Networks</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-maps-types.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Maps and Their Types</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-map-projections.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Map projections and geographic coordinate systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-key-terms-summary.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Key terms summary</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-getting-started.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Getting started with crime data</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dataframes-to-spatial.html" class="internal"><span class="codenumber">1.6</span> <span class="title">From dataframes to spatial objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-point" class="internal"><span class="codenumber">1.6.1</span> <span class="title">The point</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-line" class="internal"><span class="codenumber">1.6.2</span> <span class="title">The line</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-polygon" class="internal"><span class="codenumber">1.6.3</span> <span class="title">The polygon</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-choosing-unit" class="internal"><span class="codenumber">1.6.4</span> <span class="title">Choosing the ideal unit of analysis</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-simple-features.html" class="internal"><span class="codenumber">1.7</span> <span class="title">The simple features framework</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-plotting-ggplot2.html" class="internal"><span class="codenumber">1.8</span> <span class="title">Plotting data with ggplot2</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-mapping-points.html" class="internal"><span class="codenumber">1.9</span> <span class="title">Mapping crime data as points</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-mapping-polygons.html" class="internal"><span class="codenumber">1.10</span> <span class="title">Mapping crime data as polygons</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-finding-boundary-data" class="internal"><span class="codenumber">1.10.1</span> <span class="title">Finding boundary data</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-reading-shapefiles" class="internal"><span class="codenumber">1.10.2</span> <span class="title">Reading shapefiles into R</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-data-wrangling" class="internal"><span class="codenumber">1.10.3</span> <span class="title">Data wrangling with dplyr</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-join-data" class="internal"><span class="codenumber">1.10.4</span> <span class="title">Join data to sf object</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-putting-polygon-on-map" class="internal"><span class="codenumber">1.10.5</span> <span class="title">Putting polygon data on the map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-summary.html" class="internal"><span class="codenumber">1.11</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-02.html" class="internal"><span class="codenumber">2</span> <span class="title">Basic Geospatial Operations in R</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-alcohol-crime.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Exploring the relationship between alcohol outlets and crime</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-acquiring-data.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Acquiring relevant data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-reading-crime-data" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Reading in crime data</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-geojson" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Meet a new format: geoJSON</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-osm-poi" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Open Street Map and points of interest</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-attribute-operations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Attribute operations</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-spatial-operations.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Spatial operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-reprojecting-coordinates" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Reprojecting coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-subsetting-points" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Subsetting points</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-building-buffers" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Building buffers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-counting-points-polygon" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Counting points within a polygon</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-distances-nearest-point" class="internal"><span class="codenumber">2.4.5</span> <span class="title">Distances: Finding the nearest point</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-measuring-distances" class="internal"><span class="codenumber">2.4.6</span> <span class="title">Measuring distances</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-leaflet.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Plotting interactive maps with leaflet</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-geocoding.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Geocoding</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-measuring-distance.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Measuring distance more thoroughly</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-police-stations-madrid" class="internal"><span class="codenumber">2.7.1</span> <span class="title">How far are police stations in Madrid?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-distance-geographical-space" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Distance in geographical space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-practical-distance-madrid" class="internal"><span class="codenumber">2.7.3</span> <span class="title">A practical example to evaluate distance</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-summary.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-03.html" class="internal"><span class="codenumber">3</span> <span class="title">Mapping Rates and Counts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Thematic maps: key terms and ideas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-choropleth-maps" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Choropleth maps</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-choropleth-use" class="internal"><span class="codenumber">3.1.2</span> <span class="title">What do we use choropleth maps for?</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsubsec-crime-rates" class="internal"><span class="codenumber">3.1.2.1</span> <span class="title">Crime rates</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsubsec-prevalence-incidence" class="internal"><span class="codenumber">3.1.2.2</span> <span class="title">Prevalence vs. incidence</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-proportional-symbol-maps" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Proportional and graduate symbol maps: mapping crime counts</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch03-proportional-maps.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Creating proportional symbol maps</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch03-mapping-rates.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Mapping rates rather than counts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-mapping-rates.html#subsec-generating-rates" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Generating the rates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-mapping-rates.html#subsec-choropleth-tmap" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Creating a choropleth map with tmap</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-classification.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Classification systems for thematic maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-interactive.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Interactive mapping with tmap</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-smoothing.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Smoothing rates: adjusting for small sample noise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-summary.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-04.html" class="internal"><span class="codenumber">4</span> <span class="title">Variations of Thematic Mapping</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-binning.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Binning points</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-process" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The binning process</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-techniques" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Different binning techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-choropleth-binning" class="internal"><span class="codenumber">4.1.2.1</span> <span class="title">Choropleth maps</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-rectangular-binning" class="internal"><span class="codenumber">4.1.2.2</span> <span class="title">Rectangular binning</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-hexagonal-binning" class="internal"><span class="codenumber">4.1.2.3</span> <span class="title">Hexagonal binning</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-example" class="internal"><span class="codenumber">4.1.3</span> <span class="title">A practical binning example</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-benefits" class="internal"><span class="codenumber">4.1.4</span> <span class="title">Benefits of binning</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-cartograms.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Transforming polygons: cartograms</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-cartograms.html#subsec-dorling-cartogram" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Dorling cartogram</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-bivariate.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Bivariate maps</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step1" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Step 1: Bin our variables of interest</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step2" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Step 2: New variable</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step3" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Step 3: Create colour scheme</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step4" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Step 4: Join colour scheme</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step5" class="internal"><span class="codenumber">4.3.5</span> <span class="title">Step 5: Create legend</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step6" class="internal"><span class="codenumber">4.3.6</span> <span class="title">Step 6: Map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-maup.html" class="internal"><span class="codenumber">4.4</span> <span class="title">A note of caution: MAUP</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-7" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Scale</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-8" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Zone</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-9" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Why does MAUP matter?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-10" class="internal"><span class="codenumber">4.4.4</span> <span class="title">What can we do?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch04-summary.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-05.html" class="internal"><span class="codenumber">5</span> <span class="title">Basics of Cartographic Design: Elements of a Map</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-data-representation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Data representation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-thematic-maps" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Thematic maps</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-symbols" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Symbols</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-rate-vs-count" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Rate vs. count</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch05-colour.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Colour</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-text.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Text</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-titles" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Titles and subtitles</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-legend" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Legend</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-annotation" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Annotation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-production-notes" class="internal"><span class="codenumber">5.3.4</span> <span class="title">Production notes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-composition.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Composition</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-composition.html#subsec-ch05-orientation" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Orientation indicators</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-composition.html#subsec-ch05-scale" class="internal"><span class="codenumber">5.4.2</span> <span class="title">Scale indicators</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-context.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Context</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-context.html#subsec-ch05-basemap" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Basemap</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-context.html#subsec-ch05-inset-maps" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Inset maps</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch05-summary.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-06.html" class="internal"><span class="codenumber">6</span> <span class="title">Time Matters</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-temporal-data.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Temporal data in crime analysis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-wrangling.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Temporal data wrangling</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-visualising.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Visualising time data</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-visualising.html#subsec-ch6-how-not-to-present" class="internal"><span class="codenumber">6.3.1</span> <span class="title">How (not) to present time</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-time-series.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Time series analysis</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-time-series.html#subsec-ch6-plotting-ts" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Plotting time series data</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Spatio-temporal data visualisation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-small-multiples" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Small multiples to show temporal variation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-spaghetti" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Spaghetti plots</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-animations" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Animations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-summary.html" class="internal"><span class="codenumber">6.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch-07.html" class="internal"><span class="codenumber">7</span> <span class="title">Spatial Point Patterns of Crime Events</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-isarithmic.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Mapping crime intensity with isarithmic maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-nyc-burglaries.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Burglaries in NYC</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-spatstat.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Using the <code class="code-inline tex2jax_ignore">spatstat</code> package</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-intensity.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Homogeneous or spatially varying intensity?</span></a></div></li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-ch07-kde.html" class="internal"><span class="codenumber">7.5</span> <span class="title">Mapping intensity estimates with <code class="code-inline tex2jax_ignore">spatstat</code></span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-basics" class="internal"><span class="codenumber">7.5.1</span> <span class="title">Basics of kernel density estimation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-bandwidth" class="internal"><span class="codenumber">7.5.2</span> <span class="title">Selecting the appropriate bandwidth for KDE</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-kernel" class="internal"><span class="codenumber">7.5.3</span> <span class="title">Selecting the smoothing kernel</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-weighted" class="internal"><span class="codenumber">7.5.4</span> <span class="title">Weighted kernel density estimates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-leaflet" class="internal"><span class="codenumber">7.5.5</span> <span class="title">Better KDE maps using <code class="code-inline tex2jax_ignore">leaflet</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-problems" class="internal"><span class="codenumber">7.5.6</span> <span class="title">Problems with KDE</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-other-packages" class="internal"><span class="codenumber">7.5.7</span> <span class="title">Other packages for KDE</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-summary.html" class="internal"><span class="codenumber">7.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-08.html" class="internal"><span class="codenumber">8</span> <span class="title">Crime Along Spatial Networks</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-intro.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-constructing.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Constructing and storing a spatial linear network</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch8-density.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Density estimation along networks</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch8-density.html#subsec-ch8-adding-context" class="internal"><span class="codenumber">8.3.1</span> <span class="title">Adding context</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Visualising crime distribution along networks</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html#subsec-ch8-hot-routes" class="internal"><span class="codenumber">8.4.1</span> <span class="title">Hot Routes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-prepare" class="internal"><span class="codenumber">8.4.1.1</span> <span class="title">Preparing the network layer</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-link" class="internal"><span class="codenumber">8.4.1.2</span> <span class="title">Link crime events to street segments</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-rate" class="internal"><span class="codenumber">8.4.1.3</span> <span class="title">Calculating a rate</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-visualise" class="internal"><span class="codenumber">8.4.1.4</span> <span class="title">Visualise the results</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html#subsec-ch8-street-profile" class="internal"><span class="codenumber">8.4.2</span> <span class="title">Street Profile Analysis</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-prepare" class="internal"><span class="codenumber">8.4.2.1</span> <span class="title">Prepare the network layer</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-link" class="internal"><span class="codenumber">8.4.2.2</span> <span class="title">Link events to street segments</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-rate" class="internal"><span class="codenumber">8.4.2.3</span> <span class="title">Calculate a rate</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-visualise" class="internal"><span class="codenumber">8.4.2.4</span> <span class="title">Visualise the results</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-concentration.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Quantifying crime concentration at micro-places</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-summary.html" class="internal"><span class="codenumber">8.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-09.html" class="internal"><span class="codenumber">9</span> <span class="title">Spatial Dependence and Autocorrelation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch09-intro.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-pointpattern.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Exploring spatial dependence in point pattern data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-kfunction" class="internal"><span class="codenumber">9.2.1</span> <span class="title">The empirical K-function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-buenos-aires" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Homicide in Buenos Aires</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-kfunc-plot" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Estimating and plotting the K-function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-network-k" class="internal"><span class="codenumber">9.2.4</span> <span class="title">Network constrained K-function</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Exploring spatial autocorrelation in lattice data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-manchester" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Burglary in Manchester</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-neighbours" class="internal"><span class="codenumber">9.3.2</span> <span class="title">What is a neighbour?</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-contiguity" class="internal"><span class="codenumber">9.3.2.1</span> <span class="title">Contiguity-based neighbours</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-distance-neighbours" class="internal"><span class="codenumber">9.3.2.2</span> <span class="title">Distance-based neighbours</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-contiguity-list" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Creating a list of neighbours based on contiguity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-weight-matrix" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Generating the weight matrix</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-distance-matrix" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Spatial weight matrix based on distance</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-critical-threshold" class="internal"><span class="codenumber">9.3.5.1</span> <span class="title">Defining neighbours based on a critical threshold of distance</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-inverse-distance" class="internal"><span class="codenumber">9.3.5.2</span> <span class="title">Using the inverse distance weights</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-knn-matrix" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Spatial weight matrix based on k-neighbours</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-matrix-choice.html" class="internal"><span class="codenumber">9.4</span> <span class="title">Choosing the correct matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsec-ch09-moran" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Measuring global autocorrelation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsubsec-ch09-moran-i" class="internal"><span class="codenumber">9.4.1.1</span> <span class="title">Moran’s I</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsubsec-ch09-geary-c" class="internal"><span class="codenumber">9.4.1.2</span> <span class="title">Geary’s C</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsec-ch09-rgeoda" class="internal"><span class="codenumber">9.4.2</span> <span class="title">The <code class="code-inline tex2jax_ignore">rgeoda</code> and <code class="code-inline tex2jax_ignore">sfweight</code> packages</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch09-further-reading.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Further Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-10.html" class="internal"><span class="codenumber">10</span> <span class="title">Detecting Hot Spots and Repeats</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="ch-10-2.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Introduction</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="ch-10-2.html#subsec-ch10-clusters" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Clusters, hot spots of crime, and near repeat victimisation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="ch-10-2.html#subsec-ch10-burglaries-manc" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Burglaries in Manchester</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-raster-hotspots.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Using <code class="code-inline tex2jax_ignore">raster</code> micro-grid cells to spot hot spots</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-getis-ord.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Local Getis-Ord</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch10-local-moran.html" class="internal"><span class="codenumber">10.4</span> <span class="title">Local Moran’s I and Moran scatterplot</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-local-moran.html#subsec-ch10-computing-localmoran" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Computing the local Moran’s I</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-local-moran.html#subsec-ch10-lisa-map" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Creating a LISA map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch10-scan-stats.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Scan statistics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-dcluster" class="internal"><span class="codenumber">10.5.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">DCluster</code> package</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-gam" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Openshaw’s GAM</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-kulldorff" class="internal"><span class="codenumber">10.5.3</span> <span class="title">Kulldorff’s Scan Statistic</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-near-repeat.html" class="internal"><span class="codenumber">10.6</span> <span class="title">Exploring near repeat victimisation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-further-reading.html" class="internal"><span class="codenumber">10.7</span> <span class="title">Further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-11.html" class="internal"><span class="codenumber">11</span> <span class="title">Spatial Regression Models</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-challenges.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Challenges for regression with spatial data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-nonspatial-regression.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Fitting a non-spatial regression model with R</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-residuals.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Looking at the residuals and testing for spatial autocorrelation in regression</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch11-choosing.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Choosing a spatial regression model</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch11-choosing.html#subsec-ch11-basic-models" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Basic spatial models</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch11-choosing.html#subsec-ch11-lagrange" class="internal"><span class="codenumber">11.4.2</span> <span class="title">Lagrange multipliers: the bottom-up approach to select a model</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-sem.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Fitting and interpreting a spatial error model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-sar.html" class="internal"><span class="codenumber">11.6</span> <span class="title">Fitting and interpreting a spatially lagged model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-beyond.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Beyond the SAR and SEM models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-summary.html" class="internal"><span class="codenumber">11.8</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-12.html" class="internal"><span class="codenumber">12</span> <span class="title">Spatial Heterogeneity and Regression</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Spatial regimes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-constrained" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Fitting the constrained and the unconstrained models</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-chow" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Running the Chow test</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-dependence" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Spatial dependence with spatial heterogeneity</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch12-gwr.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Geographically Weighted Regression</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-bandwidth" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Calculate kernel bandwidth</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-model" class="internal"><span class="codenumber">12.2.2</span> <span class="title">Building the geographically weighted model</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-using" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Using GWR</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch12-summary.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-13.html" class="internal"><span class="codenumber">13</span> <span class="title">Appendix: A quick intro to R and RStudio</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Exploring RStudio</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsec-ch13-opening-script-pane" class="internal"><span class="codenumber">13.1.1</span> <span class="title">Opening up the script pane</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsec-ch13-four-panes" class="internal"><span class="codenumber">13.1.2</span> <span class="title">The four panes of RStudio</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsubsec-ch13-interacting-panes" class="internal"><span class="codenumber">13.1.2.1</span> <span class="title">Interacting with the four panes</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-customising.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Customising the RStudio look</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-r-grammar.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Elements of R grammar</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsec-ch13-functions" class="internal"><span class="codenumber">13.3.1</span> <span class="title">Functions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsec-ch13-objects" class="internal"><span class="codenumber">13.3.2</span> <span class="title">Objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-creating-object" class="internal"><span class="codenumber">13.3.2.1</span> <span class="title">Creating an object</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-types-of-objects" class="internal"><span class="codenumber">13.3.2.2</span> <span class="title">Types of objects</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-doing-things-to-objects" class="internal"><span class="codenumber">13.3.2.3</span> <span class="title">Doing things to objects</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-packages.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Packages</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-exploring-data.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Exploring data with R</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-exploring-data.html#subsec-ch13-playing-with-data" class="internal"><span class="codenumber">13.5.1</span> <span class="title">Playing around with data</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-r-projects.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Getting organised: R Projects</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-r-projects.html#subsec-ch13-saving-work" class="internal"><span class="codenumber">13.6.1</span> <span class="title">Saving your work and projects</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-summary.html" class="internal"><span class="codenumber">13.7</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-a.html" class="internal"><span class="codenumber">A</span> <span class="title">A Quick Intro to R and RStudio</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-b.html" class="internal"><span class="codenumber">B</span> <span class="title">Regression Analysis: A Refresher</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-ch07-kde"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Mapping intensity estimates with <code class="code-inline tex2jax_ignore">spatstat</code></span>
+</h2>
+<section class="subsection" id="subsec-ch07-kde-basics"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Basics of kernel density estimation</span>
+</h3>
+<div class="para" id="subsec-ch07-kde-basics-2">One of the most common methods to visualise hot spots of crime, when we are working with point pattern data, is to use kernel density estimation. <dfn class="terminology">Kernel density estimation</dfn> involves applying a function (known as a "kernel") to each data point, which averages the location of that point with respect to the location of other data points. The surface that results from this model allows us to produce <dfn class="terminology">isarithmic maps</dfn>. It is essentially a more sophisticated way of visualising intensity (points per area) than the tessellations we have covered so far.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-basics-3">Kernel density estimation maps are very popular among crime analysts. According to <a href="references.html#Chainey_2013a" class="xref" data-knowl="./knowl/xref/Chainey_2013a.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 159">[159]</a>, 9 out of 10 intelligence professionals prefer them to other techniques for hot spot analysis. As compared to visualisations of crime that rely on point maps or thematic maps of geographic administrative units (such as LSOAs), isarithmic maps are considered best for location, size, shape and orientation of the hot spot. <a href="references.html#Chainey_2008" class="xref" data-knowl="./knowl/xref/Chainey_2008.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 160">[160]</a> have also suggested that this method produces some of the best prediction accuracy. The areas identified as hot spots by KDE (using historical data) tend to be the ones that better identify the areas that will have high levels of crime in the future. Yet, producing these maps (as with any map, really) requires you to take a number of decisions that will significantly affect the resulting product and the conveyed message. Like any other data visualisation technique, they can be powerful, but they have to be handled with great care.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-basics-4">Essentially this method uses a statistical technique (kernel density estimation) to generate a smooth continuous surface aiming to represent the intensity or volume of crimes across the target area. The technique, in one of its implementations (quartic kernel), is described in this way by <a href="references.html#Chainey_2013b" class="xref" data-knowl="./knowl/xref/Chainey_2013b.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 161: Mapping Crime: Understanding Hot Spots">[161]</a>:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<blockquote class="blockquote" id="subsec-ch07-kde-basics-5">
+<div class="para" id="subsec-ch07-kde-basics-5-1">
+<em class="emphasis">a fine grid is generated over the point distribution; a moving three-dimensional function of a specified radius visits each cell and calculates weights for each point within the kernel’s radius. Points closer to the centre will receive a higher weight, and therefore contribute more to the cell’s total density value; and final grid cell values are calculated by summing the values of all kernel estimates for each location</em><div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Quotation"><a href="#subsec-ch07-kde-basics-5" title="Copy heading and permalink for Quotation" aria-label="Copy heading and permalink for Quotation">🔗</a></div>
+</blockquote>
+<div class="para" id="subsec-ch07-kde-basics-6">The values that we attribute to the cells in crime mapping will typically refer to the number of crimes within the area’s unit of measurement (intensity). Let’s produce one of these density maps, just with the default arguments of the <code class="code-inline tex2jax_ignore">density.ppp()</code> function:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-density-default-ch07" class="language-r">ds &lt;- density.ppp(jitter_bur)
+class(ds)
+</code></pre></div>
+<div class="code-box"><pre class="console clipboardable">## [1] "im"
+</pre></div>
+<div class="para" id="subsec-ch07-kde-basics-9">The resulting object is of class <code class="code-inline tex2jax_ignore">im</code>, a pixel image, a grid of spatial locations with values attached to them. You can visualise this image as a map (using <code class="code-inline tex2jax_ignore">plot()</code>), contour plots (using <code class="code-inline tex2jax_ignore">contour()</code>), or as a perspective plot (using <code class="code-inline tex2jax_ignore">persp()</code>).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-density-visualise-ch07" class="language-r">par(mfrow=c(1,3))
+plot(ds, main='Pixel image')
+contour(ds, main = 'Contour plot')
+persp(ds, main = 'Perspective plot')
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-pixel-contour-persp"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kde-adaptive-bandwidth.png" class="contained" alt="Three plots with shapes of Manhattan, titled ’Pixel image’, ’Contour plot’, and ’Perspective plot’. The ’Pixel image’ plot uses the gradient from blue to yellow that we have seen before, legend included. However the colours change smoothly from two concentrations of yellow near the north and south, and darken to a purple around Central Park. The second plot, titled ’Contour plot’, does not include the outline of Manhattan, but instead has smooth curved lines where the colours transitioned in the first image. The third plot is a representation of a three dimensional plot, with two axes being the latitudes and longitudes, and the third one, height, being the intensity."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Visualisations of intensity of burglary in Manhattan<div class="autopermalink" data-description="Figure 7.5.1"><a href="#fig-kde-pixel-contour-persp" title="Copy heading and permalink for Figure 7.5.1" aria-label="Copy heading and permalink for Figure 7.5.1">🔗</a></div></figcaption></figure><div class="para" id="subsec-ch07-kde-basics-12">The density function is estimating a kernel density estimate. The result of <code class="code-inline tex2jax_ignore">density.ppp()</code> <em class="emphasis">is not a probability density</em>. It is an estimate of the intensity function of the point process that generated the point pattern. The units of intensity are "points per unit area". Density, in this context, is nothing but the number of points per unit area. This method computes the intensity continuously across the study area, and the object returns a raster image. Depending what package you use to generate the estimation (e.g., <code class="code-inline tex2jax_ignore">spatstat</code>, <code class="code-inline tex2jax_ignore">SpatialKDE</code>, etc) you can set a different metric.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-basics-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 7.5.1: Basics of kernel density estimation"><a href="#subsec-ch07-kde-basics" title="Copy heading and permalink for Subsection 7.5.1: Basics of kernel density estimation" aria-label="Copy heading and permalink for Subsection 7.5.1: Basics of kernel density estimation">🔗</a></div></section><section class="subsection" id="subsec-ch07-kde-bandwidth"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Selecting the appropriate bandwidth for KDE</span>
+</h3>
+<div class="para" id="subsec-ch07-kde-bandwidth-2">The defaults in <code class="code-inline tex2jax_ignore">density.ppp()</code> are not necessarily the optimal ones for your application. When doing spatial density analysis, there are a number of things you have to decide upon (e.g., bandwidth, kernel type, etc.).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-bandwidth-3">To perform this analysis, we need to define the <dfn class="terminology">bandwidth</dfn> of the density estimation, which basically determines the area of influence of the estimation. There is no general rule to determine the correct bandwidth; generally speaking, if the bandwidth is too small the estimate is too noisy, while if bandwidth is too high the estimate may miss crucial elements of the point pattern due to oversmoothing. The key argument to pass to the <code class="code-inline tex2jax_ignore">density.ppp()</code> is <code class="code-inline tex2jax_ignore">sigma=</code>, which determines the bandwidth of the kernel. Sigma is the <em class="emphasis">standard deviation of the kernel</em>, and you can enter a numeric value or a function that computes an appropriate value for it.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-bandwidth-4">A great deal of research has been developed to produce algorithms that help in selecting the bandwidth (see <a href="references.html#Baddeley_2016" class="xref" data-knowl="./knowl/xref/Baddeley_2016.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 156: Spatial Point Patterns: Methodology and Applications with R">[156]</a> and <a href="references.html#Davies_2017" class="xref" data-knowl="./knowl/xref/Davies_2017.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 162">[162]</a> for details). In the <code class="code-inline tex2jax_ignore">spatstat</code> package the functions <code class="code-inline tex2jax_ignore">bw.diggle()</code>, <code class="code-inline tex2jax_ignore">bw.ppl()</code>, and <code class="code-inline tex2jax_ignore">bw.scott()</code> can be used to estimate the bandwidth according to difference methods (mean square error cross-validation, likelihood cross-validation, and Scott’s rule of thumb for bandwidth section in multi-dimensional smoothing, respectively). The help files recommend the use of the first two. These functions run algorithms that aim to select an appropriate bandwidth.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-bandwidth-algorithms-ch07" class="language-r">set.seed(200) # We set this seed to ensure you get this same results when running
+              # these algorithms
+bw.diggle(jitter_bur)
+bw.ppl(jitter_bur)
+bw.scott(jitter_bur)
+</code></pre></div>
+<div class="code-box"><pre class="console clipboardable">## sigma 
+## 2.912 
+## sigma 
+## 73.06 
+## sigma.x sigma.y 
+##   608.4  1447.6
+</pre></div>
+<div class="para" id="subsec-ch07-kde-bandwidth-7">Scott’s rule generally provides larger bandwidth than the other methods. Don’t be surprised if your results do not match exactly the ones we provide if you do not use the same seed, the computation means that they will vary every time we run these functions. Keep in mind these values will be expressed in the unit of the projected coordinate system you use (in this case metres). We can visualise how they influence the appearance of ’hot spots’:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-bandwidth-comparison-ch07" class="language-r">set.seed(200)
+par(mfrow=c(1,3))
+plot(density.ppp(jitter_bur, sigma = bw.diggle(jitter_bur),edge=T),
+     main = "Diggle")
+
+plot(density.ppp(jitter_bur, sigma = bw.ppl(jitter_bur),edge=T),
+     main="PPL")
+
+plot(density.ppp(jitter_bur, sigma = bw.scott(jitter_bur) ,edge=T),
+     main="Scott")
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-bandwidth-comparison"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kde-kernel-shapes.png" class="contained" alt="Three different shaded maps of Manhattan, titled ’Diggle’, ’PPL’, and ’Scott’. Each has a legend with a gradient from blue to yellow, though slightly different values. The first, ’Diggle’, shows a mostly blue Manhattan, with speckles of red mostly in the south and north. Very few points stand out as yellow. The second, ’PPL’, has less speckling, and instead more patches of red, some of which contain a little yellow. The third, ’Scott’, is once again a smoothly varying shading, with concentrations of yellow in the north and south transitioning into a purple near Central Park."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Kernel density maps with different bandwidth estimation algorithms<div class="autopermalink" data-description="Figure 7.5.2"><a href="#fig-kde-bandwidth-comparison" title="Copy heading and permalink for Figure 7.5.2" aria-label="Copy heading and permalink for Figure 7.5.2">🔗</a></div></figcaption></figure><div class="para" id="subsec-ch07-kde-bandwidth-10">When looking for clusters, <a href="references.html#Baddeley_2016" class="xref" data-knowl="./knowl/xref/Baddeley_2016.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 156: Spatial Point Patterns: Methodology and Applications with R">[156]</a> suggest the use of the <code class="code-inline tex2jax_ignore">bw.ppl()</code> algorithm because in their experience it tends to produce the more appropriate values when the pattern consists predominantly of tight clusters. But they also insist that if your purpose is to detect a single tight cluster in the midst of random noise, then the <code class="code-inline tex2jax_ignore">bw.diggle()</code> method seems to work best.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-bandwidth-11">All these methods use a fixed bandwidth: they use the same bandwidth for all locations. As noted by <a href="references.html#Baddeley_2016" class="xref" data-knowl="./knowl/xref/Baddeley_2016.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 156: Spatial Point Patterns: Methodology and Applications with R">[156]</a> a "fixed smoothing bandwidth is unsatisfactory if the true intensity varies greatly across the spatial domain, because it is likely to cause oversmoothing in the high-intensity areas and undersmoothing in the low-intensity areas" (p. 174). When using these methods in areas of high point density, the resulting bandwidth will be small, while in areas of low point density the resulting bandwidth will be large. This allows us to reduce smoothing in parts of the window where there are many points so that we capture more detail in the density estimates there, whilst at the same time increasing the smoothing in areas where there are less points.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-bandwidth-12">With <code class="code-inline tex2jax_ignore">spatstat</code> we can use an adaptive bandwidth method, where (1) a fraction of the points are selected at random and used to construct a tessellation; (2) a quadrat counting estimate of the intensity is produced; and (3) the process is repeated a set number of times and an average is computed. The <code class="code-inline tex2jax_ignore">adaptive.density()</code> function (in <code class="code-inline tex2jax_ignore">spatstat</code>) takes as arguments the fraction of points to be sampled (<code class="code-inline tex2jax_ignore">f</code>) and the number of samples to be taken (<code class="code-inline tex2jax_ignore">nrep</code>). The logical argument <code class="code-inline tex2jax_ignore">verbose</code> when set to <code class="code-inline tex2jax_ignore">FALSE</code> (not the default) means we won’t see a message in the console informing of the steps in the simulation.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-adaptive-density-ch07" class="language-r">plot(adaptive.density(jitter_bur, f=0.1, nrep=30, verbose=FALSE),
+     main = "adaptive bandwidth method")
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-adaptive-bandwidth"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kde-weighted.png" class="contained" alt="Another shading of Manhattan with a legend containing a gradient from blue to yellow, titled ’adaptive bandwitdth method’. The island is mostly blue, with smooth patches of purple and red in the south and north. Yellow appears in two of the patches."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Adaptive bandwidth method for estimating bandwidth for KDE map<div class="autopermalink" data-description="Figure 7.5.3"><a href="#fig-kde-adaptive-bandwidth" title="Copy heading and permalink for Figure 7.5.3" aria-label="Copy heading and permalink for Figure 7.5.3">🔗</a></div></figcaption></figure><div class="para" id="subsec-ch07-kde-bandwidth-15">Which bandwidth to use? <a href="references.html#Chainey_2021" class="xref" data-knowl="./knowl/xref/Chainey_2021.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 163: Understanding Crime: Analyzing the Geography of Crime">[163]</a> is critical of the various algorithms we have introduced. He suggests that "they tend to produce large bandwidths, and are considered unsuitable for exploring local spatial patterns of the density distribution of crime." As we have seen with our example this is not necessarily the case, if anything both mean square error cross-validation and likelihood cross-validation produce small bandwidths in this example. When it comes to crime, <a href="references.html#Neville_2013" class="xref" data-knowl="./knowl/xref/Neville_2013.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 164">[164]</a> suggests that the "best choice would be to produce an interpolation that fits the experience of the department and officers who travel an area. Again, experimentation and discussions with beat officers will be necessary to establish which bandwidth choice should be used in future interpolations" (p. 10.22). This is generally accepted by other authors in the field. We see no damage in using these algorithms as a starting point and then, as suggested by most authors (see as well <a href="references.html#Chainey_2021" class="xref" data-knowl="./knowl/xref/Chainey_2021.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 163: Understanding Crime: Analyzing the Geography of Crime">[163]</a>), to engage in a discussion with the direct users (considering what the map will be used for) to set in a particular bandwidth that is not too spiky, nor oversmoothed.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-bandwidth-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 7.5.2: Selecting the appropriate bandwidth for KDE"><a href="#subsec-ch07-kde-bandwidth" title="Copy heading and permalink for Subsection 7.5.2: Selecting the appropriate bandwidth for KDE" aria-label="Copy heading and permalink for Subsection 7.5.2: Selecting the appropriate bandwidth for KDE">🔗</a></div></section><section class="subsection" id="subsec-ch07-kde-kernel"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Selecting the smoothing kernel</span>
+</h3>
+<div class="para" id="subsec-ch07-kde-kernel-2">Apart from selecting the bandwidth, we also need to specify the particular kernel we will use. In density estimation there are different types of kernel. This relates to the type of kernel drawn around each point in the process of counting points around each point. The use of these functions will result in slightly different estimations. They relate to the way we weigh points within the radius:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-kernel-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<blockquote class="blockquote" id="subsec-ch07-kde-kernel-3">
+<div class="para" id="subsec-ch07-kde-kernel-3-1">
+<em class="emphasis">The normal distribution weighs all points in the study area, though near points are weighted more highly than distant points. The other four techniques use a circumscribed circle around the grid cell. The uniform distribution weighs all points within the circle equally. The quartic function weighs near points more than far points, but the fall off is gradual. The triangular function weighs near points more than far points within the circle, but the fall off is more rapid. Finally, the negative exponential weighs near points much more highly than far points within the circle and the decay is very rapid.</em> <a href="references.html#Levine_2013" class="xref" data-knowl="./knowl/xref/Levine_2013.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 165: Crime Stat IV: A Spatial Statistics Program for the Analysis of Crime Incident Locations">[165]</a> Chapter 10, p. 10.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-kernel-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Quotation"><a href="#subsec-ch07-kde-kernel-3" title="Copy heading and permalink for Quotation" aria-label="Copy heading and permalink for Quotation">🔗</a></div>
+</blockquote>
+<div class="para" id="subsec-ch07-kde-kernel-4">Which one to use? <a href="references.html#Levine_2013" class="xref" data-knowl="./knowl/xref/Levine_2013.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 165: Crime Stat IV: A Spatial Statistics Program for the Analysis of Crime Incident Locations">[165]</a> produces the following guidance: "<em class="emphasis">The use of any of one of these depends on how much the user wants to weigh near points relative to far points. Using a kernel function which has a big difference in the weights of near versus far points (e.g., the negative exponential or the triangular) tends to produce finer variations within the surface than functions which weight more evenly (e.g., the normal distribution, the quartic, or the uniform); these latter ones tend to smooth the distribution more</em>." However, <a href="references.html#Silverman_1986" class="xref" data-knowl="./knowl/xref/Silverman_1986.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 166: Density Estimation for Statistics and Data Analysis">[166]</a> has argued that it does not make that much difference as long as the kernel is symmetrical. <a href="references.html#Chainey_2013b" class="xref" data-knowl="./knowl/xref/Chainey_2013b.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 161: Mapping Crime: Understanding Hot Spots">[161]</a> suggests that in his experience most crime mappers prefer the quartic function, since it applies greater weight to crimes closer to the centre of the grid. The authors of the CrimeStat workbook <a href="references.html#Smith_2008" class="xref" data-knowl="./knowl/xref/Smith_2008.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 167: CrimeStat III. User Workbook">[167]</a>, on the other hand, suggest that the choice of the kernel should be based in our theoretical understanding of the data generating mechanisms. By this they mean that the processes behind spatial dependence may be different according to various crime patterns and that this is something that we may want to take into account when selecting a particular function. They provide a table with some examples that may help you to understand what they mean. For example, for residential burglaries they recommend 1 mile with normally dispersed quartic or uniform interpolation, while for domestic violence, 0.1 mile and the tightly focused, negative exponential method <a href="references.html#Smith_2008" class="xref" data-knowl="./knowl/xref/Smith_2008.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 167: CrimeStat III. User Workbook">[167]</a>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-kernel-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-kernel-5">The default kernel in <code class="code-inline tex2jax_ignore">density.ppp()</code> is <code class="code-inline tex2jax_ignore">gaussian</code>. But there are other options. We can use the <code class="code-inline tex2jax_ignore">epanechnikov</code>, <code class="code-inline tex2jax_ignore">quartic</code> or <code class="code-inline tex2jax_ignore">disc</code>. There are also further options for customisation. We can compare these kernels, whilst using the <code class="code-inline tex2jax_ignore">ppl</code> algorithm for sigma (remember, we set seed at 200 for this particular value):<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-kernel-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-kernel-comparison-ch07" class="language-r">par(mfrow=c(2,2),mar = c(0.1, 0.1, 0.6, 0.1))
+# Gaussian kernel function (the default)
+plot(density.ppp(jitter_bur, sigma = bw.ppl(jitter_bur), edge=TRUE), main="Gaussian")
+
+# Epanechnikov (parabolic) kernel function
+plot(density.ppp(jitter_bur, kernel = "epanechnikov", sigma = bw.ppl(jitter_bur),
+                 edge=TRUE), main="epanechnikov")
+
+# Quartic kernel function
+plot(density.ppp(jitter_bur, kernel = "quartic", sigma = bw.ppl(jitter_bur), edge=TRUE),
+     main="Quartic")
+
+plot(density.ppp(jitter_bur, kernel = "disc", sigma = bw.ppl(jitter_bur), edge=TRUE),
+     main="Disc")
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-kernel-shapes"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kde-raster.png" class="contained" alt="Four tiny shaded maps of Manhattan, with barely any discernable difference. They are titled ’Gaussian’, ’epanechnikov’, ’Quartic’, and ’Disc’."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>KDE maps created with different kernel shapes<div class="autopermalink" data-description="Figure 7.5.4"><a href="#fig-kde-kernel-shapes" title="Copy heading and permalink for Figure 7.5.4" aria-label="Copy heading and permalink for Figure 7.5.4">🔗</a></div></figcaption></figure><div class="para" id="subsec-ch07-kde-kernel-8">You can see how the choice of the kernel has less of an impact than the choice of the bandwidth. In practical terms, choice of the specific kernel is of secondary importance to the bandwidth.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-kernel-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-kernel-9">Equally, you may have noticed an argument in <code class="code-inline tex2jax_ignore">density.ppp()</code> we have not discussed: <code class="code-inline tex2jax_ignore">edge = TRUE</code>. What is this? When estimating the density we are not observing points outside our window. In the case of an island like Manhattan, perhaps this is not an issue. But often when computing estimates for a given jurisdiction, we need to think about what is happening in the jurisdiction next door to us. Our algorithm does not see the crimes in jurisdictions neighbouring ours, and so the estimations around the edges of our boundaries receive fewer contributions in the computation. By setting <code class="code-inline tex2jax_ignore">edge = TRUE</code> we are effectively applying a correction that tries to compensate for this negative bias.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-kernel-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 7.5.3: Selecting the smoothing kernel"><a href="#subsec-ch07-kde-kernel" title="Copy heading and permalink for Subsection 7.5.3: Selecting the smoothing kernel" aria-label="Copy heading and permalink for Subsection 7.5.3: Selecting the smoothing kernel">🔗</a></div></section><section class="subsection" id="subsec-ch07-kde-weighted"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Weighted kernel density estimates</span>
+</h3>
+<div class="para" id="subsec-ch07-kde-weighted-2">In the past examples we used the un-weighted version of the estimation methods, but if the points are weighted (like for example by multiplicity) we can use weighted versions of these methods. We simply need to pass an argument that specifies the weights.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-weighted-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-weighted-ch07" class="language-r">set.seed(200)
+plot(density.ppp(bur_ppp_m, sigma = bw.ppl(bur_ppp_m), edge = T,
+                 kernel = "quartic", weights = marks(bur_ppp_m)),
+     main = "Weighted Points")
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-weighted"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kde-weighted-estimates.png" class="contained" alt="This shaded map of Manhattan is titled ’Weighted Points’. Rather than blotches or speckles, the blue is broken up by thicker points of red, which sometimes turn into yellow at their centre in the north."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Weighting KDE estimates<div class="autopermalink" data-description="Figure 7.5.5"><a href="#fig-kde-weighted" title="Copy heading and permalink for Figure 7.5.5" aria-label="Copy heading and permalink for Figure 7.5.5">🔗</a></div></figcaption></figure><div class="autopermalink" data-description="Subsection 7.5.4: Weighted kernel density estimates"><a href="#subsec-ch07-kde-weighted" title="Copy heading and permalink for Subsection 7.5.4: Weighted kernel density estimates" aria-label="Copy heading and permalink for Subsection 7.5.4: Weighted kernel density estimates">🔗</a></div></section><section class="subsection" id="subsec-ch07-kde-leaflet"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Better KDE maps using <code class="code-inline tex2jax_ignore">leaflet</code></span>
+</h3>
+<div class="para" id="subsec-ch07-kde-leaflet-2">The plots produced by <code class="code-inline tex2jax_ignore">spatstat</code> are good for initial exploration, but if you want to present this to an audience, you may want to use one of the various packages we have covered so far for visualising spatial data. Here we show how to use <code class="code-inline tex2jax_ignore">leaflet</code> for plotting densities. Hot spot analysis often has an exploratory character, and the interactivity provided by <code class="code-inline tex2jax_ignore">leaflet</code> is particularly helpful, since it allows us to zoom in and out and check the details of the areas with high intensities.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-leaflet-3">Often it is convenient to use a basemap to provide context. In order to do that, we first need to turn the image object generated by the <code class="code-inline tex2jax_ignore">spatstat</code> package into a raster object, a more generic format for raster image used in R. Remember rasters from the first chapter? Now we finally get to use them a bit! First, we store the density estimates produced by <code class="code-inline tex2jax_ignore">density.ppp()</code> into an object (which will be of class <code class="code-inline tex2jax_ignore">im</code>, a two-dimensional pixel image), and then using the <code class="code-inline tex2jax_ignore">raster()</code> function from the <code class="code-inline tex2jax_ignore">raster</code> package, we generate a raster object.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-to-raster-ch07" class="language-r">set.seed(200)
+dmap1 &lt;- density.ppp(jitter_bur,
+                     kernel = "quartic",
+                     sigma = bw.ppl(jitter_bur),
+                     edge=T)
+# create raster object from im object
+r1 &lt;- raster(dmap1)
+</code></pre></div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-plot-raster-ch07" class="language-r"># plot the raster object
+plot(r1, main = "Raster")
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-raster"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kde-random-poisson.png" class="contained" alt="A different looking shaded map of Manhattan, titled ’Raster’. The landmass is shaded light grey, and large numbers appear on notches on the vertical and horizontal axis. A legend to the right increases from zero as grey or transparent, then orange, then yellow, and finally green for the largest values. The blotchy shading on the map is familiar by now, with Central Park being avoided, and most of the island shaded orange, with some green appearing."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Raster image of KDE output<div class="autopermalink" data-description="Figure 7.5.6"><a href="#fig-kde-raster" title="Copy heading and permalink for Figure 7.5.6" aria-label="Copy heading and permalink for Figure 7.5.6">🔗</a></div></figcaption></figure><div class="para" id="subsec-ch07-kde-leaflet-7">We can remove the areas with very low density of burglaries for better reading of the map:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-remove-low-ch07" class="language-r">#remove very low density values
+r1[r1 &lt; 0.00010 ] &lt;- NA
+
+#multiply by 1000 to re-express intensity in terms of burglaries per km
+values(r1) &lt;- values(r1)*1000
+</code></pre></div>
+<div class="para" id="subsec-ch07-kde-leaflet-9">Now that we have the raster, we can add it to a basemap. Two-dimensional <code class="code-inline tex2jax_ignore">RasterLayer</code> objects (from the <code class="code-inline tex2jax_ignore">raster</code> package) can be turned into images and added to <code class="code-inline tex2jax_ignore">Leaflet</code> maps using the <code class="code-inline tex2jax_ignore">addRasterImage()</code> function. The <code class="code-inline tex2jax_ignore">addRasterImage()</code> function works by projecting the <code class="code-inline tex2jax_ignore">RasterLayer</code> object to EPSG:3857 and encoding each cell to an RGBA colour, to produce a PNG image. That image is then embedded in the map widget. This is only suitable for small to medium-sized rasters.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-leaflet-10">It’s important that the <code class="code-inline tex2jax_ignore">RasterLayer</code> object is tagged with a proper coordinate reference system, so that leaflet can then reproject to EPSG:3857. Many raster files contain this information, but some do not. Here is how you would tag a raster layer object <code class="code-inline tex2jax_ignore">r1</code> which contains the EPSG:32118 data:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-set-crs-ch07" class="language-r">#make sure we have right CRS, which in this case is the New York 32118
+
+crs(r1) &lt;- "EPSG:32118"
+</code></pre></div>
+<div class="para" id="subsec-ch07-kde-leaflet-12">The way we assign the CRS above is using the now most accepted PROJ6 format. You can find how these different formats apply to each coordinate system in the online archives.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-leaflet-13">Now we are ready to plot, although first we will create a more suitable colour palette and, since the values in the scale are quite close to 0, will multiply by a constant, to make the labels more readable. For this we use the <code class="code-inline tex2jax_ignore">values()</code> function from the <code class="code-inline tex2jax_ignore">raster</code> package that allows us to manipulate the values in a raster object:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-leaflet-map-ch07" class="language-r">pal &lt;- colorNumeric("Reds", values(r1),
+  na.color = "transparent") #Create colour palette
+
+#and then make map!
+nyc_map &lt;- leaflet() %&gt;%
+  addTiles() %&gt;%
+  addProviderTiles(providers$Stamen.TonerLite) %&gt;%
+  addRasterImage(r1, colors = pal, opacity = 0.7) %&gt;%
+  addLegend(pal = pal, values = values(r1),
+    title = "Burglary map")
+
+# print map
+nyc_map
+</code></pre></div>
+<div class="para" id="subsec-ch07-kde-leaflet-15">And there you have it. Perhaps those familiar with Manhattan have some guesses as to what may be going on there?<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-leaflet-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 7.5.5: Better KDE maps using leaflet"><a href="#subsec-ch07-kde-leaflet" title="Copy heading and permalink for Subsection 7.5.5: Better KDE maps using leaflet" aria-label="Copy heading and permalink for Subsection 7.5.5: Better KDE maps using leaflet">🔗</a></div></section><section class="subsection" id="subsec-ch07-kde-problems"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Problems with KDE</span>
+</h3>
+<div class="para" id="subsec-ch07-kde-problems-2">There are at least two problems with these maps. First, they are just a convenient visualisation to represent the location of crime incidents. But they are not adjusting by the population at risk. If all you care about is where most crimes are taking place, that may then be fine. But if you are interested in relative risk, intensity adjusting by population at risk, then you are bound to be misled by these methods, which usually will plot very well the distribution of the population at risk. Second, the Poisson process, as we saw, creates what may appear as areas with more points than others, even though it is a random process. In other words, you may just be capturing random noise with these maps.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-problems-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-problems-3">There are a number of ways to adjust for background population at risk when producing density estimates. Many of these methods have been developed in spatial epidemiology. In criminology, the population at risk is generally available only at more aggregated (at some census geography level) than in many of those applications (where typically you have points representing individuals without a disease being contrasted with points representing individuals with a disease). So, although one could extract the centroids of these polygons representing census tracts or districts as points and mark them with a value (say, population count or number of housing units), there isn’t a great advantage to go to all this trouble. In fact by locating all the mass of the population at risk in the centroids of the polygons, you are introducing some distortion. So if you want to adjust for the population at risk, it is probably better to map out rates in the ways we described in previous chapters. We just need to be aware, then, that KDE surfaces in essence are simply mapping counts of crime. We therefore need to interpret density maps with this very significant caveat.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-problems-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-problems-4">The other problem we had is that a Poisson process under CSR can still result in a map that one could read as identifying hot spots, whereas all we have is noise. Remember the <code class="code-inline tex2jax_ignore">poisson_ppp</code> object we created earlier, which demonstrated complete spatial randomness? Well, if we were that way inclined, we could easily compute a KDE for this:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-problems-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code id="rs-kde-random-poisson-ch07" class="language-r">set.seed(200)
+
+plot(density.ppp(poisson_ppp, kernel = "quartic", sigma = bw.diggle(poisson_ppp),
+                 edge=T), main = "KDE for random poisson point process")
+</code></pre></div>
+<figure class="figure figure-like" id="fig-kde-random-poisson"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch07/kernel-density-map.png" class="contained" alt="A square that is shaded blue to yellow, with the title ’KDE for random poisson point process’. To the right a gradient matches blue to red to yellow with increasing numbers. The shading varies smoothly, with hotspots of yellow distributed without pattern, fading into purples which connect to other yellows, and some cool blue areas."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Kernel density map for quartic kernel<div class="autopermalink" data-description="Figure 7.5.7"><a href="#fig-kde-random-poisson" title="Copy heading and permalink for Figure 7.5.7" aria-label="Copy heading and permalink for Figure 7.5.7">🔗</a></div></figcaption></figure><div class="para" id="subsec-ch07-kde-problems-7">And there you go, you could come to the view looking at this density map that the intensity is driven by some underlying external risk factor when in fact the process is purely random. In subsequent chapters we will learn about methods that can be used to ensure we don’t map out hot spots that may be the product of random noise.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-problems-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 7.5.6: Problems with KDE"><a href="#subsec-ch07-kde-problems" title="Copy heading and permalink for Subsection 7.5.6: Problems with KDE" aria-label="Copy heading and permalink for Subsection 7.5.6: Problems with KDE">🔗</a></div></section><section class="subsection" id="subsec-ch07-kde-other-packages"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">7.5.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Other packages for KDE</span>
+</h3>
+<div class="para" id="subsec-ch07-kde-other-packages-2">In this chapter we have focused on <code class="code-inline tex2jax_ignore">spatstat</code>, for it provides a comprehensive suite of tools for working with spatial point patterns. The snippets of code and examples we have used here only provide a superficial glimpse into the full potential of this package. But <code class="code-inline tex2jax_ignore">spatstat</code> is by no means the only package that can be used for generating spatial density estimates. We need to mention at least two alternatives: <code class="code-inline tex2jax_ignore">SpatialKDE</code> and <code class="code-inline tex2jax_ignore">sparr</code>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-other-packages-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-other-packages-3">
+<code class="code-inline tex2jax_ignore">SpatialKDE</code> implements kernel density estimation for spatial data with all the required settings, including the selection of bandwidth, kernel type, and cell size (which was computed automatically by <code class="code-inline tex2jax_ignore">density.ppp()</code>). It is based in an algorithm used in QGIS, the best free GIS system relying primarily on a point-and-click interface. Unlike <code class="code-inline tex2jax_ignore">spatstat</code>, <code class="code-inline tex2jax_ignore">SpatialKDE</code> can work with <code class="code-inline tex2jax_ignore">sf</code> objects. But it also finds it more convenient to have the data on a projected coordinate systems, so that it can compute distances on metres rather than with decimal degrees.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-other-packages-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-ch07-kde-other-packages-4">The package <code class="code-inline tex2jax_ignore">sparr</code> focuses on methods to compare densities and thus estimate relative risk, even at a spatio-temporal scale. It is written in such a way as to allow compatibility with <code class="code-inline tex2jax_ignore">spatstat</code>. The basic functionality allows to estimate KDE maps through the <code class="code-inline tex2jax_ignore">bivariate.density()</code> function. This function can take a <code class="code-inline tex2jax_ignore">ppp</code> object and produce a KDE map. In some ways it gives the analyst more flexibility than <code class="code-inline tex2jax_ignore">density.ppp()</code>. It allows to modulate the resolution of the grid, two different methods to control for edge effects, the type of estimate produced (intensity or density, that integrates to 1), etc. This package also introduces various methods for estimating the bandwidth different to those existing in <code class="code-inline tex2jax_ignore">spatstat</code>. Critically, it introduces a function that allows for spatio-temporal kernel density estimation: <code class="code-inline tex2jax_ignore">spattemp.density()</code>. For more details, see the help files for <code class="code-inline tex2jax_ignore">sparr</code>, and the tutorial by <a href="references.html#Davies_2017" class="xref" data-knowl="./knowl/xref/Davies_2017.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 162">[162]</a>.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-ch07-kde-other-packages-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 7.5.7: Other packages for KDE"><a href="#subsec-ch07-kde-other-packages" title="Copy heading and permalink for Subsection 7.5.7: Other packages for KDE" aria-label="Copy heading and permalink for Subsection 7.5.7: Other packages for KDE">🔗</a></div></section><div class="autopermalink" data-description="Section 7.5: Mapping intensity estimates with spatstat"><a href="#sec-ch07-kde" title="Copy heading and permalink for Section 7.5: Mapping intensity estimates with spatstat" aria-label="Copy heading and permalink for Section 7.5: Mapping intensity estimates with spatstat">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-ch07-intensity.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-ch07-summary.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>

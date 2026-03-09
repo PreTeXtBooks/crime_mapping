@@ -102,7 +102,7 @@ library(geodaData)
       dataset was produced as part of the National Consortium on Violence Research (NCOVR)
       agenda, a National Science Foundation initiative that was led by Al Blumstein. A
       piece of work that resulted from this initiative was the paper led by Robert Baller
-      in <em>Criminology</em>, for which this data was compiled <xref ref="Baller_2001"/>.
+      in <em>Criminology</em>, for which this data was compiled <xref ref="Baller_etal_2001"/>.
       This paper, co-authored by Luc Anselin who is one of the key figures in the field of
       spatial econometrics, runs and describes spatial regression models of the kind we
       cover in this chapter with this dataset. It would be helpful, thus, to read that
@@ -360,7 +360,7 @@ summary(fit1_90)
       numerical input. The coefficient in these models is the expected difference in the
       response variable, comparing units that differ by one standard deviation in the
       predictor while adjusting for other predictors in the model. Instead,
-      <xref ref="Gelman_2008"/> has proposed dividing each numeric variables <em>by two
+      <xref ref="Gelman_2008a"/> has proposed dividing each numeric variables <em>by two
       times its standard deviation</em>, so that the generic comparison is with inputs
       equal to plus/minus one standard deviation. As Gelman explains, the resulting
       coefficients are then comparable to untransformed binary predictors. The
@@ -725,7 +725,7 @@ tm_shape(ncovr) +
       <c>sf</c> object into a <c>sp</c> class object and then create the spatial weight
       matrix. We cannot examine spatial dependence without making assumptions about the
       structure of the spatial relations among the units in our study. For this
-      illustration we are going to follow <xref ref="Baller_2001"/> and use 10 nearest
+      illustration we are going to follow <xref ref="Baller_etal_2001"/> and use 10 nearest
       neighbours to define the matrix to codify these spatial relations. If the code below
       and what it does is not clear to you, revise the notes from Chapter 9, when we first
       introduced it.
@@ -837,7 +837,7 @@ lm.morantest(fit3_90, rwm, alternative="two.sided")
         the clustering of homicide rates not explained by <term>measured independent
         variables</term> can be accounted for with reference to the clustering of error
         terms. In this sense, <term>it captures the spatial influence of unmeasured
-        independent variables</term>" <xref ref="Baller_2001"/>. As
+        independent variables</term>" <xref ref="Baller_etal_2001"/>. As
         <xref ref="Kopczewska_2021"/> suggests, this spatial effect allows us to model
         "invisible or hardly measurable supra-regional characteristics, occurring more
         broadly than regional boundaries (e.g., cultural variables, soil fertility, weather,
@@ -877,7 +877,7 @@ lm.morantest(fit3_90, rwm, alternative="two.sided")
       </p>
 
       <p>
-        As noted by <xref ref="Baller_2001"/>:
+        As noted by <xref ref="Baller_etal_2001"/>:
       </p>
 
       <blockquote>

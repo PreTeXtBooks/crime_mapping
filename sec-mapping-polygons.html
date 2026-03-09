@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Mapping crime data as polygons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math"
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Crime Mapping and Spatial Data Analysis using R">
+<meta property="book:author" content="Juanjo Medina">
+<meta property="book:author" content="Reka Solymosi">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="crime-mapping-spatial-data-analysis" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="crime-mapping-spatial-data-analysis.html"><span class="title">Crime Mapping and Spatial Data Analysis using R</span></a></h1>
+<p class="byline">Juanjo Medina, Reka Solymosi</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="sec-mapping-points.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="ch-01.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="sec-summary.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface: how to use this book</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch-01.html" class="internal"><span class="codenumber">1</span> <span class="title">Producing Your First Crime Map</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-geospatial-perspective.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Geospatial Perspective: Key Terms and Ideas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-place" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Place</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-attributes" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Attributes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-spatial-objects" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Spatial Objects</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-geospatial-perspective.html#subsec-networks" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Networks</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-maps-types.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Maps and Their Types</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-map-projections.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Map projections and geographic coordinate systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-key-terms-summary.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Key terms summary</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-getting-started.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Getting started with crime data</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-dataframes-to-spatial.html" class="internal"><span class="codenumber">1.6</span> <span class="title">From dataframes to spatial objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-point" class="internal"><span class="codenumber">1.6.1</span> <span class="title">The point</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-line" class="internal"><span class="codenumber">1.6.2</span> <span class="title">The line</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-the-polygon" class="internal"><span class="codenumber">1.6.3</span> <span class="title">The polygon</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-dataframes-to-spatial.html#subsec-choosing-unit" class="internal"><span class="codenumber">1.6.4</span> <span class="title">Choosing the ideal unit of analysis</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-simple-features.html" class="internal"><span class="codenumber">1.7</span> <span class="title">The simple features framework</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-plotting-ggplot2.html" class="internal"><span class="codenumber">1.8</span> <span class="title">Plotting data with ggplot2</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-mapping-points.html" class="internal"><span class="codenumber">1.9</span> <span class="title">Mapping crime data as points</span></a></div></li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-mapping-polygons.html" class="internal"><span class="codenumber">1.10</span> <span class="title">Mapping crime data as polygons</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-finding-boundary-data" class="internal"><span class="codenumber">1.10.1</span> <span class="title">Finding boundary data</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-reading-shapefiles" class="internal"><span class="codenumber">1.10.2</span> <span class="title">Reading shapefiles into R</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-data-wrangling" class="internal"><span class="codenumber">1.10.3</span> <span class="title">Data wrangling with dplyr</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-join-data" class="internal"><span class="codenumber">1.10.4</span> <span class="title">Join data to sf object</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-mapping-polygons.html#subsec-putting-polygon-on-map" class="internal"><span class="codenumber">1.10.5</span> <span class="title">Putting polygon data on the map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-summary.html" class="internal"><span class="codenumber">1.11</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-02.html" class="internal"><span class="codenumber">2</span> <span class="title">Basic Geospatial Operations in R</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-alcohol-crime.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Exploring the relationship between alcohol outlets and crime</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-acquiring-data.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Acquiring relevant data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-reading-crime-data" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Reading in crime data</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-geojson" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Meet a new format: geoJSON</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-acquiring-data.html#subsec-osm-poi" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Open Street Map and points of interest</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-attribute-operations.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Attribute operations</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-spatial-operations.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Spatial operations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-reprojecting-coordinates" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Reprojecting coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-subsetting-points" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Subsetting points</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-building-buffers" class="internal"><span class="codenumber">2.4.3</span> <span class="title">Building buffers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-counting-points-polygon" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Counting points within a polygon</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-distances-nearest-point" class="internal"><span class="codenumber">2.4.5</span> <span class="title">Distances: Finding the nearest point</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-spatial-operations.html#subsec-measuring-distances" class="internal"><span class="codenumber">2.4.6</span> <span class="title">Measuring distances</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-leaflet.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Plotting interactive maps with leaflet</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-geocoding.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Geocoding</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch02-measuring-distance.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Measuring distance more thoroughly</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-police-stations-madrid" class="internal"><span class="codenumber">2.7.1</span> <span class="title">How far are police stations in Madrid?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-distance-geographical-space" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Distance in geographical space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch02-measuring-distance.html#subsec-practical-distance-madrid" class="internal"><span class="codenumber">2.7.3</span> <span class="title">A practical example to evaluate distance</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch02-summary.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-03.html" class="internal"><span class="codenumber">3</span> <span class="title">Mapping Rates and Counts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Thematic maps: key terms and ideas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-choropleth-maps" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Choropleth maps</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-choropleth-use" class="internal"><span class="codenumber">3.1.2</span> <span class="title">What do we use choropleth maps for?</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsubsec-crime-rates" class="internal"><span class="codenumber">3.1.2.1</span> <span class="title">Crime rates</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsubsec-prevalence-incidence" class="internal"><span class="codenumber">3.1.2.2</span> <span class="title">Prevalence vs. incidence</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-thematic-maps-terms.html#subsec-proportional-symbol-maps" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Proportional and graduate symbol maps: mapping crime counts</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch03-proportional-maps.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Creating proportional symbol maps</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch03-mapping-rates.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Mapping rates rather than counts</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-mapping-rates.html#subsec-generating-rates" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Generating the rates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch03-mapping-rates.html#subsec-choropleth-tmap" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Creating a choropleth map with tmap</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-classification.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Classification systems for thematic maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-interactive.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Interactive mapping with tmap</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-smoothing.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Smoothing rates: adjusting for small sample noise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch3-summary.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-04.html" class="internal"><span class="codenumber">4</span> <span class="title">Variations of Thematic Mapping</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-binning.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Binning points</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-process" class="internal"><span class="codenumber">4.1.1</span> <span class="title">The binning process</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-techniques" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Different binning techniques</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-choropleth-binning" class="internal"><span class="codenumber">4.1.2.1</span> <span class="title">Choropleth maps</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-rectangular-binning" class="internal"><span class="codenumber">4.1.2.2</span> <span class="title">Rectangular binning</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsubsec-hexagonal-binning" class="internal"><span class="codenumber">4.1.2.3</span> <span class="title">Hexagonal binning</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-example" class="internal"><span class="codenumber">4.1.3</span> <span class="title">A practical binning example</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-binning.html#subsec-binning-benefits" class="internal"><span class="codenumber">4.1.4</span> <span class="title">Benefits of binning</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-cartograms.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Transforming polygons: cartograms</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-cartograms.html#subsec-dorling-cartogram" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Dorling cartogram</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-bivariate.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Bivariate maps</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step1" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Step 1: Bin our variables of interest</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step2" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Step 2: New variable</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step3" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Step 3: Create colour scheme</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step4" class="internal"><span class="codenumber">4.3.4</span> <span class="title">Step 4: Join colour scheme</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step5" class="internal"><span class="codenumber">4.3.5</span> <span class="title">Step 5: Create legend</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-bivariate.html#subsec-bivariate-step6" class="internal"><span class="codenumber">4.3.6</span> <span class="title">Step 6: Map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch04-maup.html" class="internal"><span class="codenumber">4.4</span> <span class="title">A note of caution: MAUP</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-7" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Scale</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-8" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Zone</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-9" class="internal"><span class="codenumber">4.4.3</span> <span class="title">Why does MAUP matter?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch04-maup.html#sec-ch04-maup-10" class="internal"><span class="codenumber">4.4.4</span> <span class="title">What can we do?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch04-summary.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-05.html" class="internal"><span class="codenumber">5</span> <span class="title">Basics of Cartographic Design: Elements of a Map</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-data-representation.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Data representation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-thematic-maps" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Thematic maps</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-symbols" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Symbols</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-data-representation.html#subsec-ch05-rate-vs-count" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Rate vs. count</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch05-colour.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Colour</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-text.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Text</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-titles" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Titles and subtitles</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-legend" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Legend</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-annotation" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Annotation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-text.html#subsec-ch05-production-notes" class="internal"><span class="codenumber">5.3.4</span> <span class="title">Production notes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-composition.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Composition</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-composition.html#subsec-ch05-orientation" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Orientation indicators</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-composition.html#subsec-ch05-scale" class="internal"><span class="codenumber">5.4.2</span> <span class="title">Scale indicators</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch05-context.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Context</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-context.html#subsec-ch05-basemap" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Basemap</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch05-context.html#subsec-ch05-inset-maps" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Inset maps</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch05-summary.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-06.html" class="internal"><span class="codenumber">6</span> <span class="title">Time Matters</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-temporal-data.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Temporal data in crime analysis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-wrangling.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Temporal data wrangling</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-visualising.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Visualising time data</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-visualising.html#subsec-ch6-how-not-to-present" class="internal"><span class="codenumber">6.3.1</span> <span class="title">How (not) to present time</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-time-series.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Time series analysis</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-time-series.html#subsec-ch6-plotting-ts" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Plotting time series data</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Spatio-temporal data visualisation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-small-multiples" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Small multiples to show temporal variation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-spaghetti" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Spaghetti plots</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch6-spatiotemporal.html#subsec-ch6-animations" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Animations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch6-summary.html" class="internal"><span class="codenumber">6.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-07.html" class="internal"><span class="codenumber">7</span> <span class="title">Spatial Point Patterns of Crime Events</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-isarithmic.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Mapping crime intensity with isarithmic maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-nyc-burglaries.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Burglaries in NYC</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-spatstat.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Using the <code class="code-inline tex2jax_ignore">spatstat</code> package</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-intensity.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Homogeneous or spatially varying intensity?</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch07-kde.html" class="internal"><span class="codenumber">7.5</span> <span class="title">Mapping intensity estimates with <code class="code-inline tex2jax_ignore">spatstat</code></span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-basics" class="internal"><span class="codenumber">7.5.1</span> <span class="title">Basics of kernel density estimation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-bandwidth" class="internal"><span class="codenumber">7.5.2</span> <span class="title">Selecting the appropriate bandwidth for KDE</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-kernel" class="internal"><span class="codenumber">7.5.3</span> <span class="title">Selecting the smoothing kernel</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-weighted" class="internal"><span class="codenumber">7.5.4</span> <span class="title">Weighted kernel density estimates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-leaflet" class="internal"><span class="codenumber">7.5.5</span> <span class="title">Better KDE maps using <code class="code-inline tex2jax_ignore">leaflet</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-problems" class="internal"><span class="codenumber">7.5.6</span> <span class="title">Problems with KDE</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch07-kde.html#subsec-ch07-kde-other-packages" class="internal"><span class="codenumber">7.5.7</span> <span class="title">Other packages for KDE</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch07-summary.html" class="internal"><span class="codenumber">7.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-08.html" class="internal"><span class="codenumber">8</span> <span class="title">Crime Along Spatial Networks</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-intro.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-constructing.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Constructing and storing a spatial linear network</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch8-density.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Density estimation along networks</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch8-density.html#subsec-ch8-adding-context" class="internal"><span class="codenumber">8.3.1</span> <span class="title">Adding context</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Visualising crime distribution along networks</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html#subsec-ch8-hot-routes" class="internal"><span class="codenumber">8.4.1</span> <span class="title">Hot Routes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-prepare" class="internal"><span class="codenumber">8.4.1.1</span> <span class="title">Preparing the network layer</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-link" class="internal"><span class="codenumber">8.4.1.2</span> <span class="title">Link crime events to street segments</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-rate" class="internal"><span class="codenumber">8.4.1.3</span> <span class="title">Calculating a rate</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-hr-visualise" class="internal"><span class="codenumber">8.4.1.4</span> <span class="title">Visualise the results</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch8-visualising.html#subsec-ch8-street-profile" class="internal"><span class="codenumber">8.4.2</span> <span class="title">Street Profile Analysis</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-prepare" class="internal"><span class="codenumber">8.4.2.1</span> <span class="title">Prepare the network layer</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-link" class="internal"><span class="codenumber">8.4.2.2</span> <span class="title">Link events to street segments</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-rate" class="internal"><span class="codenumber">8.4.2.3</span> <span class="title">Calculate a rate</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch8-visualising.html#subsubsec-ch8-spa-visualise" class="internal"><span class="codenumber">8.4.2.4</span> <span class="title">Visualise the results</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-concentration.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Quantifying crime concentration at micro-places</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch8-summary.html" class="internal"><span class="codenumber">8.6</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-09.html" class="internal"><span class="codenumber">9</span> <span class="title">Spatial Dependence and Autocorrelation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch09-intro.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-pointpattern.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Exploring spatial dependence in point pattern data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-kfunction" class="internal"><span class="codenumber">9.2.1</span> <span class="title">The empirical K-function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-buenos-aires" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Homicide in Buenos Aires</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-kfunc-plot" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Estimating and plotting the K-function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-pointpattern.html#subsec-ch09-network-k" class="internal"><span class="codenumber">9.2.4</span> <span class="title">Network constrained K-function</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Exploring spatial autocorrelation in lattice data</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-manchester" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Burglary in Manchester</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-neighbours" class="internal"><span class="codenumber">9.3.2</span> <span class="title">What is a neighbour?</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-contiguity" class="internal"><span class="codenumber">9.3.2.1</span> <span class="title">Contiguity-based neighbours</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-distance-neighbours" class="internal"><span class="codenumber">9.3.2.2</span> <span class="title">Distance-based neighbours</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-contiguity-list" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Creating a list of neighbours based on contiguity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-weight-matrix" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Generating the weight matrix</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-distance-matrix" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Spatial weight matrix based on distance</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-critical-threshold" class="internal"><span class="codenumber">9.3.5.1</span> <span class="title">Defining neighbours based on a critical threshold of distance</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsubsec-ch09-inverse-distance" class="internal"><span class="codenumber">9.3.5.2</span> <span class="title">Using the inverse distance weights</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-lattice.html#subsec-ch09-knn-matrix" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Spatial weight matrix based on k-neighbours</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch09-matrix-choice.html" class="internal"><span class="codenumber">9.4</span> <span class="title">Choosing the correct matrix</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsec-ch09-moran" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Measuring global autocorrelation</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsubsec-ch09-moran-i" class="internal"><span class="codenumber">9.4.1.1</span> <span class="title">Moran’s I</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsubsec-ch09-geary-c" class="internal"><span class="codenumber">9.4.1.2</span> <span class="title">Geary’s C</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch09-matrix-choice.html#subsec-ch09-rgeoda" class="internal"><span class="codenumber">9.4.2</span> <span class="title">The <code class="code-inline tex2jax_ignore">rgeoda</code> and <code class="code-inline tex2jax_ignore">sfweight</code> packages</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch09-further-reading.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Further Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-10.html" class="internal"><span class="codenumber">10</span> <span class="title">Detecting Hot Spots and Repeats</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="ch-10-2.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Introduction</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="ch-10-2.html#subsec-ch10-clusters" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Clusters, hot spots of crime, and near repeat victimisation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="ch-10-2.html#subsec-ch10-burglaries-manc" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Burglaries in Manchester</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-raster-hotspots.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Using <code class="code-inline tex2jax_ignore">raster</code> micro-grid cells to spot hot spots</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-getis-ord.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Local Getis-Ord</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch10-local-moran.html" class="internal"><span class="codenumber">10.4</span> <span class="title">Local Moran’s I and Moran scatterplot</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-local-moran.html#subsec-ch10-computing-localmoran" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Computing the local Moran’s I</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-local-moran.html#subsec-ch10-lisa-map" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Creating a LISA map</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch10-scan-stats.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Scan statistics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-dcluster" class="internal"><span class="codenumber">10.5.1</span> <span class="title">The <code class="code-inline tex2jax_ignore">DCluster</code> package</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-gam" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Openshaw’s GAM</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch10-scan-stats.html#subsec-ch10-kulldorff" class="internal"><span class="codenumber">10.5.3</span> <span class="title">Kulldorff’s Scan Statistic</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-near-repeat.html" class="internal"><span class="codenumber">10.6</span> <span class="title">Exploring near repeat victimisation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch10-further-reading.html" class="internal"><span class="codenumber">10.7</span> <span class="title">Further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-11.html" class="internal"><span class="codenumber">11</span> <span class="title">Spatial Regression Models</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-challenges.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Challenges for regression with spatial data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-nonspatial-regression.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Fitting a non-spatial regression model with R</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-residuals.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Looking at the residuals and testing for spatial autocorrelation in regression</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch11-choosing.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Choosing a spatial regression model</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch11-choosing.html#subsec-ch11-basic-models" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Basic spatial models</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch11-choosing.html#subsec-ch11-lagrange" class="internal"><span class="codenumber">11.4.2</span> <span class="title">Lagrange multipliers: the bottom-up approach to select a model</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-sem.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Fitting and interpreting a spatial error model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-sar.html" class="internal"><span class="codenumber">11.6</span> <span class="title">Fitting and interpreting a spatially lagged model</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-beyond.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Beyond the SAR and SEM models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch11-summary.html" class="internal"><span class="codenumber">11.8</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-12.html" class="internal"><span class="codenumber">12</span> <span class="title">Spatial Heterogeneity and Regression</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Spatial regimes</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-constrained" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Fitting the constrained and the unconstrained models</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-chow" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Running the Chow test</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-spatial-regimes.html#subsec-ch12-regimes-dependence" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Spatial dependence with spatial heterogeneity</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch12-gwr.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Geographically Weighted Regression</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-bandwidth" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Calculate kernel bandwidth</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-model" class="internal"><span class="codenumber">12.2.2</span> <span class="title">Building the geographically weighted model</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch12-gwr.html#subsec-ch12-gwr-using" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Using GWR</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch12-summary.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-13.html" class="internal"><span class="codenumber">13</span> <span class="title">Appendix: A quick intro to R and RStudio</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Exploring RStudio</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsec-ch13-opening-script-pane" class="internal"><span class="codenumber">13.1.1</span> <span class="title">Opening up the script pane</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsec-ch13-four-panes" class="internal"><span class="codenumber">13.1.2</span> <span class="title">The four panes of RStudio</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-exploring-rstudio.html#subsubsec-ch13-interacting-panes" class="internal"><span class="codenumber">13.1.2.1</span> <span class="title">Interacting with the four panes</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-customising.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Customising the RStudio look</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-r-grammar.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Elements of R grammar</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsec-ch13-functions" class="internal"><span class="codenumber">13.3.1</span> <span class="title">Functions</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsec-ch13-objects" class="internal"><span class="codenumber">13.3.2</span> <span class="title">Objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-creating-object" class="internal"><span class="codenumber">13.3.2.1</span> <span class="title">Creating an object</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-types-of-objects" class="internal"><span class="codenumber">13.3.2.2</span> <span class="title">Types of objects</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="sec-ch13-r-grammar.html#subsubsec-ch13-doing-things-to-objects" class="internal"><span class="codenumber">13.3.2.3</span> <span class="title">Doing things to objects</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-packages.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Packages</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-exploring-data.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Exploring data with R</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-exploring-data.html#subsec-ch13-playing-with-data" class="internal"><span class="codenumber">13.5.1</span> <span class="title">Playing around with data</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-ch13-r-projects.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Getting organised: R Projects</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="sec-ch13-r-projects.html#subsec-ch13-saving-work" class="internal"><span class="codenumber">13.6.1</span> <span class="title">Saving your work and projects</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ch13-summary.html" class="internal"><span class="codenumber">13.7</span> <span class="title">Summary and further reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-a.html" class="internal"><span class="codenumber">A</span> <span class="title">A Quick Intro to R and RStudio</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-b.html" class="internal"><span class="codenumber">B</span> <span class="title">Regression Analysis: A Refresher</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="app-c.html" class="internal"><span class="codenumber">C</span> <span class="title">Sourcing Geographical Data for Crime Analysis</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-6.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-mapping-polygons"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Mapping crime data as polygons</span>
+</h2>
+<div class="para" id="sec-mapping-polygons-2">What about our other two columns, location, and LSOAs? Well, to put these on the map, we need a geometry representation of them. We need boundary data representing the areas we want to map. We will learn in this section where you may find, download and turn them into sf objects, and how to link our dataframe as attribute data in order to be able to map them.<div class="autopermalink" data-description="Paragraph"><a href="#sec-mapping-polygons-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<section class="subsection" id="subsec-finding-boundary-data"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finding boundary data</span>
+</h3>
+<div class="para" id="subsec-finding-boundary-data-2">In this section you are going to learn how you take one of the most popular data formats for spatial objects, the <dfn class="terminology">shapefile</dfn>, and read it into R. The shapefile was introduced by ESRI, the developers and vendors of ArcGIS. And although many other formats have developed since and ESRI no longer holds the same market position it once occupied (though they’re still the player to beat), shapefiles continue to be one of the most popular formats you will encounter in your work.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-finding-boundary-data-3">We are going to obtain shapefiles for British census geographies. For this activity, we will focus on the polygon (LSOA) rather than the lines of the streets, but the logic is more or less the same.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-finding-boundary-data-4">Census boundary data are a digitised representation of the underlying geography of the census. Census Geography is often used in research and spatial analysis because it is divided into units based on population counts, created to form comparable units, rather than other administrative boundaries such as wards or police force areas. However, depending on your research question and the context for your analysis, you might be using different units.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-finding-boundary-data-5">The hierarchy of the census geographies in the UK goes from Country to Local Authority to Middle Layer Super Output Area (MSOA) to Lower Layer Super Output Area (LSOA) to Output Area (in other countries you have similar levels in the census hierarchies):<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-census-hierarchy"><div class="code-box"><pre class="program clipboardable"><code class="language-r">country &lt;- rnaturalearth::ne_countries(scale = 110, geounit = "united kingdom", returnclass = "sf")
+la &lt;- rnaturalearth::ne_states(geounit = "england", returnclass = "sf") %&gt;% filter(region == "North West")
+lsoas &lt;- st_read("data/BoundaryData/england_lsoa_2011.shp") %&gt;% st_transform(st_crs(la))
+
+p1 &lt;- ggplot() +
+  geom_sf(data = lsoas, aes(col = "LSOAs")) +
+  geom_sf(data = country, aes(col = "country")) +
+  geom_sf(data = la, aes(col = "local authority")) +
+  theme_void() +
+  scale_colour_manual(values = c("country" = "#1b9e77",
+                                 "local authority" = "#d95f02",
+                                 "LSOAs" = "#7570b3"),
+                      name = "Boundary: ")
+
+p2 &lt;- ggplot() +
+   geom_sf(data = la , aes(col = "local authority")) +
+  geom_sf(data = lsoas, aes(col = "lsoas")) +  theme_void() +
+  scale_colour_manual(values = c("country" = "#1b9e77",
+                                 "local authority" = "#d95f02",
+                                 "LSOAs" = "#7570b3"),
+                      name = "Boundary: ")
+
+p3 &lt;- ggplot() +
+   # geom_sf(data = la %&gt;% filter(name == "Manchester"), aes(col = "local authority")) +
+  geom_sf(data = lsoas, aes(col = "LSOAs")) +  theme_void() +
+  scale_colour_manual(values = c("country" = "#1b9e77",
+                                 "local authority" = "#d95f02",
+                                 "LSOAs" = "#7570b3"),
+                      name = "Boundary: ")
+
+ggpubr::ggarrange(p1, p2, p3, nrow = 1, common.legend = TRUE)
+</code></pre></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch01/census-hierarchy.png" class="contained" alt="Hierarchy of Census Geographies in the UK."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Hierarchy of Census Geographies in the UK<div class="autopermalink" data-description="Figure 1.10.1"><a href="#fig-census-hierarchy" title="Copy heading and permalink for Figure 1.10.1" aria-label="Copy heading and permalink for Figure 1.10.1">🔗</a></div></figcaption></figure><div class="para" id="subsec-finding-boundary-data-7">Here we will get some boundaries for Manchester. We know that our crime data has a column for LSOA, so we can proceed with this as our appropriate unit of analysis.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-finding-boundary-data-8">To get some boundary data, you will need to be able to source <dfn class="terminology">geographic data</dfn> for your study area. In this case, since we are working with data in the UK, we can use the UK Data Service website to find this. There is a simple <a class="external" href="https://borders.ukdataservice.ac.uk/bds.html" target="_blank">Boundary Data Selector</a> tool which you could use. Other countries also have such repositories, and in some cases where they do not, other resources, such as Open Street Map, or natural earth (and associated R package <code class="code-inline tex2jax_ignore">rnaturalearth</code>) can be handy resources. In <em class="emphasis">Appendix C: Sourcing geographical data for crime analysis</em>, we elaborate more on these, with some examples.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-finding-boundary-data-9">For now, you can turn to the data folder which you have downloaded from this book’s repository. (If unsure, refer to the <em class="emphasis">Preface</em>). Specifically, we’re looking for a folder called <code class="code-inline tex2jax_ignore">BoundaryData</code> within the "data" folder. As mentioned, we will be working with a <dfn class="terminology">shapefile</dfn>, but in the case of this format we’re actually working with <em class="emphasis">many files</em>. When we download a shapefile, we usually get many files, all bundled inside a folder which contains them all. It is important for these files to be kept together, in the same folder. If you have a look inside this BoundaryData folder, you will notice that there are 4 files with the same name "england_lsoa_2011", but with different extensions.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="warning remark-like" id="subsec-finding-boundary-data-10"><h4 class="heading">
+<span class="type">Warning</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-finding-boundary-data-10-1">It is important that you keep all these files in the same location as each other! They all contain different bits of information about your shapefile (and they are all needed). Below is a list of the files you might see in this collection:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-10-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Warning 1.10.2"><a href="#subsec-finding-boundary-data-10" title="Copy heading and permalink for Warning 1.10.2" aria-label="Copy heading and permalink for Warning 1.10.2">🔗</a></div></article><ul class="disc" id="subsec-finding-boundary-data-11">
+<li id="subsec-finding-boundary-data-11-1">
+<div class="para" id="subsec-finding-boundary-data-11-1-1">.shp — shape format; the feature geometry itself, this is what you see on the map<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-11-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-finding-boundary-data-11-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-finding-boundary-data-11-2">
+<div class="para" id="subsec-finding-boundary-data-11-2-1">.shx — shape index format; a positional index of the feature geometry to allow seeking forwards and backwards quickly<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-11-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-finding-boundary-data-11-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-finding-boundary-data-11-3">
+<div class="para" id="subsec-finding-boundary-data-11-3-1">.dbf — attribute format; columnar attributes for each shape, in dBase IV format.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-11-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-finding-boundary-data-11-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-finding-boundary-data-11-4">
+<div class="para" id="subsec-finding-boundary-data-11-4-1">.prj — projection format; the coordinate system and projection information, a plain text file describing the projection using well-known text format<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-11-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#subsec-finding-boundary-data-11-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para" id="subsec-finding-boundary-data-12">Sometimes there might be more files associated with your shapefile as well, but we will not cover them here. So unlike when you work with spreadsheets and data in tabular form, which typically is just all included in one file, when you work with shapefiles, you have to live with the required information living in separate files that need to be stored together. So, being tidy and organised is even more important when you carry out projects that involve spatial data.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-finding-boundary-data-12" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 1.10.1: Finding boundary data"><a href="#subsec-finding-boundary-data" title="Copy heading and permalink for Subsection 1.10.1: Finding boundary data" aria-label="Copy heading and permalink for Subsection 1.10.1: Finding boundary data">🔗</a></div></section><section class="subsection" id="subsec-reading-shapefiles"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reading shapefiles into R</span>
+</h3>
+<div class="para" id="subsec-reading-shapefiles-2">To read in your data into R, you will need to know the path to where you have saved it. Ideally this will be in your data folder in your project directory.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-reading-shapefiles-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-reading-shapefiles-3">Let’s create an object and assign it our shapefile’s name:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-reading-shapefiles-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r"># Remember to use the appropriate pathfile in your case
+shp_name &lt;- "data/BoundaryData/england_lsoa_2011.shp"
+</code></pre></div>
+<div class="para" id="subsec-reading-shapefiles-5">Make sure that this is saved in your working directory, and you have set your working directory. Now use the <code class="code-inline tex2jax_ignore">st_read()</code> function from the <code class="code-inline tex2jax_ignore">sf</code> package to read in the shapefile (the one with the <code class="code-inline tex2jax_ignore">.shp</code> extension):<div class="autopermalink" data-description="Paragraph"><a href="#subsec-reading-shapefiles-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">manchester_lsoa &lt;- st_read(shp_name)
+</code></pre></div>
+<div class="para" id="subsec-reading-shapefiles-7">Notice that you don’t have to read in any of the other files (e.g., <code class="code-inline tex2jax_ignore">.proj</code> or <code class="code-inline tex2jax_ignore">.dbf</code>); it is enough that they are there silently in the folder from which you read in the <code class="code-inline tex2jax_ignore">.shp</code> extension file. Now you have your spatial data file. Notice how running the function sends to the console some metadata about your data. You have a polygon, with 282 rows, and the CRS is the projected British National Grid. You can have a look at what sort of data it contains, the same way you would view a dataframe, with the <code class="code-inline tex2jax_ignore">View()</code> function:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-reading-shapefiles-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">View(manchester_lsoa)
+</code></pre></div>
+<div class="para" id="subsec-reading-shapefiles-9">And of course, since it’s spatial data, you can map it using the <code class="code-inline tex2jax_ignore">geom_sf()</code> function, as we did with our points:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-reading-shapefiles-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-manchester-lsoas"><div class="code-box"><pre class="program clipboardable"><code class="language-r">ggplot() +
+  geom_sf(data = manchester_lsoa)
+</code></pre></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch01/manchester-lsoas.png" class="contained" alt="A plot of all the boundaries of Manchester’s Lower Layer Super Output Areas, placed on a grey grid. The horizontal axis shows longitude and the vertical axis shows latitude."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Plot of Manchester’s LSOAs<div class="autopermalink" data-description="Figure 1.10.3"><a href="#fig-manchester-lsoas" title="Copy heading and permalink for Figure 1.10.3" aria-label="Copy heading and permalink for Figure 1.10.3">🔗</a></div></figcaption></figure><div class="para" id="subsec-reading-shapefiles-11">Great, we now have an outline of the LSOAs in Manchester. Notice how the shape is different to that of the points in our crime data, since here we only obtained the data for the city of Manchester (Manchester Local Authority) rather than for the whole metropolitan area, <em class="emphasis">Greater</em> Manchester which includes all the other local authorities aside from Manchester city as well.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-reading-shapefiles-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 1.10.2: Reading shapefiles into R"><a href="#subsec-reading-shapefiles" title="Copy heading and permalink for Subsection 1.10.2: Reading shapefiles into R" aria-label="Copy heading and permalink for Subsection 1.10.2: Reading shapefiles into R">🔗</a></div></section><section class="subsection" id="subsec-data-wrangling"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Data wrangling with dplyr</span>
+</h3>
+<div class="para" id="subsec-data-wrangling-2">In order to map crimes to LSOAs, we might want to take a step back and think about the unit of analysis at which our data are collected. In our original dataframe of crimes, we saw that each crime incident is one row. So the unit of analysis is each crime. Since we were looking to map each crime at the location it happened, we used the latitude and longitude supplied for each incident, providing a geometry for mapping each crime incident. However, when we are looking to map our data to LSOA level, we need to match the crime data to the geometry we wish to display.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-data-wrangling-3">Have a look at the "manchester_lsoa" object we mapped above. How many rows (observations) does it have? You can check this by looking in the Environment pane, or by using the <code class="code-inline tex2jax_ignore">nrow()</code> function.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">nrow(manchester_lsoa)
+</code></pre></div>
+<div class="para" id="subsec-data-wrangling-5">You can see this has <em class="emphasis">(number of Manchester LSOAs)</em> rows. This means we have geometries for <em class="emphasis">(number of Manchester LSOAs)</em> LSOAs. On the other hand, our crimes dataframe has <em class="emphasis">(number of crimes)</em> rows, one for each crime (observation). So how can we match these up? The answer lies in thinking about what it is that our map using LSOAs as our unit of analysis will be able to tell us. Think of other maps of areas. What are they usually telling you? Usually we expect to see crimes per neighbourhood, something like this. So our unit of analysis needs to be LSOA, and for each one we need to know how many crimes occurred in that area.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-data-wrangling-6">To achieve this, we will wrangle our data using functions from the <code class="code-inline tex2jax_ignore">dplyr</code> package. This is a package for conducting all sorts of operations with dataframes. We are not going to cover the full functionality of <code class="code-inline tex2jax_ignore">dplyr</code> (which you can consult in the <code class="code-inline tex2jax_ignore">dplyr</code> vignette <a href="references.html#Wickham_2021" class="xref" data-knowl="./knowl/xref/Wickham_2021.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry 240">[240]</a>), but we are going to cover three different very useful elements of dplyr: the <code class="code-inline tex2jax_ignore">select</code> function, the <code class="code-inline tex2jax_ignore">group_by</code> function, and the piping operator.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-data-wrangling-7">The <code class="code-inline tex2jax_ignore">select()</code> function provides you with a simple way of subsetting columns from a dataframe. So, say, we just want to use one variable, "lsoa_code", from the "crimes" dataframe and store it in a new object we could write the following code. This variable tells us the LSOA in which the crime took place and it is essential if we want to group our crimes by LSOA (by using this standard method of merging information from datasets):<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">new_object &lt;- select(crimes, lsoa_code)
+</code></pre></div>
+<div class="para" id="subsec-data-wrangling-9">We can also use the <code class="code-inline tex2jax_ignore">group_by()</code> function for performing group operations. Essentially this function asks R to group cases within categories and then do something with those grouped cases. So, say, we want to count the number of cases within each LSOA, we could use the following code:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-9" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">#First we group the cases by LSOA code and
+# store this organised data into a new object
+grouped_crimes &lt;- group_by(new_object, lsoa_code)
+
+#Then we count the number of cases within each category
+# using the summarise function to print the results
+summarise(grouped_crimes, count = n())
+
+#We create a new dataframe with these results
+crime_per_LSOA &lt;- summarise(grouped_crimes, count = n())
+</code></pre></div>
+<div class="para" id="subsec-data-wrangling-11">As you can see, we can do what we wanted, create a new dataframe with the required info. But if we do this, we are creating many objects that we don’t need, one at each step. Instead there is a more efficient way of doing this, without so many intermediate steps clogging up our environment with unnecessary objects. That’s where the piping operator comes handy. The piping operator is written like <code class="code-inline tex2jax_ignore">%&gt;%</code> and it can be read as "and then". Look at the code below:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">#First we say create a new object called crime_per_lsoa,
+# and then select only the LSOA.code column to exist in this object,
+# and then group this object by the LSOA.code,
+# and then count the number of cases within each category.
+# This is what I want in the new object.
+
+crimes_per_lsoa &lt;- crimes %&gt;%
+  group_by(lsoa_code) %&gt;%
+  summarise(count=n())
+</code></pre></div>
+<div class="para" id="subsec-data-wrangling-13">Essentially we obtain the same results but with more streamlined and elegant code, and not needing additional objects in our environment. As of version 4.1.0 of R, there is also a new piping operator denoted by the <code class="code-inline tex2jax_ignore">|&gt;</code> symbol that can also be used and that does not depend on the <code class="code-inline tex2jax_ignore">magrittr</code> package (as <code class="code-inline tex2jax_ignore">%&gt;%</code> does).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-data-wrangling-14">And now we have a new object, "crimes_per_lsoa". If we have a look at this one, we can now see that each row represents one LSOA, and next to it we have a variable for the number of crimes from each area. We created a new dataframe from a frequency table, and as each row of the crimes data was one crime, the frequency table tells us the number of crimes which occurred in each LSOA.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-14" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-data-wrangling-15">Those of you playing close attention might note that there are still more observations in this dataframe (<em class="emphasis">(number of LSOAs with crimes)</em>) than in the "manchester_lsoas" one (<em class="emphasis">(number of Manchester LSOAs)</em>). Again, this is because "crimes_per_lsoa" also includes data from census areas in municipalities of the metropolitan area of <em class="emphasis">Greater</em> of Manchester other than Manchester city local authority.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-data-wrangling-15" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 1.10.3: Data wrangling with dplyr"><a href="#subsec-data-wrangling" title="Copy heading and permalink for Subsection 1.10.3: Data wrangling with dplyr" aria-label="Copy heading and permalink for Subsection 1.10.3: Data wrangling with dplyr">🔗</a></div></section><section class="subsection" id="subsec-join-data"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Join data to sf object</span>
+</h3>
+<div class="para" id="subsec-join-data-2">Our next task is to link our crimes data to our <code class="code-inline tex2jax_ignore">sf</code> spatial object to help us map this. Notice anything similar between the data from the shapefile and the frequency table data we just created? Do they share a column? Indeed, you might notice that the "lsoa_code" field in the crimes data matches the values in the "code" field in the spatial data. In theory we could join these two data tables.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-join-data-3">So how do we do this? Well what you can do is to link one data set with another. Data linking is used to bring together information from different sources in order to create a new, richer dataset. This involves identifying and combining information from corresponding records on each of the different source datasets. The records in the resulting linked dataset contain some data from each of the source datasets. Most linking techniques combine records from different datasets if they refer to the same entity (an entity may be a person, organisation, household or even a geographic region.)<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-join-data-4">You can merge (combine) rows from one table into another just by pasting them in the first empty cells below the target table — the table grows in size to include the new rows. And if the rows in both tables match up, you can merge columns from one table with another by pasting them in the first empty cells to the right of the table — again, the table grows, this time to include the new columns.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-join-data-5">Merging rows is pretty straightforward, but merging columns can be tricky if the rows of one table don’t always line up with the rows in the other table. By using <code class="code-inline tex2jax_ignore">left_join()</code> from the <code class="code-inline tex2jax_ignore">dplyr</code> package, you can avoid some of the alignment problems. The <code class="code-inline tex2jax_ignore">left_join()</code> function will return all rows from <span class="process-math">\(x\text{,}\)</span> and all columns from <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> Rows in <span class="process-math">\(x\)</span> with no match in <span class="process-math">\(y\)</span> will have NA values in the new columns. If there are multiple matches between <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> all combinations of the matches are returned.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-join-data-6">So we’ve already identified that both our crimes data, and the spatial data contain a column with matching values, the codes for the LSOA that each row represents. <dfn class="terminology">You need a unique identifier to be present</dfn> for each row in all the data sets that you wish to join. This is how R knows what values belong to what row. What you are doing is matching each value from one table to the next, using this unique identified column, that exists in both tables. For example, let’s say we have two data sets from some people in Hawkins, Indiana. In one data set we collected information about their age. In another one, we collected information about their hair colour. If we collected some information that is unique to each observation, and this is the <em class="emphasis">same</em> in both sets of data, for example their names, then we can link them up, based on this information. Something like this:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-two-dataframes"><div class="code-box"><pre class="program clipboardable"><code class="language-r">library(grid)
+library(gridExtra)
+
+t1 &lt;- data.frame(name = c("Barb", "Steve", "Mike"),
+                  age = c(16, 16, 13))
+
+t2 &lt;- data.frame(name = c("Barb", "Steve", "Mike"),
+                  hair_colour = c("Red", "Brown", "Black"))
+
+grid.arrange(tableGrob(t1), tableGrob(t2), nrow = 1)
+</code></pre></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch01/two-dataframes.png" class="contained" alt='Two tables side by side. The first has columns for name and age, and lists "Barb" as sixteen, "Steve" as sixteen, and "Mike" as thirteen. The second has columns for name and hair colour, and lists "Barb" as "Red", "Steve" as "Brown", and "Mike" as "Black".'></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Two dataframes with common unique identifier<div class="autopermalink" data-description="Figure 1.10.4"><a href="#fig-two-dataframes" title="Copy heading and permalink for Figure 1.10.4" aria-label="Copy heading and permalink for Figure 1.10.4">🔗</a></div></figcaption></figure><div class="para" id="subsec-join-data-8">And by doing so, we produce a final table that contains all values, lined up <em class="emphasis">correctly</em> for each individual observation, like this:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-joined-dataframe"><div class="code-box"><pre class="program clipboardable"><code class="language-r">t3 &lt;- left_join(t1, t2)
+
+grid.arrange(tableGrob(t3))
+</code></pre></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch01/joined-dataframe.png" class="contained" alt='One table with three columns: name, age, and hair colour. The first row contains "Barb", with age sixteen, and a hair colour of red. The second, "Steve", sixteen, and brown, while the third "Mike", thirteen, and black.'></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Joined dataframe<div class="autopermalink" data-description="Figure 1.10.5"><a href="#fig-joined-dataframe" title="Copy heading and permalink for Figure 1.10.5" aria-label="Copy heading and permalink for Figure 1.10.5">🔗</a></div></figcaption></figure><div class="para" id="subsec-join-data-10">This is all we are doing, when merging tables: joining the two data sets using a common column. Why are we using <em class="emphasis">left</em> join though? There is a whole family of join functions as part of dplyr which join datasets. There is also a <code class="code-inline tex2jax_ignore">right_join()</code>, and an <code class="code-inline tex2jax_ignore">inner_join()</code> and an <code class="code-inline tex2jax_ignore">outer_join()</code> and a <code class="code-inline tex2jax_ignore">full_join()</code>. But here we use <code class="code-inline tex2jax_ignore">left_join()</code>, because that way we keep all the rows in <span class="process-math">\(x\)</span> (the left-hand side dataframe), and join to it all the matched columns in <span class="process-math">\(y\)</span> (the right-hand side dataframe).<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-10" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="subsec-join-data-11">So let’s join the crimes data to the spatial data, using <code class="code-inline tex2jax_ignore">left_join()</code>. We have to tell the function what are the dataframes we want to join, as well as the names of the columns that contain the matching values in each one. This is "code" in the "manchester_lsoa" dataframe and "lsoa_code" in the "crimes_per_lsoa" dataframe. Like so:<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-11" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">manchester_lsoa &lt;- left_join(manchester_lsoa, crimes_per_lsoa,
+                             by = c("code"="lsoa_code"))
+</code></pre></div>
+<div class="para" id="subsec-join-data-13">Now if you have a look at the data again, you will see that the column of number of crimes (<code class="code-inline tex2jax_ignore">count</code>) has been added on. You may not want to have to go through this process all the time that you want to work with this data. One thing you could do is to save the "manchester_lsoa" object as a physical file in your machine. You can use the <code class="code-inline tex2jax_ignore">st_write()</code> function from the <code class="code-inline tex2jax_ignore">sf</code> package to do this. If we want to write into a shapefile format, we would do as shown below. Make sure you save this file, for we will come back to it in subsequent chapters.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-13" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="code-box"><pre class="program clipboardable"><code class="language-r">st_write(manchester_lsoa, "data/BoundaryData/manchester_crime_lsoa.shp")
+</code></pre></div>
+<article class="remark remark-like" id="subsec-join-data-15"><h4 class="heading">
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para" id="subsec-join-data-15-1">Note: if you get an error which says the layer already exists, this means there is already a file with this name in that location. You can add the parameter <code class="code-inline tex2jax_ignore">append = FALSE</code> to overwrite this file, or give it a slightly different name.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-join-data-15-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Remark 1.10.6"><a href="#subsec-join-data-15" title="Copy heading and permalink for Remark 1.10.6" aria-label="Copy heading and permalink for Remark 1.10.6">🔗</a></div></article><div class="autopermalink" data-description="Subsection 1.10.4: Join data to sf object"><a href="#subsec-join-data" title="Copy heading and permalink for Subsection 1.10.4: Join data to sf object" aria-label="Copy heading and permalink for Subsection 1.10.4: Join data to sf object">🔗</a></div></section><section class="subsection" id="subsec-putting-polygon-on-map"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Putting polygon data on the map</span>
+</h3>
+<div class="para" id="subsec-putting-polygon-on-map-2">Now that we have joined the crimes data to the geometry, you can use this to make our map. Remember our original empty map? Well now, since we have the column (variable) for number of crimes here, we can use that to shade the polygons based on how many crimes there are in each LSOA. We can do this by specifying the <code class="code-inline tex2jax_ignore">fill=</code> parameter of the <code class="code-inline tex2jax_ignore">geom_sf</code> function.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-putting-polygon-on-map-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-crimes-by-lsoa"><div class="code-box"><pre class="program clipboardable"><code class="language-r">ggplot() +
+geom_sf(data = manchester_lsoa, aes(fill = count))
+</code></pre></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch01/crimes-by-lsoa.png" class="contained" alt="A plot of all the boundaries of Manchester’s Lower Layer Super Output Areas. To the right, labeled ’count’, is a gradient legend. Each LSOA in the plot is shaded by a colour on this gradient corresponding to its number of crimes."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Number of crimes in Manchester by LSOA<div class="autopermalink" data-description="Figure 1.10.7"><a href="#fig-crimes-by-lsoa" title="Copy heading and permalink for Figure 1.10.7" aria-label="Copy heading and permalink for Figure 1.10.7">🔗</a></div></figcaption></figure><div class="para" id="subsec-putting-polygon-on-map-4">Just like we did with the ggplot bar charts we created earlier, we can adjust the opacity of our thematic map, with the <code class="code-inline tex2jax_ignore">alpha =</code> parameter, add a basemap, with the function <code class="code-inline tex2jax_ignore">annotation_map_tile()</code> and adjust the colour scheme, with the <code class="code-inline tex2jax_ignore">scale_fill_gradient2()</code> function.<div class="autopermalink" data-description="Paragraph"><a href="#subsec-putting-polygon-on-map-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-crimes-lsoa-adjusted"><div class="code-box"><pre class="program clipboardable"><code class="language-r">ggplot() +
+  annotation_map_tile() +  # add basemap
+geom_sf(data = manchester_lsoa,
+        aes(fill = count),
+        alpha = 0.7) + # alpha sets the opacity
+  #use scale_fill_gradient2() for a different palette
+  # and name the variable on the legend
+  scale_fill_gradient2(name ="Number of crimes")
+</code></pre></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/figure-ch01/crimes-lsoa-adjusted.png" class="contained" alt='The previous plot overlaid on a map of Manchester. The gradient has been adjusted, with lighter colours denoting lower number of crimes, and darker colours for more. The legend is labeled "Number of crimes".'></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10.8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Number of crimes by LSOA with adjusted parameters<div class="autopermalink" data-description="Figure 1.10.8"><a href="#fig-crimes-lsoa-adjusted" title="Copy heading and permalink for Figure 1.10.8" aria-label="Copy heading and permalink for Figure 1.10.8">🔗</a></div></figcaption></figure><div class="para" id="subsec-putting-polygon-on-map-6">In subsequent chapters we will play around with other packages in R that you can use to produce this kind of maps. Gradually we will discuss the kind of choices you can make in order to select the adequate type of representation for the type of spatial data and question you have, and the aesthethic choices that are adequate depending on the purposes and medium in which you will publish your map. But for now, we can rejoice: here is our very first crime map of the book!<div class="autopermalink" data-description="Paragraph"><a href="#subsec-putting-polygon-on-map-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 1.10.5: Putting polygon data on the map"><a href="#subsec-putting-polygon-on-map" title="Copy heading and permalink for Subsection 1.10.5: Putting polygon data on the map" aria-label="Copy heading and permalink for Subsection 1.10.5: Putting polygon data on the map">🔗</a></div></section><div class="autopermalink" data-description="Section 1.10: Mapping crime data as polygons"><a href="#sec-mapping-polygons" title="Copy heading and permalink for Section 1.10: Mapping crime data as polygons" aria-label="Copy heading and permalink for Section 1.10: Mapping crime data as polygons">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-mapping-points.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="sec-summary.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+</body>
+</html>
