@@ -77,6 +77,12 @@ qplot(x = HR90, data = ncovr)
       </code>
     </program>
 
+      <figure>
+        <caption>Histogram of the HR90 variable</caption>
+        <image source="appB-1.png">
+        </image>
+      </figure>
+
     <p>
       Once one has gone through the process of exploring the data in this way (or maybe
       using the <c>skimr</c> package; see <em>Appendix: A Quick Intro to R and
@@ -93,6 +99,11 @@ ggplot(ncovr, aes(x = RD90, y = HR90)) +
   geom_point(alpha=.2)
       </code>
     </program>
+      <figure>
+        <caption>Scatterplot showing relationship between resource deprivation (RD90) and homicide rate (HR90) in the 90s</caption>
+        <image source="appB-2.png">
+        </image>
+      </figure>
 
     <p>
       What do you think when looking at this scatterplot? Is there a relationship between
@@ -108,7 +119,7 @@ ggplot(ncovr, aes(x = RD90, y = HR90)) +
       Now, imagine that we play a game. Imagine I have all the respondents waiting in a
       room, and I randomly call one of them to the stage. You're sitting in the audience,
       and you have to guess the level of homicide (<em>HR90</em>) for that respondent.
-      Imagine that I pay <m>\pounds 150</m> to the student that gets the closest to the
+      Imagine that I pay <m>£150</m> to the student that gets the closest to the
       right value. What would you guess if you only have one guess and you knew (as we
       do) how homicide in the 90s is distributed?
     </p>
@@ -124,12 +135,20 @@ ggplot(ncovr, aes(x = HR90)) +
   ggtitle("Density estimate, mean and median of homicide rate 1990")
       </code>
     </program>
-
+      <figure>
+        <caption>Density estimate, mean, and median of homicide rate in 1990</caption>
+        <image source="appB-3.png">
+        </image>
+      </figure>
     <program language="r">
       <code>
 summary(ncovr$HR90)
       </code>
     </program>
+<pre>
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00    1.33    4.38    6.18    8.94   71.38
+</pre>
 
     <p>
       If I only had one shot, you could go for the median (given the skew) but the mean
@@ -171,6 +190,11 @@ ggplot() +
            size =7, colour = "blue")
       </code>
     </program>
+      <figure>
+        <caption>Our best guess for homicide rate when resource deprivation score in the county is 4</caption>
+        <image source="appB-4.png">
+        </image>
+      </figure>
 
     <p>
       Linear regression tackles this problem using a slightly different approach. Rather
@@ -198,6 +222,12 @@ ggplot(data = ncovr, aes(x = RD90, y = HR90)) +
   geom_smooth(method = "lm", se = FALSE, color = "red", size = 1)
       </code>
     </program>
+
+      <figure>
+        <caption>Linear regression line on relationship between homicide rate and resource deprivation</caption>
+        <image source="appB-5.png">
+        </image>
+      </figure>
 
     <p>
       What that line is doing is giving you guesses (predictions) for the values of
@@ -290,6 +320,19 @@ class(fit_1)
 attributes(fit_1)
       </code>
     </program>
+<pre>
+## [1] "lm"
+</pre>
+<pre>
+## $names
+##  [1] "coefficients"  "residuals"     "effects"      
+##  [4] "rank"          "fitted.values" "assign"       
+##  [7] "qr"            "df.residual"   "xlevels"      
+## [10] "call"          "terms"         "model"        
+## 
+## $class
+## [1] "lm"
+</pre>
 
     <p>
       R is telling us that this is an object of class <c>lm</c> and that it includes a
@@ -304,7 +347,27 @@ attributes(fit_1)
 summary(fit_1)
       </code>
     </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR90 ~ RD90, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -17.80  -3.42  -0.72   2.54  67.10 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   6.1829     0.0984    62.8   <2e-16 ***
+## RD90          3.7712     0.0985    38.3   <2e-16 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.47 on 3083 degrees of freedom
+## Multiple R-squared:  0.322,  Adjusted R-squared:  0.322 
+## F-statistic: 1.47e+03 on 1 and 3083 DF,  p-value: <2e-16
+</pre>
     <p>
       Or if you prefer more parsimonious presentation, you could use the <c>display()</c>
       function of the <c>arm</c> package:
@@ -316,7 +379,15 @@ library(arm)
 display(fit_1)
       </code>
     </program>
-
+<pre>
+## lm(formula = HR90 ~ RD90, data = ncovr)
+##             coef.est coef.se
+## (Intercept) 6.18     0.10   
+## RD90        3.77     0.10   
+## ---
+## n = 3085, k = 2
+## residual sd = 5.47, R-Squared = 0.32
+</pre>
     <p>
       For now I just want you to focus on the numbers in the <q>Estimate</q> (or
       coef.est) column. The value of 6.18 estimated for the <term>intercept</term> is
@@ -329,7 +400,10 @@ display(fit_1)
 summary(ncovr$RD90)
       </code>
     </program>
-
+<pre>
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  -2.410  -0.667  -0.202   0.000   0.439   5.583
+</pre>
     <p>
       <c>RD90</c> is a variable that has been centered at 0. It has been created by the
       researchers in such a way that it has a mean value of 0. Since we only have one
@@ -371,7 +445,10 @@ summary(ncovr$RD90)
 predict(fit_1, data.frame(RD90 = c(1)))
       </code>
     </program>
-
+<pre>
+##     1 
+## 9.954
+</pre>
     <p>
       This is the expected value of Y, homicide rate, when X, resource deprivation is 1
       <em>according to our model</em> (according to our simplification of the real world,
@@ -388,9 +465,15 @@ predict(fit_1, data.frame(RD90 = c(1)))
       In the output above we saw there was something called the residuals. The
       <term>residuals</term> are the differences between the observed values of Y for
       each case minus the predicted or expected value of Y; in other words, the distances
-      between each point in the dataset and the regression line. Least squares estimation
-      essentially aims to reduce the average of the squares of all these distances: that's
-      how it draws the line.
+      between each point in the dataset and the regression line (see the visual example below).</p>
+
+      <figure>
+        <caption>Predicted values, measured value, and residual</caption>
+        <image source="appB-6.png">
+        </image>
+      </figure>
+
+    <p> You see that we have our line, which is our predicted values, and then we have the black dots which are our actually observed values. The distance between them is essentially the amount by which we were wrong, and all these distances between observed and predicted values are our residuals. Least square estimation essentially aims to reduce the average of the squares of all these distances: that's how it draws the line.
     </p>
     <p>
       Why do we have residuals? Well, think about it. The fact that the line is not a
@@ -421,8 +504,15 @@ predict(fit_1, data.frame(RD90 = c(1)))
       our game where we try to guess homicide (Y)? If we did not have any information
       about X, our best bet for Y would be the mean of Y. The regression line aims to
       improve that prediction. By knowing the values of X, we can build a regression line
-      that that aims to get us closer to the actual values of Y.
+      that that aims to get us closer to the actual values of Y (look at the Figure below).
     </p>
+
+      <figure>
+        <caption>Illustration of explained, unexplained, and total deviation</caption>
+        <image source="appB-7.png">
+        </image>
+      </figure>
+
     <p>
       The distance between the mean (our best guess without any other piece of
       information) and the observed value of Y is what we call the
@@ -467,7 +557,16 @@ predict(fit_1, data.frame(RD90 = c(1)))
 attributes(summary(fit_1))
       </code>
     </program>
-
+<pre>
+## $names
+##  [1] "call"          "terms"         "residuals"    
+##  [4] "coefficients"  "aliased"       "sigma"        
+##  [7] "df"            "r.squared"     "adj.r.squared"
+## [10] "fstatistic"    "cov.unscaled" 
+## 
+## $class
+## [1] "summary.lm"
+</pre>
     <p>
       This means that we can access its elements if so we wish. So, for example, to
       obtain just the R Squared (<m>R^2</m>), we could ask for:
@@ -478,7 +577,9 @@ attributes(summary(fit_1))
 summary(fit_1)$r.squared
       </code>
     </program>
-
+<pre>
+## [1] 0.3224
+</pre>
     <p>
       Knowing how to interpret this is important. <m>R^2</m> ranges from 0 to 1. The
       greater it is, the more powerful our model is and the more explaining we are doing:
@@ -536,6 +637,11 @@ summary(fit_1)$coefficients
       </code>
     </program>
 
+<pre>
+##             Estimate Std. Error t value   Pr(>|t|)
+## (Intercept)    6.183    0.09844   62.81  0.000e+00
+## RD90           3.771    0.09846   38.30 6.536e-263
+</pre>
     <p>
       In our example, we can see that the coefficient for our predictor here is
       statistically significant.
@@ -550,6 +656,11 @@ summary(fit_1)$coefficients
 confint(fit_1)
       </code>
     </program>
+<pre>
+##             2.5 % 97.5 %
+## (Intercept) 5.990  6.376
+## RD90        3.578  3.964
+</pre>
   </section>
 
   <section xml:id="sec-app-b-categorical-predictors">
@@ -586,7 +697,30 @@ fit_2 &lt;- lm(HR90 ~ as.factor(SOUTH), data=ncovr)
 summary(fit_2)
       </code>
     </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR90 ~ as.factor(SOUTH), data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+##  -9.55  -3.34  -1.17   1.93  68.04 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)
+## (Intercept)          3.342      0.144    23.2   <2e-16
+## as.factor(SOUTH)1    6.208      0.212    29.2   <2e-16
+##                      
+## (Intercept)       ***
+## as.factor(SOUTH)1 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.88 on 3083 degrees of freedom
+## Multiple R-squared:  0.217,  Adjusted R-squared:  0.217 
+## F-statistic:  854 on 1 and 3083 DF,  p-value: <2e-16
+</pre>
     <p>
       As you will see, the output does not look too different. But notice in the print
       out how the row with the coefficient and other values for our input variable
@@ -618,6 +752,10 @@ mean(ncovr$HR90[ncovr$SOUTH == 0], na.rm=TRUE)
 mean(ncovr$HR90[ncovr$SOUTH == 1], na.rm=TRUE) - mean(ncovr$HR90[ncovr$SOUTH == 0], na.rm=TRUE)
       </code>
     </program>
+<pre>
+## [1] 3.342
+## [1] 6.208
+</pre>
 
     <p>
       So, to reiterate, for a binary predictor, the coefficient is nothing else than the
@@ -733,6 +871,29 @@ summary(fit_3)
       </code>
     </program>
 
+<pre>
+## 
+## Call:
+## lm(formula = HR90 ~ RD90 + SOUTH_f, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -16.48  -3.00  -0.58   2.22  68.15 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    4.727      0.139    33.9   <2e-16 ***
+## RD90           2.965      0.111    26.8   <2e-16 ***
+## SOUTH_f1       3.181      0.222    14.3   <2e-16 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.3 on 3082 degrees of freedom
+## Multiple R-squared:  0.365,  Adjusted R-squared:  0.364 
+## F-statistic:  884 on 2 and 3082 DF,  p-value: <2e-16
+</pre>
+
     <p>
       With more than one input, you need to ask yourself whether all of the regression
       coefficients are zero. This hypothesis is tested with the F test. Again we are
@@ -747,7 +908,7 @@ summary(fit_3)
       Notice that the table printed also reports a t test for each of the predictors.
       These are testing whether each of these predictors is associated with the response
       variable when adjusting for the other variables in the model. They report the
-      <q>partial effect of adding that variable to the model</q>. In this case we can see
+      <q>partial effect of adding that variable to the model</q> (James et al. 2013: 77). In this case we can see
       that both variables seem to be significantly associated with the response variable.
     </p>
     <p>
@@ -764,7 +925,15 @@ summary(fit_3)
       example, you could say the coefficient for <em>RD90</em> represents the increase in
       homicide for every one-unit increase in the measure of resource deprivation
       <em>when holding all other variables in the model constant</em> (in this case that
-      refers to holding constant <em>SOUTH</em>).
+      refers to holding constant <em>SOUTH</em>). But this terminology can be a bit misleading.
+    </p>
+   <p>
+      Other interpretations are also possible and are more generalizable. Gelman and Hill (2007)
+      emphasise what they call the predictive interpretation that considers how "the outcome variable
+      differs, on average, when comparing two groups of units that differ by 1 in the relevant predictor
+      while being identical in all the other predictors" (p. 34). So if you're regressing y on u and
+      v, the coefficient of u is the average difference in y per difference in u, comparing pairs of
+      items that differ in u but are identical in v.
     </p>
     <p>
       For example, in this case we could say that comparing counties that have the same
@@ -781,11 +950,9 @@ summary(fit_3)
       relationship between the response y and any one explanatory variable can change
       greatly depending on what other explanatory variables are present in the model.
     </p>
+   <p> For example, if you contrast this model with the one we run with only SOUTH as a predictor you will notice the intercept has changed. You cannot longer read the intercept as the mean value of homicide rate for Northern counties. Adding predictors to the model changes their meaning. Now the intercept index the value of homicide for southern counties that score 0 in RD90. In this case you have cases that meet this condition (equal zero in all your predictors), but often you may not have any case that does meet the definition of the intercept. More often than not, then, there is not much value in bothering to interpret the intercept.</p>
     <p>
-      Something you need to be particularly careful about is to interpret the coefficients
-      in a causal manner. Unless your data come from an experiment, this is unlikely to
-      be helpful. With observational data, regression coefficients should not be read as
-      indexing causal relations.
+     Something you need to be particularly careful about is to interpret the coefficients in a causal manner. At least your data come from an experiment this is unlikely to be helpful. With observational data regression coefficients should not be read as indexing causal relations. This sort of textbook warning is, however, often neglectfully ignored by professional researchers. Often authors carefully draw sharp distinctions between causal and correlational claims when discussing their data analysis, but then interpret the correlational patterns in a totally causal way in their conclusion section. This is what is called the causation or causal creep. Beware. Don’t do this, as tempting as it may be.
     </p>
     <p>
       Comparing the simple models with this more complex model, we could say that
@@ -829,6 +996,12 @@ fit_4 &lt;- lm(HR90 ~ RD90 + SOUTH_f + DV90 + MA90 + PS90, data=ncovr)
 plot_model(fit_4, breakLabelsAt = 30)
       </code>
     </program>
+
+      <figure>
+        <caption>Regression forest plot for the results of a regression</caption>
+        <image source="appB-8.png">
+        </image>
+      </figure>
 
     <p>
       What you see plotted here is the point estimates (circles), the confidence
@@ -911,6 +1084,12 @@ plot(allEffects(fit_3), ask=FALSE)
       </code>
     </program>
 
+      <figure>
+        <caption>Effect plots for a regression</caption>
+        <image source="appB-9.png">
+        </image>
+      </figure>
+
     <p>
       Notice that the line has a confidence interval drawn around it and that the
       predicted means for southern and northern counties (when controlling for
@@ -933,6 +1112,31 @@ plot(allEffects(fit_3), ask=FALSE)
 summary(fit_4)
       </code>
     </program>
+<pre>
+## 
+## Call:
+## lm(formula = HR90 ~ RD90 + SOUTH_f + DV90 + MA90 + PS90, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -15.74  -2.59  -0.68   1.71  69.18 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   4.2035     0.9847    4.27    2e-05 ***
+## RD90          3.1992     0.1117   28.65   <2e-16 ***
+## SOUTH_f1      2.5998     0.2156   12.06   <2e-16 ***
+## DV90          0.4759     0.0531    8.97   <2e-16 ***
+## MA90         -0.0761     0.0274   -2.77   0.0056 ** 
+## PS90          1.2645     0.1005   12.59   <2e-16 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.04 on 3079 degrees of freedom
+## Multiple R-squared:  0.426,  Adjusted R-squared:  0.425 
+## F-statistic:  457 on 5 and 3079 DF,  p-value: <2e-16
+</pre>
 
     <p>
       We just cannot. One way of dealing with this is by rescaling the input variables.
@@ -961,7 +1165,18 @@ summary(fit_4)
 arm::standardize(fit_4)
       </code>
     </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR90 ~ z.RD90 + c.SOUTH_f + z.DV90 + z.MA90 + z.PS90, 
+##     data = ncovr)
+## 
+## Coefficients:
+## (Intercept)       z.RD90    c.SOUTH_f       z.DV90  
+##       6.183        6.398        2.600        1.650  
+##      z.MA90       z.PS90  
+##      -0.548        2.529
+</pre>
     <p>
       Notice the main change affects the numerical predictors. The unstandardised
       coefficients are influenced by the degree of variability in your predictors, which
@@ -1026,7 +1241,29 @@ fit_5 &lt;- lm(HR90 ~ RD90 + SOUTH_f + RD90:SOUTH_f , data=ncovr)
 summary(fit_5)
       </code>
     </program>
-
+<pre>
+## 
+## Call:
+## lm(formula = HR90 ~ RD90 + SOUTH_f + RD90:SOUTH_f, data = ncovr)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -17.05  -3.00  -0.57   2.23  68.14 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)      4.548      0.159   28.68   <2e-16 ***
+## RD90             2.581      0.196   13.15   <2e-16 ***
+## SOUTH_f1         3.261      0.225   14.51   <2e-16 ***
+## RD90:SOUTH_f1    0.562      0.238    2.37    0.018 *  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.29 on 3081 degrees of freedom
+## Multiple R-squared:  0.366,  Adjusted R-squared:  0.365 
+## F-statistic:  592 on 3 and 3081 DF,  p-value: <2e-16
+</pre>
     <p>
       You see here that essentially you have only two inputs (resource deprivation and
       south) but several regression coefficients. Gelman and Hill (2007) suggest
@@ -1046,6 +1283,11 @@ summary(fit_5)
 plot(allEffects(fit_5), ask=FALSE)
       </code>
     </program>
+      <figure>
+        <caption>Effect plots for regression testing conditional hypothesis</caption>
+        <image source="appB-10.png">
+        </image>
+      </figure>
 
     <p>
       Notice that essentially what we are doing is running two regression lines and
@@ -1151,10 +1393,9 @@ plot(allEffects(fit_5), ask=FALSE)
     <title>Regression Assumptions</title>
 
     <p>
-      Although so far we have discussed the practicalities of fitting and interpreting
-      regression models, in practical applications you want to first check your model and
-      proceed from there. There is not much point spending time interpreting your model
-      until you know that the model reasonably fits your data.
+Although so far we have discussed the practicalities of fitting and interpreting regression models, in practical applications you want to first check your model and proceed from there. There is not much point spending time interpreting your model until you know that the model reasonably fits your data.
+</p><p>
+In previous data analysis modules we surely covered assumptions made by various statistical tests. The regression model also makes assumptions of its own. In fact, there are so many that we could spend an entire class discussing them. Gelman and Hill (2007) point out that the most important regression assumptions by decreasing order of importance are:
     </p>
     <p>
       Gelman and Hill (2007) point out that the most important regression assumptions by
@@ -1164,12 +1405,12 @@ plot(allEffects(fit_5), ask=FALSE)
       <li>
         <p>
           <term>Validity</term>. The data should be appropriate for the question that you
-          are trying to answer. Optimally, this means that the outcome measure should
+          are trying to answer. "Optimally, this means that the outcome measure should
           accurately reflect the phenomenon of interest, the model should include all
           relevant predictors, and the model should generalize to all cases to which it
           will be applied. Data used in empirical research rarely meet all (if any) of
           these criteria precisely. However, keeping these goals in mind can help you be
-          precise about the types of questions you can and cannot answer reliably.
+          precise about the types of questions you can and cannot answer reliably."
         </p>
       </li>
       <li>
@@ -1204,12 +1445,7 @@ plot(allEffects(fit_5), ask=FALSE)
       </li>
       <li>
         <p>
-          <term>Normality of errors</term>. The residuals should be normally distributed.
-          Gelman and Hill (2007: 46) discuss this as the least important of the
-          assumptions. If the errors do not have a normal distribution, it usually is not
-          particularly serious. Regression inferences tend to be robust with respect to
-          normality (or non-normality of the errors). In practice, the residuals may
-          appear to be non-normal when the wrong regression equation has been used.
+          <term>Normality of errors</term>. The residuals should be normally distributed. Gelman and Hill (2007: 46) discuss this as the least important of the assumptions and in fact “do not recommend diagnostics of the normality of the regression residuals”. If the errors do not have a normal distribution, it usually is not particularly serious. Regression inferences tend to be robust with respect to normality (or nonnormality of the errors). In practice, the residuals may appear to be nonnormal when the wrong regression equation has been used. So, I will show you how to inspect normality of the residuals not because this is a problem on itself, but because it may be give you further evidence that there is some other problem with the model you are applying to your data.
         </p>
       </li>
     </ul>
@@ -1218,11 +1454,9 @@ plot(allEffects(fit_5), ask=FALSE)
       interpretation) and influential observations.
     </p>
     <p>
-      So these are the assumptions of linear regression. While finding that some of the
-      assumptions are violated does not necessarily mean that you have to scrap your
-      model, it is important to use these diagnostics to illustrate that you have
-      considered what the possible issues with your model are, and if you find any serious
-      issues, that you do address them.
+So these are the assumptions of linear regression, and today we will go through how to test for them, and also what are some options that you can consider if you find that your model violates them. While finding that some of the assumptions are violated do not necessarily mean that you have to scrap your model, it is important to use these diagnostics to illustrate that you have considered what the possible issues with your model is, and if you find any serious issues that you address them.
+</p><p>
+You may have noticed the second of this assumption is independence of errors. This is an issue with spatial data. If you have spatial autocorrelation basically you are saying that your observations are not independent. What happens in area X is likely to be similar to what happens in its surrounding neighbours (if you have positive spatial autocorrelation). What do you do? Well, that’s what we will cover next week. We will learn how to fit regression models where you have spatial dependency.
     </p>
   </section>
 
