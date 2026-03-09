@@ -3,9 +3,7 @@
 <chapter xml:id="ch-08" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Crime Along Spatial Networks</title>
 
-  <section xml:id="sec-ch8-intro">
-    <title>Introduction</title>
-
+  <introduction>
     <p>
       In the previous chapter we explored how the techniques for spatial pattern analysis can be
       used to study the varying intensity of crime across space. We introduce the key idea of
@@ -21,7 +19,7 @@
 
     <figure>
       <caption>Crime along street network in Chicago</caption>
-      <image>
+      <image source="figure-ch08/ch8-1.png">
         <description>A simplified street map titled 'Chicago', thin black lines trace the road
         network in a small section of a city. To the left, a legend matches various shapes, such
         as circles and diamonds to types of crime, 'assault', 'burglary', 'cartheft', 'damage',
@@ -131,7 +129,7 @@ library(tigris)
       <xref ref="Ceccato_2013" text="custom">Ceccato, 2013</xref>).
     </p>
 
-  </section>
+  </introduction>
 
   <section xml:id="sec-ch8-constructing">
     <title>Constructing and storing a spatial linear network</title>
@@ -203,7 +201,7 @@ figure_1
 
     <figure>
       <caption>Street network geometries for Heswall, UK and Manhattan, USA</caption>
-      <image>
+      <image source="figure-ch08/ch8-2.png">
         <description>Two simple street maps side by side, the first titled 'Heswall', and the
         second 'Manhattan'. Black lines trace out the road network in both maps. Details of the
         roads are relatively clear in Heswall, but bleed together and cannot be made out in
@@ -263,7 +261,7 @@ plot(heswall_ntwk)
 
     <figure>
       <caption>Heswall as a spatial network</caption>
-      <image>
+      <image source="figure-ch08/ch8-3.png">
         <description>Numerous black dots outline a shape resembling Heswall's road network seen
         in the previous figure. Examining more closely, the road network is still present beneath
         the dots, though mostly covered.</description>
@@ -393,7 +391,7 @@ ggplot() +
 
     <figure>
       <caption>All shoplifting incidents in Merseyside from May 2019 to April 2020</caption>
-      <image>
+      <image source="figure-ch08/ch8-4.png">
         <description>A simple line street map of Heswall is now accompanied by red dots spreading
         far above and to the right as well. A concentration of red dots with a vertical gap
         towards the middle of the figure probably corresponds to Liverpool.</description>
@@ -466,7 +464,7 @@ plot(d100)
 
     <figure>
       <caption>Network density map with defaults</caption>
-      <image>
+      <image source="figure-ch08/ch8-5.png">
         <description>A pixelated street map of Heswall is titled 'd100'. A legend to the right
         matches a gradient from dark blue to red to yellow, with values from zero to nearly point
         zero eight. The lines corresponding to the streets on the map are themselves shaded,
@@ -482,7 +480,7 @@ plot(d100, style="width")
 
     <figure>
       <caption>Network density map with defaults with line width</caption>
-      <image>
+      <image source="figure-ch08/ch8-6.png">
         <description>The line street map of Heswall, titled 'd100'. Some of the streets seem
         thicker or as if they had blotches on them. To the right, a legend matches four increasing
         examples of line widths to the numbers zero, point zero two, point zero four, and point
@@ -552,7 +550,7 @@ plot(d_okabe, main="Okabe-Sugihara (disc.)")
 
     <figure>
       <caption>Network density map (Okabe-Sugihara (disc.) method)</caption>
-      <image>
+      <image source="figure-ch08/ch8-7.png">
         <description>A pixelated street map of Heswall is titled 'Okabe-Sugihara (disc.)'. A
         legend to the right matches a gradient from dark blue to red to yellow, with values from
         zero to about point one. The lines corresponding to the streets on the map are themselves
@@ -591,7 +589,7 @@ plot(d_mcswiggan, main="McSwiggan")
 
     <figure>
       <caption>Network density map (McSwiggan Gaussian method)</caption>
-      <image>
+      <image source="figure-ch08/ch8-8.png">
         <description>Like the previous figure, we have a shaded street map of Heswall titled
         'McSwiggan', with a similar legend. Amidst the dark blue, a few areas of lighter blue
         appear, as well as several red to purple spots. One area towards the top right reaches
@@ -633,7 +631,7 @@ plot(d_rakshit, main="Rakshit")
 
     <figure>
       <caption>Network density map (Rakshit method)</caption>
-      <image>
+      <image source="figure-ch08/ch8-9.png">
         <description>Once again we have a shaded street map of Heswall titled 'Rakshit', with a
         similar legend, which ranges from zero to point two five this time. Most of Heswall is
         dark blue, with only the ends of two roads near the top right brightening to
@@ -737,7 +735,7 @@ ggplot() +
 
     <figure>
       <caption>Narrow focus on Heswall town centre</caption>
-      <image>
+      <image source="figure-ch08/ch8-10.png">
         <description>A section of the street line map of Heswall, mostly contained within a
         large blue circle. A number of red dots appear inside this circle, near the centre and
         towards the right, with one outlier to the north and one to the south.</description>
@@ -832,7 +830,9 @@ nearest_segments &lt;- st_nearest_feature(tc_shoplifting, heswall_tc)
 nearest_segments[1:5]
           </input>
         </program>
-
+<pre>
+## [1] 315 315  65 317 317
+</pre>
         <p>
           We can use this to create a frequency table which counts the number of ASB incidents
           linked to each street segment (by virtue of being nearest to it).
@@ -851,7 +851,12 @@ nearest_freq$nearest_segments &lt;- as.numeric(
 nearest_freq[1:3,]
           </input>
         </program>
-
+<pre>
+##   nearest_segments Freq
+## 1                1    1
+## 2               17    3
+## 3               27    3
+</pre>
         <p>
           We can see here some examples of the number of shoplifting incidents snapped to each
           segment. Now we can join this to our spatial layer:
@@ -888,7 +893,7 @@ ggplot() +
 
         <figure>
           <caption>Check that crimes are linked to street segments</caption>
-          <image>
+      <image source="figure-ch08/ch8-11.png">
             <description>A street line map of the centre of Heswall, like in the previous
             figure. A legend to the right is titled 'Number of shoplifting incidents', and
             matches a gradient from red to light blue with numbers from eight to zero. Most of
@@ -934,6 +939,9 @@ heswall_tc$length &lt;- st_length(heswall_tc)
 heswall_tc$length[1]
           </input>
         </program>
+<pre>
+## 729.8 [m]
+</pre>
 
         <p>
           To use it in our calculation, we need this to be a numeric variable, so let's transform
@@ -978,7 +986,7 @@ ggplot() +
 
         <figure>
           <caption>Hot routes map displaying rate of crimes per metre for each segment</caption>
-          <image>
+      <image source="figure-ch08/ch8-12.png">
             <description>A map that looks very similar to the previous figure, with the legend
             labeled 'Shoplifting incidents per metre', ranging from zero to point zero six. The
             longer roads, such as the one running from the top left to the bottom right, are less
@@ -994,10 +1002,7 @@ ggplot() +
         </p>
 
         <p>
-          Something to consider is that the longer the road, the larger the denominator, so,
-          since there are not many crimes on each road, we might artificially dilute the crime
-          rate. If you suspect this might be the case, then segmentation might be a better
-          approach, and then refer back to the paper by
+          Now this might also be as if it's a long road it will have a bigger denominator, and as we're dealing with few crimes here, it might be that artifically dilutes the crime rate. If you suspect this might be the case, then the segmentation might be a better approach, and then refer back to the paper by
           <xref ref="Tompson_2009" text="custom">Tompson et al. (2009)</xref> for guidance on
           that.
         </p>
@@ -1027,7 +1032,7 @@ ggplot() +
         <figure>
           <caption>Hot routes map displaying rate of crimes per metre for each segment with line
           width as well as colour</caption>
-          <image>
+      <image source="figure-ch08/ch8-13.png">
             <description>The previous figure has been slightly altered, and has gained a second
             legend labeled 'Rate of crimes per metre (width)', matching four examples of line
             widths to numbers from zero to point zero six. The width of streets shaded darker has
@@ -1127,7 +1132,7 @@ ggplot() +
 
         <figure>
           <caption>Default OSM segments of Telegraph Road versus intersections</caption>
-          <image>
+      <image source="figure-ch08/ch8-14.png">
             <description>A small part of a line map, in particular the road running from the top
             left to the bottom right in the previous figures, along with roads branching off of
             it. The main road is broken into seven colours, while there are about fifteen to
@@ -1191,7 +1196,7 @@ ggplot() +
 
         <figure>
           <caption>Telegraph Road segmented at each intersection</caption>
-          <image>
+      <image source="figure-ch08/ch8-15.png">
             <description>The same road and branching roads from the previous figure, with the
             main road now changing colours at every intersection.</description>
           </image>
@@ -1306,7 +1311,7 @@ gridExtra::grid.arrange(p1,p2, nrow = 1)
 
         <figure>
           <caption>Shoplifting in summer and winter months</caption>
-          <image>
+      <image source="figure-ch08/ch8-16.png">
             <description>Two plots both show one line corresponding to the main street seen in
             previous line maps, with its segments shaded in blue and red. A legend accompanies
             each one, the first labeled 'Shoplifting in summer', the second 'Shoplifting in
@@ -1345,7 +1350,7 @@ tr_sections$winter_rate &lt;- as.numeric(tr_sections$winter_sl / tr_sections$len
       </subsubsection>
 
       <subsubsection xml:id="subsubsec-ch8-spa-visualise">
-        <title>Visualise the results</title>
+        <title>Visualise</title>
 
         <p>
           Finally, we reach the visualisation stage. To do this, we need to find the "Point A"
@@ -1359,7 +1364,7 @@ tr_sections$winter_rate &lt;- as.numeric(tr_sections$winter_sl / tr_sections$len
 
         <figure>
           <caption>Find starting point "Point A" on the street</caption>
-          <image>
+      <image source="figure-ch08/ch8-17.png">
             <description>The main road and the branching roads, all outlined in black. The top
             left of the main road, before the first intersection, is much thicker than the rest.
             A rounded box with the text 'Start here' is on top of the thicker segment of the
@@ -1419,7 +1424,7 @@ ggplot(tr_sections, aes(x = reorder(as.character(section),
 
         <figure>
           <caption>Street profile with unlabelled segments</caption>
-          <image>
+      <image source="figure-ch08/ch8-18.png">
             <description>A line chart over a grey grid, with vertical axis labeled 'Shoplifting
             incidents' ranging from zero to point two five. The horizontal axis is labeled
             'Telegraph Road', and contains numbers from one to twenty, but in a jumbled order.
@@ -1488,7 +1493,7 @@ ggplot(tr_sections, aes(x = reorder(name,
 
         <figure>
           <caption>Street profile using intersecting roads on the x-axis</caption>
-          <image>
+      <image source="figure-ch08/ch8-19.png">
             <description>The previous plot has had its horizontal axis updated, the jumbled
             numbers replaced with names of roads. Some of the labels are repeated with a
             fullstop and the number one appended to the end. The non-zero data points are 'The
@@ -1534,7 +1539,7 @@ ggplot() +
 
         <figure>
           <caption>Street profile comparing summer and winter months</caption>
-          <image>
+      <image source="figure-ch08/ch8-20.png">
             <description>The previous plot appears once again, with the previously plotted data
             now in blue. A new set of data is plotted in red, which is nonzero at 'The Mount dot
             one', 'The Mount', 'Moor Lane', and 'Rocky Lane South'. The maximum of the two data
@@ -1628,7 +1633,7 @@ plot(tr_lorenz)
 
     <figure>
       <caption>Lorenz curve for crimes in Heswall</caption>
-      <image>
+      <image source="figure-ch08/ch8-21.png">
         <description>A plot titled 'Lorenz curve', with vertical axis labeled 'L of p', ranging
         from zero to one, and horizontal axis labeled 'p' also ranging from zero to one. A
         straight line bisects the plot from the origin to the top right, where both values are
