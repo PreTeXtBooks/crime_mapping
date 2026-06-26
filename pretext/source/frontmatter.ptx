@@ -33,9 +33,34 @@
     <titlepage-items/>
   </titlepage>
 
-  <colophon xml:id="front-colophon">
-    <colophon-items/>
-  </colophon>
+  <preface xml:id="pretext-edition-note">
+    <title>Note on This PreTeXt Edition</title>
+    <p>
+      This is a <url href="https://pretextbook.org/" visual="pretextbook.org">PreTeXt</url>
+      conversion of <em>Crime Mapping and Spatial Data Analysis using R</em>, originally written by
+      Juanjo Medina and Reka Solymosi.
+      The original work is available online at
+      <url href="https://maczokni.github.io/crime_mapping/">maczokni.github.io/crime_mapping</url>.
+      The original GitHub repository for the book source is at
+      <url href="https://github.com/maczokni/crime_mapping/">github.com/maczokni/crime_mapping/</url>.
+    </p>
+    <p>
+      This PreTeXt edition was prepared by
+      <url href="https://github.com/PreTeXtBooks/crime_mapping">the PreTeXtBooks project</url>
+      to make the content available in the PreTeXt format, enabling accessible and structured output
+      in HTML, PDF, and other formats.
+      All prose, code examples, figures, and mathematical content
+      are intended to be faithful reproductions of the original work, though occasional typographical
+      errors may have been introduced in the conversion process.
+      Report any issues to our
+      <url href="github.com/PreTeXtBooks/crime_mapping/issues">GitHub Issues Page</url>.
+    </p>
+    <p>
+      The original work by Juanjo Medina and Reka Solymosi is licensed under a
+      <url href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons
+      1.0 Universal License</url>.
+    </p>
+  </preface>
 
   <preface xml:id="preface">
     <title>Preface: how to use this book</title>
